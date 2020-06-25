@@ -1,0 +1,40 @@
+<!--
+/**
+ * Based on https://github.com/Moerill/mess
+ * with permission from Moerill
+ */
+-->
+<style>
+    .welcome-screen a[href] {
+        color: #4a52ca;
+    }
+    .welcome-screen .window-content > * {
+        flex: 0;
+    }
+    {{#if wfrp4e}}
+    .welcome-screen .window-content {
+        background: url("/ui/parchment.jpg") repeat !important;
+    }
+    {{/if}}
+</style>
+
+<h1>Thank you for installing and using Forien's Unidentified Items!</h1>
+<p>Make sure to read the <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/master/README.md">README</a>, for important information and to learn about this module's features.</p>
+<h2>Bugs?</h2>
+<p>Check <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/issuess?q=is%3Aopen+is%3Aissue+label%3Abug">current list of bugs</a> and if yours is not covered there, create new Issue using Bug Report template.
+<h2>Suggestions? Feature Requests? Feedback?</h2>
+<p>Don't ask me on Discord. Use the <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/issues">GitHubs Issue Board</a> for questions, suggestions, bugs, helping other peoples questions getting answered, etc.</p>
+<p>Before you post anything, check the issues board first if your issue, question, etc. has been posted already. If yes, comment on the existing post and/or give it a thumbsup!</p>
+<p>Currently planned features are on the <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement">GitHubs Issue Board</a> as well. </p>
+
+<p style="font-weight: bold; text-align: right;">Best regards, <br>Forien</p>
+
+<p style="display: flex; flex-flow: row nowrap; align-items: center; justify-content: flex-start;"><input type="checkbox" class='show-again' id="welcome-screen-show-again" {{checked isChecked}}/> <label for="welcome-screen-show-again">Don't show this screen again until next update.</label></p>
+<p style="text-align: right">Want to support development? <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items#support">Click here</a>!</p>
+
+<h1>Changelog</h1>
+<!-- https://markdowntohtml.com/ -->
+<h2 id="v010">v0.1.0</h2>
+<ul>
+    <li>Initial release</li>
+</ul>

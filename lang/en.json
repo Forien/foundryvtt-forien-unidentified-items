@@ -1,0 +1,15 @@
+{
+  "ForienUnidentifiedItems": {
+    "NewMystified": "Unidentified Item",
+    "Mystify": "Mystify",
+    "Identify": "Identify",
+    "Peek": "Peek",
+
+    "Settings": {
+      "playersWelcomeScreen": {
+        "Enable": "Display Welcome Screen to Players",
+        "EnableHint": "Uncheck to prevent players from seeing Welcome Screen on log in after an update."
+      }
+    }
+  }
+}

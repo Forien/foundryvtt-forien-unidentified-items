@@ -1,0 +1,37 @@
+{
+  "name": "forien-unidentified-items",
+  "title": "Forien's Unidentified Items",
+  "description": "Provides system agnostic solution to handle unidentified items and their identification.",
+  "author": "Forien — Forien#2130",
+  "authors": [
+    {
+      "name": "Forien",
+      "url": "https://www.patreon.com/forien"
+    }
+  ],
+  "version": "0.1.0",
+  "minimumCoreVersion": "0.6.0",
+  "compatibleCoreVersion": "0.6.4",
+  "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
+  "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-unidentified-items/master/module.json",
+  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.1.0/v0.1.0.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.0/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.0/changelog.md",
+  "bugs": "https://github.com/Forien/foundryvtt-forien-unidentified-items/issues",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    }
+  ],
+  "esmodules": [
+    "./modules/init.mjs"
+  ],
+  "socket": true
+}
