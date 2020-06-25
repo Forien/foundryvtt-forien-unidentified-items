@@ -24,7 +24,7 @@ export default class Identification {
   static identify(item) {
     const origData = item.getFlag(constants.moduleName, "origData");
     let hook = Hooks.call(`${constants.moduleName}:onIdentifyItem`, item, origData);
-    if (hook) {
+    if (hook !== false) {
       item.update(origData);
       item.unsetFlag(constants.moduleName, "origData");
     }

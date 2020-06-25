@@ -12,7 +12,7 @@ class WelcomeScreen extends Application {
   static get defaultOptions() {
     let title = game.modules.get(constants.moduleName).data.title;
     return mergeObject(super.defaultOptions, {
-      template: `modules/forien-quest-log/templates/welcome-screen.html`,
+      template: `modules/${constants.moduleName}/templates/welcome-screen.html`,
       resizable: true,
       width: 450,
       height: 636,
