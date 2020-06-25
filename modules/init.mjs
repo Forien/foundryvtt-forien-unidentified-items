@@ -29,7 +29,6 @@ Hooks.once("ready", () => {
   }
 
   for (let k in CONFIG.Item.sheetClasses) {
-    console.log(k);
     for (let l in CONFIG.Item.sheetClasses[k]) {
       const ParentClass = CONFIG.Item.sheetClasses[k][l].cls;
 
