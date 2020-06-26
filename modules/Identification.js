@@ -18,15 +18,15 @@ export default class Identification {
 
     const mystifiedItem = await Item.create(mystifiedData);
 
-    mystifiedItem.setFlag(constants.moduleName, "origData", origData);
+    await mystifiedItem.setFlag(constants.moduleName, "origData", origData);
   }
 
-  static identify(item) {
+  static async identify(item) {
     const origData = item.getFlag(constants.moduleName, "origData");
     let hook = Hooks.call(`${constants.moduleName}:onIdentifyItem`, item, origData);
     if (hook !== false) {
-      item.update(origData);
-      item.unsetFlag(constants.moduleName, "origData");
+      await item.update(origData);
+      await item.unsetFlag(constants.moduleName, "origData");
     }
   }
 }
