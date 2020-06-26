@@ -32,8 +32,7 @@ Hooks.once("ready", () => {
     for (let l in CONFIG.Item.sheetClasses[k]) {
       const ParentClass = CONFIG.Item.sheetClasses[k][l].cls;
 
-      CONFIG.Item.sheetClasses[k][l].cls = class extends ParentClass {
-
+      const newClass = class extends ParentClass {
         /** @override */
         _getHeaderButtons() {
           const buttons = super._getHeaderButtons();
@@ -82,6 +81,13 @@ Hooks.once("ready", () => {
           return super._updateObject(...args);
         }
       };
+
+      let sheetName = l.split('.');
+      sheetName = sheetName[1];
+
+      // Because FireFox is stupid
+      Object.defineProperty(newClass, 'name', {value: sheetName});
+      CONFIG.Item.sheetClasses[k][l].cls = newClass;
     }
   }
 
