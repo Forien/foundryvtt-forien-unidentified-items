@@ -28,6 +28,11 @@
       "lang": "pl",
       "name": "Polski",
       "path": "lang/pl.json"
+    },
+    {
+      "lang": "ko",
+      "name": "Korean",
+      "path": "lang/ko.json"
     }
   ],
   "esmodules": [
