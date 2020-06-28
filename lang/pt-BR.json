@@ -1,0 +1,15 @@
+{
+  "ForienUnidentifiedItems": {
+    "NewMystified": "Item não Identificado",
+    "Mystify": "Mistificar",
+    "Identify": "Identificar",
+    "Peek": "Ver",
+
+    "Settings": {
+      "playersWelcomeScreen": {
+        "Enable": "Exibir a tela de boas vindas aos jogadores",
+        "EnableHint": "Desmarque para impedir que os jogadores vejam a tela de boas-vindas no login após uma atualização."
+      }
+    }
+  }
+}
