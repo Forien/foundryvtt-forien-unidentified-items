@@ -4,7 +4,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)  
 **[Compatibility]**: *FoundryVTT* 0.6.0+  
 **[Systems]**: *any*  
-**[Languages]**: *English, Polish*  
+**[Languages]**: *English, Koreak, Polish, Portuguese (Brazil)*  
 
 This module aims to provides system agnostic solution to handle unidentified items and their identification for games via Foundry Virtual Tabletop.
 
