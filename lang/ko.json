@@ -1,0 +1,15 @@
+{
+  "ForienUnidentifiedItems": {
+    "NewMystified": "미식별 아이템",
+    "Mystify": "미식별",
+    "Identify": "식별",
+    "Peek": "보기",
+
+    "Settings": {
+      "playersWelcomeScreen": {
+        "Enable": "플레이어에게 환영 화면 표시",
+        "EnableHint": "업데이트 후 로그인 시 플레이어가 환영 화면을 볼 수 없도록 하려면 선택 취소할 것 "
+      }
+    }
+  }
+}
