@@ -9,14 +9,14 @@
       "url": "https://www.patreon.com/forien"
     }
   ],
-  "version": "0.1.4",
+  "version": "0.1.5",
   "minimumCoreVersion": "0.6.0",
   "compatibleCoreVersion": "0.6.4",
   "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
   "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-unidentified-items/master/module.json",
-  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.1.4/v0.1.4.zip",
-  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.4/README.md",
-  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.4/changelog.md",
+  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.1.5/v0.1.5.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.5/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.5/changelog.md",
   "bugs": "https://github.com/Forien/foundryvtt-forien-unidentified-items/issues",
   "languages": [
     {
@@ -25,14 +25,19 @@
       "path": "lang/en.json"
     },
     {
+      "lang": "ko",
+      "name": "한국어",
+      "path": "lang/ko.json"
+    },
+    {
       "lang": "pl",
       "name": "Polski",
       "path": "lang/pl.json"
     },
     {
-      "lang": "ko",
-      "name": "Korean",
-      "path": "lang/ko.json"
+      "lang": "pt-br",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-br.json"
     }
   ],
   "esmodules": [

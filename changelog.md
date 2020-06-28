@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.1.5
+* Added Korean language thanks to KLO
+* Added Portuguese (Brazil) language thanks to rinnocenti
+* Fixed bug that wouldn't allow to mystify items inside Actor's inventory and Compendium
+  * This is not "replace with mystified" option. this will come in future update. 
+
+
 ## v0.1.4
 * Added await to async functions to remove bug with VTTA Iconizer
 

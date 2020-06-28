@@ -46,6 +46,8 @@ If you wish to contact me for any reason, reach me out on Discord using my tag: 
 ## Acknowledgments
 
 * Thanks to unsoluble for the idea for this Module!
+* Thanks to KLO for providing Korean translation
+* Thanks to rinnocenti for providing Portuguese (Brazil) translation
 
 ## Support
 

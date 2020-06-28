@@ -2,10 +2,17 @@ import constants from "./constants.mjs";
 
 export default class Identification {
 
-  static async mystify(itemId) {
+  static async mystify(itemUuid) {
     if (!game.user.isGM) return;
+    let item;
 
-    const item = game.items.get(itemId);
+    item = await fromUuid(itemUuid);
+
+    if (!item) {
+      ui.notifications.error("ForienUnidentifiedItems.NotAnItem", {});
+      return;
+    }
+
     const origData = duplicate(item);
 
     let mystifiedData = {
