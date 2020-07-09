@@ -43,5 +43,8 @@
   "esmodules": [
     "./modules/init.mjs"
   ],
+  "styles": [
+    "./styles/style.css"
+  ],
   "socket": true
 }

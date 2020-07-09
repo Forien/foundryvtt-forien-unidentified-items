@@ -1,0 +1,21 @@
+#fui-default-icons .item-type-entry {
+  display: flex; }
+  #fui-default-icons .item-type-entry > * {
+    flex: 1;
+    align-self: center;
+    margin: 0 4px; }
+  #fui-default-icons .item-type-entry input {
+    flex: 2;
+    height: 34px;
+    min-width: 300px;
+    font-size: 12px; }
+  #fui-default-icons .item-type-entry img {
+    width: 66px;
+    height: 66px;
+    flex: 0;
+    margin: 0; }
+  #fui-default-icons .item-type-entry button {
+    flex: 0;
+    margin: 0; }
+
+/*# sourceMappingURL=style.css.map */

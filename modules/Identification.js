@@ -14,11 +14,13 @@ export default class Identification {
     }
 
     const origData = duplicate(item);
+    let iconSettings = game.settings.get(constants.moduleName, "defaultIcons");
+    let iconType = getProperty(iconSettings, origData.type) || `${constants.modulePath}/icons/${constants.defaultIcon}`;
 
     let mystifiedData = {
       name: game.i18n.localize("ForienUnidentifiedItems.NewMystified"),
       type: origData.type,
-      img: `modules/${constants.moduleName}/icons/unidentified.png`
+      img: iconType
     };
 
     Hooks.call(`${constants.moduleName}:onMystifyItem`, item, origData, mystifiedData);

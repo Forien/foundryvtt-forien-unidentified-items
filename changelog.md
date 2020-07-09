@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.0
+* Added 9 more icons and 10 inverted variants
+* Added Module Configuration allowing system-agnostic way of selecting default icon per item type
+* Added function that arbitrary assigns default icons on first module launch
+
 ## v0.1.5
 * Added Korean language thanks to KLO
 * Added Portuguese (Brazil) language thanks to rinnocenti
