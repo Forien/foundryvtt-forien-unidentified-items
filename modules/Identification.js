@@ -23,6 +23,15 @@ export default class Identification {
       img: iconType
     };
 
+    let defaultProperties = game.settings.get(constants.moduleName, "itemProperties");
+    let itemProperties = defaultProperties[origData.type];
+    itemProperties = Object.entries(itemProperties).filter(p => p[1]).map(p => p[0]);
+
+    itemProperties.forEach(property => {
+      property = "data." + property;
+      setProperty(mystifiedData, property, getProperty(origData, property));
+    });
+
     Hooks.call(`${constants.moduleName}:onMystifyItem`, item, origData, mystifiedData);
 
     const mystifiedItem = await Item.create(mystifiedData);

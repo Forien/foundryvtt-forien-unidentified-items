@@ -4,6 +4,7 @@
 * Added 9 more icons and 10 inverted variants
 * Added Module Configuration allowing system-agnostic way of selecting default icon per item type
 * Added function that arbitrary assigns default icons on first module launch
+* Added Module Configuration allowing system-agnostic way of define which item properties should persist on mystification
 
 ## v0.1.5
 * Added Korean language thanks to KLO

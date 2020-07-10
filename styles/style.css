@@ -6,7 +6,7 @@
     margin: 0 4px; }
   #fui-default-icons .item-type-entry input {
     flex: 2;
-    height: 34px;
+    height: 29px;
     min-width: 300px;
     font-size: 12px; }
   #fui-default-icons .item-type-entry img {
@@ -17,5 +17,25 @@
   #fui-default-icons .item-type-entry button {
     flex: 0;
     margin: 0; }
+
+#fui-item-properties form {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto; }
+#fui-item-properties nav {
+  flex-wrap: wrap; }
+  #fui-item-properties nav a {
+    flex: 0 0 25%; }
+#fui-item-properties section {
+  overflow: auto;
+  padding: 6px; }
+  #fui-item-properties section .tab {
+    columns: 3; }
+    #fui-item-properties section .tab .type-property {
+      display: flex;
+      align-items: center; }
+    #fui-item-properties section .tab * {
+      break-inside: avoid-column;
+      padding: 0; }
 
 /*# sourceMappingURL=style.css.map */

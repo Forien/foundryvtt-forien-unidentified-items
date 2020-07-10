@@ -12,7 +12,7 @@ $icon-size: 66px;
 
     input {
       flex: 2;
-      height: 34px;
+      height: 29px;
       min-width: 300px;
       font-size: 12px;
     }
@@ -29,4 +29,41 @@ $icon-size: 66px;
       margin: 0;
     }
   }
+}
+
+#fui-item-properties {
+  form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  nav {
+    flex-wrap: wrap;
+
+    a {
+      flex: 0 0 25%;
+    }
+  }
+
+  section {
+    overflow: auto;
+    padding: 6px;
+
+    .tab {
+      columns: 3;
+
+      .type-property {
+        display: flex;
+        align-items: center;
+
+      }
+
+      * {
+        break-inside: avoid-column;
+        padding: 0;
+      }
+    }
+  }
+
 }

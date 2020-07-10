@@ -1,0 +1,21 @@
+<form>
+    <nav class="nav-tabs tabs">
+        {{#each types}}
+        <a class="item" data-tab="{{this}}">{{this}}</a>
+        {{/each}}
+    </nav>
+    <section class="nav-body">
+        {{#each propertySettings}}
+        <div class="tab" data-tab="{{@key}}">
+            {{#each this}}
+            <div class="type-property">
+                <input id="{{@../key}}-property-{{@key}}" type="checkbox" name="{{@../key}}.{{@key}}" {{checked this}}/>
+                <label for="{{@../key}}-property-{{@key}}">{{@key}}</label>
+            </div>
+            {{/each}}
+        </div>
+        {{/each}}
+    </section>
+
+    <button type="submit" name="submit">{{localize 'Submit'}}</button>
+</form>
