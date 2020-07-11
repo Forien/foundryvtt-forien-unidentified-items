@@ -3,24 +3,57 @@ import Identification from "./Identification.js";
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
-    entryOptions.unshift({
-      name: "ForienUnidentifiedItems.Mystify",
-      icon: '<i class="far fa-eye-slash"></i>',
-      condition: li => {
-        if (!game.user.isGM) return false;
+    const mystifyCondition = (li) => {
+      if (!game.user.isGM) return false;
+      const id = li[0].dataset.entityId;
+      const item = game.items.get(id);
+      const origData = item.getFlag(constants.moduleName, "origData");
 
-        const id = li[0].dataset.entityId;
-        const item = game.items.get(id);
-        const origData = item.getFlag(constants.moduleName, "origData");
-        if (origData) return false;
+      return !origData;
+    };
 
-        return true;
+    console.log(entryOptions);
+
+    let mystifyOptions = [
+      {
+        name: "ForienUnidentifiedItems.Mystify",
+        icon: '<i class="far fa-eye-slash"></i>',
+        condition: mystifyCondition,
+        callback: li => {
+          const id = li[0].dataset.entityId;
+          Identification.mystify(`Item.${id}`);
+        }
       },
-      callback: li => {
-        const id = li[0].dataset.entityId;
-        Identification.mystify(`Item.${id}`);
+      {
+        name: "ForienUnidentifiedItems.MystifyReplace",
+        icon: '<i class="far fa-eye-slash"></i>',
+        condition: mystifyCondition,
+        callback: li => {
+          const id = li[0].dataset.entityId;
+          Identification.mystifyReplace(`Item.${id}`);
+        }
+      },
+      {
+        name: "ForienUnidentifiedItems.MystifyAs",
+        icon: '<i class="far fa-eye-slash"></i>',
+        condition: mystifyCondition,
+        callback: li => {
+          const id = li[0].dataset.entityId;
+          Identification.mystifyAsDialog(`Item.${id}`);
+        }
+      },
+      {
+        name: "ForienUnidentifiedItems.MystifyAdvanced",
+        icon: '<i class="far fa-eye-slash"></i>',
+        condition: mystifyCondition,
+        callback: li => {
+          const id = li[0].dataset.entityId;
+          Identification.mystifyAdvancedDialog(`Item.${id}`);
+        }
       }
-    });
+    ];
+
+    entryOptions.unshift(...mystifyOptions);
 
     entryOptions.unshift({
       name: "ForienUnidentifiedItems.Identify",

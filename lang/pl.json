@@ -2,6 +2,9 @@
   "ForienUnidentifiedItems": {
     "NewMystified": "Niezidentyfikowany przedmiot",
     "Mystify": "Zmistyfikuj",
+    "MystifyReplace": "Podmień na zmistyfikowany",
+    "MystifyAs": "Zmistyfikuj jako…",
+    "MystifyAdvanced": "Zmistyfikuj (zaawansowane)…",
     "Identify": "Zidentyfikuj",
     "Peek": "Podejrzyj",
 
@@ -9,6 +12,16 @@
       "playersWelcomeScreen": {
         "Enable": "Pokazuj graczom Ekran Powitalny",
         "EnableHint": "Odznacz, aby graczom nie wyświetlać po zalogowaniu Ekranu Powitalnego z każdą nową wersją."
+      },
+      "defaultIcons": {
+        "name": "Domyślne ikony",
+        "hint": "",
+        "label": "Otwórz Menadżer Ikon"
+      },
+      "itemProperties": {
+        "name": "Stałe cechy",
+        "hint": "",
+        "label": "Otwórz Menadżer Cech"
       }
     }
   }

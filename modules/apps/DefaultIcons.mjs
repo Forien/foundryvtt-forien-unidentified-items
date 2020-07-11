@@ -2,7 +2,7 @@ import constants from "../constants.mjs";
 
 export default class DefaultIcons extends FormApplication {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    let options = mergeObject(super.defaultOptions, {
       id: "fui-default-icons",
       template: `${constants.modulePath}/templates/settings-default-icons.html`,
       title: game.i18n.localize("ForienUnidentifiedItems.Settings.defaultIcons.name"),
@@ -10,6 +10,10 @@ export default class DefaultIcons extends FormApplication {
       submitOnChange: false,
       closeOnSubmit: true
     });
+
+    if (game.system.id === 'wfrp4e') options.classes.push('wfrp');
+
+    return options;
   }
 
   getData(options = {}) {

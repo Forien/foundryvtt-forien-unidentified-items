@@ -2,6 +2,9 @@
   "ForienUnidentifiedItems": {
     "NewMystified": "Unidentified Item",
     "Mystify": "Mystify",
+    "MystifyReplace": "Replace with Mystified",
+    "MystifyAs": "Mystify as…",
+    "MystifyAdvanced": "Mystify (advanced)…",
     "Identify": "Identify",
     "Peek": "Peek",
 
@@ -9,6 +12,16 @@
       "playersWelcomeScreen": {
         "Enable": "Display Welcome Screen to Players",
         "EnableHint": "Uncheck to prevent players from seeing Welcome Screen on log in after an update."
+      },
+      "defaultIcons": {
+        "name": "Default Icons",
+        "hint": "Select which icons should be used as defaults for specific Item types.",
+        "label": "Open Icon Manager"
+      },
+      "itemProperties": {
+        "name": "Persisting Properties",
+        "hint": "Select which Item properties should be by default carried over to mystified item.",
+        "label": "Open Property Manager"
       }
     }
   }

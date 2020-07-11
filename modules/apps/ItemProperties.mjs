@@ -2,7 +2,7 @@ import constants from "../constants.mjs";
 
 export default class ItemProperties extends FormApplication {
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    let options = mergeObject(super.defaultOptions, {
       id: "fui-item-properties",
       template: `${constants.modulePath}/templates/settings-item-properties.html`,
       title: game.i18n.localize("ForienUnidentifiedItems.Settings.itemProperties.name"),
@@ -14,6 +14,10 @@ export default class ItemProperties extends FormApplication {
       height: 560,
       tabs: [{navSelector: ".nav-tabs", contentSelector: ".nav-body"}]
     });
+
+    if (game.system.id === 'wfrp4e') options.classes.push('wfrp');
+
+    return options;
   }
 
   getData(options = {}) {

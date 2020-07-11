@@ -5,6 +5,9 @@
 * Added Module Configuration allowing system-agnostic way of selecting default icon per item type
 * Added function that arbitrary assigns default icons on first module launch
 * Added Module Configuration allowing system-agnostic way of define which item properties should persist on mystification
+* Added default settings initialization based on system and added built-in integration for dnd5e and wfrp4e
+* Added Hooks for initializing default settings
+* Added "Replace with Mystified" context option. For Owned Items this is default behaviour.
 
 ## v0.1.5
 * Added Korean language thanks to KLO

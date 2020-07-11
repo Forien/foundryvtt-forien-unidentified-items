@@ -1,3 +1,5 @@
+#fui-default-icons.wfrp .window-content {
+  background: url(/ui/parchment.jpg) repeat; }
 #fui-default-icons .item-type-entry {
   display: flex; }
   #fui-default-icons .item-type-entry > * {
@@ -18,6 +20,8 @@
     flex: 0;
     margin: 0; }
 
+#fui-item-properties.wfrp .window-content {
+  background: url(/ui/parchment.jpg) repeat; }
 #fui-item-properties form {
   height: 100%;
   display: grid;

@@ -45,15 +45,27 @@ function getItemSheetClass(cls, sheet) {
           }
         });
       } else {
-        buttons.unshift({
-          label: "ForienUnidentifiedItems.Mystify",
-          class: "mystify-item",
-          icon: "far fa-eye-slash",
-          onclick: ev => {
-            Identification.mystify(this.item.uuid);
-          }
-        });
+        if (this.item.isOwned) {
+          buttons.unshift({
+            label: "ForienUnidentifiedItems.Mystify",
+            class: "mystify-item",
+            icon: "far fa-eye-slash",
+            onclick: ev => {
+              Identification.mystifyReplace(this.item.uuid);
+            }
+          });
+        } else {
+          buttons.unshift({
+            label: "ForienUnidentifiedItems.Mystify",
+            class: "mystify-item",
+            icon: "far fa-eye-slash",
+            onclick: ev => {
+              Identification.mystify(this.item.uuid);
+            }
+          });
+        }
       }
+
       return buttons;
     }
 
