@@ -8,6 +8,28 @@
     "Identify": "Identify",
     "Peek": "Peek",
 
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "Mystify {name}",
+        "Header": "Select Transmogrification source:",
+        "DropZone": "Drag & Drop an Item here to set it as new look for {name}",
+        "Cancel": "Cancel",
+        "Mystify": "Mystify",
+        "MystifyReplace": "Replace"
+      },
+      "MystifyAdvanced": {
+        "Title": "Mystify {name}",
+        "Meta": "Item's Metadata",
+        "Original": "Original",
+        "Result": "Result",
+        "Default": "Default",
+        "Properties": "Properties to keep",
+        "Cancel": "Cancel",
+        "Mystify": "Mystify",
+        "MystifyReplace": "Replace"
+      }
+    },
+
     "Settings": {
       "playersWelcomeScreen": {
         "Enable": "Display Welcome Screen to Players",

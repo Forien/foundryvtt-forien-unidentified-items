@@ -35,7 +35,6 @@ export default class DefaultIcons extends FormApplication {
 
     html.on("click", ".file-picker", (event) => {
       Hooks.once('closeFilePicker', () => {
-        console.log('whoop!');
         let button = $(event.currentTarget);
         let target = button.data('target');
         $(`#fui-default-icons input[name=${target}]`).trigger('change');

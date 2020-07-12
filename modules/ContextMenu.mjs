@@ -12,8 +12,6 @@ export default function registerContextMenuHook() {
       return !origData;
     };
 
-    console.log(entryOptions);
-
     let mystifyOptions = [
       {
         name: "ForienUnidentifiedItems.Mystify",

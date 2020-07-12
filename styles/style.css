@@ -42,4 +42,75 @@
       break-inside: avoid-column;
       padding: 0; }
 
+#mystifyAsDialog .dropzone {
+  min-width: 300px;
+  min-height: 200px;
+  border: 2px dashed #33333366;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: column; }
+  #mystifyAsDialog .dropzone p {
+    text-align: center;
+    position: relative;
+    max-width: 60%;
+    font-variant: small-caps;
+    font-size: 1.6rem;
+    color: #333333cc; }
+  #mystifyAsDialog .dropzone .item {
+    display: flex; }
+    #mystifyAsDialog .dropzone .item img {
+      width: 66px;
+      height: 66px;
+      border-radius: 8px;
+      border: 2px solid #000; }
+    #mystifyAsDialog .dropzone .item span {
+      font-size: 1.2rem;
+      align-self: center;
+      padding: 8px; }
+
+#mystifyAdvancedDialog {
+  min-width: 500px;
+  max-height: 800px; }
+  #mystifyAdvancedDialog .window-content {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto; }
+  #mystifyAdvancedDialog .advanced-body {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto auto minmax(0, 1fr); }
+    #mystifyAdvancedDialog .advanced-body .meta-header {
+      display: flex; }
+      #mystifyAdvancedDialog .advanced-body .meta-header > * {
+        flex: 1;
+        text-align: center;
+        font-weight: bold; }
+    #mystifyAdvancedDialog .advanced-body .meta-body > * {
+      display: flex; }
+      #mystifyAdvancedDialog .advanced-body .meta-body > * > * {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center; }
+    #mystifyAdvancedDialog .advanced-body .meta-name {
+      margin-top: 10px; }
+    #mystifyAdvancedDialog .advanced-body img {
+      width: 66px;
+      height: 66px; }
+    #mystifyAdvancedDialog .advanced-body .properties-body {
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-gap: 6px 10px; }
+      #mystifyAdvancedDialog .advanced-body .properties-body label {
+        font-weight: bold; }
+      #mystifyAdvancedDialog .advanced-body .properties-body .property-values {
+        display: flex;
+        flex-direction: column;
+        font-style: italic;
+        font-size: 12px; }
+
 /*# sourceMappingURL=style.css.map */

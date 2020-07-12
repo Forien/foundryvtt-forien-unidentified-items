@@ -1,9 +1,9 @@
 import VersionCheck from "./versioning/version-check.mjs";
 import renderWelcomeScreen from "./versioning/welcome-screen.mjs";
 import constants from "./constants.mjs";
-import registerDerivedItemSheetClass from "./Item.mjs";
+import registerDerivedItemSheetClass from "./Item.js";
 import registerContextMenuHook from "./ContextMenu.mjs";
-import registerSettings from "./settings.mjs";
+import registerSettings from "./settings.js";
 
 Hooks.once('init', () => {
   registerSettings();

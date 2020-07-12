@@ -1,8 +1,8 @@
 import constants from "./constants.mjs";
-import DefaultIcons from "./apps/DefaultIcons.mjs";
-import ItemProperties from "./apps/ItemProperties.mjs";
-import {defaultPropertiesDND5e} from "./integrations/dnd5e.mjs";
-import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e.mjs";
+import DefaultIcons from "./apps/DefaultIcons.js";
+import ItemProperties from "./apps/ItemProperties.js";
+import {defaultPropertiesDND5e} from "./integrations/dnd5e.js";
+import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e.js";
 
 export default function registerSettings() {
   registerSettingMenus();
@@ -48,7 +48,7 @@ function registerSettingMenus() {
     name: "ForienUnidentifiedItems.Settings.itemProperties.name",
     label: "ForienUnidentifiedItems.Settings.itemProperties.label",
     hint: "ForienUnidentifiedItems.Settings.itemProperties.hint",
-    icon: "fas fa-gear",
+    icon: "fas fa-cogs",
     type: ItemProperties,
     restricted: true
   });
