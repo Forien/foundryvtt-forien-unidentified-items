@@ -3,13 +3,25 @@ import Identification from "./Identification.js";
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
-    const mystifyCondition = (li) => {
-      if (!game.user.isGM) return false;
+    const getOrigData = (li) => {
       const id = li[0].dataset.entityId;
       const item = game.items.get(id);
-      const origData = item.getFlag(constants.moduleName, "origData");
+
+      return  item.getFlag(constants.moduleName, "origData");
+    };
+
+    const mystifyCondition = (li) => {
+      if (!game.user.isGM) return false;
+      const origData = getOrigData(li);
 
       return !origData;
+    };
+
+    const identifyCondition = (li) => {
+      if (!game.user.isGM) return false;
+      const origData = getOrigData(li);
+
+      return !!origData;
     };
 
     let mystifyOptions = [
@@ -56,16 +68,7 @@ export default function registerContextMenuHook() {
     entryOptions.unshift({
       name: "ForienUnidentifiedItems.Identify",
       icon: '<i class="fas fa-search"></i>',
-      condition: li => {
-        if (!game.user.isGM) return false;
-
-        const id = li[0].dataset.entityId;
-        const item = game.items.get(id);
-        const origData = item.getFlag(constants.moduleName, "origData");
-        if (origData) return true;
-
-        return false;
-      },
+      condition: identifyCondition,
       callback: li => {
         const id = li[0].dataset.entityId;
         const item = game.items.get(id);
@@ -76,16 +79,7 @@ export default function registerContextMenuHook() {
     entryOptions.unshift({
       name: "ForienUnidentifiedItems.Peek",
       icon: '<i class="far fa-eye"></i>',
-      condition: li => {
-        if (!game.user.isGM) return false;
-
-        const id = li[0].dataset.entityId;
-        const item = game.items.get(id);
-        const origData = item.getFlag(constants.moduleName, "origData");
-        if (origData) return true;
-
-        return false;
-      },
+      condition: identifyCondition,
       callback: li => {
         const id = li[0].dataset.entityId;
         const item = game.items.get(id);

@@ -34,13 +34,19 @@
   overflow: auto;
   padding: 6px; }
   #fui-item-properties section .tab {
-    columns: 3; }
+    columns: 3;
+    /**
+     * Because PF2e...
+     */
+    display: none; }
     #fui-item-properties section .tab .type-property {
       display: flex;
       align-items: center; }
     #fui-item-properties section .tab * {
       break-inside: avoid-column;
       padding: 0; }
+    #fui-item-properties section .tab.tab.active {
+      display: block; }
 
 #mystifyAsDialog .dropzone {
   min-width: 300px;

@@ -9,6 +9,7 @@
 * Added Module Configuration allowing system-agnostic way of define which item properties should persist on mystification
 * Added function that arbitrary assigns default icons on first module launch
 * Added default settings initialization based on system and added built-in integration for dnd5e and wfrp4e
+* Added built-in persisting item properties integration for pf2e thanks to freyrrabbit
 * Added Hooks for initializing default settings
 * Updated Portuguese (Brazil) translation thanks to Innocenti
 * Updated Korean translation thanks to KLO

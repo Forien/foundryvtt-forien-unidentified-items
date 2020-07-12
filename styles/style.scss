@@ -65,6 +65,7 @@ $icon-size: 66px;
     .tab {
       columns: 3;
 
+
       .type-property {
         display: flex;
         align-items: center;
@@ -74,6 +75,16 @@ $icon-size: 66px;
       * {
         break-inside: avoid-column;
         padding: 0;
+      }
+
+      /**
+       * Because PF2e...
+       */
+      display: none;
+
+      // Also Because PF2e...
+      &.tab.active {
+        display: block;
       }
     }
   }

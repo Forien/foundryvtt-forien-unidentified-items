@@ -3,7 +3,8 @@ import renderWelcomeScreen from "./versioning/welcome-screen.mjs";
 import constants from "./constants.mjs";
 import registerDerivedItemSheetClass from "./Item.js";
 import registerContextMenuHook from "./ContextMenu.mjs";
-import registerSettings from "./settings.js";
+import registerSettings, {checkSettingsInitialized} from "./settings.js";
+import Identification from "./Identification.js";
 
 Hooks.once('init', () => {
   registerSettings();
@@ -14,6 +15,7 @@ Hooks.once('init', () => {
 });
 
 Hooks.once('setup', () => {
+  window.ForienIdentification = Identification;
 
   Hooks.callAll("ForienUnidentifiedItems.afterSetup");
 });
@@ -25,6 +27,7 @@ Hooks.once("ready", () => {
     }
   }
 
+  checkSettingsInitialized();
   registerDerivedItemSheetClass();
 
   Hooks.callAll("ForienUnidentifiedItems.afterReady");

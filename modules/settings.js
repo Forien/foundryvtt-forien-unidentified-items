@@ -3,6 +3,7 @@ import DefaultIcons from "./apps/DefaultIcons.js";
 import ItemProperties from "./apps/ItemProperties.js";
 import {defaultPropertiesDND5e} from "./integrations/dnd5e.js";
 import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e.js";
+import {defaultPropertiesPF2e} from "./integrations/pf2e.js";
 
 export default function registerSettings() {
   registerSettingMenus();
@@ -27,8 +28,6 @@ export default function registerSettings() {
     default: true,
     type: Boolean
   });
-
-  checkSettingsInitialized();
 }
 
 /**
@@ -58,7 +57,9 @@ function registerSettingMenus() {
 /**
  * Checks if options exist, if not, orders their initialization
  */
-function checkSettingsInitialized() {
+export function checkSettingsInitialized() {
+  if (!game.user.isGM) return;
+
   let defaultIcons = game.settings.get(constants.moduleName, "defaultIcons");
   let itemProperties = game.settings.get(constants.moduleName, "itemProperties");
 
@@ -85,6 +86,8 @@ function initializeDefaultIcons() {
   Hooks.call(`${constants.moduleName}:onInitializeDefaultIcons`, properties);
   settings = mergeObject(settings, properties);
   di.saveSettings(settings);
+  console.log(`${constants.moduleLabel} | Initialized default item icons.`);
+  ui.notifications.info(game.i18n.localize("ForienUnidentifiedItems.Notifications.defaultIconsInitialized"), {permanent: true});
 }
 
 /**
@@ -110,8 +113,10 @@ function initializeItemProperties() {
   settings = setDefaultItemProperties(settings);
   const properties = duplicate(settings);
   Hooks.call(`${constants.moduleName}:onInitializeItemProperties`, properties);
-  settings = mergeObject(settings, properties)
+  settings = mergeObject(settings, properties);
   ip.saveSettings(settings);
+  console.log(`${constants.moduleLabel} | Initialized default item properties.`);
+  ui.notifications.info(game.i18n.localize("ForienUnidentifiedItems.Notifications.defaultPropertiesInitialized"), {permanent: true});
 }
 
 
@@ -146,8 +151,14 @@ function setDefaultItemProperties(settings) {
     case 'wfrp4e':
       defaults = defaultPropertiesWFRP4e;
       break;
+    case 'pf2e':
+      defaults = defaultPropertiesPF2e;
+      break;
     default:
   }
+
+  if (defaults)
+    console.log(`${constants.moduleLabel} | Loaded Default Properties from ${game.system.id} built-in integration.`);
 
   return mergeObject(settings, defaults);
 }
