@@ -121,6 +121,7 @@ export default class Identification {
       if (data.type === 'Item') {
         if (data.pack) {
           item = await this._getItemFromPack(data.pack, data.id);
+          item = duplicate(item);
         } else if (data.data) {
           item = data.data;
         } else {
