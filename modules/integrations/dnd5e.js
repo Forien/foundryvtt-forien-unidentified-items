@@ -14,7 +14,8 @@ export const defaultPropertiesDND5e = {
   consumable: {
     "weight": true,
     "quantity": true,
-    "equipped": true
+    "equipped": true,
+    "consumableType": true
   },
   tool: {
     "weight": true,
