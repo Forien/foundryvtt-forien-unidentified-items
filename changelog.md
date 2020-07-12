@@ -11,6 +11,7 @@
 * Added default settings initialization based on system and added built-in integration for dnd5e and wfrp4e
 * Added Hooks for initializing default settings
 * Updated Portuguese (Brazil) translation thanks to Innocenti
+* Updated Korean translation thanks to KLO
 
 ## v0.1.5
 * Added Korean language thanks to KLO
