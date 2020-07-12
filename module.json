@@ -9,14 +9,14 @@
       "url": "https://www.patreon.com/forien"
     }
   ],
-  "version": "0.2.0",
+  "version": "0.1.999",
   "minimumCoreVersion": "0.6.0",
   "compatibleCoreVersion": "0.6.4",
   "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
   "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-unidentified-items/master/module.json",
-  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.2.0/v0.2.0.zip",
-  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.2.0/README.md",
-  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.2.0/changelog.md",
+  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.1.999/v0.1.999.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.999/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.1.999/changelog.md",
   "bugs": "https://github.com/Forien/foundryvtt-forien-unidentified-items/issues",
   "languages": [
     {
