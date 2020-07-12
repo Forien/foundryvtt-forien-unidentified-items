@@ -11,13 +11,13 @@ Hooks.once('init', () => {
   
   registerContextMenuHook();
 
-  Hooks.callAll("ForienUnidentifiedItems.afterInit");
+  Hooks.callAll(`${constants.moduleName}:afterInit`);
 });
 
 Hooks.once('setup', () => {
   window.ForienIdentification = Identification;
 
-  Hooks.callAll("ForienUnidentifiedItems.afterSetup");
+  Hooks.callAll(`${constants.moduleName}:afterSetup`);
 });
 
 Hooks.once("ready", () => {
@@ -30,7 +30,7 @@ Hooks.once("ready", () => {
   checkSettingsInitialized();
   registerDerivedItemSheetClass();
 
-  Hooks.callAll("ForienUnidentifiedItems.afterReady");
+  Hooks.callAll(`${constants.moduleName}:afterReady`);
 });
 
 

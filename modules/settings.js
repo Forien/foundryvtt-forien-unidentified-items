@@ -82,9 +82,10 @@ function checkObjEmpty(obj) {
 function initializeDefaultIcons() {
   const di = new DefaultIcons({}, {});
   let settings = di.getSettings();
-  const properties = duplicate(settings);
-  Hooks.call(`${constants.moduleName}:onInitializeDefaultIcons`, properties);
-  settings = mergeObject(settings, properties);
+  const icons = duplicate(settings);
+  console.log(JSON.stringify(icons));
+  Hooks.call(`${constants.moduleName}:onInitializeDefaultIcons`, icons);
+  settings = mergeObject(settings, icons);
   di.saveSettings(settings);
   console.log(`${constants.moduleLabel} | Initialized default item icons.`);
   ui.notifications.info(game.i18n.localize("ForienUnidentifiedItems.Notifications.defaultIconsInitialized"), {permanent: true});
@@ -113,6 +114,7 @@ function initializeItemProperties() {
   settings = setDefaultItemProperties(settings);
   const properties = duplicate(settings);
   Hooks.call(`${constants.moduleName}:onInitializeItemProperties`, properties);
+  console.log(JSON.stringify(properties));
   settings = mergeObject(settings, properties);
   ip.saveSettings(settings);
   console.log(`${constants.moduleLabel} | Initialized default item properties.`);

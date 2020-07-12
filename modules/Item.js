@@ -14,7 +14,11 @@ function getItemSheetClass(cls, sheet) {
   const ParentClass = cls;
 
   const ItemClass = class extends ParentClass {
-    /** @override */
+    /**
+     * @override
+     *
+     * @hook "forien-unidentified-items:getItemPermissions"
+     */
     _getHeaderButtons() {
       const buttons = super._getHeaderButtons();
       if (this.item.data.isAbstract) return buttons;

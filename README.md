@@ -32,6 +32,27 @@ Data used during identification is decided upon at the time of mystification.
 <img src="https://i.gyazo.com/9a8e32db257136af9fa728c57e05201b.png" alt="Context Menu" width=200/>
 <img src="https://i.gyazo.com/c8d75fc3c6f205655f3eb14e59f661bb.png" alt="Context Menu" width=200/>
 
+## System Integration
+
+|            	| dnd5e 	| pf2e 	| wfrp4e 	|
+|------------	|-------	|------	|--------	|
+| Settings   	| ✓     	| ✓    	| ✓      	|
+| Logic      	| ✗     	| ✗    	| ✗      	|
+
+One of main principles of this module is being [**System Agnostic**](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
+
+Basic settings initialization (like setting default persisting properties for dnd5e) I will allow to be built-in this module. These can, however, be defined from the System's side.
+
+#### What about logic? Skill Checks for Identification?
+
+According to this module's Primary Principle, there will never be any system-specific logic in module. Feel free to integrate logic into your System or your Module, using API and Hooks
+
+### How to integrate?
+
+If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
+
+Also, do not hesitate to contact me with questions and for assistance. 
+
 ## Future plans
 
 * _none currently_
