@@ -1,0 +1,197 @@
+$icon-size: 66px;
+
+#fui-default-icons {
+  &.wfrp {
+    .window-content {
+      background: url(/ui/parchment.jpg) repeat;
+    }
+  }
+
+  .item-type-entry {
+    display: flex;
+
+    & > * {
+      flex: 1;
+      align-self: center;
+      margin: 0 4px;
+    }
+
+    input {
+      flex: 2;
+      height: 29px;
+      min-width: 300px;
+      font-size: 12px;
+    }
+
+    img {
+      width: $icon-size;
+      height: $icon-size;
+      flex: 0;
+      margin: 0;
+    }
+
+    button {
+      flex: 0;
+      margin: 0;
+    }
+  }
+}
+
+#fui-item-properties {
+  &.wfrp {
+    .window-content {
+      background: url(/ui/parchment.jpg) repeat;
+    }
+  }
+
+  form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  nav {
+    flex-wrap: wrap;
+
+    a {
+      flex: 0 0 25%;
+    }
+  }
+
+  section {
+    overflow: auto;
+    padding: 6px;
+
+    .tab {
+      columns: 3;
+
+
+      .type-property {
+        display: flex;
+        align-items: center;
+
+      }
+
+      * {
+        break-inside: avoid-column;
+        padding: 0;
+      }
+
+      /**
+       * Because PF2e...
+       */
+      display: none;
+
+      // Also Because PF2e...
+      &.tab.active {
+        display: block;
+      }
+    }
+  }
+}
+
+#mystifyAsDialog {
+  .dropzone {
+    min-width: 300px;
+    min-height: 200px;
+    border: 2px dashed #33333366;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      position: relative;
+      max-width: 60%;
+
+      font-variant: small-caps;
+      font-size: 1.6rem;
+      color: #333333cc;
+    }
+
+    .item {
+      display: flex;
+
+      img {
+        width: $icon-size;
+        height: $icon-size;
+        border-radius: 8px;
+        border: 2px solid #000;
+      }
+
+      span {
+        font-size: 1.2rem;
+        align-self: center;
+        padding: 8px;
+      }
+    }
+  }
+}
+
+#mystifyAdvancedDialog {
+  min-width: 500px;
+  max-height: 800px;
+
+  .window-content {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .advanced-body {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto auto minmax(0, 1fr);
+
+    .meta-header {
+      display: flex;
+
+      & > * {
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    .meta-body > * {
+      display: flex;
+
+      & > * {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+      }
+    }
+
+    .meta-name {
+      margin-top: 10px;
+    }
+
+    img {
+      width: $icon-size;
+      height: $icon-size;
+    }
+
+    .properties-body {
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-gap: 6px 10px;
+
+      label {
+        font-weight: bold;
+      }
+
+      .property-values {
+        display: flex;
+        flex-direction: column;
+        font-style: italic;
+        font-size: 12px;
+      }
+    }
+  }
+}

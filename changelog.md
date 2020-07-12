@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.2.0
+* Added 9 more icons and 10 inverted variants
+* Added "Replace with Mystified" context option. For Owned Items this is default behaviour.
+* Added "Mystify As…" context option allowing for mimicing other item
+* Added "Mystify (advanced)…" context option allowing for per-use configuration on kept properties
+* Added Module Configuration allowing system-agnostic way of selecting default icon per item type
+* Added Module Configuration allowing system-agnostic way of define which item properties should persist on mystification
+* Added function that arbitrary assigns default icons on first module launch
+* Added default settings initialization based on system and added built-in integration for dnd5e and wfrp4e
+* Added built-in persisting item properties integration for pf2e thanks to freyrrabbit
+* Added Hooks for initializing default settings
+* Updated Portuguese (Brazil) translation thanks to Innocenti
+* Updated Korean translation thanks to KLO
+
 ## v0.1.5
 * Added Korean language thanks to KLO
 * Added Portuguese (Brazil) language thanks to rinnocenti

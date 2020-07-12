@@ -1,0 +1,48 @@
+<form class="advanced-body">
+    <h2>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Meta"}}</h2>
+    <div class="meta-header">
+        <span>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Original"}}</span>
+        <span>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Result"}}</span>
+        <span>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Default"}}</span>
+    </div>
+    <div class="meta-body">
+        <div class="meta-image">
+            <div>
+                <img src="{{item.img}}"/>
+            </div>
+            <div>
+                <img class="img-preview" src="{{meta.img}}"/>
+                <input type="checkbox" name="img-keep" />
+                <input type="hidden" name="img" value="{{meta.img}}"/>
+            </div>
+            <div>
+                <img src="{{meta.img}}"/>
+            </div>
+        </div>
+        <div class="meta-name">
+            <div>
+                {{item.name}}
+            </div>
+            <div>
+                <span class="name-preview">{{meta.name}}</span>
+                <input type="checkbox" name="name-keep" />
+                <input type="hidden" name="name" value="{{meta.name}}"/>
+                <input type="hidden" name="type" value="{{meta.type}}"/>
+            </div>
+            <div>
+                {{meta.name}}
+            </div>
+        </div>
+    </div>
+    <h2>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Properties"}}</h2>
+    <div class="properties-body">
+        {{#each properties}}
+        <label for="advanced-property-{{this.key}}" class="property-name">{{this.key}}</label>
+        <div class="property-values">
+            <span><strong>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Original"}}:</strong> {{{this.orig}}}</span>
+            <span><strong>{{localize "ForienUnidentifiedItems.Dialog.MystifyAdvanced.Default"}}:</strong> {{{this.default}}}</span>
+        </div>
+        <input id="advanced-property-{{this.key}}" type="checkbox" name="data.{{this.key}}" {{checked this.value}}/>
+        {{/each}}
+    </div>
+</form>
