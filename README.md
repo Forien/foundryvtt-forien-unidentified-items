@@ -30,10 +30,10 @@ Data used during identification is decided upon at the time of mystification.
 
 ## System Integration
 
-|            	| dnd5e 	| pf2e 	| wfrp4e 	|
-|------------	|-------	|------	|--------	|
-| Settings   	| ✓     	| ✓    	| ✓      	|
-| Logic      	| ✗     	| ✗    	| ✗      	|
+|            	| dnd5e 	| pf2e 	| wfrp4e 	| swade 	|
+|------------	|-------	|------	|--------	|--------	|
+| Settings   	| ✓     	| ✓    	| ✓      	| ✓      	|
+| Logic      	| ✗     	| ✗    	| ✗      	| ✗      	|
 
 One of main principles of this module is being [**System Agnostic**](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
 
@@ -73,6 +73,7 @@ If you wish to contact me for any reason, reach me out on Discord using my tag: 
 * Thanks to KLO for providing Korean translation
 * Thanks to rinnocenti for providing Portuguese (Brazil) translation
 * Thanks to freyrrabbit for help with defining default properties for PF2e system
+* Thanks to SalieriC for help with defining default properties for Swade system
 
 ## Support
 

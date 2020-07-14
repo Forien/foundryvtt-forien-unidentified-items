@@ -4,6 +4,7 @@ import ItemProperties from "./apps/ItemProperties.js";
 import {defaultPropertiesDND5e} from "./integrations/dnd5e.js";
 import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e.js";
 import {defaultPropertiesPF2e} from "./integrations/pf2e.js";
+import {defaultPropertiesSwade} from "./integrations/swade.js";
 
 export default function registerSettings() {
   registerSettingMenus();
@@ -155,6 +156,9 @@ function setDefaultItemProperties(settings) {
       break;
     case 'pf2e':
       defaults = defaultPropertiesPF2e;
+      break;
+    case 'swade':
+      defaults = defaultPropertiesSwade;
       break;
     default:
   }

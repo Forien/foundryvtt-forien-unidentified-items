@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.2.1
+* Added default settings for persisting item properties for Swade system thanks to SalieriC
+
 ## v0.2.0
 * Added 9 more icons and 10 inverted variants
 * Added "Replace with Mystified" context option. For Owned Items this is default behaviour.
