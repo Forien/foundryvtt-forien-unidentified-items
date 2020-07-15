@@ -11,7 +11,7 @@
   ],
   "version": "0.2.2",
   "minimumCoreVersion": "0.6.0",
-  "compatibleCoreVersion": "0.6.4",
+  "compatibleCoreVersion": "0.6.5",
   "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
   "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-unidentified-items/master/module.json",
   "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.2.2/v0.2.2.zip",
