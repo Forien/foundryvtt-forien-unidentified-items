@@ -13,8 +13,9 @@ export default function registerContextMenuHook() {
     const mystifyCondition = (li) => {
       if (!game.user.isGM) return false;
       const origData = getOrigData(li);
+      const allowNested = game.settings.get(constants.moduleName, "allowNestedItems");
 
-      return !origData;
+      return !origData || allowNested;
     };
 
     const identifyCondition = (li) => {

@@ -254,15 +254,56 @@ export default class Identification {
    * @hook "forien-unidentified-items:onIdentifyItem"
    *
    * @param {Item} item
-   * @returns {Promise<void>}
+   * @returns {Promise<Item>}
    */
   static async identify(item) {
     const origData = item.getFlag(constants.moduleName, "origData");
+    // things to keep from mystified item:
+    delete origData._id;
+    delete origData.permission;
+    delete origData.folder;
+
     let hook = Hooks.call(`${constants.moduleName}:onIdentifyItem`, item, origData);
     if (hook !== false) {
-      await item.update(origData);
+      await item.update(origData, {diff:false});
       await item.unsetFlag(constants.moduleName, "origData");
+      // If there was nested origData, carry it over.
+      let origDataOrigData = getProperty(origData.flags, `${constants.moduleName}.origData`);
+      await item.setFlag(constants.moduleName, "origData", origDataOrigData);
     }
+  }
+
+  /**
+   *
+   * @param {Item} item
+   * @return {boolean}
+   */
+  static isMystified(item) {
+    const origData = item.getFlag(constants.moduleName, "origData");
+
+    return origData !== undefined;
+  }
+
+  /**
+   *
+   * @param {Item} item
+   * @return {Object}
+   */
+  static getOrigData(item) {
+    return item.getFlag(constants.moduleName, "origData");
+  }
+
+  /**
+   *
+   * @param {string} uuid
+   * @return {boolean}
+   */
+  static async isUuidMystified(uuid) {
+    const item = this._itemFromUuid(uuid);
+    if (!item) return false;
+    const origData = item.getFlag(constants.moduleName, "origData");
+
+    return origData !== undefined;
   }
 
   /**

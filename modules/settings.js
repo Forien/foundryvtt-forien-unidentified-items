@@ -21,6 +21,15 @@ export default function registerSettings() {
     default: {}
   });
 
+  game.settings.register(constants.moduleName, "allowNestedItems", {
+    name: "ForienUnidentifiedItems.Settings.allowNestedItems.Name",
+    hint: "ForienUnidentifiedItems.Settings.allowNestedItems.Hint",
+    scope: "world",
+    config: true,
+    default: false,
+    type: Boolean
+  });
+
   game.settings.register(constants.moduleName, "playersWelcomeScreen", {
     name: "ForienUnidentifiedItems.Settings.playersWelcomeScreen.Enable",
     hint: "ForienUnidentifiedItems.Settings.playersWelcomeScreen.EnableHint",

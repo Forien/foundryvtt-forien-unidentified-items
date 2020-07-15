@@ -1,10 +1,11 @@
 import VersionCheck from "./versioning/version-check.mjs";
 import renderWelcomeScreen from "./versioning/welcome-screen.mjs";
 import constants from "./constants.mjs";
-import registerDerivedItemSheetClass from "./Item.js";
+import registerDerivedItemSheetClass from "./ItemSheet.js";
 import registerContextMenuHook from "./ContextMenu.mjs";
 import registerSettings, {checkSettingsInitialized} from "./settings.js";
 import Identification from "./Identification.js";
+import registerItemClassMethod from "./Item.js";
 
 Hooks.once('init', () => {
   registerSettings();
@@ -29,6 +30,7 @@ Hooks.once("ready", () => {
 
   checkSettingsInitialized();
   registerDerivedItemSheetClass();
+  registerItemClassMethod();
 
   Hooks.callAll(`${constants.moduleName}:afterReady`);
 });

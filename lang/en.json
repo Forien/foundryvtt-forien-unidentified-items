@@ -8,6 +8,11 @@
     "Identify": "Identify",
     "Peek": "Peek",
 
+    "Item": {
+      "Original": "Original",
+      "Mystified": "Mystified"
+    },
+
     "Dialog": {
       "MystifyAs": {
         "Title": "Mystify {name}",
@@ -31,6 +36,10 @@
     },
 
     "Settings": {
+      "allowNestedItems": {
+        "Name": "Allow tiering (nesting)",
+        "Hint": "Check this option to be able to Mystify a Mystified Item, allowing for nested/tiered items that can be identified one at a time."
+      },
       "playersWelcomeScreen": {
         "Enable": "Display Welcome Screen to Players",
         "EnableHint": "Uncheck to prevent players from seeing Welcome Screen on log in after an update."

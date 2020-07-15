@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.2
+* Added support for identifying nested items.
+* Added optional setting that allows for creating nested mystified items.
+* Added optional setting that displays `[Mystified]` and `[Original]` tags in Item Sheet's header.
+* Added API calls for `isMystified`, `isUuidMystified` and `getOrigData`
+* Added `isMystified()` and `origData` fields in Item class. 
+
 ## v0.2.1
 * Added default settings for persisting item properties for Swade system thanks to SalieriC
 
