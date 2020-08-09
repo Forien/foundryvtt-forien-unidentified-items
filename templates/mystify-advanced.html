@@ -11,9 +11,9 @@
                 <img src="{{item.img}}"/>
             </div>
             <div>
-                <img class="img-preview" src="{{meta.img}}"/>
-                <input type="checkbox" name="img-keep" />
-                <input type="hidden" name="img" value="{{meta.img}}"/>
+                <img class="img-preview" src="{{selectedImg}}"/>
+                <input type="checkbox" name="img-keep" {{checked keepOldIcon}}/>
+                <input type="hidden" name="img" value="{{selectedImg}}"/>
             </div>
             <div>
                 <img src="{{meta.img}}"/>

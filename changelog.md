@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.3
+* Added Setting to keep original icon while mystifying
+* Added way to use "Mystify As…" along with "Mystify (advanced)…"
+* Removed old Welcome Screen
+* Added prompt to install new Welcome Screen
+* Tested and bumped compatible core version to 0.7.0
+
 ## v0.2.2
 * Added support for identifying nested items.
 * Added optional setting that allows for creating nested mystified items.

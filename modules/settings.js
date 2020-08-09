@@ -21,21 +21,21 @@ export default function registerSettings() {
     default: {}
   });
 
-  game.settings.register(constants.moduleName, "allowNestedItems", {
-    name: "ForienUnidentifiedItems.Settings.allowNestedItems.Name",
-    hint: "ForienUnidentifiedItems.Settings.allowNestedItems.Hint",
+  game.settings.register(constants.moduleName, "keepOldIcon", {
+    name: "ForienUnidentifiedItems.Settings.keepOldIcon.name",
+    hint: "ForienUnidentifiedItems.Settings.keepOldIcon.hint",
     scope: "world",
     config: true,
     default: false,
     type: Boolean
   });
 
-  game.settings.register(constants.moduleName, "playersWelcomeScreen", {
-    name: "ForienUnidentifiedItems.Settings.playersWelcomeScreen.Enable",
-    hint: "ForienUnidentifiedItems.Settings.playersWelcomeScreen.EnableHint",
+  game.settings.register(constants.moduleName, "allowNestedItems", {
+    name: "ForienUnidentifiedItems.Settings.allowNestedItems.Name",
+    hint: "ForienUnidentifiedItems.Settings.allowNestedItems.Hint",
     scope: "world",
     config: true,
-    default: true,
+    default: false,
     type: Boolean
   });
 }

@@ -6,18 +6,19 @@
   "authors": [
     {
       "name": "Forien",
-      "url": "https://www.patreon.com/forien"
+      "url": "https://www.patreon.com/foundryworkshop"
     }
   ],
-  "version": "0.2.2",
+  "version": "0.2.3",
   "minimumCoreVersion": "0.6.0",
-  "compatibleCoreVersion": "0.6.5",
+  "compatibleCoreVersion": "0.7.0",
   "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
   "manifest": "https://raw.githubusercontent.com/Forien/foundryvtt-forien-unidentified-items/master/module.json",
-  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.2.2/v0.2.2.zip",
-  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.2.2/README.md",
-  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.2.2/changelog.md",
+  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v0.2.3/v0.2.3.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.2.3/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v0.2.3/changelog.md",
   "bugs": "https://github.com/Forien/foundryvtt-forien-unidentified-items/issues",
+  "wiki": "https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki",
   "languages": [
     {
       "lang": "en",

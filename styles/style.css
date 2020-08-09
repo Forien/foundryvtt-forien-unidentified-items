@@ -49,8 +49,8 @@
       display: block; }
 
 #mystifyAsDialog .dropzone {
-  min-width: 300px;
-  min-height: 200px;
+  min-height: 240px;
+  margin-bottom: 4px;
   border: 2px dashed #33333366;
   border-radius: 6px;
   align-items: center;
@@ -61,7 +61,7 @@
   #mystifyAsDialog .dropzone p {
     text-align: center;
     position: relative;
-    max-width: 60%;
+    max-width: 80%;
     font-variant: small-caps;
     font-size: 1.6rem;
     color: #333333cc; }
@@ -76,6 +76,9 @@
       font-size: 1.2rem;
       align-self: center;
       padding: 8px; }
+#mystifyAsDialog button[data-button="mystifyAdvanced"] {
+  flex-basis: 100%;
+  margin: 0 0 2px 0; }
 
 #mystifyAdvancedDialog {
   min-width: 500px;

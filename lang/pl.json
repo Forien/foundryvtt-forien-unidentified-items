@@ -26,15 +26,12 @@
         "Properties": "Properties to keep",
         "Cancel": "Anuluj",
         "Mystify": "Mistifikuj",
-        "MystifyReplace": "Podmień"
+        "MystifyReplace": "Podmień",
+        "MystifyAdvanced": "Zaawansowane…"
       }
     },
 
     "Settings": {
-      "playersWelcomeScreen": {
-        "Enable": "Pokazuj graczom Ekran Powitalny",
-        "EnableHint": "Odznacz, aby graczom nie wyświetlać po zalogowaniu Ekranu Powitalnego z każdą nową wersją."
-      },
       "defaultIcons": {
         "name": "Domyślne ikony",
         "hint": "",
@@ -44,6 +41,10 @@
         "name": "Stałe cechy",
         "hint": "",
         "label": "Otwórz Menadżer Cech"
+      },
+      "keepOldIcon": {
+        "name": "Zachowaj oryginalną ikonę",
+        "hint": "Zaznacz, aby podczas mistyfikacji domyślnie została zachowywana domyślna ikona przedmiotu."
       }
     }
   }

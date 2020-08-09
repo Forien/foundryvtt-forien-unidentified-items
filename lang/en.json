@@ -20,12 +20,13 @@
         "DropZone": "Drag & Drop an Item here to set it as new look for {name}",
         "Cancel": "Cancel",
         "Mystify": "Mystify",
-        "MystifyReplace": "Replace"
+        "MystifyReplace": "Replace",
+        "MystifyAdvanced": "Advanced…"
       },
       "MystifyAdvanced": {
         "Title": "Mystify {name}",
         "Meta": "Item's Metadata",
-        "Original": "Original",
+        "Original": "Source",
         "Result": "Result",
         "Default": "Default",
         "Properties": "Properties to keep",
@@ -40,10 +41,6 @@
         "Name": "Allow tiering (nesting)",
         "Hint": "Check this option to be able to Mystify a Mystified Item, allowing for nested/tiered items that can be identified one at a time."
       },
-      "playersWelcomeScreen": {
-        "Enable": "Display Welcome Screen to Players",
-        "EnableHint": "Uncheck to prevent players from seeing Welcome Screen on log in after an update."
-      },
       "defaultIcons": {
         "name": "Default Icons",
         "hint": "Select which icons should be used as defaults for specific Item types.",
@@ -53,6 +50,10 @@
         "name": "Persisting Properties",
         "hint": "Select which Item properties should be by default carried over to mystified item.",
         "label": "Open Property Manager"
+      },
+      "keepOldIcon": {
+        "name": "Keep original Icon",
+        "hint": "Check this setting to keep original item icon when mystifying. Advanced Mystify still allows manually selecting original vs default icons."
       }
     },
 

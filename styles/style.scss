@@ -92,8 +92,8 @@ $icon-size: 66px;
 
 #mystifyAsDialog {
   .dropzone {
-    min-width: 300px;
-    min-height: 200px;
+    min-height: 240px;
+    margin-bottom: 4px;
     border: 2px dashed #33333366;
     border-radius: 6px;
     align-items: center;
@@ -105,7 +105,7 @@ $icon-size: 66px;
     p {
       text-align: center;
       position: relative;
-      max-width: 60%;
+      max-width: 80%;
 
       font-variant: small-caps;
       font-size: 1.6rem;
@@ -128,6 +128,11 @@ $icon-size: 66px;
         padding: 8px;
       }
     }
+  }
+
+  button[data-button="mystifyAdvanced"] {
+    flex-basis: 100%;
+    margin: 0 0 2px 0;
   }
 }
 

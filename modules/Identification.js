@@ -1,7 +1,6 @@
 import constants from "./constants.mjs";
 
 export default class Identification {
-
   /**
    *
    * @hook "forien-unidentified-items:onMystifyItem"
@@ -77,6 +76,14 @@ export default class Identification {
             </div>
         </div>`,
         buttons: {
+          mystifyAdvanced: {
+            icon: '<i class="fas fa-cogs"></i>',
+            label: game.i18n.localize("ForienUnidentifiedItems.Dialog.MystifyAs.MystifyAdvanced"),
+            callback: (html) => {
+              let source = $(html).find('.item').data('item');
+              this.mystifyAdvancedDialog(itemUuid, source)
+            }
+          },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
             label: game.i18n.localize("ForienUnidentifiedItems.Dialog.MystifyAs.Cancel")
@@ -108,7 +115,9 @@ export default class Identification {
         }
       },
       {
-        id: "mystifyAsDialog"
+        id: "mystifyAsDialog",
+        width: 440,
+        height: 'auto'
       }
     );
 
@@ -145,31 +154,38 @@ export default class Identification {
   /**
    *
    * @param {string} itemUuid
+   * @param {object} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid) {
+  static async mystifyAdvancedDialog(itemUuid, source = undefined) {
     const origItem = await this._itemFromUuid(itemUuid);
     let name = origItem.data.name;
-    let origData = duplicate(origItem);
-    let meta = this._getMystifiedMeta(origData);
+    let sourceData = source ? source : duplicate(origItem);
+    let meta = this._getMystifiedMeta(sourceData);
+    let keepOldIcon = this.keepOriginalImage();
 
-    let properties = this._getTypeProperties(origData);
+    let selectedImg = keepOldIcon ? sourceData.img : meta.img;
+
+    let properties = this._getTypeProperties(sourceData);
     properties = Object.fromEntries(Object.keys(properties).map((property) => {
       return [
         property,
         {
           "key": property,
-          "orig": getProperty(origData, `data.${property}`),
-          "default": getProperty(game.system.model.Item[origData.type], property),
+          "orig": getProperty(sourceData, `data.${property}`),
+          "default": getProperty(game.system.model.Item[sourceData.type], property),
           "value": properties[property]
         }
       ]
     }));
 
+
     let html = await renderTemplate(`${constants.modulePath}/templates/mystify-advanced.html`, {
-      item: origItem,
+      item: sourceData,
       meta: meta,
-      properties: properties
+      properties: properties,
+      keepOldIcon: keepOldIcon,
+      selectedImg: selectedImg
     });
 
     let confirmed = false;
@@ -214,7 +230,7 @@ export default class Identification {
           Object.keys(formData).forEach(property => {
             if (property.startsWith("data.")) {
               delete formData[property];
-              setProperty(formData, property, getProperty(origData, property));
+              setProperty(formData, property, getProperty(sourceData, property));
             }
           });
 
@@ -235,7 +251,7 @@ export default class Identification {
     jqDialog.on("change", "input[name=img-keep]", async (event) => {
       let checked = $(event.currentTarget).prop('checked');
 
-      let src = checked ? origItem.img : meta.img;
+      let src = checked ? sourceData.img : meta.img;
       jqDialog.find('.img-preview').attr('src', src);
       jqDialog.find('input[name=img]').val(src);
     });
@@ -243,7 +259,7 @@ export default class Identification {
     jqDialog.on("change", "input[name=name-keep]", async (event) => {
       let checked = $(event.currentTarget).prop('checked');
 
-      let name = checked ? origItem.name : meta.name;
+      let name = checked ? sourceData.name : meta.name;
       jqDialog.find('.name-preview').text(name);
       jqDialog.find('input[name=name]').val(name);
     });
@@ -265,7 +281,7 @@ export default class Identification {
 
     let hook = Hooks.call(`${constants.moduleName}:onIdentifyItem`, item, origData);
     if (hook !== false) {
-      await item.update(origData, {diff:false});
+      await item.update(origData, {diff: false});
       await item.unsetFlag(constants.moduleName, "origData");
       // If there was nested origData, carry it over.
       let origDataOrigData = getProperty(origData.flags, `${constants.moduleName}.origData`);
@@ -321,6 +337,10 @@ export default class Identification {
       setProperty(mystifiedData, property, getProperty(origData, property));
     });
 
+    if (this.keepOriginalImage()) {
+      mystifiedData.img = origData.img;
+    }
+
     return mystifiedData;
   }
 
@@ -347,6 +367,10 @@ export default class Identification {
     let defaultProperties = game.settings.get(constants.moduleName, "itemProperties");
 
     return defaultProperties[origData.type];
+  }
+
+  static keepOriginalImage() {
+    return game.settings.get(constants.moduleName, "keepOldIcon");
   }
 
   /**
