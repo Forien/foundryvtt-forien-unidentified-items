@@ -47,5 +47,8 @@
   "styles": [
     "./styles/style.css"
   ],
+  "scripts": [
+    "./scripts/prompt.js"
+  ],
   "socket": true
 }
