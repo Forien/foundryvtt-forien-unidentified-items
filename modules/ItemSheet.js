@@ -15,6 +15,11 @@ function getItemSheetClass(cls, sheet) {
 
   const ItemClass = class extends ParentClass {
 
+    constructor(...args) {
+      super(...args);
+      this.name = sheet.split(".")[1];
+    }
+
     /**
      * Adds `[Mystified]` to the windows title if item is Mystified
      * Adds `[Original]` to the windows title if item is Original
@@ -108,12 +113,6 @@ function getItemSheetClass(cls, sheet) {
       return super._updateObject(...args);
     }
   };
-
-  let sheetName = sheet.split('.');
-  sheetName = sheetName[1];
-
-  // Because FireFox is stupid
-  Object.defineProperty(ItemClass, 'name', {value: sheetName});
 
   return ItemClass;
 }
