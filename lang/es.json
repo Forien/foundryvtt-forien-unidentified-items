@@ -1,0 +1,65 @@
+{
+  "ForienUnidentifiedItems": {
+    "NewMystified": "Ítem No identificado",
+    "Mystify": "Mistificar",
+    "MystifyReplace": "Remplazar con Ítem Mistificado",
+    "MystifyAs": "Mistificar como…",
+    "MystifyAdvanced": "Mistificar (Avanzado)…",
+    "Identify": "Identificar",
+    "Peek": "Mirar",
+
+    "Item": {
+      "Original": "Original",
+      "Mystified": "Mistificado"
+    },
+
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "Mistificar {name}",
+        "Header": "Seleccionar origen de transmogrificación:",
+        "DropZone": "Arrastrar y soltar un Ítem aquí para asignar como nueva apariencia para {name}",
+        "Cancel": "Cancelar",
+        "Mystify": "Mistificar",
+        "MystifyReplace": "Remplazar",
+        "MystifyAdvanced": "Avanzado…"
+      },
+      "MystifyAdvanced": {
+        "Title": "Mistificar {name}",
+        "Meta": "Metadatos del Ítem",
+        "Original": "Origen",
+        "Result": "Resultado",
+        "Default": "Predeterminado",
+        "Properties": "Propiedades a mantener",
+        "Cancel": "Cancelar",
+        "Mystify": "Mistificar",
+        "MystifyReplace": "Remplazar"
+      }
+    },
+
+    "Settings": {
+      "allowNestedItems": {
+        "Name": "Permitir escalonamiento (anidamiento)",
+        "Hint": "Selecciona esta opción para ser capaz de Mistificar un Ítem Mistificado, permite ítems anidados/escalonados que pueden ser identificados uno a la vez."
+      },
+      "defaultIcons": {
+        "name": "Iconos predeterminados",
+        "hint": "Selecciona que iconos deben ser usados como predeterminados para un tipo específico de Ítems.",
+        "label": "Abrir administrador de iconos"
+      },
+      "itemProperties": {
+        "name": "Propiedades persistentes",
+        "hint": "Selecciona que propiedades del ítem deben ser transferidas por defecto al Ítem Mistificado.",
+        "label": "Abrir administrador de propiedades"
+      },
+      "keepOldIcon": {
+        "name": "Mantener icono original",
+        "hint": "Selecciona esta opción para mantener el icono original cuando Mistifiques. Mistificado avanzado sigue permitiendo la selección entre el icono predeterminado y el original."
+      }
+    },
+
+    "Notifications": {
+      "defaultIconsInitialized": "Forien's Unidentified Items | Iconos predeterminados por tipo de Ítem han sido aleatoriamente asignados. Por favor visite la configuración del Módulo para más información.",
+      "defaultPropertiesInitialized": "Forien's Unidentified Items | Propiedades persistentes predeterminadas de Ítem han sido generadas. Por favor visite la configuración del Módulo para más información."
+    }
+  }
+}
