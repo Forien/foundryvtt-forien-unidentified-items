@@ -10,7 +10,7 @@ This module aims to provides system agnostic solution to handle unidentified ite
 
 ## Installation
 
-1. Install Forien's Unidentified Items using manifest URL: https://raw.githubusercontent.com/Forien/foundryvtt-forien-unidentified-items/master/module.json
+1. Install Forien's Unidentified Items using manifest URL: https://raw.githubusercontent.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/master/module.json
 2. While loaded in World, enable **_Forien's Unidentified Items_** module.
 
 ## Usage
