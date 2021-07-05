@@ -1,0 +1,122 @@
+<!--
+/**
+ * Based on https://github.com/Moerill/mess
+ * with permission from Moerill
+ */
+-->
+<style>
+    .welcome-screen a[href] {
+        color: #4a52ca;
+    }
+    .welcome-screen .window-content > * {
+        flex: 0;
+    }
+    {{#if wfrp4e}}
+    .welcome-screen .window-content {
+        background: url("/ui/parchment.jpg") repeat !important;
+    }
+    {{/if}}
+    .welcome-screen .expand {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .welcome-screen .expand::after {
+        content: "[click to expand]";
+        font-weight: normal;
+        font-size: 12px;
+        color: #333;
+        align-self: flex-end;
+    }
+
+    .welcome-screen .expand.expanded::after {
+        content: "[click to hide]";
+    }
+
+    .welcome-screen section div {
+        min-height: 0;
+        text-align: justify;
+    }
+
+    .welcome-screen section {
+        display: block;
+    }
+</style>
+<h1>Thank you for installing and using Forien's Unidentified Items!</h1>
+<section id="section-{{moduleName}}">
+    <p>Make sure to read the <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/master/README.md">README</a> and <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki">the Wiki</a>, for important information and to learn about this module's features.</p>
+
+    <h2 class="expand" data-target="bugs">Bugs?</h2>
+    <div class="bugs" style="display: none">
+        <p>Check <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/issuess?q=is%3Aopen+is%3Aissue+label%3Abug">current list of bugs</a> and if yours is not covered there, create new Issue using Bug Report template.
+    </div>
+
+    <h2 class="expand" data-target="feedback">Suggestions? Feedback?</h2>
+    <div class="feedback" style="display: none">
+        <p>Don't ask me on Discord. Use the <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/issues">GitHubs Issue Board</a> for questions, suggestions, bugs, helping other peoples questions getting answered, etc.</p>
+        <p>Before you post anything, check the issues board first if your issue, question, etc. has been posted already. If yes, comment on the existing post and/or give it a thumbsup!</p>
+        <p>Currently planned features are on the <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement">GitHubs Issue Board</a> as well. </p>
+    </div>
+
+    <!-- temporary -->
+    <h2 class="expand expanded" data-target="help">I need your help…</h2>
+    <div class="help" style="justify-content: stretch">
+        <p>I am currently unemployed and am devoting as much time as I can to building modules and contributing to the Foundry community. Presently, this amounts to many hours a day.</p>
+        <p>Without your support, I'm afraid I will have to greatly reduce the amount of time I can devote to my projects and to you, the wonderful people of the Foundry community.</p>
+        <p>I recognize that not everyone has the resources to do so (which is fine!), but <strong>if you can safely afford that, please consider <a href="https://www.patreon.com/foundryworkshop" target="_blank">becoming a Patron</a></strong>. ALL contributions help, regardless of level.  It really would mean the world to me and I can't thank you enough for even considering it. Let's build more awesome functionality into FoundryVTT together!</p>
+    </div>
+    <!-- /temporary -->
+
+    <p style="font-weight: bold; text-align: right;">Best regards,<br>Forien</p>
+
+    <p style="display: flex; flex-flow: row nowrap; align-items: center; justify-content: flex-start;"><input type="checkbox" class="show-again-{{moduleName}}" id="welcome-screen-show-again-{{moduleName}}" {{checked isChecked}}/> <label for="welcome-screen-show-again-{{moduleName}}">Don't show this screen again until next update.</label></p>
+    <p style="text-align: right"><strong>Want to support development? <a href="https://github.com/Forien/foundryvtt-forien-unidentified-items#support">Click here</a>!</strong></p>
+</section>
+<h1 id="changelog">Changelog</h1>
+<h2 id="v022">v0.2.2</h2>
+<ul>
+    <li>Added support for identifying nested items.</li>
+    <li>Added optional setting that allows for creating nested mystified items.</li>
+    <li>Added optional setting that displays <code>[Mystified]</code> and <code>[Original]</code> tags in Item Sheet's header.</li>
+    <li>Added API calls for <code>isMystified</code>, <code>isUuidMystified</code> and <code>getOrigData</code></li>
+    <li>Added <code>isMystified()</code> and <code>origData</code> fields in Item class. </li>
+</ul>
+<h2 id="v021">v0.2.1</h2>
+<ul>
+    <li>Added default settings for persisting item properties for Swade system thanks to SalieriC</li>
+</ul>
+<h2 id="v020">v0.2.0</h2>
+<ul>
+    <li>Added 9 more icons and 10 inverted variants</li>
+    <li>Added "Replace with Mystified" context option. For Owned Items this is default behaviour.</li>
+    <li>Added "Mystify As…" context option allowing for mimicing other item</li>
+    <li>Added "Mystify (advanced)…" context option allowing for per-use configuration on kept properties</li>
+    <li>Added Module Configuration allowing system-agnostic way of selecting default icon per item type</li>
+    <li>Added Module Configuration allowing system-agnostic way of define which item properties should persist on mystification</li>
+    <li>Added function that arbitrary assigns default icons on first module launch</li>
+    <li>Added default settings initialization based on system and added built-in integration for dnd5e and wfrp4e</li>
+    <li>Added built-in persisting item properties integration for pf2e thanks to freyrrabbit</li>
+    <li>Added Hooks for initializing default settings</li>
+    <li>Updated Portuguese (Brazil) translation thanks to Innocenti</li>
+    <li>Updated Korean translation thanks to KLO</li>
+</ul>
+<h2 id="v015">v0.1.5</h2>
+<ul>
+    <li>Added Korean language thanks to KLO</li>
+    <li>Added Portuguese (Brazil) language thanks to rinnocenti</li>
+    <li>Fixed bug that wouldn't allow to mystify items inside Actor's inventory and Compendium</li>
+    <li>This is not "replace with mystified" option. this will come in future update. </li>
+</ul>
+<h2 id="v014">v0.1.4</h2>
+<ul>
+    <li>Added await to async functions to remove bug with VTTA Iconizer</li>
+</ul>
+<h2 id="v013">v0.1.3</h2>
+<ul>
+    <li>Attempt to fix broken render Hook of extended class in FireFox 75+</li>
+</ul>
+<h2 id="v012">v0.1.2</h2>
+<ul>
+    <li>Initial release</li>
+</ul>

@@ -1,5 +1,5 @@
-import constants from "./constants.mjs";
-import Identification from "./Identification.js";
+import constants from "./constants";
+import Identification from "./Identification";
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
@@ -84,7 +84,8 @@ export default function registerContextMenuHook() {
       callback: li => {
         const id = li[0].dataset.entityId;
         const item = game.items.get(id);
-        const origData = item.getFlag(constants.moduleName, "origData");
+        const origData = <Item.Data>item.getFlag(constants.moduleName, "origData");
+        //@ts-ignore
         origData.isAbstract = true;
         const entity = new CONFIG.Item.entityClass(origData, {editable: false});
         const sheet = entity.sheet;

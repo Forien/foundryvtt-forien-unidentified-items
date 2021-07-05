@@ -1,0 +1,51 @@
+{
+  "ForienUnidentifiedItems": {
+    "NewMystified": "Niezidentyfikowany przedmiot",
+    "Mystify": "Zmistyfikuj",
+    "MystifyReplace": "Podmień na zmistyfikowany",
+    "MystifyAs": "Zmistyfikuj jako…",
+    "MystifyAdvanced": "Zmistyfikuj (zaawansowane)…",
+    "Identify": "Zidentyfikuj",
+    "Peek": "Podejrzyj",
+
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "Zmistyfikuj {name}",
+        "Header": "Wybierz źródło imitacji:",
+        "DropZone": "Przeciągnij i Upuść tu Przedmiot, żeby ustawić go jako wygląd dla „{name}”",
+        "Cancel": "Anuluj",
+        "Mystify": "Mistifikuj",
+        "MystifyReplace": "Podmień"
+      },
+      "MystifyAdvanced": {
+        "Title": "Mystify {name}",
+        "Meta": "Item's Metadata",
+        "Original": "Original",
+        "Result": "Result",
+        "Default": "Default",
+        "Properties": "Properties to keep",
+        "Cancel": "Anuluj",
+        "Mystify": "Mistifikuj",
+        "MystifyReplace": "Podmień",
+        "MystifyAdvanced": "Zaawansowane…"
+      }
+    },
+
+    "Settings": {
+      "defaultIcons": {
+        "name": "Domyślne ikony",
+        "hint": "",
+        "label": "Otwórz Menadżer Ikon"
+      },
+      "itemProperties": {
+        "name": "Stałe cechy",
+        "hint": "",
+        "label": "Otwórz Menadżer Cech"
+      },
+      "keepOldIcon": {
+        "name": "Zachowaj oryginalną ikonę",
+        "hint": "Zaznacz, aby podczas mistyfikacji domyślnie została zachowywana domyślna ikona przedmiotu."
+      }
+    }
+  }
+}

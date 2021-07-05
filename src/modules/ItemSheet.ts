@@ -1,10 +1,11 @@
-import constants from "./constants.mjs";
-import Identification from "./Identification.js";
+import constants from "./constants";
+import Identification from "./Identification";
 
 export default function registerDerivedItemSheetClass() {
   for (let k in CONFIG.Item.sheetClasses) {
     for (let l in CONFIG.Item.sheetClasses[k]) {
       let cls = CONFIG.Item.sheetClasses[k][l].cls;
+      //@ts-ignore
       CONFIG.Item.sheetClasses[k][l].cls = getItemSheetClass(cls, l);
     }
   }
@@ -51,6 +52,7 @@ function getItemSheetClass(cls, sheet) {
       };
       let hookPermissions = duplicate(permissions);
       Hooks.call(`${constants.moduleName}:getItemPermissions`, this.item, hookPermissions);
+      //@ts-ignore
       permissions = mergeObject(permissions, hookPermissions);
 
       let origData = this.item.getFlag(constants.moduleName, "origData");

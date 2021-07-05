@@ -1,10 +1,10 @@
-import constants from "./constants.mjs";
-import DefaultIcons from "./apps/DefaultIcons.js";
-import ItemProperties from "./apps/ItemProperties.js";
-import {defaultPropertiesDND5e} from "./integrations/dnd5e.js";
-import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e.js";
-import {defaultPropertiesPF2e} from "./integrations/pf2e.js";
-import {defaultPropertiesSwade} from "./integrations/swade.js";
+import constants from "./constants";
+import DefaultIcons from "./apps/DefaultIcons";
+import ItemProperties from "./apps/ItemProperties";
+import {defaultPropertiesDND5e} from "./integrations/dnd5e";
+import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e";
+import {defaultPropertiesPF2e} from "./integrations/pf2e";
+import {defaultPropertiesSwade} from "./integrations/swade";
 
 export default function registerSettings() {
   registerSettingMenus();
@@ -108,7 +108,7 @@ function initializeDefaultIcons() {
  */
 function initializeItemProperties() {
   const ip = new ItemProperties({}, {});
-  let settings = ip.getSettings();
+  let settings:any = ip.getSettings();
   settings = Object.entries(settings);
   settings = settings.map(type => {
     let entries = Object.entries(type[1]);

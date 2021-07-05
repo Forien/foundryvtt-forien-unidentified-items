@@ -1,19 +1,20 @@
-import constants from "./constants.mjs";
-import registerDerivedItemSheetClass from "./ItemSheet.js";
-import registerContextMenuHook from "./ContextMenu.mjs";
-import registerSettings, {checkSettingsInitialized} from "./settings.js";
-import Identification from "./Identification.js";
-import registerItemClassMethod from "./Item.js";
+import constants from "./constants";
+import registerDerivedItemSheetClass from "./ItemSheet";
+import registerContextMenuHook from "./ContextMenu";
+import registerSettings, {checkSettingsInitialized} from "./settings";
+import Identification from "./Identification";
+import registerItemClassMethod from "./Item";
 
 Hooks.once('init', () => {
   registerSettings();
-  
+
   registerContextMenuHook();
 
   Hooks.callAll(`${constants.moduleName}:afterInit`);
 });
 
 Hooks.once('setup', () => {
+  //@ts-ignore
   window.ForienIdentification = Identification;
 
   Hooks.callAll(`${constants.moduleName}:afterSetup`);

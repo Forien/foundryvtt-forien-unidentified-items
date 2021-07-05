@@ -1,4 +1,4 @@
-import Identification from "./Identification.js";
+import Identification from "./Identification";
 
 export default function registerItemClassMethod() {
   CONFIG.Item.entityClass.prototype.isMystified = function isMystified() {

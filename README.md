@@ -1,4 +1,7 @@
-# FoundryVTT - Forien's Unidentified Items
+# FoundryVTT - Forien's Unidentified Items [MAINTANCE MODE]
+
+### If you are not a "Typescript developer" you can simply rename all the "ts" files in "js" and developing in javascript, or us ethe content of the dist folder
+
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/forien/foundryvtt-forien-unidentified-items?style=for-the-badge) 
 ![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge) 
 ![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)  

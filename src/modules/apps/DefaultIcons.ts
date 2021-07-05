@@ -1,7 +1,8 @@
-import constants from "../constants.mjs";
+import constants from "../constants";
 
 export default class DefaultIcons extends FormApplication {
   static get defaultOptions() {
+    //@ts-ignore
     let options = mergeObject(super.defaultOptions, {
       id: "fui-default-icons",
       template: `${constants.modulePath}/templates/settings-default-icons.html`,
@@ -17,11 +18,16 @@ export default class DefaultIcons extends FormApplication {
   }
 
   getData(options = {}) {
-    return {
-      types: this.getItemTypes(),
-      typeSettings: this.getSettings(),
-      options: this.options
-    };
+    let data:any = super.getData();
+    data.types = this.getItemTypes();
+    data.typeSettings = this.getSettings();
+    data.options = this.options;
+    return data;
+    // return {
+    //   types: this.getItemTypes(),
+    //   propertySettings: this.getSettings(),
+    //   options: this.options
+    // };
   }
 
   activateListeners(html) {
@@ -30,7 +36,7 @@ export default class DefaultIcons extends FormApplication {
     html.on("change", "input", (event) => {
       let input = $(event.currentTarget);
       let type = input.attr('name');
-      $(`#default-icon-img-${type}`).attr('src', input.val());
+      $(`#default-icon-img-${type}`).attr('src', String(input.val()));
     });
 
     html.on("click", ".file-picker", (event) => {
@@ -47,7 +53,7 @@ export default class DefaultIcons extends FormApplication {
   }
 
   getSettings() {
-    let settings = this.loadSettings();
+    let settings:any = this.loadSettings();
     let types = this.getItemTypes();
 
     types.forEach((type) => {

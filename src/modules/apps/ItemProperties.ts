@@ -1,7 +1,8 @@
-import constants from "../constants.mjs";
+import constants from "../constants";
 
 export default class ItemProperties extends FormApplication {
   static get defaultOptions() {
+    //@ts-ignore
     let options = mergeObject(super.defaultOptions, {
       id: "fui-item-properties",
       template: `${constants.modulePath}/templates/settings-item-properties.html`,
@@ -21,11 +22,16 @@ export default class ItemProperties extends FormApplication {
   }
 
   getData(options = {}) {
-    return {
-      types: this.getItemTypes(),
-      propertySettings: this.getSettings(),
-      options: this.options
-    };
+    let data:any = super.getData();
+    data.types = this.getItemTypes(),
+    data.propertySettings = this.getSettings(),
+    data.options = this.options
+    return data;
+    // return {
+    //   types: this.getItemTypes(),
+    //   propertySettings: this.getSettings(),
+    //   options: this.options
+    // };
   }
 
   activateListeners(html) {
@@ -48,10 +54,10 @@ export default class ItemProperties extends FormApplication {
     return await this.saveSettings(settings);
   }
 
-  getProperties() {
+  getProperties():Map<string,any> {
     let types = Object.entries(game.system.model.Item);
     let properties = new Map(types);
-    properties.forEach((value, key, map) => {
+    properties.forEach((value:any, key, map) => {
       map.set(key, Object.keys(flattenObject(value)));
     });
 
@@ -59,9 +65,9 @@ export default class ItemProperties extends FormApplication {
   }
 
   getSettings() {
-    let settings = this.loadSettings();
+    let settings:any = this.loadSettings();
     let types = this.getItemTypes();
-    let properties = this.getProperties();
+    let properties:Map<string,any> = this.getProperties();
 
     types.forEach((type) => {
       let setting = getProperty(settings, type);

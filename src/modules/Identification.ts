@@ -1,4 +1,4 @@
-import constants from "./constants.mjs";
+import constants from "./constants";
 
 export default class Identification {
   /**
@@ -49,7 +49,7 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystifyReplace(itemUuid) {
-    await this.mystify(itemUuid, {replace: true})
+    await this.mystify(itemUuid, {replace: true, mystifiedData: null})
   }
 
   /**
@@ -58,7 +58,7 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystifyAsDialog(itemUuid) {
-    const origItem = await this._itemFromUuid(itemUuid);
+    const origItem:any = await this._itemFromUuid(itemUuid);
     let name = origItem.data.name;
 
     let item;
@@ -108,9 +108,14 @@ export default class Identification {
         close: () => {
           if (item) {
             delete item._id;
-            let options = {mystifiedData: item};
-            if (replace) options.replace = true;
-            this.mystify(itemUuid, options);
+            //let options = {mystifiedData: item};
+            //if (replace) options.replace = true;
+            //this.mystify(itemUuid, options);
+            if (replace){
+              this.mystify(itemUuid, {replace : true, mystifiedData: item})
+            }else{
+              this.mystify(itemUuid, {replace : false, mystifiedData: item})
+            }
           }
         }
       },
@@ -121,7 +126,7 @@ export default class Identification {
       }
     );
 
-    await dialog._render(true);
+    await dialog.render(true);
 
     $('#mystifyAsDialog').on("drop", ".dropzone", async (event) => {
       event.preventDefault();
@@ -158,7 +163,7 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystifyAdvancedDialog(itemUuid, source = undefined) {
-    const origItem = await this._itemFromUuid(itemUuid);
+    const origItem:any = await this._itemFromUuid(itemUuid);
     let name = origItem.data.name;
     let sourceData = source ? source : duplicate(origItem);
     let meta = this._getMystifiedMeta(sourceData);
@@ -173,6 +178,7 @@ export default class Identification {
         {
           "key": property,
           "orig": getProperty(sourceData, `data.${property}`),
+          //@ts-ignore
           "default": getProperty(game.system.model.Item[sourceData.type], property),
           "value": properties[property]
         }
@@ -220,12 +226,12 @@ export default class Identification {
           if (!confirmed) return;
 
           let form = html.find('form')[0];
-          let formData = validateForm(form);
+          let formData:FormDataExtended = validateForm(form);
 
           delete formData["img-keep"];
           delete formData["name-keep"];
 
-          formData = Object.fromEntries(Object.entries(formData).filter(e => e[1] !== false));
+          formData = <FormDataExtended>Object.fromEntries(Object.entries(formData).filter(e => e[1] !== false));
 
           Object.keys(formData).forEach(property => {
             if (property.startsWith("data.")) {
@@ -234,17 +240,21 @@ export default class Identification {
             }
           });
 
-          let options = {mystifiedData: formData};
-          if (replace) options.replace = true;
-
-          this.mystify(itemUuid, options);
+          //let options = {mystifiedData: formData};
+          //if (replace) options.replace = true;
+          //this.mystify(itemUuid, options);
+          if (replace){
+            this.mystify(itemUuid, {replace : true, mystifiedData: formData})
+          }else{
+            this.mystify(itemUuid, {replace : false, mystifiedData: formData})
+          }
         }
       },
       {
         id: "mystifyAdvancedDialog"
       }
     );
-    await dialog._render(true);
+    await dialog.render(true);
 
     let jqDialog = $('#mystifyAdvancedDialog');
 
@@ -317,6 +327,7 @@ export default class Identification {
   static async isUuidMystified(uuid) {
     const item = this._itemFromUuid(uuid);
     if (!item) return false;
+    //@ts-ignore
     const origData = item.getFlag(constants.moduleName, "origData");
 
     return origData !== undefined;
@@ -380,7 +391,7 @@ export default class Identification {
    * @private
    */
   static _getMystifiedMeta(origData) {
-    let iconSettings = game.settings.get(constants.moduleName, "defaultIcons");
+    let iconSettings = <string[]>game.settings.get(constants.moduleName, "defaultIcons");
     let iconType = getProperty(iconSettings, origData.type) || `${constants.modulePath}/icons/${constants.defaultIcon}`;
 
     return {
@@ -423,10 +434,11 @@ export default class Identification {
    */
   static async _getItemFromPack(packId, itemId) {
     const pack = game.packs.get(packId);
-    if (pack.metadata.entity !== "Item")
+    if (pack.metadata.entity !== "Item"){
       return null;
-    return await pack.getEntity(itemId).then(ent => {
-      delete ent._id;
+    }
+    return await pack.getEntity(itemId).then((ent:Entity) => {
+      delete ent.data._id;
       return ent;
     });
   }

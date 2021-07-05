@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"noEmit": false,
+		"strict": false,
+		"target": "es2020",
+		"lib": [
+			"DOM",
+			"ES6",
+			"ES2020"
+    	],
+		"types": [
+			"node",
+			"@league-of-foundry-developers/foundry-vtt-types"
+		]
+	}
+}
