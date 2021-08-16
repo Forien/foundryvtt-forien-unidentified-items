@@ -1,9 +1,9 @@
 {
-    "ForienUnidentifiedItems.Dialog.MystifyAs.MystifyAdvanced": "",
-    "ForienUnidentifiedItems.Item.Mystified": "",
-    "ForienUnidentifiedItems.Item.Original": "",
-    "ForienUnidentifiedItems.Settings.allowNestedItems.Name": "",
-    "ForienUnidentifiedItems.Settings.allowNestedItems.Hint": "",
-    "ForienUnidentifiedItems.Notifications.defaultIconsInitialized": "",
-    "ForienUnidentifiedItems.Notifications.defaultPropertiesInitialized": ""
+    "forien-unidentified-items.Dialog.MystifyAs.MystifyAdvanced": "",
+    "forien-unidentified-items.Item.Mystified": "",
+    "forien-unidentified-items.Item.Original": "",
+    "forien-unidentified-items.Settings.allowNestedItems.Name": "",
+    "forien-unidentified-items.Settings.allowNestedItems.Hint": "",
+    "forien-unidentified-items.Notifications.defaultIconsInitialized": "",
+    "forien-unidentified-items.Notifications.defaultPropertiesInitialized": ""
 }

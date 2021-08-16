@@ -10,8 +10,8 @@
 			"ES2020"
     	],
 		"types": [
-			"node",
 			"@league-of-foundry-developers/foundry-vtt-types"
-		]
+		],
+    "strictNullChecks": true
 	}
 }

@@ -1,5 +1,5 @@
 {
-  "ForienUnidentifiedItems": {
+  "forien-unidentified-items": {
     "NewMystified": "미식별 아이템",
     "Mystify": "미식별",
     "MystifyReplace": "미식별 아이템으로 대체",
@@ -56,7 +56,7 @@
         "hint": "미식별 전환시 아이템의 원본 아이콘을 유지하려면 이 설정을 선택한다. 고급 미식별화는 여전히 원본 아이콘과 기본 아이콘을 수동으로 선택할 수 있다."
       }
     },
-    
+
     "Notifications": {
       "defaultIconsInitialized": "Forien's Unidentified Items | 기본 아이템 유형 아이콘이 무작위로 할당되었습니다. 자세한 내용은 모듈 설정을 참조해주세요.",
       "defaultPropertiesInitialized": "Forien's Unidentified Items | 기본 지속적 항목 속성이 생성되었습니다. 자세한 내용은 모듈 설정을 참조해주세요."

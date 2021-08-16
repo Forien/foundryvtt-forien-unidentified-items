@@ -1,5 +1,6 @@
-import constants from "./constants.js";
+import { i18n } from "../init.js";
 import Identification from "./Identification.js";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.js";
 export default function registerDerivedItemSheetClass() {
     for (let k in CONFIG.Item.sheetClasses) {
         for (let l in CONFIG.Item.sheetClasses[k]) {
@@ -23,12 +24,15 @@ function getItemSheetClass(cls, sheet) {
          */
         get title() {
             let title = super.title;
-            if (!game.user.isGM)
+            if (!getGame().user?.isGM) {
                 return title;
-            if (this.item.isMystified())
-                title = `[${game.i18n.localize('ForienUnidentifiedItems.Item.Mystified')}] ${title}`;
-            if (this.item.data.isAbstract)
-                title = `[${game.i18n.localize('ForienUnidentifiedItems.Item.Original')}] ${title}`;
+            }
+            if (this.item.isMystified()) {
+                title = `[${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Item.Mystified')}] ${title}`;
+            }
+            if (this.item.data.isAbstract) {
+                title = `[${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Item.Original')}] ${title}`;
+            }
             return title;
         }
         /**
@@ -40,19 +44,19 @@ function getItemSheetClass(cls, sheet) {
             const buttons = super._getHeaderButtons();
             const isAbstract = this.item.data.isAbstract || false;
             let permissions = {
-                canIdentify: game.user.isGM,
-                canPeek: game.user.isGM,
-                canMystify: game.user.isGM
+                canIdentify: getGame().user?.isGM,
+                canPeek: getGame().user?.isGM,
+                canMystify: getGame().user?.isGM
             };
             let hookPermissions = duplicate(permissions);
-            Hooks.call(`${constants.moduleName}:getItemPermissions`, this.item, hookPermissions);
+            Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
             //@ts-ignore
             permissions = mergeObject(permissions, hookPermissions);
-            let origData = this.item.getFlag(constants.moduleName, "origData");
+            let origData = this.item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "origData");
             if (origData) {
                 if (permissions.canIdentify && !isAbstract) {
                     buttons.unshift({
-                        label: "ForienUnidentifiedItems.Identify",
+                        label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Identify",
                         class: "identify-item",
                         icon: "fas fa-search",
                         onclick: ev => {
@@ -62,14 +66,15 @@ function getItemSheetClass(cls, sheet) {
                 }
                 if (permissions.canPeek) {
                     buttons.unshift({
-                        label: "ForienUnidentifiedItems.Peek",
+                        label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Peek",
                         class: "peek-original-item",
                         icon: "far fa-eye",
                         onclick: ev => {
                             origData.isAbstract = true;
-                            const entity = new CONFIG.Item.entityClass(origData, { editable: false });
+                            //@ts-ignore
+                            const entity = new CONFIG.Item.documentClass(origData, { editable: false });
                             const sheet = entity.sheet;
-                            sheet.render(true);
+                            sheet?.render(true);
                         }
                     });
                 }
@@ -78,7 +83,7 @@ function getItemSheetClass(cls, sheet) {
                 if (permissions.canMystify && !isAbstract) {
                     if (this.item.isOwned) {
                         buttons.unshift({
-                            label: "ForienUnidentifiedItems.Mystify",
+                            label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Mystify",
                             class: "mystify-item",
                             icon: "far fa-eye-slash",
                             onclick: ev => {
@@ -88,7 +93,7 @@ function getItemSheetClass(cls, sheet) {
                     }
                     else {
                         buttons.unshift({
-                            label: "ForienUnidentifiedItems.Mystify",
+                            label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Mystify",
                             class: "mystify-item",
                             icon: "far fa-eye-slash",
                             onclick: ev => {

@@ -11,10 +11,23 @@
 
 This module aims to provides system agnostic solution to handle unidentified items and their identification for games via Foundry Virtual Tabletop.
 
+## NOTE: If you are a javascript developer and not a typescript developer, you can just use the javascript files under the dist folder or rename the file from .ts to .js
+
 ## Installation
 
-1. Install Forien's Unidentified Items using manifest URL: https://raw.githubusercontent.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/master/module.json
-2. While loaded in World, enable **_Forien's Unidentified Items_** module.
+It's always easiest to install modules from the in game add-on browser.
+
+To install this module manually:
+1.  Inside the Foundry "Configuration and Setup" screen, click "Add-on Modules"
+2.  Click "Install Module"
+3.  In the "Manifest URL" field, paste the following url:
+`https://raw.githubusercontent.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/master/module.json`
+4.  Click 'Install' and wait for installation to complete
+5.  Don't forget to enable the module in game using the "Manage Module" button
+
+### libWrapper
+
+This module uses the [libWrapper](https://github.com/ruipin/fvtt-lib-wrapper) library for wrapping core methods. It is a hard dependency and it is recommended for the best experience and compatibility with other modules.
 
 ## Usage
 

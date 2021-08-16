@@ -153,4 +153,17 @@
   flex-direction: column;
   font-style: italic;
   font-size: 12px;
-}
+}ody {
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-gap: 6px 10px; }
+      #mystifyAdvancedDialog .advanced-body .properties-body label {
+        font-weight: bold; }
+      #mystifyAdvancedDialog .advanced-body .properties-body .property-values {
+        display: flex;
+        flex-direction: column;
+        font-style: italic;
+        font-size: 12px; }
+
+/*# sourceMappingURL=style.css.map */

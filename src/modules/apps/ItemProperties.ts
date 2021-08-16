@@ -1,12 +1,13 @@
-import constants from "../constants";
+import { i18n } from "../../init";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "../settings";
 
 export default class ItemProperties extends FormApplication {
   static get defaultOptions() {
     //@ts-ignore
     let options = mergeObject(super.defaultOptions, {
       id: "fui-item-properties",
-      template: `${constants.modulePath}/templates/settings-item-properties.html`,
-      title: game.i18n.localize("ForienUnidentifiedItems.Settings.itemProperties.name"),
+      template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
+      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".itemProperties.name"),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
@@ -16,7 +17,7 @@ export default class ItemProperties extends FormApplication {
       tabs: [{navSelector: ".nav-tabs", contentSelector: ".nav-body"}]
     });
 
-    if (game.system.id === 'wfrp4e') options.classes.push('wfrp');
+    if (getGame().system.id === 'wfrp4e') options.classes.push('wfrp');
 
     return options;
   }
@@ -55,12 +56,12 @@ export default class ItemProperties extends FormApplication {
   }
 
   getProperties():Map<string,any> {
-    let types = Object.entries(game.system.model.Item);
+    let types = Object.entries(getGame().system.model.Item);
     let properties = new Map(types);
     properties.forEach((value:any, key, map) => {
+      //@ts-ignore
       map.set(key, Object.keys(flattenObject(value)));
     });
-
     return properties;
   }
 
@@ -81,18 +82,18 @@ export default class ItemProperties extends FormApplication {
   }
 
   loadSettings() {
-    return game.settings.get(constants.moduleName, "itemProperties");
+    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties");
   }
 
   async saveSettings(data) {
-    return await game.settings.set(constants.moduleName, "itemProperties", data);
+    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties", data);
   }
 
   getItemTypes() {
-    return Object.keys(game.system.model.Item);
+    return Object.keys(getGame().system.model.Item);
   }
 
   getIcon(icon) {
-    return `${constants.modulePath}/icons/${icon}`;
+    return `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
   }
 }

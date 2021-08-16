@@ -1,33 +1,67 @@
-import constants from "./constants.js";
 import DefaultIcons from "./apps/DefaultIcons.js";
 import ItemProperties from "./apps/ItemProperties.js";
 import { defaultPropertiesDND5e } from "./integrations/dnd5e.js";
 import { defaultPropertiesWFRP4e } from "./integrations/wfrp4e.js";
 import { defaultPropertiesPF2e } from "./integrations/pf2e.js";
 import { defaultPropertiesSwade } from "./integrations/swade.js";
+import { i18n, log } from "../init.js";
+export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = "forien-unidentified-items";
+// export const FORIEN_UNIDENTIFIED_ITEMS_PATH = "modules/forien-unidentified-items";
+export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = "unidentified.png";
+// export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_LABEL = "Forien's Unidentified Items";
+/**
+ * Because typescript doesn't know when in the lifecycle of foundry your code runs, we have to assume that the
+ * canvas is potentially not yet initialized, so it's typed as declare let canvas: Canvas | {ready: false}.
+ * That's why you get errors when you try to access properties on canvas other than ready.
+ * In order to get around that, you need to type guard canvas.
+ * Also be aware that this will become even more important in 0.8.x because no canvas mode is being introduced there.
+ * So you will need to deal with the fact that there might not be an initialized canvas at any point in time.
+ * @returns
+ */
+export function getCanvas() {
+    if (!(canvas instanceof Canvas) || !canvas.ready) {
+        throw new Error("Canvas Is Not Initialized");
+    }
+    return canvas;
+}
+/**
+ * Because typescript doesn't know when in the lifecycle of foundry your code runs, we have to assume that the
+ * canvas is potentially not yet initialized, so it's typed as declare let canvas: Canvas | {ready: false}.
+ * That's why you get errors when you try to access properties on canvas other than ready.
+ * In order to get around that, you need to type guard canvas.
+ * Also be aware that this will become even more important in 0.8.x because no canvas mode is being introduced there.
+ * So you will need to deal with the fact that there might not be an initialized canvas at any point in time.
+ * @returns
+ */
+export function getGame() {
+    if (!(game instanceof Game)) {
+        throw new Error("Game Is Not Initialized");
+    }
+    return game;
+}
 export default function registerSettings() {
     registerSettingMenus();
-    game.settings.register(constants.moduleName, "defaultIcons", {
+    getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", {
         scope: "world",
         config: false,
         default: {}
     });
-    game.settings.register(constants.moduleName, "itemProperties", {
+    getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties", {
         scope: "world",
         config: false,
         default: {}
     });
-    game.settings.register(constants.moduleName, "keepOldIcon", {
-        name: "ForienUnidentifiedItems.Settings.keepOldIcon.name",
-        hint: "ForienUnidentifiedItems.Settings.keepOldIcon.hint",
+    getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "keepOldIcon", {
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.keepOldIcon.name",
+        hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.keepOldIcon.hint",
         scope: "world",
         config: true,
         default: false,
         type: Boolean
     });
-    game.settings.register(constants.moduleName, "allowNestedItems", {
-        name: "ForienUnidentifiedItems.Settings.allowNestedItems.Name",
-        hint: "ForienUnidentifiedItems.Settings.allowNestedItems.Hint",
+    getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "allowNestedItems", {
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.allowNestedItems.Name",
+        hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.allowNestedItems.Hint",
         scope: "world",
         config: true,
         default: false,
@@ -38,18 +72,18 @@ export default function registerSettings() {
  * Registers settings menu (button)
  */
 function registerSettingMenus() {
-    game.settings.registerMenu(constants.moduleName, "defaultIcons", {
-        name: "ForienUnidentifiedItems.Settings.defaultIcons.name",
-        label: "ForienUnidentifiedItems.Settings.defaultIcons.label",
-        hint: "ForienUnidentifiedItems.Settings.defaultIcons.hint",
+    getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", {
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.defaultIcons.name",
+        label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.defaultIcons.label",
+        hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.defaultIcons.hint",
         icon: "fas fa-image",
         type: DefaultIcons,
         restricted: true
     });
-    game.settings.registerMenu(constants.moduleName, "itemProperties", {
-        name: "ForienUnidentifiedItems.Settings.itemProperties.name",
-        label: "ForienUnidentifiedItems.Settings.itemProperties.label",
-        hint: "ForienUnidentifiedItems.Settings.itemProperties.hint",
+    getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties", {
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.itemProperties.name",
+        label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.itemProperties.label",
+        hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Settings.itemProperties.hint",
         icon: "fas fa-cogs",
         type: ItemProperties,
         restricted: true
@@ -59,10 +93,10 @@ function registerSettingMenus() {
  * Checks if options exist, if not, orders their initialization
  */
 export function checkSettingsInitialized() {
-    if (!game.user.isGM)
+    if (!getGame().user?.isGM)
         return;
-    let defaultIcons = game.settings.get(constants.moduleName, "defaultIcons");
-    let itemProperties = game.settings.get(constants.moduleName, "itemProperties");
+    let defaultIcons = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons");
+    let itemProperties = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties");
     if (checkObjEmpty(defaultIcons))
         initializeDefaultIcons();
     if (checkObjEmpty(itemProperties))
@@ -81,11 +115,11 @@ function initializeDefaultIcons() {
     let settings = di.getSettings();
     const icons = duplicate(settings);
     console.log(JSON.stringify(icons));
-    Hooks.call(`${constants.moduleName}:onInitializeDefaultIcons`, icons);
+    Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeDefaultIcons`, icons);
     settings = mergeObject(settings, icons);
     di.saveSettings(settings);
-    console.log(`${constants.moduleLabel} | Initialized default item icons.`);
-    ui.notifications.info(game.i18n.localize("ForienUnidentifiedItems.Notifications.defaultIconsInitialized"), { permanent: true });
+    log(` Initialized default item icons.`);
+    ui.notifications?.info(getGame().i18n.localize(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".Notifications.defaultIconsInitialized"), { permanent: true });
 }
 /**
  * One-time settings initialization function
@@ -111,12 +145,12 @@ function initializeItemProperties() {
     settings = Object.fromEntries(settings);
     settings = setDefaultItemProperties(settings);
     const properties = duplicate(settings);
-    Hooks.call(`${constants.moduleName}:onInitializeItemProperties`, properties);
+    Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeItemProperties`, properties);
     console.log(JSON.stringify(properties));
     settings = mergeObject(settings, properties);
     ip.saveSettings(settings);
-    console.log(`${constants.moduleLabel} | Initialized default item properties.`);
-    ui.notifications.info(game.i18n.localize("ForienUnidentifiedItems.Notifications.defaultPropertiesInitialized"), { permanent: true });
+    log(` Initialized default item properties.`);
+    ui.notifications?.info(i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + ".defaultPropertiesInitialized"), { permanent: true });
 }
 /**
  * Function responsible for out-of-the-box integration with systems.
@@ -142,7 +176,7 @@ function initializeItemProperties() {
  */
 function setDefaultItemProperties(settings) {
     let defaults;
-    switch (game.system.id) {
+    switch (getGame().system.id) {
         case 'dnd5e':
             defaults = defaultPropertiesDND5e;
             break;
@@ -157,7 +191,8 @@ function setDefaultItemProperties(settings) {
             break;
         default:
     }
-    if (defaults)
-        console.log(`${constants.moduleLabel} | Loaded Default Properties from ${game.system.id} built-in integration.`);
+    if (defaults) {
+        log(` Loaded Default Properties from ${getGame().system.id} built-in integration.`);
+    }
     return mergeObject(settings, defaults);
 }

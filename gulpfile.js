@@ -238,6 +238,7 @@ async function clean() {
 			'templates',
 			'assets',
 			'module',
+      'modules',
 			`${name}.js`,
 			'module.json',
 			'system.json',

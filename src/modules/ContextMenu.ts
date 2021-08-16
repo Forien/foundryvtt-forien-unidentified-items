@@ -1,25 +1,27 @@
-import constants from "./constants";
+import { ItemDataConstructorData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData';
+import { MystifiedData } from './ForienUnidentifiedItemsModels';
 import Identification from "./Identification";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings";
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
     const getOrigData = (li) => {
       const id = li[0].dataset.entityId;
-      const item = game.items.get(id);
+      const item = <Item>getGame().items?.get(id);
 
-      return  item.getFlag(constants.moduleName, "origData");
+      return  item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "origData");
     };
 
     const mystifyCondition = (li) => {
-      if (!game.user.isGM) return false;
+      if (!getGame().user?.isGM) return false;
       const origData = getOrigData(li);
-      const allowNested = game.settings.get(constants.moduleName, "allowNestedItems");
+      const allowNested = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "allowNestedItems");
 
       return !origData || allowNested;
     };
 
     const identifyCondition = (li) => {
-      if (!game.user.isGM) return false;
+      if (!getGame().user?.isGM) return false;
       const origData = getOrigData(li);
 
       return !!origData;
@@ -27,7 +29,7 @@ export default function registerContextMenuHook() {
 
     let mystifyOptions = [
       {
-        name: "ForienUnidentifiedItems.Mystify",
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Mystify",
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: li => {
@@ -36,7 +38,7 @@ export default function registerContextMenuHook() {
         }
       },
       {
-        name: "ForienUnidentifiedItems.MystifyReplace",
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".MystifyReplace",
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: li => {
@@ -45,7 +47,7 @@ export default function registerContextMenuHook() {
         }
       },
       {
-        name: "ForienUnidentifiedItems.MystifyAs",
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".MystifyAs",
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: li => {
@@ -54,7 +56,7 @@ export default function registerContextMenuHook() {
         }
       },
       {
-        name: "ForienUnidentifiedItems.MystifyAdvanced",
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".MystifyAdvanced",
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: li => {
@@ -67,29 +69,29 @@ export default function registerContextMenuHook() {
     entryOptions.unshift(...mystifyOptions);
 
     entryOptions.unshift({
-      name: "ForienUnidentifiedItems.Identify",
+      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Identify",
       icon: '<i class="fas fa-search"></i>',
       condition: identifyCondition,
       callback: li => {
         const id = li[0].dataset.entityId;
-        const item = game.items.get(id);
+        const item = getGame().items?.get(id);
         Identification.identify(item);
       }
     });
 
     entryOptions.unshift({
-      name: "ForienUnidentifiedItems.Peek",
+      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Peek",
       icon: '<i class="far fa-eye"></i>',
       condition: identifyCondition,
       callback: li => {
         const id = li[0].dataset.entityId;
-        const item = game.items.get(id);
-        const origData = <Item.Data>item.getFlag(constants.moduleName, "origData");
-        //@ts-ignore
+        const item = <Item>getGame().items?.get(id);
+        const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "origData");
         origData.isAbstract = true;
-        const entity = new CONFIG.Item.entityClass(origData, {editable: false});
+        //@ts-ignore
+        const entity = new CONFIG.Item.documentClass(origData, {editable: false});
         const sheet = entity.sheet;
-        sheet.render(true);
+        sheet?.render(true);
       }
     });
   });
