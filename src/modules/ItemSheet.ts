@@ -117,7 +117,9 @@ function getItemSheetClass(cls, sheet) {
     }
 
     async _updateObject(...args) {
-      if (this.item.data.isAbstract) return this;
+      if (this.item.data.isAbstract){
+        return this;
+      }
       return super._updateObject(...args);
     }
   };

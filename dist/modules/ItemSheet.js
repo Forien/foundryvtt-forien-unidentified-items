@@ -105,8 +105,9 @@ function getItemSheetClass(cls, sheet) {
             return buttons;
         }
         async _updateObject(...args) {
-            if (this.item.data.isAbstract)
+            if (this.item.data.isAbstract) {
                 return this;
+            }
             return super._updateObject(...args);
         }
     };

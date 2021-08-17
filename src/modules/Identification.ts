@@ -233,12 +233,12 @@ export default class Identification {
             return;
           }
           let form = <HTMLFormElement>html.find('form')[0];
-          let formDataBase:Record<string, unknown> = new FormDataExtended(form,{}).toObject();
+          let formDataBase = new FormDataExtended(form,{})
 
-          delete formDataBase["img-keep"];
-          delete formDataBase["name-keep"];
+          formDataBase.delete("img-keep");
+          formDataBase.delete("name-keep");
 
-          let formData = Object.fromEntries(Object.entries(formDataBase).filter(e => e[1] !== false));
+          let formData:Record<string, unknown> = Object.fromEntries(Object.entries(formDataBase.toObject()).filter(e => e[1] !== false));
 
           Object.keys(formData).forEach(property => {
             if (property.startsWith("data.")) {
