@@ -5,7 +5,7 @@ export const preloadTemplates = async function () {
         `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/mystify-advanced.html`,
         `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
         `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
-        `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/welcome-screen.html`,
+        // `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/welcome-screen.html`,
     ];
     return loadTemplates(templatePaths);
 };

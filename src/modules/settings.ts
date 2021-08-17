@@ -8,7 +8,7 @@ import { i18n, log } from "../init";
 
 export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = "forien-unidentified-items";
 
-// export const FORIEN_UNIDENTIFIED_ITEMS_PATH = "modules/forien-unidentified-items";
+
 
 export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = "unidentified.png";
 
@@ -108,16 +108,19 @@ function registerSettingMenus() {
  * Checks if options exist, if not, orders their initialization
  */
 export function checkSettingsInitialized() {
-  if (!getGame().user?.isGM) return;
-
+  if (!getGame().user?.isGM){
+    return;
+  }
   let defaultIcons = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons");
   let itemProperties = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties");
 
-  if (checkObjEmpty(defaultIcons))
+  if (checkObjEmpty(defaultIcons)){
     initializeDefaultIcons();
+  }
 
-  if (checkObjEmpty(itemProperties))
+  if (checkObjEmpty(itemProperties)){
     initializeItemProperties();
+  }
 }
 
 function checkObjEmpty(obj) {
@@ -153,8 +156,12 @@ function initializeItemProperties() {
   settings = settings.map(type => {
     let entries = Object.entries(type[1]);
     entries = entries.sort((a, b) => {
-      if (a[0] < b[0]) return -1;
-      if (a[0] > b[0]) return 1;
+      if (a[0] < b[0]){
+        return -1;
+      }
+      if (a[0] > b[0]){
+        return 1;
+      }
       return 0;
     });
     type[1] = Object.fromEntries(entries);

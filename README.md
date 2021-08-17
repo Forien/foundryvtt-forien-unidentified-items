@@ -23,10 +23,6 @@ To install this module manually:
 4.  Click 'Install' and wait for installation to complete
 5.  Don't forget to enable the module in game using the "Manage Module" button
 
-### libWrapper
-
-This module uses the [libWrapper](https://github.com/ruipin/fvtt-lib-wrapper) library for wrapping core methods. It is a hard dependency and it is recommended for the best experience and compatibility with other modules.
-
 ## Usage
 
 **Please refer to Wiki for full information on [Usage](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#usage)**  

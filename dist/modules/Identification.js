@@ -46,8 +46,7 @@ export default class Identification {
      * @returns {Promise<void>}
      */
     static async mystifyReplace(itemUuid) {
-        //@ts-ignore
-        await this.mystify(itemUuid, { replace: true, mystifiedData: null });
+        await this.mystify(itemUuid, { replace: true, mystifiedData: undefined });
     }
     /**
      *
@@ -168,8 +167,7 @@ export default class Identification {
                 {
                     "key": property,
                     "orig": getProperty(sourceData, `data.${property}`),
-                    //@ts-ignore
-                    "default": getProperty(getGame().system.model.Item[sourceData.type], property),
+                    "default": getProperty(getGame().system?.model.Item[sourceData.type], property),
                     "value": properties[property]
                 }
             ];
@@ -209,11 +207,11 @@ export default class Identification {
             },
             default: 'cancel',
             close: (html) => {
-                if (!confirmed)
+                if (!confirmed) {
                     return;
+                }
                 let form = html.find('form')[0];
-                //@ts-ignore
-                let formDataBase = validateForm(form);
+                let formDataBase = new FormDataExtended(form, {}).toObject();
                 delete formDataBase["img-keep"];
                 delete formDataBase["name-keep"];
                 let formData = Object.fromEntries(Object.entries(formDataBase).filter(e => e[1] !== false));
@@ -227,11 +225,9 @@ export default class Identification {
                 //if (replace) options.replace = true;
                 //this.mystify(itemUuid, options);
                 if (replace) {
-                    //@ts-ignore
                     this.mystify(itemUuid, { replace: true, mystifiedData: formData });
                 }
                 else {
-                    //@ts-ignore
                     this.mystify(itemUuid, { replace: false, mystifiedData: formData });
                 }
             }
@@ -298,10 +294,10 @@ export default class Identification {
      * @return {boolean}
      */
     static async isUuidMystified(uuid) {
-        const item = this._itemFromUuid(uuid);
-        if (!item)
+        const item = await this._itemFromUuid(uuid);
+        if (!item) {
             return false;
-        //@ts-ignore
+        }
         const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "origData");
         return origData !== undefined;
     }
@@ -371,7 +367,7 @@ export default class Identification {
     static async _itemFromUuid(uuid) {
         const parts = uuid.split(".");
         const [entityName, entityId, embeddedName, embeddedId] = parts;
-        if (embeddedName === "OwnedItem") {
+        if (embeddedName === "OwnedItem" || embeddedName === "Item") {
             if (parts.length === 4) {
                 const actor = getGame().actors?.get(entityId);
                 if (actor === null)
@@ -380,7 +376,7 @@ export default class Identification {
             }
         }
         else {
-            return fromUuid(uuid);
+            return (await fromUuid(uuid));
         }
         return null;
     }

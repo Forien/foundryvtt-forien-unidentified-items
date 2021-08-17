@@ -2,7 +2,6 @@ import { i18n } from "../../init.js";
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "../settings.js";
 export default class ItemProperties extends FormApplication {
     static get defaultOptions() {
-        //@ts-ignore
         let options = mergeObject(super.defaultOptions, {
             id: "fui-item-properties",
             template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
@@ -15,8 +14,9 @@ export default class ItemProperties extends FormApplication {
             height: 560,
             tabs: [{ navSelector: ".nav-tabs", contentSelector: ".nav-body" }]
         });
-        if (getGame().system.id === 'wfrp4e')
+        if (getGame().system.id === 'wfrp4e') {
             options.classes.push('wfrp');
+        }
         return options;
     }
     getData(options = {}) {
@@ -51,7 +51,6 @@ export default class ItemProperties extends FormApplication {
         let types = Object.entries(getGame().system.model.Item);
         let properties = new Map(types);
         properties.forEach((value, key, map) => {
-            //@ts-ignore
             map.set(key, Object.keys(flattenObject(value)));
         });
         return properties;

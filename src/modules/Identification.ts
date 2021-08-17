@@ -15,7 +15,7 @@ export default class Identification {
    * @param {undefined|Object} options.mystifiedData - item data object that should become front of mystified item
    * @returns {Promise<void>}
    */
-  static async mystify(itemUuid:string, options = {replace: false, mystifiedData: undefined}) {
+  static async mystify(itemUuid:string, options:any = {replace: false, mystifiedData: undefined}) {
     if (!getGame().user?.isGM){
       return;
     }
@@ -56,8 +56,7 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystifyReplace(itemUuid) {
-    //@ts-ignore
-    await this.mystify(itemUuid, {replace: true, mystifiedData: null})
+    await this.mystify(itemUuid, {replace: true, mystifiedData: undefined})
   }
 
   /**
@@ -170,8 +169,8 @@ export default class Identification {
    * @param {object} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid, source = undefined) {
-    const origItem:any = await this._itemFromUuid(itemUuid);
+  static async mystifyAdvancedDialog(itemUuid, source:any = undefined) {
+    const origItem = <Item>await this._itemFromUuid(itemUuid);
     let name = origItem.data.name;
     let sourceData = source ? source : duplicate(origItem);
     let meta = this._getMystifiedMeta(sourceData);
@@ -186,8 +185,7 @@ export default class Identification {
         {
           "key": property,
           "orig": getProperty(sourceData, `data.${property}`),
-          //@ts-ignore
-          "default": getProperty(getGame().system.model.Item[sourceData.type], property),
+          "default": getProperty(<object>getGame().system?.model.Item[sourceData.type], property),
           "value": properties[property]
         }
       ]
@@ -231,16 +229,16 @@ export default class Identification {
         },
         default: 'cancel',
         close: (html:JQuery<HTMLElement>) => {
-          if (!confirmed) return;
-
+          if (!confirmed){
+            return;
+          }
           let form = <HTMLFormElement>html.find('form')[0];
-          //@ts-ignore
-          let formDataBase:FormDataExtended = validateForm(form);
+          let formDataBase:Record<string, unknown> = new FormDataExtended(form,{}).toObject();
 
           delete formDataBase["img-keep"];
           delete formDataBase["name-keep"];
 
-          let formData = <ItemDataConstructorData>Object.fromEntries(Object.entries(formDataBase).filter(e => e[1] !== false));
+          let formData = Object.fromEntries(Object.entries(formDataBase).filter(e => e[1] !== false));
 
           Object.keys(formData).forEach(property => {
             if (property.startsWith("data.")) {
@@ -253,10 +251,8 @@ export default class Identification {
           //if (replace) options.replace = true;
           //this.mystify(itemUuid, options);
           if (replace){
-            //@ts-ignore
             this.mystify(itemUuid, {replace : true, mystifiedData: formData})
           }else{
-            //@ts-ignore
             this.mystify(itemUuid, {replace : false, mystifiedData: formData})
           }
         }
@@ -272,7 +268,7 @@ export default class Identification {
     jqDialog.on("change", "input[name=img-keep]", async (event) => {
       let checked = $(event.currentTarget).prop('checked');
 
-      let src = checked ? sourceData.img : meta.img;
+      let src = checked ? <string>sourceData.img : meta.img;
       jqDialog.find('.img-preview').attr('src', src);
       jqDialog.find('input[name=img]').val(src);
     });
@@ -336,9 +332,10 @@ export default class Identification {
    * @return {boolean}
    */
   static async isUuidMystified(uuid) {
-    const item = this._itemFromUuid(uuid);
-    if (!item) return false;
-    //@ts-ignore
+    const item = <Item> await this._itemFromUuid(uuid);
+    if (!item){
+      return false;
+    }
     const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "origData");
 
     return origData !== undefined;
@@ -418,19 +415,19 @@ export default class Identification {
    * @returns {Promise<Item|null>}
    * @private
    */
-  static async _itemFromUuid(uuid) {
+  static async _itemFromUuid(uuid:string):Promise<Item|null> {
     const parts = uuid.split(".");
     const [entityName, entityId, embeddedName, embeddedId] = parts;
 
-    if (embeddedName === "OwnedItem") {
+    if (embeddedName === "OwnedItem" || embeddedName === "Item") {
       if (parts.length === 4) {
         const actor = <Actor>getGame().actors?.get(entityId);
         if (actor === null) return null;
 
-        return actor.items.get(embeddedId);
+        return <Item>actor.items.get(embeddedId);
       }
     } else {
-      return fromUuid(uuid);
+      return <Item>(await fromUuid(uuid));
     }
 
     return null;

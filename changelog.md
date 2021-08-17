@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.0
+
+- Initial patch 0.8.8
+
 ## v0.2.3
 * Added Setting to keep original icon while mystifying
 * Added way to use "Mystify As…" along with "Mystify (advanced)…"

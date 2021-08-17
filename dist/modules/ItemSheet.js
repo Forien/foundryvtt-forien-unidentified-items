@@ -50,7 +50,6 @@ function getItemSheetClass(cls, sheet) {
             };
             let hookPermissions = duplicate(permissions);
             Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
-            //@ts-ignore
             permissions = mergeObject(permissions, hookPermissions);
             let origData = this.item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "origData");
             if (origData) {
