@@ -2,9 +2,9 @@ import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from '../settings';
 import { i18n } from './../../init';
 
 export default class DefaultIcons extends FormApplication {
-  static get defaultOptions() {
-    
-    let options = mergeObject(super.defaultOptions, {
+  static get defaultOptions(): any {
+
+    const options = mergeObject(super.defaultOptions, {
       id: "fui-default-icons",
       template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
       title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.defaultIcons.name"),
@@ -13,13 +13,14 @@ export default class DefaultIcons extends FormApplication {
       closeOnSubmit: true
     });
 
-    if (getGame().system.id === 'wfrp4e') options.classes.push('wfrp');
-
+    if (getGame().system.id === 'wfrp4e'){
+      options.classes.push('wfrp');
+    }
     return options;
   }
 
-  getData(options = {}) {
-    let data:any = super.getData();
+  getData(options = {}): any {
+    const data: any = super.getData();
     data.types = this.getItemTypes();
     data.typeSettings = this.getSettings();
     data.options = this.options;

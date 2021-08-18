@@ -1,4 +1,4 @@
-# FoundryVTT - Forien's Unidentified Items [MAINTANCE MODE]
+# FoundryVTT - Forien's Unidentified Items
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/forien/foundryvtt-forien-unidentified-items?style=for-the-badge) 
 ![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge) 

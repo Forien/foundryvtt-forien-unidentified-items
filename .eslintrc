@@ -13,7 +13,7 @@
   "extends": ["plugin:@typescript-eslint/recommended"],
   "rules": {
     "no-underscore-dangle": "off",
-    "import/extensions": "on",
+    "import/extensions": "off",
     "class-methods-use-this": [
       "error",
       {

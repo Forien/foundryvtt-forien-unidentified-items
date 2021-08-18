@@ -10,6 +10,7 @@ const ts = require('gulp-typescript');
 const less = require('gulp-less');
 const sass = require('gulp-sass');
 const git = require('gulp-git');
+const eslint = require('gulp-eslint');
 
 const argv = require('yargs').argv;
 
@@ -78,7 +79,7 @@ function createTransformer() {
 	}
 
 	/**
-	 * Transforms import/export declarations to append `.js` extension
+	 * Transforms import/export declarations to append `.mjs` extension
 	 * @param {typescript.TransformationContext} context
 	 */
 	function importTransformer(context) {
@@ -90,7 +91,7 @@ function createTransformer() {
 				if (shouldMutateModuleSpecifier(node)) {
 					if (typescript.isImportDeclaration(node)) {
 						const newModuleSpecifier = typescript.createLiteral(
-							`${node.moduleSpecifier.text}.js`
+							`${node.moduleSpecifier.text}.mjs`
 						);
 						return typescript.updateImportDeclaration(
 							node,
@@ -101,7 +102,7 @@ function createTransformer() {
 						);
 					} else if (typescript.isExportDeclaration(node)) {
 						const newModuleSpecifier = typescript.createLiteral(
-							`${node.moduleSpecifier.text}.js`
+							`${node.moduleSpecifier.text}.mjs`
 						);
 						return typescript.updateExportDeclaration(
 							node,
@@ -136,25 +137,61 @@ const tsConfig = ts.createProject('tsconfig.json', {
  * Build TypeScript
  */
 function buildTS() {
-	return gulp.src('src/**/*.ts').pipe(tsConfig()).pipe(gulp.dest('dist'));
+	return gulp.src('src/**/*.ts').pipe(tsConfig())
+
+  // eslint() attaches the lint output to the "eslint" property
+  // of the file object so it can be used by other modules.
+  .pipe(eslint())
+  // eslint.format() outputs the lint results to the console.
+  // Alternatively use eslint.formatEach() (see Docs).
+  .pipe(eslint.format())
+  // To have the process exit with an error code (1) on
+  // lint error, return the stream and pipe to failAfterError last.
+  .pipe(eslint.failAfterError())
+
+  .pipe(gulp.dest('dist'));
 }
 
 /**
  * Build JavaScript
  */
  function buildJS() {
-	return gulp.src('src/**/*.js').pipe(gulp.dest('dist'));
+	return gulp.src('src/**/*.js')
+
+  // eslint() attaches the lint output to the "eslint" property
+  // of the file object so it can be used by other modules.
+  .pipe(eslint())
+  // eslint.format() outputs the lint results to the console.
+  // Alternatively use eslint.formatEach() (see Docs).
+  .pipe(eslint.format())
+  // To have the process exit with an error code (1) on
+  // lint error, return the stream and pipe to failAfterError last.
+  .pipe(eslint.failAfterError())
+
+  .pipe(gulp.dest('dist'));
 }
 
 /**
- * Build JavaScript
+ * Build Module JavaScript
  */
 function buildMJS() {
-	return gulp.src('src/**/*.mjs').pipe(gulp.dest('dist'));
+	return gulp.src('src/**/*.mjs')
+
+  // eslint() attaches the lint output to the "eslint" property
+  // of the file object so it can be used by other modules.
+  .pipe(eslint())
+  // eslint.format() outputs the lint results to the console.
+  // Alternatively use eslint.formatEach() (see Docs).
+  .pipe(eslint.format())
+  // To have the process exit with an error code (1) on
+  // lint error, return the stream and pipe to failAfterError last.
+  .pipe(eslint.failAfterError())
+
+  .pipe(gulp.dest('dist'));
 }
 
 /**
- * Build JavaScript
+ * Build Css
  */
  function buildCSS() {
 	return gulp.src('src/**/*.css').pipe(gulp.dest('dist'));
@@ -240,8 +277,8 @@ async function clean() {
 			'assets',
 			'icons',
 			'module',
-      		'modules',
-			`${name}.js`,
+      'modules',
+      `${name}.mjs`,
 			'module.json',
 			'system.json',
 			'template.json',

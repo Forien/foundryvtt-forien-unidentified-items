@@ -22,7 +22,7 @@ import registerItemClassMethod from "./modules/Item";
 export let debugEnabled = 0;
 // 0 = none, warnings = 1, debug = 2, all = 3
 export let debug = (...args) => {if (debugEnabled > 1) console.log(`DEBUG:${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args)};
-export let log = (...args) => console.log(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
+export let log = function(...args){ console.log(`forien-unidentified-items | `, ...args) };
 export let warn = (...args) => {if (debugEnabled > 0) console.warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args)};
 export let error = (...args) => console.error(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 export let timelog = (...args) => warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, Date.now(), ...args);
