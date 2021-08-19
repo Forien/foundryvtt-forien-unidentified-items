@@ -147,11 +147,6 @@ Any issues, bugs, or feature requests are always welcome to be reported directly
 * Thanks to rinnocenti for providing Portuguese (Brazil) translation
 * Thanks to freyrrabbit for help with defining default properties for PF2e system
 * Thanks to SalieriC for help with defining default properties for Swade system
-
-## Support
-
-If you wish to support module development, please consider [becoming Patron](https://www.patreon.com/foundryworkshop) or donating [through Paypal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6P2RRX7HVEMV2&source=url). Thanks!
-
 ## License
 
 Forien's Unidentified Items is a module for Foundry VTT by Forien and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).

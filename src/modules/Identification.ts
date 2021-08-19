@@ -454,7 +454,7 @@ export default class Identification {
     if (pack.metadata.entity !== 'Item') {
       return null;
     }
-    return await pack.getEntity(itemId).then((ent) => {
+    return await pack.getDocument(itemId).then((ent) => {
       delete ent?.data._id;
       return ent;
     });

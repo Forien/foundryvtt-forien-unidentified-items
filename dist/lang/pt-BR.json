@@ -2,11 +2,16 @@
   "forien-unidentified-items": {
     "NewMystified": "Item Oculto",
     "Mystify": "Ocultar",
-    "MystifyReplace": "Subistituir pelo Ocultado",
+    "MystifyReplace": "Substituir pelo Ocultado",
     "MystifyAs": "Ocultar como…",
     "MystifyAdvanced": "Ocultar (avançado)…",
     "Identify": "Identificar",
     "Peek": "Espiar",
+
+    "Item": {
+      "Original": "Original",
+      "Mystified": "Ocultado"
+    },
 
     "Dialog": {
       "MystifyAs": {
@@ -15,7 +20,8 @@
         "DropZone": "Arraste & Solte um Item aqui para se tornar a nova forma de {name}",
         "Cancel": "Cancelar",
         "Mystify": "Ocultar",
-        "MystifyReplace": "Subistituir"
+        "MystifyReplace": "Substituir",
+        "MystifyAdvanced": "Avançado…"
       },
       "MystifyAdvanced": {
         "Title": "Ocultar {name}",
@@ -26,14 +32,14 @@
         "Properties": "Manter as Propriedades",
         "Cancel": "Cancelar",
         "Mystify": "Ocultar",
-        "MystifyReplace": "Subistituir"
+        "MystifyReplace": "Substituir"
       }
     },
 
     "Settings": {
-      "playersWelcomeScreen": {
-        "Enable": "Exibir a tela de boas vindas aos jogadores",
-        "EnableHint": "Desmarque para impedir que os jogadores vejam a tela de boas-vindas no login após uma atualização."
+      "allowNestedItems": {
+        "Name": "Permitir Camadas",
+        "Hint": "Permite ocultar itens ocultos, criando camadas que podem ser identificadas uma por vez."
       },
       "defaultIcons": {
         "name": "Icone Padrão",
@@ -44,6 +50,10 @@
         "name": "Manter Propriedades",
         "hint": "Selecione quais propriedades do item devem ser transferidas por padrão para o item mistificado.",
         "label": "Abrir Gerenciador de Propriedades"
+      },
+      "keepOldIcon": {
+        "name": "Manter ícone original",
+        "hint": "Mantenha o ícone original do item quando for ocultado. Ocultação Avançada ainda permite seleciona manualmente qual ícone será usado."
       }
     }
   }

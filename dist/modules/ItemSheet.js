@@ -69,9 +69,10 @@ function getItemSheetClass(cls, sheet) {
                         class: 'peek-original-item',
                         icon: 'far fa-eye',
                         onclick: (ev) => {
-                            origData.isAbstract = true;
                             //@ts-ignore
                             const entity = new CONFIG.Item.documentClass(origData, { editable: false });
+                            //@ts-ignore
+                            entity.data.isAbstract = true;
                             const sheetTmp = entity.sheet;
                             sheetTmp?.render(true);
                         },

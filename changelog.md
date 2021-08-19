@@ -4,6 +4,7 @@
 
 - Initial patch 0.8.8
 - Integration with eslint and prettier
+- Integrated workflow github from mclemente fork
 ## v0.2.3
 
 * Added Setting to keep original icon while mystifying

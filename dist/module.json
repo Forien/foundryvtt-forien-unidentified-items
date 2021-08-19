@@ -2,11 +2,15 @@
   "name": "forien-unidentified-items",
   "title": "Forien's Unidentified Items",
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
-  "author": "Forien — Forien#2130",
+  "author": "Matheus Clemente — mclemente#5524, Forien — Forien#2130",
   "authors": [
     {
       "name": "Forien",
       "url": "https://www.patreon.com/foundryworkshop"
+    },
+    {
+      "name": "Matheus Clemente",
+      "url": "https://www.patreon.com/mclemente"
     }
   ],
   "version": "0.3.0",
