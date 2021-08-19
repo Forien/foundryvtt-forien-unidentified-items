@@ -1,16 +1,15 @@
 # FoundryVTT - Forien's Unidentified Items
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/forien/foundryvtt-forien-unidentified-items?style=for-the-badge) 
-![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge) 
-![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)  
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items?style=for-the-badge) 
+![GitHub Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge) 
+![GitHub All Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)  
 **[Compatibility]**: *FoundryVTT* 0.6.0+  
 **[Systems]**: *any*  
 **[Languages]**: *English, Korean, Polish, Portuguese (Brazil), Japanese (Thanks Touge!)*
 
 This module aims to provides system agnostic solution to handle unidentified items and their identification for games via Foundry Virtual Tabletop.
 
-## NOTE: If you are a javascript developer and not a typescript developer, you can just use the javascript files under the dist folder or rename the file from .ts to .js
-
+## NOTE: If you are a javascript developer and not a typescript developer, you can just use the javascript files under the dist folder
 ## Installation
 
 It's always easiest to install modules from the in game add-on browser.
@@ -25,7 +24,7 @@ To install this module manually:
 
 ## Usage
 
-**Please refer to Wiki for full information on [Usage](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#usage)**  
+**Please refer to Wiki for full information on [Usage](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#usage)**  
 
 Right click on items in sidebar, or use buttons on Item Sheet's header to Mystify an item. It will create new apparently blank item.
 
@@ -45,7 +44,7 @@ Data used during identification is decided upon at the time of mystification.
 | Settings   	| ✓     	| ✓    	| ✓      	| ✓      	|
 | Logic      	| ✗     	| ✗    	| ✗      	| ✗      	|
 
-One of main principles of this module is being [**System Agnostic**](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
+One of main principles of this module is being [**System Agnostic**](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
 
 Basic settings initialization (like setting default persisting properties for dnd5e) I will allow to be built-in this module. These can, however, be defined from the System's side.
 
@@ -55,7 +54,7 @@ According to this module's Primary Principle, there will never be any system-spe
 
 ### How to integrate?
 
-If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
+If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
 
 Also, do not hesitate to contact me with questions and for assistance. 
 
@@ -63,21 +62,85 @@ Also, do not hesitate to contact me with questions and for assistance.
 
 * _none currently_
 
-You can **always** check current and up-to-date [planned and requested features here](https://github.com/Forien/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+You can **always** check current and up-to-date [planned and requested features here](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 
 *If you have **any** suggestion or idea on new contents, hit me up on Discord!*
 
-## Translations
+# Build
 
-If you are interested in translating my module, simply make a new Pull Request with your changes, or contact me on Discord.
+## Install all packages
 
-## Contact
+```bash
+npm install
+```
+## npm build scripts
+### build
 
-If you wish to contact me for any reason, reach me out on Discord using my tag: `Forien#2130`
+will build the code and copy all necessary assets into the dist folder and make a symlink to install the result into your foundry data; create a
+`foundryconfig.json` file with your Foundry Data path.
 
+```json
+{
+  "dataPath": "~/.local/share/FoundryVTT/"
+}
+```
 
-## Acknowledgments
+`build` will build and set up a symlink between `dist` and your `dataPath`.
 
+```bash
+npm run-script build
+```
+
+### NOTE:
+
+You don't need to build the `foundryconfig.json` file you can just copy the content of the `dist` folder on the module folder under `modules` of Foundry
+
+### build:watch
+
+`build:watch` will build and watch for changes, rebuilding automatically.
+
+```bash
+npm run-script build:watch
+```
+
+### clean
+
+`clean` will remove all contents in the dist folder (but keeps the link from build:install).
+
+```bash
+npm run-script clean
+```
+### lint and lintfix
+
+`lint` launch the eslint process based on the configuration [here](./.eslintrc)
+
+```bash
+npm run-script lint
+```
+
+`lintfix` launch the eslint process with the fix argument
+
+```bash
+npm run-script lintfix
+```
+
+### prettier-format
+
+`prettier-format` launch the prettier plugin based on the configuration [here](./.prettierrc)
+
+```bash
+npm run-script prettier-format
+```
+## [Changelog](./changelog.md)
+
+## Issues
+
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/ShoyuVanilla/FoundryVTT-Chat-Portrait/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
+
+## Acknowledgements
+
+* Thanks to `Forien#2130` (discord contact)
+* Bootstrapped with League of Extraordinary FoundryVTT Developers  [foundry-vtt-types](https://github.com/League-of-Foundry-Developers/foundry-vtt-types).
 * Icons were created by transforming assets made by Lorc and Willdabeast from [game-icons.net](https://game-icons.net/)
 * Thanks to unsoluble for the idea for this Module!
 * Thanks to KLO for providing Korean translation
