@@ -14,21 +14,19 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    "@typhonjs-fvtt/eslint-config-foundry.js/0.8.0",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
     "plugin:prettier/recommended"
    ],
   "plugins": [
     "@typescript-eslint",
-    "eslint-plugin-tsdoc",
-    "prettier"
+    "eslint-plugin-tsdoc"
    ],
   "rules": {
     "tsdoc/syntax": "off",
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "prettier/prettier": 2,
+    "prettier/prettier": 0,
     "no-underscore-dangle": "off",
     "import/extensions": "off",
     "class-methods-use-this": [
@@ -36,6 +34,9 @@
       {
         "exceptMethods": ["getData", "_updateObject"]
       }
-    ]
+    ],
+    "@typescript-eslint/consistent-type-assertions": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-shadow": ["error", { "builtinGlobals": true, "hoist": "all", "allow": ["event"] }]
   }
 }

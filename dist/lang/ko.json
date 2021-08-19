@@ -1,0 +1,65 @@
+{
+  "forien-unidentified-items": {
+    "NewMystified": "미식별 아이템",
+    "Mystify": "미식별",
+    "MystifyReplace": "미식별 아이템으로 대체",
+    "MystifyAs": "미식별화..",
+    "MystifyAdvanced": "미식별화(고급)…",
+    "Identify": "식별",
+    "Peek": "보기",
+
+    "Item": {
+      "Original": "원본",
+      "Mystified": "미식별"
+    },
+
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "미식별 {name}",
+        "Header": "변형할 원본 선택:",
+        "DropZone": "아이템을 이곳에 끌어다 놓아 {name}의 새 모습으로 설정",
+        "Cancel": "취소",
+        "Mystify": "미식별",
+        "MystifyReplace": "대체",
+        "MystifyAdvanced": "고급…"
+      },
+      "MystifyAdvanced": {
+        "Title": "미식별 {name}",
+        "Meta": "아이템의 메타데이터",
+        "Original": "원본",
+        "Result": "결과",
+        "Default": "디폴트",
+        "Properties": "유지할 속성",
+        "Cancel": "취소",
+        "Mystify": "미식별",
+        "MystifyReplace": "대체"
+      }
+    },
+
+    "Settings": {
+      "allowNestedItems": {
+        "Name": "단계화 허용 (nesting)",
+        "Hint": "한 번에 하나씩 식별할 수 있는 단계화 된 미식별 아이템을 만드는 것을 허용하려면 이 옵션을 선택한다. "
+      },
+      "defaultIcons": {
+        "name": "기본 아이콘",
+        "hint": "특정 아이템 타입의 기본값으로 사용할 아이콘을 선택한다.",
+        "label": "아이콘 매니저 열기"
+      },
+      "itemProperties": {
+        "name": "지속적 속성",
+        "hint": "어떤 아이템 속성이 미식별 아이템의 기본 속성으로 유지 적용되는지 선택한다.",
+        "label": "속성 매니저 열기"
+      },
+      "keepOldIcon": {
+        "name": "원본 아이콘 유지",
+        "hint": "미식별 전환시 아이템의 원본 아이콘을 유지하려면 이 설정을 선택한다. 고급 미식별화는 여전히 원본 아이콘과 기본 아이콘을 수동으로 선택할 수 있다."
+      }
+    },
+
+    "Notifications": {
+      "defaultIconsInitialized": "Forien's Unidentified Items | 기본 아이템 유형 아이콘이 무작위로 할당되었습니다. 자세한 내용은 모듈 설정을 참조해주세요.",
+      "defaultPropertiesInitialized": "Forien's Unidentified Items | 기본 지속적 항목 속성이 생성되었습니다. 자세한 내용은 모듈 설정을 참조해주세요."
+    }
+  }
+}

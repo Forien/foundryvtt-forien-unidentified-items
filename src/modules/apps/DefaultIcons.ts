@@ -3,7 +3,6 @@ import { i18n } from './../../init';
 
 export default class DefaultIcons extends FormApplication {
   static get defaultOptions(): any {
-
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-default-icons',
       template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
@@ -35,19 +34,19 @@ export default class DefaultIcons extends FormApplication {
   activateListeners(html): void {
     super.activateListeners(html);
 
-    html.on("change", "input", (event) => {
+    html.on('change', 'input', (event) => {
       const input = $(event.currentTarget);
       const type = input.attr('name');
       $(`#default-icon-img-${type}`).attr('src', String(input.val()));
     });
 
-    html.on("click", ".file-picker", (event) => {
+    html.on('click', '.file-picker', (event) => {
       Hooks.once('closeFilePicker', () => {
         const button = $(event.currentTarget);
         const target = button.data('target');
         $(`#fui-default-icons input[name=${target}]`).trigger('change');
       });
-    })
+    });
   }
 
   async _updateObject(event, formData): Promise<any> {
@@ -59,9 +58,9 @@ export default class DefaultIcons extends FormApplication {
     const types = this.getItemTypes();
 
     types.forEach((type) => {
-      const setting = getProperty(settings, type);
+      const setting: any = getProperty(settings, type);
       if (!setting) {
-        settings[type] = this.getIcon(this.guessIcon(type))
+        settings[type] = this.getIcon(this.guessIcon(type));
       }
     });
 
@@ -90,16 +89,15 @@ export default class DefaultIcons extends FormApplication {
       }
     }
 
-    return `${icon}.png`
+    return `${icon}.png`;
   }
 
-
   loadSettings(): DefaultIcons {
-    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons") as DefaultIcons;
+    return <DefaultIcons>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
   }
 
   async saveSettings(data): Promise<DefaultIcons> {
-    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", data) as DefaultIcons;
+    return <DefaultIcons>await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', data);
   }
 
   getItemTypes(): string[] {

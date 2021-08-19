@@ -1,4 +1,4 @@
-import Identification from "./Identification";
+import Identification from './Identification';
 
 export default function registerItemClassMethod() {
   //@ts-ignore
@@ -6,9 +6,9 @@ export default function registerItemClassMethod() {
     return Identification.isMystified(this);
   };
 
-  Object.defineProperty(CONFIG.Item.documentClass.prototype, "origData", {
+  Object.defineProperty(CONFIG.Item.documentClass.prototype, 'origData', {
     get: function origData() {
-      return Identification.getOrigData(this)
+      return Identification.getOrigData(this);
     }
   });
 }

@@ -13,23 +13,21 @@ export default class Identification {
    * @param {undefined|Object} options.mystifiedData - item data object that should become front of mystified item
    * @returns {Promise<void>}
    */
-  static async mystify(itemUuid:string, options:any = {replace: false, mystifiedData: undefined}) {
-    if (!getGame().user?.isGM){
+  static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: undefined }) {
+    if (!getGame().user?.isGM) {
       return;
     }
-    let item;
-
-    item = await this._itemFromUuid(itemUuid);
+    const item = await this._itemFromUuid(itemUuid);
 
     if (!item) {
-      ui.notifications?.error(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.NotAnItem', {});
+      ui.notifications?.error(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.NotAnItem', {});
       return;
     }
 
     const origData = duplicate(item);
-    let mystifiedData = <MystifiedData><unknown>options.mystifiedData;
+    let mystifiedData = <MystifiedData>(<unknown>options.mystifiedData);
 
-    if (mystifiedData === undefined){
+    if (mystifiedData === undefined) {
       mystifiedData = this._getMystifiedData(origData);
     }
 
@@ -37,7 +35,7 @@ export default class Identification {
 
     let mystifiedItem;
     if (options.replace) {
-      let template = {data: getGame().system.model.Item[item.type]};
+      const template = { data: getGame().system.model.Item[item.type] };
       mystifiedData = mergeObject(template, mystifiedData);
       await item.update(mystifiedData);
       mystifiedItem = item;
@@ -54,7 +52,7 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystifyReplace(itemUuid) {
-    await this.mystify(itemUuid, {replace: true, mystifiedData: undefined})
+    await this.mystify(itemUuid, { replace: true, mystifiedData: undefined });
   }
 
   /**
@@ -63,18 +61,18 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystifyAsDialog(itemUuid) {
-    const origItem:any = await this._itemFromUuid(itemUuid);
-    let name = origItem.data.name;
+    const origItem: any = await this._itemFromUuid(itemUuid);
+    const nameTmp = origItem.data.name;
 
-    let item;
+    let itemTmp;
     let replace;
 
     const dialog = new Dialog(
       {
-        title: i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.Title', {name}),
-        content: `<h3>${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.Header')}</h3>
+        title: i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Title', { nameTmp }),
+        content: `<h3>${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Header')}</h3>
         <div class="dropzone">
-            <p>${i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.DropZone', {name})}</p>
+            <p>${i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.DropZone', { nameTmp })}</p>
             <div class="item" style="display: none">
                 <img/>
                 <span></span>
@@ -83,43 +81,43 @@ export default class Identification {
         buttons: {
           mystifyAdvanced: {
             icon: '<i class="fas fa-cogs"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.MystifyAdvanced'),
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.MystifyAdvanced'),
             callback: (html) => {
-              let source = $(html).find('.item').data('item');
-              this.mystifyAdvancedDialog(itemUuid, source)
+              const source = $(html).find('.item').data('item');
+              this.mystifyAdvancedDialog(itemUuid, source);
             }
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.Cancel')
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Cancel')
           },
           mystifyReplace: {
             icon: '<i class="fas fa-sync-alt"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.MystifyReplace'),
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.MystifyReplace'),
             callback: (html) => {
-              item = $(html).find('.item').data('item');
+              itemTmp = $(html).find('.item').data('item');
               replace = true;
             }
           },
           mystify: {
             icon: '<i class="fas fa-eye-slash"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAs.Mystify'),
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Mystify'),
             callback: (html) => {
-              item = $(html).find('.item').data('item');
+              itemTmp = $(html).find('.item').data('item');
             }
           }
         },
         default: 'cancel',
         close: () => {
-          if (item) {
-            delete item._id;
+          if (itemTmp) {
+            delete itemTmp._id;
             //let options = {mystifiedData: item};
             //if (replace) options.replace = true;
             //this.mystify(itemUuid, options);
-            if (replace){
-              this.mystify(itemUuid, {replace : true, mystifiedData: item})
-            }else{
-              this.mystify(itemUuid, {replace : false, mystifiedData: item})
+            if (replace) {
+              this.mystify(itemUuid, { replace: true, mystifiedData: itemTmp });
+            } else {
+              this.mystify(itemUuid, { replace: false, mystifiedData: itemTmp });
             }
           }
         }
@@ -136,7 +134,7 @@ export default class Identification {
     $('#mystifyAsDialog').on('drop', '.dropzone', async (event) => {
       event.preventDefault();
       let item;
-      let data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData('text/plain'));
+      const data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData('text/plain'));
       if (data.type === 'Item') {
         if (data.pack) {
           item = await this._getItemFromPack(data.pack, data.id);
@@ -144,18 +142,21 @@ export default class Identification {
         } else if (data.data) {
           item = data.data;
         } else {
-          let witem = getGame().items?.get(data.id);
-          if (!witem)
+          const witem = getGame().items?.get(data.id);
+          if (!witem) {
             return;
+          }
           item = duplicate(witem);
         }
         if (item) {
           $(event.currentTarget).find('.item').data('item', item);
-          $(event.currentTarget).find('.item').slideUp(200, () => {
-            $(event.currentTarget).find('.item img').attr('src', item.img);
-            $(event.currentTarget).find('.item span').text(item.name);
-            $(event.currentTarget).find('.item').slideDown();
-          });
+          $(event.currentTarget)
+            .find('.item')
+            .slideUp(200, () => {
+              $(event.currentTarget).find('.item img').attr('src', item.img);
+              $(event.currentTarget).find('.item span').text(item.name);
+              $(event.currentTarget).find('.item').slideDown();
+            });
         }
       }
     });
@@ -167,51 +168,55 @@ export default class Identification {
    * @param {object} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid, source:any = undefined) {
+  static async mystifyAdvancedDialog(itemUuid, source: any = undefined) {
     const origItem = <Item>await this._itemFromUuid(itemUuid);
-    let name = origItem.data.name;
-    let sourceData = source ? source : duplicate(origItem);
-    let meta = this._getMystifiedMeta(sourceData);
-    let keepOldIcon = this.keepOriginalImage();
+    const nameTmp = origItem.data.name;
+    const sourceData = source ? source : duplicate(origItem);
+    const meta = this._getMystifiedMeta(sourceData);
+    const keepOldIcon = this.keepOriginalImage();
 
-    let selectedImg = keepOldIcon ? sourceData.img : meta.img;
+    const selectedImg = keepOldIcon ? sourceData.img : meta.img;
 
     let properties = this._getTypeProperties(sourceData);
-    properties = Object.fromEntries(Object.keys(properties).map((property) => {
-      return [
-        property,
-        {
-          'key': property,
-          'orig': getProperty(sourceData, `data.${property}`),
-          'default': getProperty(<object>getGame().system?.model.Item[sourceData.type], property),
-          'value': properties[property]
-        }
-      ]
-    }));
+    properties = Object.fromEntries(
+      Object.keys(properties).map((property) => {
+        return [
+          property,
+          {
+            key: property,
+            orig: getProperty(sourceData, `data.${property}`),
+            default: getProperty(<object>getGame().system?.model.Item[sourceData.type], property),
+            value: properties[property]
+          }
+        ];
+      })
+    );
 
-
-    let html = await renderTemplate(`/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/mystify-advanced.html`, {
-      item: sourceData,
-      meta: meta,
-      properties: properties,
-      keepOldIcon: keepOldIcon,
-      selectedImg: selectedImg
-    });
+    const htmlTmp = await renderTemplate(
+      `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/mystify-advanced.html`,
+      {
+        item: sourceData,
+        meta: meta,
+        properties: properties,
+        keepOldIcon: keepOldIcon,
+        selectedImg: selectedImg
+      }
+    );
 
     let confirmed = false;
     let replace;
     const dialog = new Dialog(
       {
-        title: i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAdvanced.Title', {name}),
-        content: html,
+        title: i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Title', { nameTmp }),
+        content: htmlTmp,
         buttons: {
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAdvanced.Cancel')
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Cancel')
           },
           mystifyReplace: {
             icon: '<i class="fas fa-sync-alt"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAdvanced.MystifyReplace'),
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.MystifyReplace'),
             callback: (html) => {
               confirmed = true;
               replace = true;
@@ -219,26 +224,28 @@ export default class Identification {
           },
           mystify: {
             icon: '<i class="fas fa-eye-slash"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Dialog.MystifyAdvanced.Mystify'),
+            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Mystify'),
             callback: (html) => {
-              confirmed = true
+              confirmed = true;
             }
           }
         },
         default: 'cancel',
-        close: (html:JQuery<HTMLElement>) => {
-          if (!confirmed){
+        close: (html: JQuery<HTMLElement>) => {
+          if (!confirmed) {
             return;
           }
-          let form = <HTMLFormElement>html.find('form')[0];
-          let formDataBase = new FormDataExtended(form,{})
+          const form = <HTMLFormElement>html.find('form')[0];
+          const formDataBase = new FormDataExtended(form, {});
 
           formDataBase.delete('img-keep');
           formDataBase.delete('name-keep');
 
-          let formData:Record<string, unknown> = Object.fromEntries(Object.entries(formDataBase.toObject()).filter(e => e[1] !== false));
+          const formData: Record<string, unknown> = Object.fromEntries(
+            Object.entries(formDataBase.toObject()).filter((e) => e[1] !== false)
+          );
 
-          Object.keys(formData).forEach(property => {
+          Object.keys(formData).forEach((property) => {
             if (property.startsWith('data.')) {
               delete formData[property];
               setProperty(formData, property, getProperty(sourceData, property));
@@ -248,10 +255,10 @@ export default class Identification {
           //let options = {mystifiedData: formData};
           //if (replace) options.replace = true;
           //this.mystify(itemUuid, options);
-          if (replace){
-            this.mystify(itemUuid, {replace : true, mystifiedData: formData})
-          }else{
-            this.mystify(itemUuid, {replace : false, mystifiedData: formData})
+          if (replace) {
+            this.mystify(itemUuid, { replace: true, mystifiedData: formData });
+          } else {
+            this.mystify(itemUuid, { replace: false, mystifiedData: formData });
           }
         }
       },
@@ -261,22 +268,22 @@ export default class Identification {
     );
     await dialog.render(true);
 
-    let jqDialog = $('#mystifyAdvancedDialog');
+    const jqDialog = $('#mystifyAdvancedDialog');
 
     jqDialog.on('change', 'input[name=img-keep]', async (event) => {
-      let checked = $(event.currentTarget).prop('checked');
+      const checked = $(event.currentTarget).prop('checked');
 
-      let src = checked ? <string>sourceData.img : meta.img;
+      const src = checked ? <string>sourceData.img : meta.img;
       jqDialog.find('.img-preview').attr('src', src);
       jqDialog.find('input[name=img]').val(src);
     });
 
     jqDialog.on('change', 'input[name=name-keep]', async (event) => {
-      let checked = $(event.currentTarget).prop('checked');
+      const checked = $(event.currentTarget).prop('checked');
 
-      let name = checked ? sourceData.name : meta.name;
-      jqDialog.find('.name-preview').text(name);
-      jqDialog.find('input[name=name]').val(name);
+      const nameChanged = checked ? sourceData.name : meta.name;
+      jqDialog.find('.name-preview').text(nameChanged);
+      jqDialog.find('input[name=name]').val(nameChanged);
     });
   }
 
@@ -294,12 +301,12 @@ export default class Identification {
     delete origData.permission;
     delete origData.folder;
 
-    let hook = Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onIdentifyItem`, item, origData);
+    const hook = Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onIdentifyItem`, item, origData);
     if (hook !== false) {
-      await item.update(origData, {diff: false});
+      await item.update(origData, { diff: false });
       await item.unsetFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
       // If there was nested origData, carry it over.
-      let origDataOrigData = getProperty(origData.flags, `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.origData`);
+      const origDataOrigData = getProperty(origData.flags, `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.origData`);
       await item.setFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData', origDataOrigData);
     }
   }
@@ -330,8 +337,8 @@ export default class Identification {
    * @return {boolean}
    */
   static async isUuidMystified(uuid) {
-    const item = <Item> await this._itemFromUuid(uuid);
-    if (!item){
+    const item = <Item>await this._itemFromUuid(uuid);
+    if (!item) {
       return false;
     }
     const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
@@ -345,11 +352,11 @@ export default class Identification {
    * @returns {{img: String, name: String, type: String, data: Object}}
    * @private
    */
-  static _getMystifiedData(origData):MystifiedData {
-    let mystifiedData = this._getMystifiedMeta(origData);
-    let itemProperties = this._getDefaultProperties(origData);
+  static _getMystifiedData(origData): MystifiedData {
+    const mystifiedData = this._getMystifiedMeta(origData);
+    const itemProperties = this._getDefaultProperties(origData);
 
-    itemProperties.forEach(property => {
+    itemProperties.forEach((property) => {
       property = 'data.' + property;
       setProperty(mystifiedData, property, getProperty(origData, property));
     });
@@ -369,7 +376,9 @@ export default class Identification {
    */
   static _getDefaultProperties(origData) {
     let itemProperties = this._getTypeProperties(origData);
-    itemProperties = Object.entries(itemProperties).filter(p => p[1]).map(p => p[0]);
+    itemProperties = Object.entries(itemProperties)
+      .filter((p) => p[1])
+      .map((p) => p[0]);
 
     return itemProperties;
   }
@@ -381,7 +390,7 @@ export default class Identification {
    * @private
    */
   static _getTypeProperties(origData) {
-    let defaultProperties = <any>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+    const defaultProperties = <any>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
 
     return defaultProperties[origData.type];
   }
@@ -396,12 +405,14 @@ export default class Identification {
    * @returns {{img: String, name: String, type: String}}
    * @private
    */
-  static _getMystifiedMeta(origData):MystifiedData {
-    let iconSettings = <string[]>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
-    let iconType = <string>getProperty(iconSettings, origData.type) || `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON}`;
+  static _getMystifiedMeta(origData): MystifiedData {
+    const iconSettings = <string[]>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+    const iconType =
+      <string>getProperty(iconSettings, origData.type) ||
+      `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON}`;
 
     return {
-      name: <string>i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.NewMystified'),
+      name: <string>i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.NewMystified'),
       type: <string>origData.type,
       img: <string>iconType
     };
@@ -413,7 +424,7 @@ export default class Identification {
    * @returns {Promise<Item|null>}
    * @private
    */
-  static async _itemFromUuid(uuid:string):Promise<Item|null> {
+  static async _itemFromUuid(uuid: string): Promise<Item | null> {
     const parts = uuid.split('.');
     const [entityName, entityId, embeddedName, embeddedId] = parts;
 
@@ -425,7 +436,7 @@ export default class Identification {
         return <Item>actor.items.get(embeddedId);
       }
     } else {
-      return <Item>(await fromUuid(uuid));
+      return <Item>await fromUuid(uuid);
     }
 
     return null;
@@ -440,7 +451,7 @@ export default class Identification {
    */
   static async _getItemFromPack(packId, itemId) {
     const pack = <CompendiumCollection<CompendiumCollection.Metadata>>getGame().packs.get(packId);
-    if (pack.metadata.entity !== 'Item'){
+    if (pack.metadata.entity !== 'Item') {
       return null;
     }
     return await pack.getEntity(itemId).then((ent) => {

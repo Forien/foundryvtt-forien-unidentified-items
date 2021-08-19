@@ -1,16 +1,14 @@
-import DefaultIcons from "./apps/DefaultIcons";
-import ItemProperties from "./apps/ItemProperties";
-import {defaultPropertiesDND5e} from "./integrations/dnd5e";
-import {defaultPropertiesWFRP4e} from "./integrations/wfrp4e";
-import {defaultPropertiesPF2e} from "./integrations/pf2e";
-import {defaultPropertiesSwade} from "./integrations/swade";
-import { i18n, log } from "../init";
+import DefaultIcons from './apps/DefaultIcons';
+import ItemProperties from './apps/ItemProperties';
+import { defaultPropertiesDND5e } from './integrations/dnd5e';
+import { defaultPropertiesWFRP4e } from './integrations/wfrp4e';
+import { defaultPropertiesPF2e } from './integrations/pf2e';
+import { defaultPropertiesSwade } from './integrations/swade';
+import { i18n, log } from '../init';
 
-export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = "forien-unidentified-items";
+export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = 'forien-unidentified-items';
 
-
-
-export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = "unidentified.png";
+export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = 'unidentified.png';
 
 // export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_LABEL = "Forien's Unidentified Items";
 
@@ -23,9 +21,9 @@ export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = "unidentified.png";
  * So you will need to deal with the fact that there might not be an initialized canvas at any point in time.
  * @returns
  */
- export function getCanvas(): Canvas {
+export function getCanvas(): Canvas {
   if (!(canvas instanceof Canvas) || !canvas.ready) {
-    throw new Error("Canvas Is Not Initialized");
+    throw new Error('Canvas Is Not Initialized');
   }
   return canvas;
 }
@@ -40,40 +38,39 @@ export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = "unidentified.png";
  */
 export function getGame(): Game {
   if (!(game instanceof Game)) {
-    throw new Error("Game Is Not Initialized");
+    throw new Error('Game Is Not Initialized');
   }
   return game;
 }
 
-
 export default function registerSettings() {
   registerSettingMenus();
 
-  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", {
-    scope: "world",
+  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', {
+    scope: 'world',
     config: false,
     default: {}
   });
 
-  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties", {
-    scope: "world",
+  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
+    scope: 'world',
     config: false,
     default: {}
   });
 
-  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "keepOldIcon", {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.keepOldIcon.name",
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.keepOldIcon.hint",
-    scope: "world",
+  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'keepOldIcon', {
+    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.keepOldIcon.name',
+    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.keepOldIcon.hint',
+    scope: 'world',
     config: true,
     default: false,
     type: Boolean
   });
 
-  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "allowNestedItems", {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.allowNestedItems.Name",
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.allowNestedItems.Hint",
-    scope: "world",
+  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems', {
+    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.allowNestedItems.Name',
+    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.allowNestedItems.Hint',
+    scope: 'world',
     config: true,
     default: false,
     type: Boolean
@@ -84,47 +81,46 @@ export default function registerSettings() {
  * Registers settings menu (button)
  */
 function registerSettingMenus() {
-  getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.defaultIcons.name",
-    label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.defaultIcons.label",
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.defaultIcons.hint",
-    icon: "fas fa-image",
+  getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', {
+    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.name',
+    label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.label',
+    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.hint',
+    icon: 'fas fa-image',
     type: DefaultIcons,
     restricted: true
   });
 
-  getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties", {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.itemProperties.name",
-    label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.itemProperties.label",
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.itemProperties.hint",
-    icon: "fas fa-cogs",
+  getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
+    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.name',
+    label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.label',
+    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.hint',
+    icon: 'fas fa-cogs',
     type: ItemProperties,
     restricted: true
   });
 }
 
-
 /**
  * Checks if options exist, if not, orders their initialization
  */
 export function checkSettingsInitialized() {
-  if (!getGame().user?.isGM){
+  if (!getGame().user?.isGM) {
     return;
   }
-  let defaultIcons = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons");
-  let itemProperties = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties");
+  const defaultIcons = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+  const itemProperties = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
 
-  if (checkObjEmpty(defaultIcons)){
+  if (checkObjEmpty(defaultIcons)) {
     initializeDefaultIcons();
   }
 
-  if (checkObjEmpty(itemProperties)){
+  if (checkObjEmpty(itemProperties)) {
     initializeItemProperties();
   }
 }
 
 function checkObjEmpty(obj) {
-  return (Object.keys(obj).length === 0 && obj.constructor === Object);
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
 }
 
 /**
@@ -141,7 +137,10 @@ function initializeDefaultIcons() {
   settings = mergeObject(settings, icons);
   di.saveSettings(settings);
   log(` Initialized default item icons.`);
-  ui.notifications?.info(getGame().i18n.localize(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Notifications.defaultIconsInitialized"), {permanent: true});
+  ui.notifications?.info(
+    getGame().i18n.localize(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Notifications.defaultIconsInitialized'),
+    { permanent: true }
+  );
 }
 
 /**
@@ -151,15 +150,15 @@ function initializeDefaultIcons() {
  */
 function initializeItemProperties() {
   const ip = new ItemProperties({}, {});
-  let settings:any = ip.getSettings();
+  let settings: any = ip.getSettings();
   settings = Object.entries(settings);
-  settings = settings.map(type => {
+  settings = settings.map((type) => {
     let entries = Object.entries(type[1]);
     entries = entries.sort((a, b) => {
-      if (a[0] < b[0]){
+      if (a[0] < b[0]) {
         return -1;
       }
-      if (a[0] > b[0]){
+      if (a[0] > b[0]) {
         return 1;
       }
       return 0;
@@ -175,9 +174,10 @@ function initializeItemProperties() {
   settings = mergeObject(settings, properties);
   ip.saveSettings(settings);
   log(` Initialized default item properties.`);
-  ui.notifications?.info(i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".defaultPropertiesInitialized"), {permanent: true});
+  ui.notifications?.info(i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.defaultPropertiesInitialized'), {
+    permanent: true
+  });
 }
-
 
 /**
  * Function responsible for out-of-the-box integration with systems.
@@ -219,7 +219,7 @@ function setDefaultItemProperties(settings) {
     default:
   }
 
-  if (defaults){
+  if (defaults) {
     log(` Loaded Default Properties from ${getGame().system.id} built-in integration.`);
   }
   return mergeObject(settings, defaults);

@@ -9,7 +9,7 @@ export default function registerContextMenuHook() {
       const id = li[0].dataset.entityId;
       const item = <Item>getGame().items?.get(id);
 
-      return  item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+      return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
     };
 
     const mystifyCondition = (li) => {
@@ -27,39 +27,39 @@ export default function registerContextMenuHook() {
       return !!origData;
     };
 
-    let mystifyOptions = [
+    const mystifyOptions = [
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Mystify',
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Mystify',
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
-        callback: li => {
+        callback: (li) => {
           const id = li[0].dataset.entityId;
           Identification.mystify(`Item.${id}`);
         }
       },
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.MystifyReplace',
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyReplace',
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
-        callback: li => {
+        callback: (li) => {
           const id = li[0].dataset.entityId;
           Identification.mystifyReplace(`Item.${id}`);
         }
       },
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.MystifyAs',
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyAs',
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
-        callback: li => {
+        callback: (li) => {
           const id = li[0].dataset.entityId;
           Identification.mystifyAsDialog(`Item.${id}`);
         }
       },
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.MystifyAdvanced',
+        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyAdvanced',
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
-        callback: li => {
+        callback: (li) => {
           const id = li[0].dataset.entityId;
           Identification.mystifyAdvancedDialog(`Item.${id}`);
         }
@@ -69,10 +69,10 @@ export default function registerContextMenuHook() {
     entryOptions.unshift(...mystifyOptions);
 
     entryOptions.unshift({
-      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Identify',
+      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Identify',
       icon: '<i class="fas fa-search"></i>',
       condition: identifyCondition,
-      callback: li => {
+      callback: (li) => {
         const id = li[0].dataset.entityId;
         const item = getGame().items?.get(id);
         Identification.identify(item);
@@ -80,16 +80,16 @@ export default function registerContextMenuHook() {
     });
 
     entryOptions.unshift({
-      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.Peek',
+      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Peek',
       icon: '<i class="far fa-eye"></i>',
       condition: identifyCondition,
-      callback: li => {
+      callback: (li) => {
         const id = li[0].dataset.entityId;
         const item = <Item>getGame().items?.get(id);
         const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
         origData.isAbstract = true;
         //@ts-ignore
-        const entity = new CONFIG.Item.documentClass(origData, {editable: false});
+        const entity = new CONFIG.Item.documentClass(origData, { editable: false });
         const sheet = entity.sheet;
         sheet?.render(true);
       }
