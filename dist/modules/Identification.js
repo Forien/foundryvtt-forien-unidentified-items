@@ -73,11 +73,11 @@ export default class Identification {
                     callback: (html) => {
                         const source = $(html).find('.item').data('item');
                         this.mystifyAdvancedDialog(itemUuid, source);
-                    }
+                    },
                 },
                 cancel: {
                     icon: '<i class="fas fa-times"></i>',
-                    label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Cancel')
+                    label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Cancel'),
                 },
                 mystifyReplace: {
                     icon: '<i class="fas fa-sync-alt"></i>',
@@ -85,15 +85,15 @@ export default class Identification {
                     callback: (html) => {
                         itemTmp = $(html).find('.item').data('item');
                         replace = true;
-                    }
+                    },
                 },
                 mystify: {
                     icon: '<i class="fas fa-eye-slash"></i>',
                     label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Mystify'),
                     callback: (html) => {
                         itemTmp = $(html).find('.item').data('item');
-                    }
-                }
+                    },
+                },
             },
             default: 'cancel',
             close: () => {
@@ -109,11 +109,11 @@ export default class Identification {
                         this.mystify(itemUuid, { replace: false, mystifiedData: itemTmp });
                     }
                 }
-            }
+            },
         }, {
             id: 'mystifyAsDialog',
             width: 440,
-            height: 'auto'
+            height: 'auto',
         });
         await dialog.render(true);
         $('#mystifyAsDialog').on('drop', '.dropzone', async (event) => {
@@ -169,8 +169,8 @@ export default class Identification {
                     key: property,
                     orig: getProperty(sourceData, `data.${property}`),
                     default: getProperty(getGame().system?.model.Item[sourceData.type], property),
-                    value: properties[property]
-                }
+                    value: properties[property],
+                },
             ];
         }));
         const htmlTmp = await renderTemplate(`/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/mystify-advanced.html`, {
@@ -178,7 +178,7 @@ export default class Identification {
             meta: meta,
             properties: properties,
             keepOldIcon: keepOldIcon,
-            selectedImg: selectedImg
+            selectedImg: selectedImg,
         });
         let confirmed = false;
         let replace;
@@ -188,7 +188,7 @@ export default class Identification {
             buttons: {
                 cancel: {
                     icon: '<i class="fas fa-times"></i>',
-                    label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Cancel')
+                    label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Cancel'),
                 },
                 mystifyReplace: {
                     icon: '<i class="fas fa-sync-alt"></i>',
@@ -196,15 +196,15 @@ export default class Identification {
                     callback: (html) => {
                         confirmed = true;
                         replace = true;
-                    }
+                    },
                 },
                 mystify: {
                     icon: '<i class="fas fa-eye-slash"></i>',
                     label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Mystify'),
                     callback: (html) => {
                         confirmed = true;
-                    }
-                }
+                    },
+                },
             },
             default: 'cancel',
             close: (html) => {
@@ -231,9 +231,9 @@ export default class Identification {
                 else {
                     this.mystify(itemUuid, { replace: false, mystifiedData: formData });
                 }
-            }
+            },
         }, {
-            id: 'mystifyAdvancedDialog'
+            id: 'mystifyAdvancedDialog',
         });
         await dialog.render(true);
         const jqDialog = $('#mystifyAdvancedDialog');
@@ -359,7 +359,7 @@ export default class Identification {
         return {
             name: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.NewMystified'),
             type: origData.type,
-            img: iconType
+            img: iconType,
         };
     }
     /**

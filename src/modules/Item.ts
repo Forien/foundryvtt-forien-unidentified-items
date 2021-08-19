@@ -9,6 +9,6 @@ export default function registerItemClassMethod() {
   Object.defineProperty(CONFIG.Item.documentClass.prototype, 'origData', {
     get: function origData() {
       return Identification.getOrigData(this);
-    }
+    },
   });
 }

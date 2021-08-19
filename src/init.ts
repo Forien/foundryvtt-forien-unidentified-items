@@ -21,26 +21,26 @@ import registerItemClassMethod from './modules/Item';
 
 export let debugEnabled = 0;
 // 0 = none, warnings = 1, debug = 2, all = 3
-export let debug = (...args) => {
+export const debug = (...args) => {
   if (debugEnabled > 1) console.log(`DEBUG:${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 };
-export let log = function (...args) {
+export const log = function (...args) {
   console.log(`forien-unidentified-items | `, ...args);
 };
-export let warn = (...args) => {
+export const warn = (...args) => {
   if (debugEnabled > 0) console.warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 };
-export let error = (...args) => console.error(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
-export let timelog = (...args) => warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, Date.now(), ...args);
+export const error = (...args) => console.error(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
+export const timelog = (...args) => warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, Date.now(), ...args);
 
-export let i18n = (key) => {
+export const i18n = (key) => {
   return getGame().i18n.localize(key);
 };
-export let i18nFormat = (key, data = {}) => {
+export const i18nFormat = (key, data = {}) => {
   return getGame().i18n.format(key, data);
 };
 
-export let setDebugLevel = (debugText: string) => {
+export const setDebugLevel = (debugText: string) => {
   debugEnabled = { none: 0, warn: 1, debug: 2, all: 3 }[debugText] || 0;
   // 0 = none, warnings = 1, debug = 2, all = 3
   if (debugEnabled >= 3) CONFIG.debug.hooks = true;

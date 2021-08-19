@@ -5,11 +5,13 @@
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
   "scripts": {
     "package": "gulp package",
-    "build": "gulp build && gulp link",
+    "build": "gulp build && gulp link && renamer -regex --find \"\\.js^\" --replace \".mjs\" \"./dist/**/*.js\"",
     "build:watch": "gulp watch",
     "clean": "gulp clean && gulp link --clean",
     "update": "npm install --save-dev @league-of-foundry-developers/foundry-vtt-types@fvtt-0.8.8",
-    "prettier-format": "prettier --config .prettierrc \"src/**/*.ts\" --write"
+    "lint": "eslint --ext .ts .",
+    "lint:fix": "eslint --ext .ts --fix .",
+    "prettier-format": "prettier --config .prettierrc --write \"./**/*.(ts|js|json|scss)\""
   },
   "author": "",
   "license": "",
@@ -41,7 +43,12 @@
     "sass": "^1.38.0",
     "yargs": "^15.4.1"
   },
+  "lint-staged": {
+    "*.(ts|js)": "eslint --fix",
+    "*.(json|scss)": "prettier --write"
+  },
   "dependencies": {
+    "renamer": "^3.2.1",
     "typescript": "^4.3.5"
   }
 }

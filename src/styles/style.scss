@@ -65,11 +65,9 @@ $icon-size: 66px;
     .tab {
       columns: 3;
 
-
       .type-property {
         display: flex;
         align-items: center;
-
       }
 
       * {
@@ -130,7 +128,7 @@ $icon-size: 66px;
     }
   }
 
-  button[data-button="mystifyAdvanced"] {
+  button[data-button='mystifyAdvanced'] {
     flex-basis: 100%;
     margin: 0 0 2px 0;
   }

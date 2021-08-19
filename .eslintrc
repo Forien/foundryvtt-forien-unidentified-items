@@ -26,14 +26,20 @@
         "tsdoc/syntax": "off",
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "prettier/prettier": 0,
+        "prettier/prettier": [
+            "warn",
+            {},
+            {
+              "usePrettierrc": true,
+            }
+        ],
         "no-underscore-dangle": "off",
         "import/extensions": "off",
         "class-methods-use-this": [
-        "off",
-        {
-            "exceptMethods": ["getData", "_updateObject"]
-        }
+            "off",
+            {
+                "exceptMethods": ["getData", "_updateObject"]
+            }
         ],
         "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/ban-ts-comment": "off",

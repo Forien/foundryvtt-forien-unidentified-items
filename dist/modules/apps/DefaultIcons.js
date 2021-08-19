@@ -8,7 +8,7 @@ export default class DefaultIcons extends FormApplication {
             title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.name'),
             submitOnClose: true,
             submitOnChange: false,
-            closeOnSubmit: true
+            closeOnSubmit: true,
         });
         if (getGame().system.id === 'wfrp4e') {
             options.classes.push('wfrp');
@@ -67,7 +67,7 @@ export default class DefaultIcons extends FormApplication {
             potion: ['consumable'],
             sack: ['artifact', 'goods', 'trapping'],
             scroll: ['ability', 'enchantment', 'magic', 'prayer', 'sorcery', 'spell'],
-            tool: ['tool']
+            tool: ['tool'],
         };
         const mode = modes[Math.floor(Math.random() * modes.length)];
         let icon = mode;

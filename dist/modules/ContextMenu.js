@@ -28,7 +28,7 @@ export default function registerContextMenuHook() {
                 callback: (li) => {
                     const id = li[0].dataset.entityId;
                     Identification.mystify(`Item.${id}`);
-                }
+                },
             },
             {
                 name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyReplace',
@@ -37,7 +37,7 @@ export default function registerContextMenuHook() {
                 callback: (li) => {
                     const id = li[0].dataset.entityId;
                     Identification.mystifyReplace(`Item.${id}`);
-                }
+                },
             },
             {
                 name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyAs',
@@ -46,7 +46,7 @@ export default function registerContextMenuHook() {
                 callback: (li) => {
                     const id = li[0].dataset.entityId;
                     Identification.mystifyAsDialog(`Item.${id}`);
-                }
+                },
             },
             {
                 name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyAdvanced',
@@ -55,8 +55,8 @@ export default function registerContextMenuHook() {
                 callback: (li) => {
                     const id = li[0].dataset.entityId;
                     Identification.mystifyAdvancedDialog(`Item.${id}`);
-                }
-            }
+                },
+            },
         ];
         entryOptions.unshift(...mystifyOptions);
         entryOptions.unshift({
@@ -67,7 +67,7 @@ export default function registerContextMenuHook() {
                 const id = li[0].dataset.entityId;
                 const item = getGame().items?.get(id);
                 Identification.identify(item);
-            }
+            },
         });
         entryOptions.unshift({
             name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Peek',
@@ -82,7 +82,7 @@ export default function registerContextMenuHook() {
                 const entity = new CONFIG.Item.documentClass(origData, { editable: false });
                 const sheet = entity.sheet;
                 sheet?.render(true);
-            }
+            },
         });
     });
 }

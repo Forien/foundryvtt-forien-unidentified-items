@@ -7,7 +7,7 @@ export const defaultPropertiesSwade = {
         weight: true,
         equippable: true,
         equipped: true,
-        minStr: true
+        minStr: true,
     },
     armor: {
         quantity: true,
@@ -18,7 +18,7 @@ export const defaultPropertiesSwade = {
         'locations.head': true,
         'locations.torso': true,
         'locations.arms': true,
-        'locations.legs': true
+        'locations.legs': true,
     },
     shield: {
         quantity: true,
@@ -26,12 +26,12 @@ export const defaultPropertiesSwade = {
         equippable: true,
         equipped: true,
         minStr: true,
-        cover: true
+        cover: true,
     },
     gear: {
         quantity: true,
         weight: true,
         equippable: true,
-        equipped: true
-    }
+        equipped: true,
+    },
 };

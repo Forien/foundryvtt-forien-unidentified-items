@@ -41,18 +41,13 @@
       "path": "lang/pt-BR.json"
     },
     {
-        "lang": "ja",
-        "name": "日本語",
-        "path": "./lang/ja.json"
+      "lang": "ja",
+      "name": "日本語",
+      "path": "./lang/ja.json"
     }
   ],
-  "esmodules": [
-    "./init.js"
-  ],
-  "styles": [
-    "./styles/style.css"
-  ],
-  "scripts": [
-  ],
+  "esmodules": ["./init.js"],
+  "styles": ["./styles/style.css"],
+  "scripts": [],
   "socket": true
 }

@@ -43,12 +43,12 @@ export default function registerSettings() {
     getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', {
         scope: 'world',
         config: false,
-        default: {}
+        default: {},
     });
     getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
         scope: 'world',
         config: false,
-        default: {}
+        default: {},
     });
     getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'keepOldIcon', {
         name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.keepOldIcon.name',
@@ -56,7 +56,7 @@ export default function registerSettings() {
         scope: 'world',
         config: true,
         default: false,
-        type: Boolean
+        type: Boolean,
     });
     getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems', {
         name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.allowNestedItems.Name',
@@ -64,7 +64,7 @@ export default function registerSettings() {
         scope: 'world',
         config: true,
         default: false,
-        type: Boolean
+        type: Boolean,
     });
 }
 /**
@@ -77,7 +77,7 @@ function registerSettingMenus() {
         hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.hint',
         icon: 'fas fa-image',
         type: DefaultIcons,
-        restricted: true
+        restricted: true,
     });
     getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
         name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.name',
@@ -85,7 +85,7 @@ function registerSettingMenus() {
         hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.hint',
         icon: 'fas fa-cogs',
         type: ItemProperties,
-        restricted: true
+        restricted: true,
     });
 }
 /**
@@ -155,7 +155,7 @@ function initializeItemProperties() {
     ip.saveSettings(settings);
     log(` Initialized default item properties.`);
     ui.notifications?.info(i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.defaultPropertiesInitialized'), {
-        permanent: true
+        permanent: true,
     });
 }
 /**
