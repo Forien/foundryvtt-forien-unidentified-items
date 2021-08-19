@@ -13,11 +13,11 @@ import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modul
 // Import JavaScript modules
 
 // Import TypeScript modules
-import registerDerivedItemSheetClass from "./modules/ItemSheet";
-import registerContextMenuHook from "./modules/ContextMenu";
-import { checkSettingsInitialized, getGame } from "./modules/settings";
-import Identification from "./modules/Identification";
-import registerItemClassMethod from "./modules/Item";
+import registerDerivedItemSheetClass from './modules/ItemSheet';
+import registerContextMenuHook from './modules/ContextMenu';
+import { checkSettingsInitialized, getGame } from './modules/settings';
+import Identification from './modules/Identification';
+import registerItemClassMethod from './modules/Item';
 
 export let debugEnabled = 0;
 // 0 = none, warnings = 1, debug = 2, all = 3
@@ -35,7 +35,7 @@ export let i18nFormat = (key, data = {}) => {
 }
 
 export let setDebugLevel = (debugText: string) => {
-  debugEnabled = {"none": 0, "warn": 1, "debug": 2, "all": 3}[debugText] || 0;
+  debugEnabled = {'none': 0, 'warn': 1, 'debug': 2, 'all': 3}[debugText] || 0;
   // 0 = none, warnings = 1, debug = 2, all = 3
   if (debugEnabled >= 3) CONFIG.debug.hooks = true;
 }
@@ -67,7 +67,7 @@ Hooks.once('setup', () => {
 /* When ready							*/
 /* ------------------------------------ */
 
-Hooks.once("ready", () => {
+Hooks.once('ready', () => {
   checkSettingsInitialized();
   registerDerivedItemSheetClass();
   registerItemClassMethod();

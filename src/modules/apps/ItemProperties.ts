@@ -1,20 +1,21 @@
-import { i18n } from "../../init";
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "../settings";
+import { i18n } from '../../init';
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from '../settings';
 
 export default class ItemProperties extends FormApplication {
-  static get defaultOptions() {
-    
-    let options = mergeObject(super.defaultOptions, {
-      id: "fui-item-properties",
+
+  static get defaultOptions(): any {
+
+    const options = mergeObject(super.defaultOptions, {
+      id: 'fui-item-properties',
       template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
-      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".itemProperties.name"),
+      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+'.itemProperties.name'),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
       resizable: true,
       width: 640,
       height: 560,
-      tabs: [{navSelector: ".nav-tabs", contentSelector: ".nav-body"}]
+      tabs: [{navSelector: '.nav-tabs', contentSelector: '.nav-body'}]
     });
 
     if (getGame().system.id === 'wfrp4e'){
@@ -23,8 +24,8 @@ export default class ItemProperties extends FormApplication {
     return options;
   }
 
-  getData(options = {}) {
-    let data:any = super.getData();
+  getData(options = {}): any {
+    const data:any = super.getData();
     data.types = this.getItemTypes(),
     data.propertySettings = this.getSettings(),
     data.options = this.options
@@ -36,20 +37,22 @@ export default class ItemProperties extends FormApplication {
     // };
   }
 
-  activateListeners(html) {
+  activateListeners(html): void {
     super.activateListeners(html);
   }
 
-  async _updateObject(event, formData) {
-    let data = Object.entries(formData);
-    let settings = {};
+  async _updateObject(event, formData): Promise<any> {
+    const data = Object.entries(formData);
+    const settings = {};
 
     data.sort().map(d => {
-      let type = d[0].split('.', 1)[0];
-      let property = d[0].replace(`${type}.`, '');
-      let value = d[1];
+      const type = d[0].split('.', 1)[0];
+      const property = d[0].replace(`${type}.`, '');
+      const value = d[1];
 
-      if (settings[type] === undefined) settings[type] = {};
+      if (settings[type] === undefined){
+        settings[type] = {};
+      }
       settings[type][property] = value;
     });
 
@@ -57,23 +60,23 @@ export default class ItemProperties extends FormApplication {
   }
 
   getProperties():Map<string,any> {
-    let types = Object.entries(getGame().system.model.Item);
-    let properties = new Map<string,unknown>(types);
+    const types = Object.entries(getGame().system.model.Item);
+    const properties = new Map<string,any>(types);
     properties.forEach((value, key, map) => {
-      map.set(key, Object.keys(flattenObject(<object>value)));
+      map.set(key, Object.keys(flattenObject(value)));
     });
     return properties;
   }
 
-  getSettings() {
-    let settings:any = this.loadSettings();
-    let types = this.getItemTypes();
-    let properties:Map<string,any> = this.getProperties();
+  getSettings(): any {
+    const settings:any = this.loadSettings();
+    const types = this.getItemTypes();
+    const properties:Map<string,any> = this.getProperties();
 
     types.forEach((type) => {
-      let setting = getProperty(settings, type);
+      const setting = getProperty(settings, type);
       if (!setting) {
-        let typeProperties = properties.get(type);
+        const typeProperties = properties.get(type);
         settings[type] = typeProperties.reduce((a, b) => (a[b] = false, a), {});
       }
     });
@@ -81,12 +84,12 @@ export default class ItemProperties extends FormApplication {
     return settings;
   }
 
-  loadSettings() {
-    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties");
+  loadSettings(): any {
+    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
   }
 
   async saveSettings(data) {
-    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "itemProperties", data);
+    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', data);
   }
 
   getItemTypes() {

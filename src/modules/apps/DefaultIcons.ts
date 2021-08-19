@@ -5,15 +5,15 @@ export default class DefaultIcons extends FormApplication {
   static get defaultOptions(): any {
 
     const options = mergeObject(super.defaultOptions, {
-      id: "fui-default-icons",
+      id: 'fui-default-icons',
       template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
-      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME+".Settings.defaultIcons.name"),
+      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.name'),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true
     });
 
-    if (getGame().system.id === 'wfrp4e'){
+    if (getGame().system.id === 'wfrp4e') {
       options.classes.push('wfrp');
     }
     return options;
@@ -32,34 +32,34 @@ export default class DefaultIcons extends FormApplication {
     // };
   }
 
-  activateListeners(html) {
+  activateListeners(html): void {
     super.activateListeners(html);
 
     html.on("change", "input", (event) => {
-      let input = $(event.currentTarget);
-      let type = input.attr('name');
+      const input = $(event.currentTarget);
+      const type = input.attr('name');
       $(`#default-icon-img-${type}`).attr('src', String(input.val()));
     });
 
     html.on("click", ".file-picker", (event) => {
       Hooks.once('closeFilePicker', () => {
-        let button = $(event.currentTarget);
-        let target = button.data('target');
+        const button = $(event.currentTarget);
+        const target = button.data('target');
         $(`#fui-default-icons input[name=${target}]`).trigger('change');
       });
     })
   }
 
-  async _updateObject(event, formData) {
+  async _updateObject(event, formData): Promise<any> {
     return await this.saveSettings(formData);
   }
 
-  getSettings() {
-    let settings:any = this.loadSettings();
-    let types = this.getItemTypes();
+  getSettings(): DefaultIcons {
+    const settings = this.loadSettings();
+    const types = this.getItemTypes();
 
     types.forEach((type) => {
-      let setting = getProperty(settings, type);
+      const setting = getProperty(settings, type);
       if (!setting) {
         settings[type] = this.getIcon(this.guessIcon(type))
       }
@@ -68,7 +68,7 @@ export default class DefaultIcons extends FormApplication {
     return settings;
   }
 
-  guessIcon(type) {
+  guessIcon(type): string {
     const modes = ['inv-unidentified', 'unidentified'];
     const types = {
       armor: ['armor', 'armour', 'equipment', 'gear'],
@@ -81,10 +81,10 @@ export default class DefaultIcons extends FormApplication {
       scroll: ['ability', 'enchantment', 'magic', 'prayer', 'sorcery', 'spell'],
       tool: ['tool']
     };
-    let mode = modes[Math.floor(Math.random() * modes.length)];
+    const mode = modes[Math.floor(Math.random() * modes.length)];
     let icon = mode;
 
-    for (let iconType in types) {
+    for (const iconType in types) {
       if (types[iconType].includes(type)) {
         icon = `${mode}-${iconType}`;
       }
@@ -94,19 +94,19 @@ export default class DefaultIcons extends FormApplication {
   }
 
 
-  loadSettings() {
-    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons");
+  loadSettings(): DefaultIcons {
+    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons") as DefaultIcons;
   }
 
-  async saveSettings(data) {
-    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", data);
+  async saveSettings(data): Promise<DefaultIcons> {
+    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, "defaultIcons", data) as DefaultIcons;
   }
 
-  getItemTypes() {
+  getItemTypes(): string[] {
     return Object.keys(getGame().system.model.Item);
   }
 
-  getIcon(icon) {
+  getIcon(icon): string {
     return `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
   }
 }
