@@ -1,4 +1,3 @@
-import { ItemDataConstructorData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData';
 import { MystifiedData } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';

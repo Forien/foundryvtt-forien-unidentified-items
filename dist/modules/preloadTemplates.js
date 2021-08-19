@@ -1,4 +1,4 @@
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from "./settings.mjs";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from "./settings.js";
 export const preloadTemplates = async function () {
     const templatePaths = [
         // Add paths to "modules/VariantEncumbrance/templates"

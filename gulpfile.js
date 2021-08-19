@@ -71,7 +71,7 @@ function createTransformer() {
   }
 
   /**
-   * Transforms import/export declarations to append `.mjs` extension
+   * Transforms import/export declarations to append `.js` extension
    * @param {typescript.TransformationContext} context
    */
   function importTransformer(context) {
@@ -82,7 +82,7 @@ function createTransformer() {
       function visitor(node) {
         if (shouldMutateModuleSpecifier(node)) {
           if (typescript.isImportDeclaration(node)) {
-            const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.mjs`);
+            const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.js`);
             return typescript.updateImportDeclaration(
               node,
               node.decorators,
@@ -91,7 +91,7 @@ function createTransformer() {
               newModuleSpecifier,
             );
           } else if (typescript.isExportDeclaration(node)) {
-            const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.mjs`);
+            const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.js`);
             return typescript.updateExportDeclaration(
               node,
               node.decorators,
@@ -260,7 +260,7 @@ async function clean() {
       'icons',
       'module',
       'modules',
-      `${name}.mjs`,
+      `${name}.js`,
       'module.json',
       'system.json',
       'template.json',

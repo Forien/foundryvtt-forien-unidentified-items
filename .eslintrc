@@ -27,7 +27,7 @@
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "prettier/prettier": [
-            "warn",
+            "off",
             {},
             {
               "usePrettierrc": true,

@@ -80,7 +80,7 @@ function getItemSheetClass(cls, sheet) {
             icon: 'far fa-eye',
             onclick: (ev) => {
               //@ts-ignore
-              const entity = new CONFIG.Item.documentClass(origData, {editable: false});
+              const entity = new CONFIG.Item.documentClass(origData, { editable: false });
               //@ts-ignore
               entity.data.isAbstract = true;
               const sheetTmp = entity.sheet;

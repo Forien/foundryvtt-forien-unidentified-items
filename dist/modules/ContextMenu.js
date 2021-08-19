@@ -1,5 +1,5 @@
-import Identification from "./Identification.mjs";
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.mjs";
+import Identification from "./Identification.js";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.js";
 export default function registerContextMenuHook() {
     Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
         const getOrigData = (li) => {

@@ -1,4 +1,4 @@
-import Identification from "./Identification.mjs";
+import Identification from "./Identification.js";
 export default function registerItemClassMethod() {
     //@ts-ignore
     CONFIG.Item.documentClass.prototype.isMystified = function isMystified() {
