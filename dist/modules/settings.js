@@ -1,10 +1,10 @@
-import DefaultIcons from "./apps/DefaultIcons.mjs";
-import ItemProperties from "./apps/ItemProperties.mjs";
-import { defaultPropertiesDND5e } from "./integrations/dnd5e.mjs";
-import { defaultPropertiesWFRP4e } from "./integrations/wfrp4e.mjs";
-import { defaultPropertiesPF2e } from "./integrations/pf2e.mjs";
-import { defaultPropertiesSwade } from "./integrations/swade.mjs";
-import { i18n, log } from "../init.mjs";
+import DefaultIcons from "./apps/DefaultIcons.js";
+import ItemProperties from "./apps/ItemProperties.js";
+import { defaultPropertiesDND5e } from "./integrations/dnd5e.js";
+import { defaultPropertiesWFRP4e } from "./integrations/wfrp4e.js";
+import { defaultPropertiesPF2e } from "./integrations/pf2e.js";
+import { defaultPropertiesSwade } from "./integrations/swade.js";
+import { i18n, log } from "../init.js";
 export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = 'forien-unidentified-items';
 export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = 'unidentified.png';
 // export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_LABEL = "Forien's Unidentified Items";

@@ -1,6 +1,6 @@
-import { i18n } from "../init.mjs";
-import Identification from "./Identification.mjs";
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.mjs";
+import { i18n } from "../init.js";
+import Identification from "./Identification.js";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.js";
 export default function registerDerivedItemSheetClass() {
     for (const k in CONFIG.Item.sheetClasses) {
         for (const l in CONFIG.Item.sheetClasses[k]) {

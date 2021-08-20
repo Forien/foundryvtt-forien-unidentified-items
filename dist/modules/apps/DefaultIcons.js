@@ -1,5 +1,5 @@
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "../settings.mjs";
-import { i18n } from "./../../init.mjs";
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "../settings.js";
+import { i18n } from "./../../init.js";
 export default class DefaultIcons extends FormApplication {
     static get defaultOptions() {
         const options = mergeObject(super.defaultOptions, {

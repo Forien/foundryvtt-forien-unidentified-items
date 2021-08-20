@@ -1,4 +1,4 @@
-import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from "./modules/settings.mjs";
+import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from "./modules/settings.js";
 /**
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
@@ -12,11 +12,11 @@ import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from "./modul
  */
 // Import JavaScript modules
 // Import TypeScript modules
-import registerDerivedItemSheetClass from "./modules/ItemSheet.mjs";
-import registerContextMenuHook from "./modules/ContextMenu.mjs";
-import { checkSettingsInitialized, getGame } from "./modules/settings.mjs";
-import Identification from "./modules/Identification.mjs";
-import registerItemClassMethod from "./modules/Item.mjs";
+import registerDerivedItemSheetClass from "./modules/ItemSheet.js";
+import registerContextMenuHook from "./modules/ContextMenu.js";
+import { checkSettingsInitialized, getGame } from "./modules/settings.js";
+import Identification from "./modules/Identification.js";
+import registerItemClassMethod from "./modules/Item.js";
 export let debugEnabled = 0;
 // 0 = none, warnings = 1, debug = 2, all = 3
 export const debug = (...args) => {

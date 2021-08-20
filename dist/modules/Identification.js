@@ -1,5 +1,5 @@
-import { i18n, i18nFormat } from "./../init.mjs";
-import { FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.mjs";
+import { i18n, i18nFormat } from "./../init.js";
+import { FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from "./settings.js";
 export default class Identification {
     /**
      *
