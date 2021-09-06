@@ -433,6 +433,10 @@ npm run-script package
 
 Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/ShoyuVanilla/FoundryVTT-Chat-Portrait/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
 
+# License
+
+This package is under an [MIT license](LICENSE) and the [Foundry Virtual Tabletop Limited License Agreement for module development](https://foundryvtt.com/article/license/).
+
 ## Acknowledgements
 
 * Thanks to `Forien#2130` (discord contact)
@@ -443,8 +447,3 @@ Any issues, bugs, or feature requests are always welcome to be reported directly
 * Thanks to rinnocenti for providing Portuguese (Brazil) translation
 * Thanks to freyrrabbit for help with defining default properties for PF2e system
 * Thanks to SalieriC for help with defining default properties for Swade system
-## License
-
-Forien's Unidentified Items is a module for Foundry VTT by Forien and is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
-
-This work is licensed under Foundry Virtual Tabletop [EULA - Limited License Agreement for module development from May 29, 2020](https://foundryvtt.com/article/license/).
