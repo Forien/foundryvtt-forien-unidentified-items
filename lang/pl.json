@@ -7,45 +7,55 @@
     "MystifyAdvanced": "Zmistyfikuj (zaawansowane)…",
     "Identify": "Zidentyfikuj",
     "Peek": "Podejrzyj",
-
     "Dialog": {
       "MystifyAs": {
         "Title": "Zmistyfikuj {name}",
-        "Header": "Wybierz źródło imitacji:",
+        "Header": "Wybierz źródło transmogryfikacji:",
         "DropZone": "Przeciągnij i Upuść tu Przedmiot, żeby ustawić go jako wygląd dla „{name}”",
         "Cancel": "Anuluj",
         "Mystify": "Mistifikuj",
-        "MystifyReplace": "Podmień"
+        "MystifyReplace": "Podmień",
+        "MystifyAdvanced": "Zaawansowane..."
       },
       "MystifyAdvanced": {
-        "Title": "Mystify {name}",
-        "Meta": "Item's Metadata",
-        "Original": "Original",
-        "Result": "Result",
-        "Default": "Default",
-        "Properties": "Properties to keep",
+        "Title": "Mistyfikuj {name}",
+        "Meta": "Metadane Przedmiotu",
+        "Original": "Źródło",
+        "Result": "Rezultat",
+        "Default": "Domyślne",
+        "Properties": "Zachowywane właściwości",
         "Cancel": "Anuluj",
         "Mystify": "Mistifikuj",
-        "MystifyReplace": "Podmień",
-        "MystifyAdvanced": "Zaawansowane…"
+        "MystifyReplace": "Podmień"
       }
     },
-
     "Settings": {
       "defaultIcons": {
         "name": "Domyślne ikony",
-        "hint": "",
+        "hint": "Określ jakie ikony powinny być stosowane dla poszczególnych typów przedmiotów.",
         "label": "Otwórz Menadżer Ikon"
       },
       "itemProperties": {
-        "name": "Stałe cechy",
-        "hint": "",
-        "label": "Otwórz Menadżer Cech"
+        "name": "Trwałe Właściwości",
+        "hint": "Określ jakie właściwości przedmioty powinny być zachowywane w zmistyfikowanym przedmiocie.",
+        "label": "Otwórz Menadżer Właściwości"
       },
       "keepOldIcon": {
         "name": "Zachowaj oryginalną ikonę",
-        "hint": "Zaznacz, aby podczas mistyfikacji domyślnie została zachowywana domyślna ikona przedmiotu."
+        "hint": "Zaznacz, aby zachowywać oryginalną ikonę przedmiotu podczas mistyfikacji. Zaawansowana Mistyfikacja nadal pozwalać będzie na manualne określenie ikony."
+      },
+      "allowNestedItems": {
+        "Hint": "Zaznacz tę opcję aby móc Zmistyfikować Zmistyfikowany przedmiot, pozwalając na zagnieżdżone poziomy wiedzy o przedmiocie lub przedmioty o wielu stadiach rozwoju. Każdy etap należy osobno zidentyfikować.",
+        "Name": "Zezwól na zagnieżdżanie"
       }
+    },
+    "Item": {
+      "Mystified": "Zmistyfikowany",
+      "Original": "Oryginał"
+    },
+    "Notifications": {
+      "defaultIconsInitialized": "Forien's Unidentified Items | Domyślne Ikony Typów Przedmiotów zostały losowo przydzielone. Proszę odwiedź Ustawienia Modułu po więcje informacji.",
+      "defaultPropertiesInitialized": "Forien's Unidentified Items | Domyślne Trwałe Właściwości Przedmiotów zostały wygenerowane. Proszę odwiedź Ustawienia Modułu po więcje informacji."
     }
   }
 }
