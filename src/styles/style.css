@@ -1,52 +1,67 @@
 #fui-default-icons.wfrp .window-content {
-  background: url(/ui/parchment.jpg) repeat; }
+  background: url(/ui/parchment.jpg) repeat;
+}
 #fui-default-icons .item-type-entry {
-  display: flex; }
-  #fui-default-icons .item-type-entry > * {
-    flex: 1;
-    align-self: center;
-    margin: 0 4px; }
-  #fui-default-icons .item-type-entry input {
-    flex: 2;
-    height: 29px;
-    min-width: 300px;
-    font-size: 12px; }
-  #fui-default-icons .item-type-entry img {
-    width: 66px;
-    height: 66px;
-    flex: 0;
-    margin: 0; }
-  #fui-default-icons .item-type-entry button {
-    flex: 0;
-    margin: 0; }
+  display: flex;
+}
+#fui-default-icons .item-type-entry > * {
+  flex: 1;
+  align-self: center;
+  margin: 0 4px;
+}
+#fui-default-icons .item-type-entry input {
+  flex: 2;
+  height: 29px;
+  min-width: 300px;
+  font-size: 12px;
+}
+#fui-default-icons .item-type-entry img {
+  width: 66px;
+  height: 66px;
+  flex: 0;
+  margin: 0;
+}
+#fui-default-icons .item-type-entry button {
+  flex: 0;
+  margin: 0;
+}
 
 #fui-item-properties.wfrp .window-content {
-  background: url(/ui/parchment.jpg) repeat; }
+  background: url(/ui/parchment.jpg) repeat;
+}
 #fui-item-properties form {
   height: 100%;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto; }
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
 #fui-item-properties nav {
-  flex-wrap: wrap; }
-  #fui-item-properties nav a {
-    flex: 0 0 25%; }
+  flex-wrap: wrap;
+}
+#fui-item-properties nav a {
+  flex: 0 0 25%;
+}
 #fui-item-properties section {
   overflow: auto;
-  padding: 6px; }
-  #fui-item-properties section .tab {
-    columns: 3;
-    /**
+  padding: 6px;
+}
+#fui-item-properties section .tab {
+  columns: 3;
+  /**
      * Because PF2e...
      */
-    display: none; }
-    #fui-item-properties section .tab .type-property {
-      display: flex;
-      align-items: center; }
-    #fui-item-properties section .tab * {
-      break-inside: avoid-column;
-      padding: 0; }
-    #fui-item-properties section .tab.tab.active {
-      display: block; }
+  display: none;
+}
+#fui-item-properties section .tab .type-property {
+  display: flex;
+  align-items: center;
+}
+#fui-item-properties section .tab * {
+  break-inside: avoid-column;
+  padding: 0;
+}
+#fui-item-properties section .tab.tab.active {
+  display: block;
+}
 
 #mystifyAsDialog .dropzone {
   min-height: 240px;
@@ -57,69 +72,87 @@
   justify-content: center;
   position: relative;
   display: flex;
-  flex-direction: column; }
-  #mystifyAsDialog .dropzone p {
-    text-align: center;
-    position: relative;
-    max-width: 80%;
-    font-variant: small-caps;
-    font-size: 1.6rem;
-    color: #333333cc; }
-  #mystifyAsDialog .dropzone .item {
-    display: flex; }
-    #mystifyAsDialog .dropzone .item img {
-      width: 66px;
-      height: 66px;
-      border-radius: 8px;
-      border: 2px solid #000; }
-    #mystifyAsDialog .dropzone .item span {
-      font-size: 1.2rem;
-      align-self: center;
-      padding: 8px; }
-#mystifyAsDialog button[data-button="mystifyAdvanced"] {
+  flex-direction: column;
+}
+#mystifyAsDialog .dropzone p {
+  text-align: center;
+  position: relative;
+  max-width: 80%;
+  font-variant: small-caps;
+  font-size: 1.6rem;
+  color: #333333cc;
+}
+#mystifyAsDialog .dropzone .item {
+  display: flex;
+}
+#mystifyAsDialog .dropzone .item img {
+  width: 66px;
+  height: 66px;
+  border-radius: 8px;
+  border: 2px solid #000;
+}
+#mystifyAsDialog .dropzone .item span {
+  font-size: 1.2rem;
+  align-self: center;
+  padding: 8px;
+}
+#mystifyAsDialog button[data-button='mystifyAdvanced'] {
   flex-basis: 100%;
-  margin: 0 0 2px 0; }
+  margin: 0 0 2px 0;
+}
 
 #mystifyAdvancedDialog {
   min-width: 500px;
-  max-height: 800px; }
-  #mystifyAdvancedDialog .window-content {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto; }
-  #mystifyAdvancedDialog .advanced-body {
-    height: 100%;
-    display: grid;
-    grid-template-rows: auto auto auto auto minmax(0, 1fr); }
-    #mystifyAdvancedDialog .advanced-body .meta-header {
-      display: flex; }
-      #mystifyAdvancedDialog .advanced-body .meta-header > * {
-        flex: 1;
-        text-align: center;
-        font-weight: bold; }
-    #mystifyAdvancedDialog .advanced-body .meta-body > * {
-      display: flex; }
-      #mystifyAdvancedDialog .advanced-body .meta-body > * > * {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        align-items: center; }
-    #mystifyAdvancedDialog .advanced-body .meta-name {
-      margin-top: 10px; }
-    #mystifyAdvancedDialog .advanced-body img {
-      width: 66px;
-      height: 66px; }
-    #mystifyAdvancedDialog .advanced-body .properties-body {
-      overflow-y: auto;
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      grid-gap: 6px 10px; }
-      #mystifyAdvancedDialog .advanced-body .properties-body label {
-        font-weight: bold; }
-      #mystifyAdvancedDialog .advanced-body .properties-body .property-values {
-        display: flex;
-        flex-direction: column;
-        font-style: italic;
-        font-size: 12px; }
+  max-height: 800px;
+}
+#mystifyAdvancedDialog .window-content {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+#mystifyAdvancedDialog .advanced-body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
+}
+#mystifyAdvancedDialog .advanced-body .meta-header {
+  display: flex;
+}
+#mystifyAdvancedDialog .advanced-body .meta-header > * {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+}
+#mystifyAdvancedDialog .advanced-body .meta-body > * {
+  display: flex;
+}
+#mystifyAdvancedDialog .advanced-body .meta-body > * > * {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+#mystifyAdvancedDialog .advanced-body .meta-name {
+  margin-top: 10px;
+}
+#mystifyAdvancedDialog .advanced-body img {
+  width: 66px;
+  height: 66px;
+}
+#mystifyAdvancedDialog .advanced-body .properties-body {
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-gap: 6px 10px;
+}
+#mystifyAdvancedDialog .advanced-body .properties-body label {
+  font-weight: bold;
+}
+#mystifyAdvancedDialog .advanced-body .properties-body .property-values {
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  font-size: 12px;
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -6,7 +6,7 @@ export default class ItemProperties extends FormApplication {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-item-properties',
       template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
-      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.itemProperties.name'),
+      title: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.itemProperties.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,

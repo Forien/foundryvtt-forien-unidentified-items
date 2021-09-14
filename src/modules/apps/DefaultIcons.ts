@@ -6,7 +6,7 @@ export default class DefaultIcons extends FormApplication {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-default-icons',
       template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
-      title: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.name'),
+      title: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,

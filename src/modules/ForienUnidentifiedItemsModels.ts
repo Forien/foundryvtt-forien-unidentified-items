@@ -6,3 +6,7 @@ export class MystifiedData implements ItemDataConstructorData {
   data?: Object;
   isAbstract?: boolean;
 }
+
+export enum MystifiedFlags {
+  ORIG_DATA = 'origData',
+}

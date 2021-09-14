@@ -59,8 +59,8 @@ export default function registerSettings() {
   });
 
   getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'keepOldIcon', {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.keepOldIcon.name',
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.keepOldIcon.hint',
+    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.keepOldIcon.name`,
+    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.keepOldIcon.hint`,
     scope: 'world',
     config: true,
     default: false,
@@ -68,8 +68,8 @@ export default function registerSettings() {
   });
 
   getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems', {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.allowNestedItems.Name',
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.allowNestedItems.Hint',
+    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.allowNestedItems.Name`,
+    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.allowNestedItems.Hint`,
     scope: 'world',
     config: true,
     default: false,
@@ -82,18 +82,18 @@ export default function registerSettings() {
  */
 function registerSettingMenus() {
   getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.name',
-    label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.label',
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.defaultIcons.hint',
+    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.name`,
+    label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.label`,
+    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.hint`,
     icon: 'fas fa-image',
     type: DefaultIcons,
     restricted: true,
   });
 
   getGame().settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
-    name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.name',
-    label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.label',
-    hint: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Settings.itemProperties.hint',
+    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.name`,
+    label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.label`,
+    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.hint`,
     icon: 'fas fa-cogs',
     type: ItemProperties,
     restricted: true,
@@ -138,7 +138,7 @@ function initializeDefaultIcons() {
   di.saveSettings(settings);
   log(` Initialized default item icons.`);
   ui.notifications?.info(
-    getGame().i18n.localize(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Notifications.defaultIconsInitialized'),
+    getGame().i18n.localize(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Notifications.defaultIconsInitialized`),
     { permanent: true },
   );
 }
@@ -174,7 +174,7 @@ function initializeItemProperties() {
   settings = mergeObject(settings, properties);
   ip.saveSettings(settings);
   log(` Initialized default item properties.`);
-  ui.notifications?.info(i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.defaultPropertiesInitialized'), {
+  ui.notifications?.info(i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.defaultPropertiesInitialized`), {
     permanent: true,
   });
 }

@@ -1,4 +1,4 @@
-import { MystifiedData } from './ForienUnidentifiedItemsModels';
+import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
 
@@ -8,7 +8,7 @@ export default function registerContextMenuHook() {
       const id = li[0].dataset.entityId;
       const item = <Item>getGame().items?.get(id);
 
-      return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+      return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
     };
 
     const mystifyCondition = (li) => {
@@ -28,7 +28,7 @@ export default function registerContextMenuHook() {
 
     const mystifyOptions = [
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Mystify',
+        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -37,7 +37,7 @@ export default function registerContextMenuHook() {
         },
       },
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyReplace',
+        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.MystifyReplace`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -46,7 +46,7 @@ export default function registerContextMenuHook() {
         },
       },
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyAs',
+        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.MystifyAs`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -55,7 +55,7 @@ export default function registerContextMenuHook() {
         },
       },
       {
-        name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.MystifyAdvanced',
+        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.MystifyAdvanced`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -68,7 +68,7 @@ export default function registerContextMenuHook() {
     entryOptions.unshift(...mystifyOptions);
 
     entryOptions.unshift({
-      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Identify',
+      name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Identify`,
       icon: '<i class="fas fa-search"></i>',
       condition: identifyCondition,
       callback: (li) => {
@@ -79,13 +79,13 @@ export default function registerContextMenuHook() {
     });
 
     entryOptions.unshift({
-      name: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Peek',
+      name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Peek`,
       icon: '<i class="far fa-eye"></i>',
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.entityId;
         const item = <Item>getGame().items?.get(id);
-        const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+        const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
         origData.isAbstract = true;
         //@ts-ignore
         const entity = new CONFIG.Item.documentClass(origData, { editable: false });

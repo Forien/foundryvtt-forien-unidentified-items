@@ -1,5 +1,5 @@
 import { i18n, i18nFormat } from './../init';
-import { MystifiedData } from './ForienUnidentifiedItemsModels';
+import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import { FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
 
 export default class Identification {
@@ -20,7 +20,7 @@ export default class Identification {
     const item = await this._itemFromUuid(itemUuid);
 
     if (!item) {
-      ui.notifications?.error(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.NotAnItem', {});
+      ui.notifications?.error(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.NotAnItem`, {});
       return;
     }
 
@@ -43,7 +43,7 @@ export default class Identification {
       mystifiedItem = await Item.create(mystifiedData);
     }
 
-    await mystifiedItem.setFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData', origData);
+    await mystifiedItem.setFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA, origData);
   }
 
   /**
@@ -69,10 +69,10 @@ export default class Identification {
 
     const dialog = new Dialog(
       {
-        title: i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Title', { nameTmp }),
-        content: `<h3>${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Header')}</h3>
+        title: i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Title`, { nameTmp }),
+        content: `<h3>${i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Header`)}</h3>
         <div class="dropzone">
-            <p>${i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.DropZone', { nameTmp })}</p>
+            <p>${i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.DropZone`, { nameTmp })}</p>
             <div class="item" style="display: none">
                 <img/>
                 <span></span>
@@ -81,7 +81,7 @@ export default class Identification {
         buttons: {
           mystifyAdvanced: {
             icon: '<i class="fas fa-cogs"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.MystifyAdvanced'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.MystifyAdvanced`),
             callback: (html) => {
               const source = $(html).find('.item').data('item');
               this.mystifyAdvancedDialog(itemUuid, source);
@@ -89,11 +89,11 @@ export default class Identification {
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Cancel'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Cancel`),
           },
           mystifyReplace: {
             icon: '<i class="fas fa-sync-alt"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.MystifyReplace'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.MystifyReplace`),
             callback: (html) => {
               itemTmp = $(html).find('.item').data('item');
               replace = true;
@@ -101,7 +101,7 @@ export default class Identification {
           },
           mystify: {
             icon: '<i class="fas fa-eye-slash"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAs.Mystify'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Mystify`),
             callback: (html) => {
               itemTmp = $(html).find('.item').data('item');
             },
@@ -207,16 +207,16 @@ export default class Identification {
     let replace;
     const dialog = new Dialog(
       {
-        title: i18nFormat(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Title', { nameTmp }),
+        title: i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAdvanced.Title`, { nameTmp }),
         content: htmlTmp,
         buttons: {
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Cancel'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAdvanced.Cancel`),
           },
           mystifyReplace: {
             icon: '<i class="fas fa-sync-alt"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.MystifyReplace'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAdvanced.MystifyReplace`),
             callback: (html) => {
               confirmed = true;
               replace = true;
@@ -224,7 +224,7 @@ export default class Identification {
           },
           mystify: {
             icon: '<i class="fas fa-eye-slash"></i>',
-            label: i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Dialog.MystifyAdvanced.Mystify'),
+            label: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAdvanced.Mystify`),
             callback: (html) => {
               confirmed = true;
             },
@@ -295,7 +295,7 @@ export default class Identification {
    * @returns {Promise<Item>}
    */
   static async identify(item) {
-    const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+    const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
     // things to keep from mystified item:
     delete origData._id;
     delete origData.permission;
@@ -304,10 +304,10 @@ export default class Identification {
     const hook = Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onIdentifyItem`, item, origData);
     if (hook !== false) {
       await item.update(origData, { diff: false });
-      await item.unsetFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+      await item.unsetFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
       // If there was nested origData, carry it over.
       const origDataOrigData = getProperty(origData.flags, `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.origData`);
-      await item.setFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData', origDataOrigData);
+      await item.setFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA, origDataOrigData);
     }
   }
 
@@ -317,7 +317,7 @@ export default class Identification {
    * @return {boolean}
    */
   static isMystified(item) {
-    const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+    const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
 
     return origData !== undefined;
   }
@@ -328,7 +328,7 @@ export default class Identification {
    * @return {Object}
    */
   static getOrigData(item) {
-    return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+    return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
   }
 
   /**
@@ -341,7 +341,7 @@ export default class Identification {
     if (!item) {
       return false;
     }
-    const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+    const origData = item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
 
     return origData !== undefined;
   }
@@ -412,7 +412,7 @@ export default class Identification {
       `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON}`;
 
     return {
-      name: <string>i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.NewMystified'),
+      name: <string>i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.NewMystified`),
       type: <string>origData.type,
       img: <string>iconType,
     };

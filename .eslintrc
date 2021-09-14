@@ -30,7 +30,7 @@
             "off",
             {},
             {
-              "usePrettierrc": true,
+              "usePrettierrc": true
             }
         ],
         "no-underscore-dangle": "off",
@@ -43,6 +43,6 @@
         ],
         "@typescript-eslint/consistent-type-assertions": "off",
         "@typescript-eslint/ban-ts-comment": "off",
-        "no-shadow": ["error", { "builtinGlobals": true, "hoist": "all", "allow": ["event"] }]
+        "no-shadow": ["warn", { "builtinGlobals": true, "hoist": "all", "allow": ["event"] }]
     }
 }

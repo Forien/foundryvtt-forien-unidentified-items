@@ -1,5 +1,5 @@
 import { i18n } from '../init';
-import { MystifiedData } from './ForienUnidentifiedItemsModels';
+import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
 
@@ -33,10 +33,10 @@ function getItemSheetClass(cls, sheet) {
         return title;
       }
       if (this.item.isMystified()) {
-        title = `[${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Item.Mystified')}] ${title}`;
+        title = '[' + i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Item.Mystified`) + '] ' + `${title}`;
       }
       if (this.item.data.isAbstract) {
-        title = `[${i18n(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Item.Original')}] ${title}`;
+        title = '[' + i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Item.Original`) + '] ' + `${title}`;
       }
       return title;
     }
@@ -59,12 +59,14 @@ function getItemSheetClass(cls, sheet) {
       Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
       permissions = mergeObject(permissions, hookPermissions);
 
-      const origData = <MystifiedData>this.item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'origData');
+      const origData = <MystifiedData>(
+        this.item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA)
+      );
 
       if (origData) {
         if (permissions.canIdentify && !isAbstract) {
           buttons.unshift({
-            label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Identify',
+            label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Identify`,
             class: 'identify-item',
             icon: 'fas fa-search',
             onclick: (ev) => {
@@ -75,7 +77,7 @@ function getItemSheetClass(cls, sheet) {
 
         if (permissions.canPeek) {
           buttons.unshift({
-            label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Peek',
+            label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Peek`,
             class: 'peek-original-item',
             icon: 'far fa-eye',
             onclick: (ev) => {
@@ -92,7 +94,7 @@ function getItemSheetClass(cls, sheet) {
         if (permissions.canMystify && !isAbstract) {
           if (this.item.isOwned) {
             buttons.unshift({
-              label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Mystify',
+              label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
               class: 'mystify-item',
               icon: 'far fa-eye-slash',
               onclick: (ev) => {
@@ -101,7 +103,7 @@ function getItemSheetClass(cls, sheet) {
             });
           } else {
             buttons.unshift({
-              label: FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME + '.Mystify',
+              label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
               class: 'mystify-item',
               icon: 'far fa-eye-slash',
               onclick: (ev) => {
