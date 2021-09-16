@@ -15,16 +15,16 @@
 
     "Dialog": {
       "MystifyAs": {
-        "Title": "{name} の神秘化",
+        "Title": "{nameItem} の神秘化",
         "Header": "偽装先のアイテムを指定してください：",
-        "DropZone": "ここにアイテムをドラッグ＆ドロップすると、それが{name}の新しい外観になります。",
+        "DropZone": "ここにアイテムをドラッグ＆ドロップすると、それが{nameItem}の新しい外観になります。",
         "Cancel": "キャンセル",
         "Mystify": "神秘化",
         "MystifyReplace": "置換",
         "MystifyAdvanced": "高度な神秘化"
       },
       "MystifyAdvanced": {
-        "Title": "{name}の神秘化",
+        "Title": "{nameItem}の神秘化",
         "Meta": "アイテムのメタデータ",
         "Original": "元のアイテム",
         "Result": "結果",

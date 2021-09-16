@@ -15,16 +15,16 @@
 
     "Dialog": {
       "MystifyAs": {
-        "Title": "Ocultar {name}",
+        "Title": "Ocultar {nameItem}",
         "Header": "Selecione a fonte da Transmogrificação:",
-        "DropZone": "Arraste & Solte um Item aqui para se tornar a nova forma de {name}",
+        "DropZone": "Arraste & Solte um Item aqui para se tornar a nova forma de {nameItem}",
         "Cancel": "Cancelar",
         "Mystify": "Ocultar",
         "MystifyReplace": "Substituir",
         "MystifyAdvanced": "Avançado…"
       },
       "MystifyAdvanced": {
-        "Title": "Ocultar {name}",
+        "Title": "Ocultar {nameItem}",
         "Meta": "Metadados do Item",
         "Original": "Original",
         "Result": "Resultado",

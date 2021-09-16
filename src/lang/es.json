@@ -15,16 +15,16 @@
 
     "Dialog": {
       "MystifyAs": {
-        "Title": "Ocultar {name}",
+        "Title": "Ocultar {nameItem}",
         "Header": "Seleccione el origen de la transmogrificación:",
-        "DropZone": "Arrastre y Suelte un objeto aquí para configurarlo como la nueva visual de {name}",
+        "DropZone": "Arrastre y Suelte un objeto aquí para configurarlo como la nueva visual de {nameItem}",
         "Cancel": "Cancelar",
         "Mystify": "Ocultar",
         "MystifyReplace": "Reemplazar",
         "MystifyAdvanced": "Avanzado…"
       },
       "MystifyAdvanced": {
-        "Title": "Ocultar {name}",
+        "Title": "Ocultar {nameItem}",
         "Meta": "Metadatos del Objeto",
         "Original": "Origen",
         "Result": "Resultado",

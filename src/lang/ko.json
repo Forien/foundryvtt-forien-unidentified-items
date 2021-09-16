@@ -15,16 +15,16 @@
 
     "Dialog": {
       "MystifyAs": {
-        "Title": "미식별 {name}",
+        "Title": "미식별 {nameItem}",
         "Header": "변형할 원본 선택:",
-        "DropZone": "아이템을 이곳에 끌어다 놓아 {name}의 새 모습으로 설정",
+        "DropZone": "아이템을 이곳에 끌어다 놓아 {nameItem}의 새 모습으로 설정",
         "Cancel": "취소",
         "Mystify": "미식별",
         "MystifyReplace": "대체",
         "MystifyAdvanced": "고급…"
       },
       "MystifyAdvanced": {
-        "Title": "미식별 {name}",
+        "Title": "미식별 {nameItem}",
         "Meta": "아이템의 메타데이터",
         "Original": "원본",
         "Result": "결과",

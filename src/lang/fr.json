@@ -15,16 +15,16 @@
 
     "Dialog": {
       "MystifyAs": {
-        "Title": "Mystifier {name}",
+        "Title": "Mystifier {nameItem}",
         "Header": "Sélectionnez la source de transmogrification :",
-        "DropZone": "Glissez-déposez un élément ici pour donner une nouvelle apparence à {name}",
+        "DropZone": "Glissez-déposez un élément ici pour donner une nouvelle apparence à {nameItem}",
         "Cancel": "Annuler",
         "Mystify": "Mystifier",
         "MystifyReplace": "Remplacer",
         "MystifyAdvanced": "Avancé"
       },
       "MystifyAdvanced": {
-        "Title": "Mystifier {name}",
+        "Title": "Mystifier {nameItem}",
         "Meta": "Métadonnées de l'objet",
         "Original": "Source",
         "Result": "Résultat",

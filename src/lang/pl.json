@@ -9,16 +9,16 @@
     "Peek": "Podejrzyj",
     "Dialog": {
       "MystifyAs": {
-        "Title": "Zmistyfikuj {name}",
+        "Title": "Zmistyfikuj {nameItem}",
         "Header": "Wybierz źródło transmogryfikacji:",
-        "DropZone": "Przeciągnij i Upuść tu Przedmiot, żeby ustawić go jako wygląd dla „{name}”",
+        "DropZone": "Przeciągnij i Upuść tu Przedmiot, żeby ustawić go jako wygląd dla „{nameItem}”",
         "Cancel": "Anuluj",
         "Mystify": "Mistifikuj",
         "MystifyReplace": "Podmień",
         "MystifyAdvanced": "Zaawansowane..."
       },
       "MystifyAdvanced": {
-        "Title": "Mistyfikuj {name}",
+        "Title": "Mistyfikuj {nameItem}",
         "Meta": "Metadane Przedmiotu",
         "Original": "Źródło",
         "Result": "Rezultat",

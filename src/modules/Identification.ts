@@ -62,17 +62,17 @@ export default class Identification {
    */
   static async mystifyAsDialog(itemUuid) {
     const origItem: any = await this._itemFromUuid(itemUuid);
-    const nameTmp = origItem.data.name;
+    const nameItem = origItem.data.name;
 
     let itemTmp;
     let replace;
 
     const dialog = new Dialog(
       {
-        title: i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Title`, { nameTmp }),
+        title: i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Title`, { nameItem }),
         content: `<h3>${i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.Header`)}</h3>
         <div class="dropzone">
-            <p>${i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.DropZone`, { nameTmp })}</p>
+            <p>${i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAs.DropZone`, { nameItem })}</p>
             <div class="item" style="display: none">
                 <img/>
                 <span></span>
@@ -170,7 +170,7 @@ export default class Identification {
    */
   static async mystifyAdvancedDialog(itemUuid, source: any = undefined) {
     const origItem = <Item>await this._itemFromUuid(itemUuid);
-    const nameTmp = origItem.data.name;
+    const nameItem = origItem.data.name;
     const sourceData = source ? source : duplicate(origItem);
     const meta = this._getMystifiedMeta(sourceData);
     const keepOldIcon = this.keepOriginalImage();
@@ -207,7 +207,7 @@ export default class Identification {
     let replace;
     const dialog = new Dialog(
       {
-        title: i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAdvanced.Title`, { nameTmp }),
+        title: i18nFormat(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Dialog.MystifyAdvanced.Title`, { nameItem }),
         content: htmlTmp,
         buttons: {
           cancel: {
