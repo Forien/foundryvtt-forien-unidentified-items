@@ -1,8 +1,5 @@
-.idea/
-devtool/
-node_modules/
-styles/.sass-cache/
-lang/untranslated.json
-changelog.html
-foundry.js
-package.json
+node_modules
+.idea
+/package-lock.json
+/dist
+/package

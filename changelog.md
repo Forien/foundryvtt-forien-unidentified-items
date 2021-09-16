@@ -1,6 +1,12 @@
 # Changelog
 
+## v0.3.0
+
+- Initial patch 0.8.8
+- Integration with eslint and prettier
+- Integrated workflow github from mclemente fork
 ## v0.2.3
+
 * Added Setting to keep original icon while mystifying
 * Added way to use "Mystify As…" along with "Mystify (advanced)…"
 * Removed old Welcome Screen
@@ -8,6 +14,7 @@
 * Tested and bumped compatible core version to 0.7.0
 
 ## v0.2.2
+
 * Added support for identifying nested items.
 * Added optional setting that allows for creating nested mystified items.
 * Added optional setting that displays `[Mystified]` and `[Original]` tags in Item Sheet's header.
@@ -15,9 +22,11 @@
 * Added `isMystified()` and `origData` fields in Item class. 
 
 ## v0.2.1
+
 * Added default settings for persisting item properties for Swade system thanks to SalieriC
 
 ## v0.2.0
+
 * Added 9 more icons and 10 inverted variants
 * Added "Replace with Mystified" context option. For Owned Items this is default behaviour.
 * Added "Mystify As…" context option allowing for mimicing other item
@@ -32,6 +41,7 @@
 * Updated Korean translation thanks to KLO
 
 ## v0.1.5
+
 * Added Korean language thanks to KLO
 * Added Portuguese (Brazil) language thanks to rinnocenti
 * Fixed bug that wouldn't allow to mystify items inside Actor's inventory and Compendium
@@ -39,10 +49,13 @@
 
 
 ## v0.1.4
+
 * Added await to async functions to remove bug with VTTA Iconizer
 
 ## v0.1.3
+
 * Attempt to fix broken render Hook of extended class in FireFox 75+
 
 ## v0.1.2
+
 * Initial release
