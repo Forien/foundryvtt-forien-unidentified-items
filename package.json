@@ -5,9 +5,9 @@
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
   "scripts": {
     "package": "gulp package",
-    "build": "gulp build && gulp link",
+    "build": "gulp build",
     "build:watch": "gulp watch",
-    "clean": "gulp clean && gulp link --clean",
+    "clean": "gulp clean",
     "update": "npm install --save-dev @league-of-foundry-developers/foundry-vtt-types@fvtt-0.8.8",
     "lint": "eslint --ext .ts,.js,.vue .",
     "lintfix": "eslint --fix --ext .ts,.js,.vue ./src",
