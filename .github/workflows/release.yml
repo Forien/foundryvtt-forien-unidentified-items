@@ -35,7 +35,7 @@ jobs:
         id: sub_manifest_link_version
         uses: microsoft/variable-substitution@v1
         with:
-          files: 'module.json'
+          files: 'src/module.json'
         env:
           version: ${{steps.get_version.outputs.version-without-v}}
           manifest: https://github.com/${{github.repository}}/releases/latest/download/module.json
@@ -43,10 +43,6 @@ jobs:
 
 
       - name: Build Release
-        env:
-          SHOULD_DEPLOY_SOURCEMAPS: "true"
-          SHOULD_MINIFY: "true"
-          SHOULD_OPTIMIZE: "true"
         run: |
           npm run-script build
           npm run-script package
@@ -70,7 +66,7 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './module.json,./module.zip'
+          artifacts: './src/module.json,./module.zip'
           tag: ${{ env.RELEASE_VERSION }}
 
 
@@ -82,4 +78,4 @@ jobs:
           password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
           module-id: 758
           manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_VERSION }}/module.json
-          manifest-file: ./module.json
+          manifest-file: ./src/module.json
