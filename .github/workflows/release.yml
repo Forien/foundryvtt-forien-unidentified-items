@@ -33,7 +33,7 @@ jobs:
 
       - name: Prepare Module Manifest
         id: sub_manifest_link_version
-        uses: microsoft/variable-substitution@f49210f99b2a7a18c162b2a4aad030a70f7e6d67
+        uses: microsoft/variable-substitution@v1
         with:
           files: 'module.json'
         env:
