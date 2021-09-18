@@ -44,6 +44,7 @@ jobs:
 
       - name: Build Release
         run: |
+          set -euo pipefail
           npm run-script build
           npm run-script package
 
@@ -66,7 +67,7 @@ jobs:
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          artifacts: './src/module.json,./module.zip'
+          artifacts: './src/module.json,./package/module.zip'
           tag: ${{ env.RELEASE_VERSION }}
 
 
