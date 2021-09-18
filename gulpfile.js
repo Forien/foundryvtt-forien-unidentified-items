@@ -360,7 +360,7 @@ async function packageBuild() {
       fs.ensureDirSync('package');
 
       // Initialize the zip file
-      const zipName = `${manifest.file.name}-v${manifest.file.version}.zip`;
+      const zipName = 'module.zip';
       const zipFile = fs.createWriteStream(path.join('package', zipName));
       const zip = archiver('zip', { zlib: { level: 9 } });
 
