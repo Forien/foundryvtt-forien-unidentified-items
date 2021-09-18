@@ -72,7 +72,7 @@ jobs:
 
       # Publish the release to FoundryVTT's package repository.
       - name: FoundryVTT AutoPublish
-        uses: Varriount/fvtt-autopublish@v1.0.2a
+        uses: Varriount/fvtt-autopublish@v1.0.4a
         with:
           username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
           password: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
