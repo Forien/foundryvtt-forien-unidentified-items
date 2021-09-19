@@ -75,7 +75,7 @@ jobs:
       - name: FoundryVTT AutoPublish
         uses: Varriount/fvtt-autopublish@v1.0.6
         with:
-          username: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
+          username: ${{ secrets.FOUNDRY_ADMIN_USER }}
           password: ${{ secrets.FOUNDRY_ADMIN_PW }}
           module-id: 243
           manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_VERSION }}/module.json
