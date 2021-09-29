@@ -1,0 +1,57 @@
+{
+  "name": "forien-unidentified-items",
+  "title": "Forien's Unidentified Items",
+  "description": "Provides system agnostic solution to handle unidentified items and their identification.",
+  "author": "Matheus Clemente — mclemente#5524, Forien — Forien#2130",
+  "authors": [
+    {
+      "name": "Forien",
+      "url": "https://www.patreon.com/foundryworkshop"
+    },
+    {
+      "name": "Matheus Clemente",
+      "url": "https://www.patreon.com/mclemente"
+    }
+  ],
+  "version": "0.3.17",
+  "minimumCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.9",
+  "url": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items",
+  "manifest": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/latest/download/module.json",
+  "download": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/download/v0.3.17/module.zip",
+  "readme": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v0.3.17/README.md",
+  "changelog": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v0.3.17/changelog.md",
+  "bugs": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues",
+  "wiki": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "ko",
+      "name": "한국어",
+      "path": "lang/ko.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "lang/pl.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "./lang/ja.json"
+    }
+  ],
+  "esmodules": ["./init.js"],
+  "styles": ["./styles/style.css"],
+  "scripts": [],
+  "socket": true
+}
