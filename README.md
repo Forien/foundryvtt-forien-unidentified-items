@@ -1,11 +1,22 @@
 # FoundryVTT - Forien's Unidentified Items
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items?style=for-the-badge) 
-![GitHub Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge) 
+
+
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items?style=for-the-badge)
+
+![GitHub Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge)
+
 ![GitHub All Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)  
-**[Compatibility]**: *FoundryVTT* 0.6.0+  
-**[Systems]**: *any*  
-**[Languages]**: *English, Korean, Polish, Portuguese (Brazil), Japanese (Thanks Touge!)*
+
+![Latest Release Download Count](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) 
+
+[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Ffoundryvtt-forien-unidentified-items&colorB=006400&style=for-the-badge)](https://forge-vtt.com/bazaar#package=foundryvtt-forien-unidentified-items) 
+
+![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge)
+
+![Latest Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Latest%20Release&prefix=v&query=$.version&colorB=red&style=for-the-badge)
+
+[![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Ffoundryvtt-forien-unidentified-items%2Fshield%2Fendorsements&style=for-the-badge)](https://www.foundryvtt-hub.com/package/foundryvtt-forien-unidentified-items/)
 
 This module aims to provides system agnostic solution to handle unidentified items and their identification for games via Foundry Virtual Tabletop.
 

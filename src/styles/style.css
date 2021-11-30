@@ -156,3 +156,18 @@
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.identify-item .fa-search {
+  color:DeepPink;
+  text-shadow: 0 0 8px DeepPink;
+}
+
+.peek-original-item .fa-eye{
+  color: Orchid;
+  text-shadow: 0 0 8px Orchid;
+}
+
+.mystify-item .fa-eye-slash {
+  color:RebeccaPurple;
+  text-shadow: 0 0 8px RebeccaPurple ;
+}

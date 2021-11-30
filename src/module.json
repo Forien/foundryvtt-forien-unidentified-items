@@ -13,14 +13,14 @@
       "url": "https://www.patreon.com/mclemente"
     }
   ],
-  "version": "0.3.17",
+  "version": "0.3.18",
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "0.8.9",
   "url": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items",
   "manifest": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/latest/download/module.json",
-  "download": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/download/v0.3.17/module.zip",
-  "readme": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v0.3.17/README.md",
-  "changelog": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v0.3.17/changelog.md",
+  "download": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/download/v0.3.18/module.zip",
+  "readme": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v0.3.18/README.md",
+  "changelog": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v0.3.18/changelog.md",
   "bugs": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues",
   "wiki": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki",
   "languages": [

@@ -49,6 +49,7 @@ function getItemSheetClass(cls, sheet) {
     _getHeaderButtons() {
       const buttons = super._getHeaderButtons();
       const isAbstract = this.item.data.isAbstract || false;
+      const removeLabelButtonsSheetHeader = <boolean>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME,'removeLabelButtonsSheetHeader');
 
       let permissions = {
         canIdentify: getGame().user?.isGM,
@@ -66,7 +67,7 @@ function getItemSheetClass(cls, sheet) {
       if (origData) {
         if (permissions.canIdentify && !isAbstract) {
           buttons.unshift({
-            label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Identify`,
+            label: removeLabelButtonsSheetHeader ? '' : `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Identify`,
             class: 'identify-item',
             icon: 'fas fa-search',
             onclick: (ev) => {
@@ -77,7 +78,7 @@ function getItemSheetClass(cls, sheet) {
 
         if (permissions.canPeek) {
           buttons.unshift({
-            label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Peek`,
+            label: removeLabelButtonsSheetHeader ? '' : `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Peek`,
             class: 'peek-original-item',
             icon: 'far fa-eye',
             onclick: (ev) => {
@@ -94,7 +95,7 @@ function getItemSheetClass(cls, sheet) {
         if (permissions.canMystify && !isAbstract) {
           if (this.item.isOwned) {
             buttons.unshift({
-              label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
+              label: removeLabelButtonsSheetHeader ? '' : `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
               class: 'mystify-item',
               icon: 'far fa-eye-slash',
               onclick: (ev) => {
@@ -103,7 +104,7 @@ function getItemSheetClass(cls, sheet) {
             });
           } else {
             buttons.unshift({
-              label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
+              label: removeLabelButtonsSheetHeader ? '' : `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
               class: 'mystify-item',
               icon: 'far fa-eye-slash',
               onclick: (ev) => {
