@@ -2,7 +2,8 @@
   "name": "forien-unidentified-items",
   "title": "Forien's Unidentified Items",
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
-  "author": "Matheus Clemente — mclemente#5524, Forien — Forien#2130",
+  "version": "0.3.18",
+  "author": "Matheus Clemente — mclemente#5524, Forien — Forien#2130, p4535992",
   "authors": [
     {
       "name": "Forien",
@@ -13,7 +14,7 @@
       "url": "https://www.patreon.com/mclemente"
     }
   ],
-  "version": "0.3.18",
+
   "minimumCoreVersion": "0.8.6",
   "compatibleCoreVersion": "0.8.9",
   "url": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items",

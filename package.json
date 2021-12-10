@@ -1,14 +1,14 @@
 {
   "private": true,
   "name": "forien-unidentified-items",
-  "version": "0.3.0",
+  "version": "0.3.18",
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
   "scripts": {
     "package": "gulp package",
     "build": "gulp build",
     "build:watch": "gulp watch",
     "clean": "gulp clean",
-    "update": "npm install --save-dev @league-of-foundry-developers/foundry-vtt-types@fvtt-0.8.8",
+    "update": "npm install --save-dev @league-of-foundry-developers/foundry-vtt-types@fvtt-0.8.9",
     "lint": "eslint --ext .ts,.js,.vue .",
     "lintfix": "eslint --fix --ext .ts,.js,.vue ./src",
     "prettier-format": "prettier --config .prettierrc --write \"./src/**/*.(ts|js|json|scss|css)\""
@@ -16,8 +16,8 @@
   "author": "",
   "license": "",
   "devDependencies": {
-    "@league-of-foundry-developers/foundry-vtt-types": "^0.8.8-9",
-    "@types/jquery": "^3.5.5",
+    "@league-of-foundry-developers/foundry-vtt-types": "^0.8.9-9",
+    "@types/jquery": "^3.5.10",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "@typhonjs-fvtt/eslint-config-foundry.js": "^0.8.0",
@@ -40,7 +40,7 @@
     "gulp-sass": "^4.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "json-stringify-pretty-compact": "^2.0.0",
-    "prettier": "^2.3.2",
+    "prettier": "^2.5.1",
     "sass": "^1.38.0",
     "yargs": "^15.4.1"
   },
@@ -50,6 +50,6 @@
   },
   "dependencies": {
     "gulp-changed": "^4.0.3",
-    "typescript": "^4.3.5"
+    "typescript": "^4.5.3"
   }
 }
