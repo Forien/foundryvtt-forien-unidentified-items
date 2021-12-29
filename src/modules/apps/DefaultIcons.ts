@@ -105,6 +105,6 @@ export default class DefaultIcons extends FormApplication {
   }
 
   getIcon(icon): string {
-    return `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
+    return `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
   }
 }

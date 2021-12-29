@@ -199,17 +199,20 @@ $icon-size: 66px;
   }
 }
 
-.identify-item .fa-search {
+.identify-item .fa-search,
+.context-item .fa-search {
   color:DeepPink;
   text-shadow: 0 0 8px DeepPink;
 }
 
-.peek-original-item .fa-eye{
+.peek-original-item .fa-eye,
+.context-item .fa-eye {
   color: Orchid;
   text-shadow: 0 0 8px Orchid;
 }
 
-.mystify-item .fa-eye-slash {
+.mystify-item .fa-eye-slash,
+.context-item .fa-eye-slash {
   color:RebeccaPurple;
   text-shadow: 0 0 8px RebeccaPurple ;
 }
