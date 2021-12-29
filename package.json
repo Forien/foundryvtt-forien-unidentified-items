@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "forien-unidentified-items",
-  "version": "0.3.18",
+  "version": "0.4.0",
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
   "scripts": {
     "package": "gulp package",
