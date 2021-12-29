@@ -5,7 +5,7 @@ import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
     const getOrigData = (li) => {
-      const id = li[0].dataset.entityId;
+      const id = li[0].dataset.documentId;
       const item = <Item>getGame().items?.get(id);
 
       return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
@@ -32,7 +32,7 @@ export default function registerContextMenuHook() {
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
-          const id = li[0].dataset.entityId;
+          const id = li[0].dataset.documentId;
           Identification.mystify(`Item.${id}`);
         },
       },
@@ -41,7 +41,7 @@ export default function registerContextMenuHook() {
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
-          const id = li[0].dataset.entityId;
+          const id = li[0].dataset.documentId;
           Identification.mystifyReplace(`Item.${id}`);
         },
       },
@@ -50,7 +50,7 @@ export default function registerContextMenuHook() {
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
-          const id = li[0].dataset.entityId;
+          const id = li[0].dataset.documentId;
           Identification.mystifyAsDialog(`Item.${id}`);
         },
       },
@@ -59,7 +59,7 @@ export default function registerContextMenuHook() {
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
-          const id = li[0].dataset.entityId;
+          const id = li[0].dataset.documentId;
           Identification.mystifyAdvancedDialog(`Item.${id}`);
         },
       },
@@ -72,7 +72,7 @@ export default function registerContextMenuHook() {
       icon: '<i class="fas fa-search"></i>',
       condition: identifyCondition,
       callback: (li) => {
-        const id = li[0].dataset.entityId;
+        const id = li[0].dataset.documentId;
         const item = getGame().items?.get(id);
         Identification.identify(item);
       },
@@ -83,7 +83,7 @@ export default function registerContextMenuHook() {
       icon: '<i class="far fa-eye"></i>',
       condition: identifyCondition,
       callback: (li) => {
-        const id = li[0].dataset.entityId;
+        const id = li[0].dataset.documentId;
         const item = <Item>getGame().items?.get(id);
         const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
         origData.isAbstract = true;
