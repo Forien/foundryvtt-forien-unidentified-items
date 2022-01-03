@@ -54,7 +54,12 @@
       "keepOldIcon": {
         "name": "Keep original Icon",
         "hint": "Check this setting to keep original item icon when mystifying. Advanced Mystify still allows manually selecting original vs default icons."
+      },
+      "removeLabelButtonsSheetHeader": {
+        "name": "Remove label from buttons on the header item sheet",
+        "hint": "Remove label from buttons on the header item sheet, Useful for little screen and mobile, by default is true"
       }
+
     },
 
     "Notifications": {

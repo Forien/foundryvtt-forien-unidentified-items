@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.3.18
+
+- Add colors to symbol link for more flavor
+- Add settings to remove label on the header button by default for a better management of little monitor and mobile [Option to disable the buttons label](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues/14)
+- Update typescript and foundryvtt-types
+- Little bug fix fix
+- Add myself to the authors ? not sure why i was removed when my pr it was accepted
+
+## v0.3.1-v0.3.17
+
+- Test and final deploy
 ## v0.3.0
 
 - Initial patch 0.8.8

@@ -93,6 +93,6 @@ export default class ItemProperties extends FormApplication {
   }
 
   getIcon(icon) {
-    return `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
+    return `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
   }
 }

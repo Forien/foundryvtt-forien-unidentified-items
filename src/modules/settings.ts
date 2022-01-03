@@ -98,6 +98,15 @@ function registerSettingMenus() {
     type: ItemProperties,
     restricted: true,
   });
+
+  getGame().settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'removeLabelButtonsSheetHeader', {
+    name: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.name`),
+    hint: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.hint`),
+    scope: 'world',
+    config: true,
+    type: Boolean,
+    default: true,
+  });
 }
 
 /**

@@ -455,7 +455,10 @@ export default class Identification {
       return null;
     }
     return await pack.getDocument(itemId).then((ent) => {
-      delete ent?.data._id;
+      //delete ent?.data._id;
+      if(ent?.data?._id){
+        ent.data._id = '';
+      }
       return ent;
     });
   }
