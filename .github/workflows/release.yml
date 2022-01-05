@@ -61,14 +61,14 @@ jobs:
         uses: ncipollo/release-action@238505795d6d58d49b78980f271f70dfcd8efb35
         with:
           allowUpdates: true
-          name: ${{ env.RELEASE_VERSION }}
+          name: ${{steps.get_version.outputs.version}}
           body: |
             ${{ steps.Changelog.outputs.changelog }}
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: './src/module.json,./package/module.zip'
-          tag: ${{ env.RELEASE_VERSION }}
+          tag: ${{steps.get_version.outputs.version}}
 
 
       # Publish the release to FoundryVTT's package repository.
@@ -78,5 +78,5 @@ jobs:
           username: ${{ secrets.FOUNDRY_ADMIN_USER }}
           password: ${{ secrets.FOUNDRY_ADMIN_PW }}
           module-id: 288
-          manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_VERSION }}/module.json
+          manifest-url: https://github.com/${{ github.repository }}/releases/download/${{steps.get_version.outputs.version}}/module.json
           manifest-file: ./src/module.json
