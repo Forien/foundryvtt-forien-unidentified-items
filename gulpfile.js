@@ -218,6 +218,8 @@ function buildReplace() {
     .pipe(replace('export const game = getGame();', ''))
     .pipe(replace('export const canvas = getCanvas();', ''))
     .pipe(replace('import { canvas, game }', '//import { canvas, game }'))
+    .pipe(replace('import { game }', '//import { game }'))
+    .pipe(replace('import { canvas }', '//import { canvas }'))
     .pipe(gulp.dest('dist'));
 };
 
