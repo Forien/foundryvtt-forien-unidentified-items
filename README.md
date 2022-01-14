@@ -21,6 +21,7 @@
 This module aims to provides system agnostic solution to handle unidentified items and their identification for games via Foundry Virtual Tabletop.
 
 ## NOTE: If you are a javascript developer and not a typescript developer, you can just use the javascript files under the dist folder
+
 # Installation
 
 It's always easiest to install modules from the in game add-on browser.
@@ -34,7 +35,6 @@ To install this module manually:
 5.  Don't forget to enable the module in game using the "Manage Module" button
 
 # Usage
-
 
 Right click on items in sidebar, or use buttons on Item Sheet's header to Mystify an item. It will create new apparently blank item.
 
@@ -442,7 +442,7 @@ npm run-script package
 
 ## Issues
 
-Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/ShoyuVanilla/FoundryVTT-Chat-Portrait/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
 
 ## License
 
