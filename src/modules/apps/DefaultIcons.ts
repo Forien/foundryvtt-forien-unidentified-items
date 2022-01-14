@@ -1,5 +1,6 @@
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from '../settings';
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from '../settings';
 import { i18n } from './../../init';
+import { canvas, game } from '../settings';
 
 export default class DefaultIcons extends FormApplication {
   static get defaultOptions(): any {
@@ -12,7 +13,7 @@ export default class DefaultIcons extends FormApplication {
       closeOnSubmit: true,
     });
 
-    if (getGame().system.id === 'wfrp4e') {
+    if (game.system.id === 'wfrp4e') {
       options.classes.push('wfrp');
     }
     return options;
@@ -93,15 +94,15 @@ export default class DefaultIcons extends FormApplication {
   }
 
   loadSettings(): DefaultIcons {
-    return <DefaultIcons>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+    return <DefaultIcons>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
   }
 
   async saveSettings(data): Promise<DefaultIcons> {
-    return <DefaultIcons>await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', data);
+    return <DefaultIcons>await game.settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', data);
   }
 
   getItemTypes(): string[] {
-    return Object.keys(getGame().system.model.Item);
+    return Object.keys(game.system.model.Item);
   }
 
   getIcon(icon): string {

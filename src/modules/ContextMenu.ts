@@ -1,26 +1,27 @@
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './settings';
+import { canvas, game } from './settings';
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
     const getOrigData = (li) => {
       const id = li[0].dataset.documentId;
-      const item = <Item>getGame().items?.get(id);
+      const item = <Item>game.items?.get(id);
 
       return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
     };
 
     const mystifyCondition = (li) => {
-      if (!getGame().user?.isGM) return false;
+      if (!game.user?.isGM) return false;
       const origData = getOrigData(li);
-      const allowNested = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems');
+      const allowNested = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems');
 
       return !origData || allowNested;
     };
 
     const identifyCondition = (li) => {
-      if (!getGame().user?.isGM) return false;
+      if (!game.user?.isGM) return false;
       const origData = getOrigData(li);
 
       return !!origData;
@@ -73,7 +74,7 @@ export default function registerContextMenuHook() {
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = getGame().items?.get(id);
+        const item = game.items?.get(id);
         Identification.identify(item);
       },
     });
@@ -84,7 +85,7 @@ export default function registerContextMenuHook() {
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = <Item>getGame().items?.get(id);
+        const item = <Item>game.items?.get(id);
         const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
         origData.isAbstract = true;
         //@ts-ignore

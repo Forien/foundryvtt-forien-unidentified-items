@@ -1,6 +1,6 @@
 import { i18n } from '../../init';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from '../settings';
-
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from '../settings';
+import { canvas, game } from '../settings';
 export default class ItemProperties extends FormApplication {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
@@ -16,7 +16,7 @@ export default class ItemProperties extends FormApplication {
       tabs: [{ navSelector: '.nav-tabs', contentSelector: '.nav-body' }],
     });
 
-    if (getGame().system.id === 'wfrp4e') {
+    if (game.system.id === 'wfrp4e') {
       options.classes.push('wfrp');
     }
     return options;
@@ -56,7 +56,7 @@ export default class ItemProperties extends FormApplication {
   }
 
   getProperties(): Map<string, any> {
-    const types = Object.entries(getGame().system.model.Item);
+    const types = Object.entries(game.system.model.Item);
     const properties = new Map<string, any>(types);
     properties.forEach((value, key, map) => {
       map.set(key, Object.keys(flattenObject(value)));
@@ -81,15 +81,15 @@ export default class ItemProperties extends FormApplication {
   }
 
   loadSettings(): any {
-    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+    return game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
   }
 
   async saveSettings(data) {
-    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', data);
+    return await game.settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', data);
   }
 
   getItemTypes() {
-    return Object.keys(getGame().system.model.Item);
+    return Object.keys(game.system.model.Item);
   }
 
   getIcon(icon) {

@@ -1,6 +1,7 @@
 import { i18n, i18nFormat } from './../init';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
-import { FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
+import { FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './settings';
+import { canvas, game } from './settings';
 
 export default class Identification {
   /**
@@ -14,7 +15,7 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: undefined }) {
-    if (!getGame().user?.isGM) {
+    if (!game.user?.isGM) {
       return;
     }
     const item = await this._itemFromUuid(itemUuid);
@@ -35,7 +36,7 @@ export default class Identification {
 
     let mystifiedItem;
     if (options.replace) {
-      const template = { data: getGame().system.model.Item[item.type] };
+      const template = { data: game.system.model.Item[item.type] };
       mystifiedData = mergeObject(template, mystifiedData);
       await item.update(mystifiedData);
       mystifiedItem = item;
@@ -142,7 +143,7 @@ export default class Identification {
         } else if (data.data) {
           item = data.data;
         } else {
-          const witem = getGame().items?.get(data.id);
+          const witem = game.items?.get(data.id);
           if (!witem) {
             return;
           }
@@ -185,7 +186,7 @@ export default class Identification {
           {
             key: property,
             orig: getProperty(sourceData, `data.${property}`),
-            default: getProperty(<object>getGame().system?.model.Item[sourceData.type], property),
+            default: getProperty(<object>game.system?.model.Item[sourceData.type], property),
             value: properties[property],
           },
         ];
@@ -390,13 +391,13 @@ export default class Identification {
    * @private
    */
   static _getTypeProperties(origData) {
-    const defaultProperties = <any>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+    const defaultProperties = <any>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
 
     return defaultProperties[origData.type];
   }
 
   static keepOriginalImage() {
-    return <string>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'keepOldIcon');
+    return <string>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'keepOldIcon');
   }
 
   /**
@@ -406,7 +407,7 @@ export default class Identification {
    * @private
    */
   static _getMystifiedMeta(origData): MystifiedData {
-    const iconSettings = <string[]>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+    const iconSettings = <string[]>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
     const iconType =
       <string>getProperty(iconSettings, origData.type) ||
       `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON}`;
@@ -430,7 +431,7 @@ export default class Identification {
 
     if (embeddedName === 'OwnedItem' || embeddedName === 'Item') {
       if (parts.length === 4) {
-        const actor = <Actor>getGame().actors?.get(entityId);
+        const actor = <Actor>game.actors?.get(entityId);
         if (actor === null) return null;
 
         return <Item>actor.items.get(embeddedId);
@@ -450,13 +451,13 @@ export default class Identification {
    * @private
    */
   static async _getItemFromPack(packId, itemId) {
-    const pack = <CompendiumCollection<CompendiumCollection.Metadata>>getGame().packs.get(packId);
+    const pack = <CompendiumCollection<CompendiumCollection.Metadata>>game.packs.get(packId);
     if (pack.metadata.entity !== 'Item') {
       return null;
     }
     return await pack.getDocument(itemId).then((ent) => {
       //delete ent?.data._id;
-      if(ent?.data?._id){
+      if (ent?.data?._id) {
         ent.data._id = '';
       }
       return ent;

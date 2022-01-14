@@ -15,9 +15,10 @@ import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modul
 // Import TypeScript modules
 import registerDerivedItemSheetClass from './modules/ItemSheet';
 import registerContextMenuHook from './modules/ContextMenu';
-import { checkSettingsInitialized, getGame } from './modules/settings';
+import { checkSettingsInitialized } from './modules/settings';
 import Identification from './modules/Identification';
 import registerItemClassMethod from './modules/Item';
+import { canvas, game } from './modules/settings';
 
 export let debugEnabled = 0;
 // 0 = none, warnings = 1, debug = 2, all = 3
@@ -25,19 +26,19 @@ export const debug = (...args) => {
   if (debugEnabled > 1) console.log(`DEBUG:${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 };
 export const log = function (...args) {
-  console.log(`forien-unidentified-items | `, ...args);
+  console.log(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 };
 export const warn = (...args) => {
-  if (debugEnabled > 0) console.warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
+  console.warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 };
 export const error = (...args) => console.error(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
 export const timelog = (...args) => warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, Date.now(), ...args);
 
 export const i18n = (key) => {
-  return getGame().i18n.localize(key);
+  return game.i18n.localize(key);
 };
 export const i18nFormat = (key, data = {}) => {
-  return getGame().i18n.format(key, data);
+  return game.i18n.format(key, data);
 };
 
 export const setDebugLevel = (debugText: string) => {

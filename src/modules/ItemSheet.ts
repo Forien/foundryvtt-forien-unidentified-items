@@ -1,7 +1,8 @@
 import { i18n } from '../init';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
+import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './settings';
+import { canvas, game } from './settings';
 
 export default function registerDerivedItemSheetClass() {
   for (const k in CONFIG.Item.sheetClasses) {
@@ -29,7 +30,7 @@ function getItemSheetClass(cls, sheet) {
      */
     get title() {
       let title = super.title;
-      if (!getGame().user?.isGM) {
+      if (!game.user?.isGM) {
         return title;
       }
       if (this.item.isMystified()) {
@@ -49,12 +50,14 @@ function getItemSheetClass(cls, sheet) {
     _getHeaderButtons() {
       const buttons = super._getHeaderButtons();
       const isAbstract = this.item.data.isAbstract || false;
-      const removeLabelButtonsSheetHeader = <boolean>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME,'removeLabelButtonsSheetHeader');
+      const removeLabelButtonsSheetHeader = <boolean>(
+        game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'removeLabelButtonsSheetHeader')
+      );
 
       let permissions = {
-        canIdentify: getGame().user?.isGM,
-        canPeek: getGame().user?.isGM,
-        canMystify: getGame().user?.isGM,
+        canIdentify: game.user?.isGM,
+        canPeek: game.user?.isGM,
+        canMystify: game.user?.isGM,
       };
       const hookPermissions = duplicate(permissions);
       Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);

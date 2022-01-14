@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.4.1
+
+- Add gulp-replace on the build process, for replace all the `getGame()` in `game` and `getCanvas()` in `canvas`, so the javascript in similar to the vanilla javascript used from other developer
+- Update typescript library
+## v0.4.0
+
+- Merge 0.3.18
+- Add some bug fixing for FoundryVTT 9
+- Update manifest.json for FOundryVTT 9
 ## v0.3.18
 
 - Add colors to symbol link for more flavor
