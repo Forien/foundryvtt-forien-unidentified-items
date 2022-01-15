@@ -227,7 +227,7 @@ function buildReplace() {
  * Copy static files
  */
 async function copyFiles() {
-  const statics = ['lang', 'fonts', 'assets', 'icons', 'templates', 'module.json', 'system.json', 'template.json'];
+  const statics = ['lang', 'fonts', 'assets', 'icons', 'templates', 'packs', 'module.json', 'system.json', 'template.json'];
   try {
     for (const file of statics) {
       if (fs.existsSync(path.join('src', file))) {
@@ -270,6 +270,7 @@ async function clean() {
     files.push(
       'lang',
       'templates',
+	  'packs',
       'assets',
       'icons',
       'module',
