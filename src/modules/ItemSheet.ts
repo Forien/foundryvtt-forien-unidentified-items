@@ -1,15 +1,20 @@
-import { i18n } from '../init';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
+import { i18n } from './lib/lib';
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './settings';
 import { canvas, game } from './settings';
 
 export default function registerDerivedItemSheetClass() {
-  for (const k in CONFIG.Item.sheetClasses) {
-    for (const l in CONFIG.Item.sheetClasses[k]) {
-      const cls = CONFIG.Item.sheetClasses[k][l].cls;
-      //@ts-ignore
-      CONFIG.Item.sheetClasses[k][l].cls = getItemSheetClass(cls, l);
+  // for (const k in CONFIG.Item.sheetClasses) {
+  //   for (const l in CONFIG.Item.sheetClasses[k]) {
+  //     const cls = CONFIG.Item.sheetClasses[k][l].cls;
+  //     CONFIG.Item.sheetClasses[k][l].cls = getItemSheetClass(cls, l);
+  //   }
+  // }
+  for (const k in CONFIG.Item.documentClass) {
+    for (const l in CONFIG.Item.documentClass[k]) {
+      const cls = CONFIG.Item.documentClass[k][l].cls;
+      CONFIG.Item.documentClass[k][l].cls = getItemSheetClass(cls, l);
     }
   }
 }

@@ -1,5 +1,6 @@
-import { i18n, i18nFormat } from './../init';
+import DefaultIcons from './apps/DefaultIcons';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
+import { i18n, i18nFormat } from './lib/lib';
 import { FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './settings';
 import { canvas, game } from './settings';
 
@@ -407,7 +408,7 @@ export default class Identification {
    * @private
    */
   static _getMystifiedMeta(origData): MystifiedData {
-    const iconSettings = <string[]>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+    const iconSettings = <DefaultIcons>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
     const iconType =
       <string>getProperty(iconSettings, origData.type) ||
       `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON}`;

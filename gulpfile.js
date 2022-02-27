@@ -131,15 +131,15 @@ function buildTS() {
       .src('src/**/*.ts')
       .pipe(tsConfig())
 
-      // eslint() attaches the lint output to the "eslint" property
-      // of the file object so it can be used by other modules.
-      .pipe(eslint())
-      // eslint.format() outputs the lint results to the console.
-      // Alternatively use eslint.formatEach() (see Docs).
-      .pipe(eslint.format())
-      // To have the process exit with an error code (1) on
-      // lint error, return the stream and pipe to failAfterError last.
-      .pipe(eslint.failAfterError())
+      // // eslint() attaches the lint output to the "eslint" property
+      // // of the file object so it can be used by other modules.
+      // .pipe(eslint())
+      // // eslint.format() outputs the lint results to the console.
+      // // Alternatively use eslint.formatEach() (see Docs).
+      // .pipe(eslint.format())
+      // // To have the process exit with an error code (1) on
+      // // lint error, return the stream and pipe to failAfterError last.
+      // .pipe(eslint.failAfterError())
 
       .pipe(gulp.dest('dist'))
   );
@@ -153,15 +153,15 @@ function buildJS() {
     gulp
       .src('src/**/*.js')
 
-      // eslint() attaches the lint output to the "eslint" property
-      // of the file object so it can be used by other modules.
-      .pipe(eslint())
-      // eslint.format() outputs the lint results to the console.
-      // Alternatively use eslint.formatEach() (see Docs).
-      .pipe(eslint.format())
-      // To have the process exit with an error code (1) on
-      // lint error, return the stream and pipe to failAfterError last.
-      .pipe(eslint.failAfterError())
+      // // eslint() attaches the lint output to the "eslint" property
+      // // of the file object so it can be used by other modules.
+      // .pipe(eslint())
+      // // eslint.format() outputs the lint results to the console.
+      // // Alternatively use eslint.formatEach() (see Docs).
+      // .pipe(eslint.format())
+      // // To have the process exit with an error code (1) on
+      // // lint error, return the stream and pipe to failAfterError last.
+      // .pipe(eslint.failAfterError())
 
       .pipe(gulp.dest('dist'))
   );
@@ -175,15 +175,15 @@ function buildMJS() {
     gulp
       .src('src/**/*.mjs')
 
-      // eslint() attaches the lint output to the "eslint" property
-      // of the file object so it can be used by other modules.
-      .pipe(eslint())
-      // eslint.format() outputs the lint results to the console.
-      // Alternatively use eslint.formatEach() (see Docs).
-      .pipe(eslint.format())
-      // To have the process exit with an error code (1) on
-      // lint error, return the stream and pipe to failAfterError last.
-      .pipe(eslint.failAfterError())
+      // // eslint() attaches the lint output to the "eslint" property
+      // // of the file object so it can be used by other modules.
+      // .pipe(eslint())
+      // // eslint.format() outputs the lint results to the console.
+      // // Alternatively use eslint.formatEach() (see Docs).
+      // .pipe(eslint.format())
+      // // To have the process exit with an error code (1) on
+      // // lint error, return the stream and pipe to failAfterError last.
+      // .pipe(eslint.failAfterError())
 
       .pipe(gulp.dest('dist'))
   );
@@ -270,7 +270,7 @@ async function clean() {
     files.push(
       'lang',
       'templates',
-	  'packs',
+      'packs',
       'assets',
       'icons',
       'module',
@@ -375,7 +375,7 @@ async function packageBuild() {
       fs.ensureDirSync('package');
 
       // Initialize the zip file
-      const zipName = 'module.zip';
+      const zipName = 'module.zip'; // `${manifest.file.name}-v${manifest.file.version}.zip`
       const zipFile = fs.createWriteStream(path.join('package', zipName));
       const zip = archiver('zip', { zlib: { level: 9 } });
 

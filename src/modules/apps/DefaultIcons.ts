@@ -1,8 +1,8 @@
+import { i18n } from '../lib/lib';
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from '../settings';
-import { i18n } from './../../init';
 import { canvas, game } from '../settings';
 
-export default class DefaultIcons extends FormApplication {
+export default class DefaultIcons extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-default-icons',

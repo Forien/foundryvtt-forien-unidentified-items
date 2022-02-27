@@ -1,7 +1,7 @@
-import { i18n } from '../../init';
+import { i18n } from '../lib/lib';
 import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from '../settings';
 import { canvas, game } from '../settings';
-export default class ItemProperties extends FormApplication {
+export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-item-properties',
