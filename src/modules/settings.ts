@@ -1,7 +1,8 @@
+import API from './api';
 import DefaultIcons from './apps/DefaultIcons';
 import ItemProperties from './apps/ItemProperties';
 import CONSTANTS from './constants';
-import { dialogWarning, i18n, warn } from './lib/lib';
+import { dialogWarning, i18n, log, warn } from './lib/lib';
 import { SYSTEMS } from './systems';
 
 export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = 'forien-unidentified-items';
@@ -339,84 +340,85 @@ export async function checkSystem() {
 //   });
 // }
 
-// /**
-//  * Checks if options exist, if not, orders their initialization
-//  */
-// export function checkSettingsInitialized() {
-//   if (!game.user?.isGM) {
-//     return;
-//   }
-//   const defaultIcons = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
-//   const itemProperties = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+/**
+ * Checks if options exist, if not, orders their initialization
+ */
+export function checkSettingsInitialized() {
+  if (!game.user?.isGM) {
+    return;
+  }
+  const defaultIcons = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+  const itemProperties = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
 
-//   if (checkObjEmpty(defaultIcons)) {
-//     initializeDefaultIcons();
-//   }
+  if (checkObjEmpty(defaultIcons)) {
+    initializeDefaultIcons();
+  }
 
-//   if (checkObjEmpty(itemProperties)) {
-//     initializeItemProperties();
-//   }
-// }
+  if (checkObjEmpty(itemProperties)) {
+    initializeItemProperties();
+  }
+}
 
-// function checkObjEmpty(obj) {
-//   return Object.keys(obj).length === 0 && obj.constructor === Object;
-// }
+function checkObjEmpty(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
 
-// /**
-//  * One-time settings initialization function
-//  *
-//  * @hook "forien-unidentified-items:onInitializeDefaultIcons"
-//  */
-// function initializeDefaultIcons() {
-//   const di = new DefaultIcons({}, {});
-//   let settings = di.getSettings();
-//   const icons = duplicate(settings);
-//   console.log(JSON.stringify(icons));
-//   Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeDefaultIcons`, icons);
-//   settings = mergeObject(settings, icons);
-//   di.saveSettings(settings);
-//   log(` Initialized default item icons.`);
-//   ui.notifications?.info(
-//     game.i18n.localize(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Notifications.defaultIconsInitialized`),
-//     { permanent: true },
-//   );
-// }
+/**
+ * One-time settings initialization function
+ *
+ * @hook "forien-unidentified-items:onInitializeDefaultIcons"
+ */
+function initializeDefaultIcons() {
+  const di = new DefaultIcons({}, {});
+  let settings = di.getSettings();
+  const icons = duplicate(settings);
+  console.log(JSON.stringify(icons));
+  Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeDefaultIcons`, icons);
+  settings = mergeObject(settings, icons);
+  di.saveSettings(settings);
+  log(` Initialized default item icons.`);
+  ui.notifications?.info(
+    game.i18n.localize(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Notifications.defaultIconsInitialized`),
+    { permanent: true },
+  );
+}
 
-// /**
-//  * One-time settings initialization function
-//  *
-//  * @hook "forien-unidentified-items:onInitializeItemProperties"
-//  */
-// function initializeItemProperties() {
-//   const ip = new ItemProperties({}, {});
-//   let settings: any = ip.getSettings();
-//   settings = Object.entries(settings);
-//   settings = settings.map((type) => {
-//     let entries = Object.entries(type[1]);
-//     entries = entries.sort((a, b) => {
-//       if (a[0] < b[0]) {
-//         return -1;
-//       }
-//       if (a[0] > b[0]) {
-//         return 1;
-//       }
-//       return 0;
-//     });
-//     type[1] = Object.fromEntries(entries);
-//     return type;
-//   });
-//   settings = Object.fromEntries(settings);
-//   settings = setDefaultItemProperties(settings);
-//   const properties = duplicate(settings);
-//   Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeItemProperties`, properties);
-//   console.log(JSON.stringify(properties));
-//   settings = mergeObject(settings, properties);
-//   ip.saveSettings(settings);
-//   log(` Initialized default item properties.`);
-//   ui.notifications?.info(i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.defaultPropertiesInitialized`), {
-//     permanent: true,
-//   });
-// }
+/**
+ * One-time settings initialization function
+ *
+ * @hook "forien-unidentified-items:onInitializeItemProperties"
+ */
+function initializeItemProperties() {
+  const ip = new ItemProperties({}, {});
+  let settings: any = ip.getSettings();
+  settings = Object.entries(settings);
+  settings = settings.map((type) => {
+    let entries = Object.entries(type[1]);
+    entries = entries.sort((a, b) => {
+      if (a[0] < b[0]) {
+        return -1;
+      }
+      if (a[0] > b[0]) {
+        return 1;
+      }
+      return 0;
+    });
+    type[1] = Object.fromEntries(entries);
+    return type;
+  });
+  settings = Object.fromEntries(settings);
+  //settings = setDefaultItemProperties(settings);
+  settings = mergeObject(settings, API.DEFAULT_PROPERTIES);
+  const properties = duplicate(settings);
+  Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeItemProperties`, properties);
+  console.log(JSON.stringify(properties));
+  settings = mergeObject(settings, properties);
+  ip.saveSettings(settings);
+  log(` Initialized default item properties.`);
+  ui.notifications?.info(i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.defaultPropertiesInitialized`), {
+    permanent: true,
+  });
+}
 
 // /**
 //  * Function responsible for out-of-the-box integration with systems.

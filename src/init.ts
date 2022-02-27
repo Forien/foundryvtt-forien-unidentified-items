@@ -1,4 +1,4 @@
-import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modules/settings';
+import registerSettings, { checkSettingsInitialized, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modules/settings';
 /**
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
@@ -47,7 +47,7 @@ Hooks.once('setup', () => {
 /* ------------------------------------ */
 
 Hooks.once('ready', () => {
-  // checkSettingsInitialized();
+  checkSettingsInitialized();
   registerDerivedItemSheetClass();
   registerItemClassMethod();
 
