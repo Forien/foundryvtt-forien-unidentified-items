@@ -1,4 +1,4 @@
-import registerSettings, { checkSettingsInitialized, FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modules/settings';
+import registerSettings, { checkSettingsInitialized } from './modules/settings';
 /**
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
@@ -18,6 +18,7 @@ import registerContextMenuHook from './modules/ContextMenu';
 import Identification from './modules/Identification';
 import registerItemClassMethod from './modules/Item';
 import { canvas, game } from './modules/settings';
+import CONSTANTS from './modules/constants';
 
 /* ------------------------------------ */
 /* Initialize module					*/
@@ -28,7 +29,7 @@ Hooks.once('init', () => {
 
   registerContextMenuHook();
 
-  Hooks.callAll(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:afterInit`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterInit`);
 });
 
 /* ------------------------------------ */
@@ -39,7 +40,7 @@ Hooks.once('setup', () => {
   //@ts-ignore
   window.ForienIdentification = Identification;
 
-  Hooks.callAll(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:afterSetup`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
 });
 
 /* ------------------------------------ */
@@ -51,5 +52,5 @@ Hooks.once('ready', () => {
   registerDerivedItemSheetClass();
   registerItemClassMethod();
 
-  Hooks.callAll(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:afterReady`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
 });

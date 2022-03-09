@@ -1,12 +1,12 @@
+import CONSTANTS from '../constants';
 import { i18n } from '../lib/lib';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from '../settings';
 import { canvas, game } from '../settings';
 export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-item-properties',
-      template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
-      title: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.itemProperties.name`),
+      template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
+      title: i18n(`${CONSTANTS.MODULE_NAME}.itemProperties.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
@@ -81,11 +81,11 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
   }
 
   loadSettings(): any {
-    return game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+    return game.settings.get(CONSTANTS.MODULE_NAME, 'itemProperties');
   }
 
   async saveSettings(data) {
-    return await game.settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', data);
+    return await game.settings.set(CONSTANTS.MODULE_NAME, 'itemProperties', data);
   }
 
   getItemTypes() {
@@ -93,6 +93,6 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
   }
 
   getIcon(icon) {
-    return `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
+    return `/modules/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }

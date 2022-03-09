@@ -5,10 +5,6 @@ import CONSTANTS from './constants';
 import { dialogWarning, i18n, log, warn } from './lib/lib';
 import { SYSTEMS } from './systems';
 
-export const FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME = 'forien-unidentified-items';
-
-export const FORIEN_UNIDENTIFIED_ITEMS_DEFAULT_ICON = 'unidentified.png';
-
 export const game = getGame();
 export const canvas = getCanvas();
 
@@ -55,45 +51,45 @@ export default function registerSettings() {
   // =====================================================================
 
   //registerSettingMenus();
-  game.settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', {
-    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.name`,
-    label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.label`,
-    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.hint`,
+  game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'defaultIcons', {
+    name: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`,
+    label: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.label`,
+    hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
     icon: 'fas fa-image',
     type: DefaultIcons,
     restricted: true,
   });
 
-  game.settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
-    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.name`,
-    label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.label`,
-    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.hint`,
+  game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'itemProperties', {
+    name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,
+    label: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.label`,
+    hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
     icon: 'fas fa-cogs',
     type: ItemProperties,
     restricted: true,
   });
 
-  game.settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'removeLabelButtonsSheetHeader', {
-    name: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.name`),
-    hint: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.hint`),
+  game.settings.register(CONSTANTS.MODULE_NAME, 'removeLabelButtonsSheetHeader', {
+    name: i18n(`${CONSTANTS.MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.name`),
+    hint: i18n(`${CONSTANTS.MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.hint`),
     scope: 'world',
     config: true,
     type: Boolean,
     default: true,
   });
 
-  game.settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'keepOldIcon', {
-    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.keepOldIcon.name`,
-    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.keepOldIcon.hint`,
+  game.settings.register(CONSTANTS.MODULE_NAME, 'keepOldIcon', {
+    name: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.name`,
+    hint: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.hint`,
     scope: 'world',
     config: true,
     default: false,
     type: Boolean,
   });
 
-  game.settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems', {
-    name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.allowNestedItems.Name`,
-    hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.allowNestedItems.Hint`,
+  game.settings.register(CONSTANTS.MODULE_NAME, 'allowNestedItems', {
+    name: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Name`,
+    hint: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Hint`,
     scope: 'world',
     config: true,
     default: false,
@@ -276,7 +272,9 @@ export async function checkSystem() {
     return Dialog.prompt({
       title: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.dialogs.nosystemfound.title`),
       content: dialogWarning(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.dialogs.nosystemfound.content`)),
-      callback: () => {},
+      callback: () => {
+        // empty body just for avoid the error on eslint
+      },
     });
   }
 
@@ -312,27 +310,27 @@ export async function checkSystem() {
 //  * Registers settings menu (button)
 //  */
 // function registerSettingMenus() {
-//   game.settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', {
-//     name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.name`,
-//     label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.label`,
-//     hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.hint`,
+//   game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'defaultIcons', {
+//     name: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`,
+//     label: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.label`,
+//     hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
 //     icon: 'fas fa-image',
 //     type: DefaultIcons,
 //     restricted: true,
 //   });
 
-//   game.settings.registerMenu(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', {
-//     name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.name`,
-//     label: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.label`,
-//     hint: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.itemProperties.hint`,
+//   game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'itemProperties', {
+//     name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,
+//     label: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.label`,
+//     hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
 //     icon: 'fas fa-cogs',
 //     type: ItemProperties,
 //     restricted: true,
 //   });
 
-//   game.settings.register(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'removeLabelButtonsSheetHeader', {
-//     name: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.name`),
-//     hint: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.hint`),
+//   game.settings.register(CONSTANTS.MODULE_NAME, 'removeLabelButtonsSheetHeader', {
+//     name: i18n(`${CONSTANTS.MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.name`),
+//     hint: i18n(`${CONSTANTS.MODULE_NAME}.Setting.removeLabelButtonsSheetHeader.hint`),
 //     scope: 'world',
 //     config: true,
 //     type: Boolean,
@@ -347,8 +345,8 @@ export function checkSettingsInitialized() {
   if (!game.user?.isGM) {
     return;
   }
-  const defaultIcons = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
-  const itemProperties = game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+  const defaultIcons = game.settings.get(CONSTANTS.MODULE_NAME, 'defaultIcons');
+  const itemProperties = game.settings.get(CONSTANTS.MODULE_NAME, 'itemProperties');
 
   if (checkObjEmpty(defaultIcons)) {
     initializeDefaultIcons();
@@ -373,12 +371,12 @@ function initializeDefaultIcons() {
   let settings = di.getSettings();
   const icons = duplicate(settings);
   console.log(JSON.stringify(icons));
-  Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeDefaultIcons`, icons);
+  Hooks.call(`${CONSTANTS.MODULE_NAME}:onInitializeDefaultIcons`, icons);
   settings = mergeObject(settings, icons);
   di.saveSettings(settings);
   log(` Initialized default item icons.`);
   ui.notifications?.info(
-    game.i18n.localize(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Notifications.defaultIconsInitialized`),
+    game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`),
     { permanent: true },
   );
 }
@@ -410,12 +408,12 @@ function initializeItemProperties() {
   //settings = setDefaultItemProperties(settings);
   settings = mergeObject(settings, API.DEFAULT_PROPERTIES);
   const properties = duplicate(settings);
-  Hooks.call(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:onInitializeItemProperties`, properties);
+  Hooks.call(`${CONSTANTS.MODULE_NAME}:onInitializeItemProperties`, properties);
   console.log(JSON.stringify(properties));
   settings = mergeObject(settings, properties);
   ip.saveSettings(settings);
   log(` Initialized default item properties.`);
-  ui.notifications?.info(i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.defaultPropertiesInitialized`), {
+  ui.notifications?.info(i18n(`${CONSTANTS.MODULE_NAME}.defaultPropertiesInitialized`), {
     permanent: true,
   });
 }

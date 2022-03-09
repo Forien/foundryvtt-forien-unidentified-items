@@ -1,13 +1,13 @@
+import CONSTANTS from '../constants';
 import { i18n } from '../lib/lib';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from '../settings';
 import { canvas, game } from '../settings';
 
 export default class DefaultIcons extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-default-icons',
-      template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
-      title: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.name`),
+      template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
+      title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
@@ -94,11 +94,11 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
   }
 
   loadSettings(): DefaultIcons {
-    return <DefaultIcons>game.settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+    return <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, 'defaultIcons');
   }
 
   async saveSettings(data): Promise<DefaultIcons> {
-    return <DefaultIcons>await game.settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', data);
+    return <DefaultIcons>await game.settings.set(CONSTANTS.MODULE_NAME, 'defaultIcons', data);
   }
 
   getItemTypes(): string[] {
@@ -106,6 +106,6 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
   }
 
   getIcon(icon): string {
-    return `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
+    return `/modules/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }
