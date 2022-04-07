@@ -1,6 +1,5 @@
+import type DefaultIcons from './apps/DefaultIcons';
 import CONSTANTS from './constants';
-import { canvas, game } from './settings';
-import DefaultIcons from './apps/DefaultIcons';
 
 const API = {
   // effectInterface: EffectInterface,

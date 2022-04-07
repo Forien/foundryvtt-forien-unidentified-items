@@ -210,18 +210,18 @@ function buildSASS() {
   return gulp.src('src/**/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist'));
 }
 
-/**
- * Build Replace
- */
-function buildReplace() {
-  return gulp.src('dist/**/*.js')
-    .pipe(replace('export const game = getGame();', ''))
-    .pipe(replace('export const canvas = getCanvas();', ''))
-    .pipe(replace('import { canvas, game }', '//import { canvas, game }'))
-    .pipe(replace('import { game }', '//import { game }'))
-    .pipe(replace('import { canvas }', '//import { canvas }'))
-    .pipe(gulp.dest('dist'));
-};
+// /**
+//  * Build Replace
+//  */
+// function buildReplace() {
+//   return gulp.src('dist/**/*.js')
+//     .pipe(replace('export const game = getGame();', ''))
+//     .pipe(replace('export const canvas = getCanvas();', ''))
+//     .pipe(replace('import { canvas, game }', '//import { canvas, game }'))
+//     .pipe(replace('import { game }', '//import { game }'))
+//     .pipe(replace('import { canvas }', '//import { canvas }'))
+//     .pipe(gulp.dest('dist'));
+// };
 
 /**
  * Copy static files
@@ -508,7 +508,7 @@ const execGit = gulp.series(gitAdd, gitCommit, gitTag);
 
 const execBuild = gulp.parallel(buildTS, buildJS, buildMJS, buildCSS, buildLess, buildSASS, copyFiles);
 
-exports.build = gulp.series(clean, execBuild, buildReplace);
+exports.build = gulp.series(clean, execBuild); // , buildReplace
 exports.watch = buildWatch;
 exports.clean = clean;
 exports.link = linkUserData;

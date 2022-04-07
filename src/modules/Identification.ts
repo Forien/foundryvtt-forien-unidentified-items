@@ -1,8 +1,7 @@
-import DefaultIcons from './apps/DefaultIcons';
+import type DefaultIcons from './apps/DefaultIcons';
 import CONSTANTS from './constants';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import { i18n, i18nFormat } from './lib/lib';
-import { canvas, game } from './settings';
 
 export default class Identification {
   /**
@@ -427,15 +426,15 @@ export default class Identification {
    * @private
    */
   static async _itemFromUuid(uuid: string): Promise<Item | null> {
-    const parts = uuid.split('.');
+    const parts = <string[]>uuid.split('.');
     const [entityName, entityId, embeddedName, embeddedId] = parts;
 
     if (embeddedName === 'OwnedItem' || embeddedName === 'Item') {
       if (parts.length === 4) {
-        const actor = <Actor>game.actors?.get(entityId);
+        const actor = <Actor>game.actors?.get(<string>entityId);
         if (actor === null) return null;
 
-        return <Item>actor.items.get(embeddedId);
+        return <Item>actor.items.get(<string>embeddedId);
       }
     } else {
       return <Item>await fromUuid(uuid);

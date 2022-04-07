@@ -1,4 +1,3 @@
-import { game } from './settings';
 // ↓ IMPORT SYSTEMS HERE ↓
 import dnd5e from './systems/dnd5e';
 import pf2e from './systems/pf2e';

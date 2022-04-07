@@ -1,6 +1,5 @@
 import CONSTANTS from '../constants';
 import { i18n } from '../lib/lib';
-import { canvas, game } from '../settings';
 export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
@@ -42,7 +41,7 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     const settings = {};
 
     data.sort().map((d) => {
-      const type = d[0].split('.', 1)[0];
+      const type = <string>d[0].split('.', 1)[0];
       const property = d[0].replace(`${type}.`, '');
       const value = d[1];
 

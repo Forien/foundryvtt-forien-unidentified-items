@@ -17,7 +17,6 @@ import registerDerivedItemSheetClass from './modules/ItemSheet';
 import registerContextMenuHook from './modules/ContextMenu';
 import Identification from './modules/Identification';
 import registerItemClassMethod from './modules/Item';
-import { canvas, game } from './modules/settings';
 import CONSTANTS from './modules/constants';
 
 /* ------------------------------------ */

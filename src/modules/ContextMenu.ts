@@ -1,7 +1,6 @@
 import CONSTANTS from './constants';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
-import { canvas, game } from './settings';
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {

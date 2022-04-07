@@ -1,5 +1,4 @@
 import CONSTANTS from '../constants';
-import { canvas, game } from '../settings';
 
 // =============================
 // Module Generic function
@@ -128,7 +127,7 @@ export function getFirstPlayerTokenSelected(): Token | null {
     return null;
     //}
   }
-  return selectedTokens[0];
+  return <Token>selectedTokens[0];
 }
 
 /**
@@ -145,7 +144,7 @@ export function getFirstPlayerToken(): Token | null {
     return null;
   }
   // If exactly one token is selected, take that
-  token = controlled[0];
+  token = <Token>controlled[0];
   if (!token) {
     if (!controlled.length || controlled.length == 0) {
       // If no token is selected use the token of the users character

@@ -2,7 +2,6 @@ import CONSTANTS from './constants';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
 import { i18n } from './lib/lib';
-import { canvas, game } from './settings';
 
 export default function registerDerivedItemSheetClass() {
   //@ts-ignore

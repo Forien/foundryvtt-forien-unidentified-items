@@ -1,6 +1,5 @@
 import CONSTANTS from '../constants';
 import { i18n } from '../lib/lib';
-import { canvas, game } from '../settings';
 
 export default class DefaultIcons extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
