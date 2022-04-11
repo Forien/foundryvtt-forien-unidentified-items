@@ -57,7 +57,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
     const settings = this.loadSettings();
     const types = this.getItemTypes();
 
-    for(const type of types){
+    for (const type of types) {
       const setting: any = getProperty(settings, type);
       if (!setting) {
         settings[type] = this.getIcon(this.guessIcon(type));
