@@ -15,7 +15,7 @@ export default class Identification {
    * @param {undefined|Object} options.mystifiedData - item data object that should become front of mystified item
    * @returns {Promise<void>}
    */
-  static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: MystifiedData }) {
+  static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: undefined }) {
     if (!game.user?.isGM) {
       return;
     }
@@ -27,7 +27,7 @@ export default class Identification {
     }
 
     const origData = duplicate(item);
-    let mystifiedData = <MystifiedData>options.mystifiedData;
+    let mystifiedData = <MystifiedData>(options.mystifiedData);
 
     if (mystifiedData === undefined) {
       mystifiedData = this._getMystifiedData(origData);
@@ -170,7 +170,7 @@ export default class Identification {
    * @param {object} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid, source: ItemData) {
+  static async mystifyAdvancedDialog(itemUuid, source:any = undefined) {
     const origItem = <Item>await this._itemFromUuid(itemUuid);
     const nameItem = origItem.data.name;
     const sourceData = <ItemData>(source ? source : duplicate(origItem));

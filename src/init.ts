@@ -53,3 +53,4 @@ Hooks.once('ready', () => {
 
   Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
 });
+
