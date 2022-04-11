@@ -1,3 +1,4 @@
+import type { ItemData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs';
 import type DefaultIcons from './apps/DefaultIcons';
 import CONSTANTS from './constants';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
@@ -14,7 +15,7 @@ export default class Identification {
    * @param {undefined|Object} options.mystifiedData - item data object that should become front of mystified item
    * @returns {Promise<void>}
    */
-  static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: undefined }) {
+  static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: MystifiedData }) {
     if (!game.user?.isGM) {
       return;
     }
@@ -26,7 +27,7 @@ export default class Identification {
     }
 
     const origData = duplicate(item);
-    let mystifiedData = <MystifiedData>(<unknown>options.mystifiedData);
+    let mystifiedData = <MystifiedData>options.mystifiedData;
 
     if (mystifiedData === undefined) {
       mystifiedData = this._getMystifiedData(origData);
@@ -169,10 +170,10 @@ export default class Identification {
    * @param {object} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid, source: any = undefined) {
+  static async mystifyAdvancedDialog(itemUuid, source: ItemData) {
     const origItem = <Item>await this._itemFromUuid(itemUuid);
     const nameItem = origItem.data.name;
-    const sourceData = source ? source : duplicate(origItem);
+    const sourceData = <ItemData>(source ? source : duplicate(origItem));
     const meta = this._getMystifiedMeta(sourceData);
     const keepOldIcon = this.keepOriginalImage();
 
@@ -246,12 +247,12 @@ export default class Identification {
             Object.entries(formDataBase.toObject()).filter((e) => e[1] !== false),
           );
 
-          Object.keys(formData).forEach((property) => {
+          for(const property of Object.keys(formData)) {
             if (property.startsWith('data.')) {
               delete formData[property];
               setProperty(formData, property, getProperty(sourceData, property));
             }
-          });
+          }
 
           //let options = {mystifiedData: formData};
           //if (replace) options.replace = true;
@@ -357,10 +358,11 @@ export default class Identification {
     const mystifiedData = this._getMystifiedMeta(origData);
     const itemProperties = this._getDefaultProperties(origData);
 
-    itemProperties.forEach((property) => {
-      property = 'data.' + property;
-      setProperty(mystifiedData, property, getProperty(origData, property));
-    });
+    for(const property of itemProperties) {
+      const propertyTmp = 'data.' + property;
+      const valueTmp = getProperty(origData, propertyTmp);
+      setProperty(mystifiedData, propertyTmp, valueTmp);
+    }
 
     if (this.keepOriginalImage()) {
       mystifiedData.img = origData.img;

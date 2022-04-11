@@ -57,9 +57,9 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
   getProperties(): Map<string, any> {
     const types = Object.entries(game.system.model.Item);
     const properties = new Map<string, any>(types);
-    properties.forEach((value, key, map) => {
-      map.set(key, Object.keys(flattenObject(value)));
-    });
+    for (const [key, value] of properties) {
+      properties.set(key, Object.keys(flattenObject(value)));
+    }
     return properties;
   }
 
@@ -68,13 +68,13 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     const types = this.getItemTypes();
     const properties: Map<string, any> = this.getProperties();
 
-    types.forEach((type) => {
+    for(const type of types) {
       const setting = getProperty(settings, type);
       if (!setting) {
         const typeProperties = properties.get(type);
         settings[type] = typeProperties.reduce((a, b) => ((a[b] = false), a), {});
       }
-    });
+    }
 
     return settings;
   }

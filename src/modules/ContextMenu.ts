@@ -60,7 +60,7 @@ export default function registerContextMenuHook() {
         condition: mystifyCondition,
         callback: (li) => {
           const id = li[0].dataset.documentId;
-          Identification.mystifyAdvancedDialog(`Item.${id}`);
+          Identification.mystifyAdvancedDialog(`Item.${id}`, undefined);
         },
       },
     ];
