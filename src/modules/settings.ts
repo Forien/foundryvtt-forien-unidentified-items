@@ -341,10 +341,9 @@ function initializeDefaultIcons() {
   settings = mergeObject(settings, icons);
   di.saveSettings(settings);
   log(` Initialized default item icons.`);
-  ui.notifications?.info(
-    game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`),
-    { permanent: true },
-  );
+  ui.notifications?.info(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`), {
+    permanent: true,
+  });
 }
 
 /**

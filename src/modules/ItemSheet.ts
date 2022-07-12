@@ -65,9 +65,7 @@ function getItemSheetClass(cls, sheet) {
       Hooks.call(`${CONSTANTS.MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
       permissions = mergeObject(permissions, hookPermissions);
 
-      const origData = <MystifiedData>(
-        this.item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA)
-      );
+      const origData = <MystifiedData>this.item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
 
       if (origData) {
         if (permissions.canIdentify && !isAbstract) {

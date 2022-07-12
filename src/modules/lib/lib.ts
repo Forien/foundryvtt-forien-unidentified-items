@@ -180,7 +180,7 @@ function getElevationPlaceableObject(placeableObject: any): number {
     _levels?.advancedLOS &&
     (placeableObject instanceof Token || placeableObject instanceof TokenDocument)
       ? //@ts-ignore
-        _levels.getTokenLOSheight(token)
+        _levels.getTokenLOSheight(placeableObject)
       : base.elevation ??
         base.flags['levels']?.elevation ??
         base.flags['levels']?.rangeBottom ??

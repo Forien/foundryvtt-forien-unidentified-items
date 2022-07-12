@@ -68,7 +68,7 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     const types = this.getItemTypes();
     const properties: Map<string, any> = this.getProperties();
 
-    for(const type of types) {
+    for (const type of types) {
       const setting = getProperty(settings, type);
       if (!setting) {
         const typeProperties = properties.get(type);
