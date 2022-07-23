@@ -27,7 +27,7 @@ export default class Identification {
     }
 
     const origData = duplicate(item);
-    let mystifiedData = <MystifiedData>(options.mystifiedData);
+    let mystifiedData = <MystifiedData>options.mystifiedData;
 
     if (mystifiedData === undefined) {
       mystifiedData = this._getMystifiedData(origData);
@@ -170,7 +170,7 @@ export default class Identification {
    * @param {object} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid, source:any = undefined) {
+  static async mystifyAdvancedDialog(itemUuid, source: any = undefined) {
     const origItem = <Item>await this._itemFromUuid(itemUuid);
     const nameItem = origItem.data.name;
     const sourceData = <ItemData>(source ? source : duplicate(origItem));

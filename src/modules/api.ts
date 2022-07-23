@@ -2,8 +2,6 @@ import type DefaultIcons from './apps/DefaultIcons';
 import CONSTANTS from './constants';
 
 const API = {
-  // effectInterface: EffectInterface,
-
   get DEFAULT_PROPERTIES(): any {
     return game.settings.get(CONSTANTS.MODULE_NAME, 'itemProperties');
   },

@@ -1,4 +1,3 @@
-import registerSettings, { checkSettingsInitialized } from './modules/settings';
 /**
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
@@ -16,6 +15,7 @@ import registerSettings, { checkSettingsInitialized } from './modules/settings';
 import registerDerivedItemSheetClass from './modules/ItemSheet';
 import registerContextMenuHook from './modules/ContextMenu';
 import Identification from './modules/Identification';
+import registerSettings, { checkSettingsInitialized } from './modules/settings';
 import registerItemClassMethod from './modules/Item';
 import CONSTANTS from './modules/constants';
 import API from './modules/api';
@@ -59,7 +59,7 @@ Hooks.once('ready', () => {
 
 // Add any additional hooks if necessary
 
-export interface ForienUnidentifiedItemModuleData {
+export interface MysteryItemModuleData {
   api: typeof API;
   socket: any;
 }
@@ -69,7 +69,7 @@ export interface ForienUnidentifiedItemModuleData {
  * @param api to set to game module.
  */
 export function setApi(api: typeof API): void {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as ForienUnidentifiedItemModuleData;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
   data.api = api;
 }
 
@@ -78,7 +78,7 @@ export function setApi(api: typeof API): void {
  * @returns Api from games module.
  */
 export function getApi(): typeof API {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as ForienUnidentifiedItemModuleData;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
   return data.api;
 }
 
@@ -87,7 +87,7 @@ export function getApi(): typeof API {
  * @param socket to set to game module.
  */
 export function setSocket(socket: any): void {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as ForienUnidentifiedItemModuleData;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
   data.socket = socket;
 }
 
@@ -96,19 +96,6 @@ export function setSocket(socket: any): void {
  * @returns Socket from games module.
  */
 export function getSocket() {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as ForienUnidentifiedItemModuleData;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
   return data.socket;
 }
-
-Hooks.once('libChangelogsReady', function () {
-  //@ts-ignore
-  libChangelogs.register(
-    CONSTANTS.MODULE_NAME,
-    `
-    - Update typescript to 9
-    - Abbandoned support for 0.8.9
-    - Apply new design pattern to the project
-  `,
-    'minor',
-  );
-});
