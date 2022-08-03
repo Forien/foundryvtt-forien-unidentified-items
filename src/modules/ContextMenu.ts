@@ -1,26 +1,26 @@
+import CONSTANTS from './constants';
 import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
 import Identification from './Identification';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from './settings';
 
 export default function registerContextMenuHook() {
   Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
     const getOrigData = (li) => {
       const id = li[0].dataset.documentId;
-      const item = <Item>getGame().items?.get(id);
+      const item = <Item>game.items?.get(id);
 
-      return item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
+      return item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
     };
 
     const mystifyCondition = (li) => {
-      if (!getGame().user?.isGM) return false;
+      if (!game.user?.isGM) return false;
       const origData = getOrigData(li);
-      const allowNested = getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'allowNestedItems');
+      const allowNested = game.settings.get(CONSTANTS.MODULE_NAME, 'allowNestedItems');
 
       return !origData || allowNested;
     };
 
     const identifyCondition = (li) => {
-      if (!getGame().user?.isGM) return false;
+      if (!game.user?.isGM) return false;
       const origData = getOrigData(li);
 
       return !!origData;
@@ -28,7 +28,7 @@ export default function registerContextMenuHook() {
 
     const mystifyOptions = [
       {
-        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Mystify`,
+        name: `${CONSTANTS.MODULE_NAME}.Mystify`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -37,7 +37,7 @@ export default function registerContextMenuHook() {
         },
       },
       {
-        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.MystifyReplace`,
+        name: `${CONSTANTS.MODULE_NAME}.MystifyReplace`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -46,7 +46,7 @@ export default function registerContextMenuHook() {
         },
       },
       {
-        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.MystifyAs`,
+        name: `${CONSTANTS.MODULE_NAME}.MystifyAs`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -55,7 +55,7 @@ export default function registerContextMenuHook() {
         },
       },
       {
-        name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.MystifyAdvanced`,
+        name: `${CONSTANTS.MODULE_NAME}.MystifyAdvanced`,
         icon: '<i class="far fa-eye-slash"></i>',
         condition: mystifyCondition,
         callback: (li) => {
@@ -68,24 +68,24 @@ export default function registerContextMenuHook() {
     entryOptions.unshift(...mystifyOptions);
 
     entryOptions.unshift({
-      name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Identify`,
+      name: `${CONSTANTS.MODULE_NAME}.Identify`,
       icon: '<i class="fas fa-search"></i>',
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = getGame().items?.get(id);
+        const item = game.items?.get(id);
         Identification.identify(item);
       },
     });
 
     entryOptions.unshift({
-      name: `${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Peek`,
+      name: `${CONSTANTS.MODULE_NAME}.Peek`,
       icon: '<i class="far fa-eye"></i>',
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = <Item>getGame().items?.get(id);
-        const origData = <MystifiedData>item.getFlag(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, MystifiedFlags.ORIG_DATA);
+        const item = <Item>game.items?.get(id);
+        const origData = <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
         origData.isAbstract = true;
         //@ts-ignore
         const entity = new CONFIG.Item.documentClass(origData, { editable: false });

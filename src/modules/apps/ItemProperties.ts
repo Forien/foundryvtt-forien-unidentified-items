@@ -1,12 +1,11 @@
-import { i18n } from '../../init';
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from '../settings';
-
-export default class ItemProperties extends FormApplication {
+import CONSTANTS from '../constants';
+import { i18n } from '../lib/lib';
+export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-item-properties',
-      template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
-      title: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.itemProperties.name`),
+      template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
+      title: i18n(`${CONSTANTS.MODULE_NAME}.itemProperties.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
@@ -16,7 +15,7 @@ export default class ItemProperties extends FormApplication {
       tabs: [{ navSelector: '.nav-tabs', contentSelector: '.nav-body' }],
     });
 
-    if (getGame().system.id === 'wfrp4e') {
+    if (game.system.id === 'wfrp4e') {
       options.classes.push('wfrp');
     }
     return options;
@@ -42,7 +41,7 @@ export default class ItemProperties extends FormApplication {
     const settings = {};
 
     data.sort().map((d) => {
-      const type = d[0].split('.', 1)[0];
+      const type = <string>d[0].split('.', 1)[0];
       const property = d[0].replace(`${type}.`, '');
       const value = d[1];
 
@@ -56,11 +55,11 @@ export default class ItemProperties extends FormApplication {
   }
 
   getProperties(): Map<string, any> {
-    const types = Object.entries(getGame().system.model.Item);
+    const types = Object.entries(game.system.model.Item);
     const properties = new Map<string, any>(types);
-    properties.forEach((value, key, map) => {
-      map.set(key, Object.keys(flattenObject(value)));
-    });
+    for (const [key, value] of properties) {
+      properties.set(key, Object.keys(flattenObject(value)));
+    }
     return properties;
   }
 
@@ -69,30 +68,30 @@ export default class ItemProperties extends FormApplication {
     const types = this.getItemTypes();
     const properties: Map<string, any> = this.getProperties();
 
-    types.forEach((type) => {
+    for (const type of types) {
       const setting = getProperty(settings, type);
       if (!setting) {
         const typeProperties = properties.get(type);
         settings[type] = typeProperties.reduce((a, b) => ((a[b] = false), a), {});
       }
-    });
+    }
 
     return settings;
   }
 
   loadSettings(): any {
-    return getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties');
+    return game.settings.get(CONSTANTS.MODULE_NAME, 'itemProperties');
   }
 
   async saveSettings(data) {
-    return await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'itemProperties', data);
+    return await game.settings.set(CONSTANTS.MODULE_NAME, 'itemProperties', data);
   }
 
   getItemTypes() {
-    return Object.keys(getGame().system.model.Item);
+    return Object.keys(game.system.model.Item);
   }
 
   getIcon(icon) {
-    return `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
+    return `/modules/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }

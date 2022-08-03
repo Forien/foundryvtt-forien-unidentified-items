@@ -1,4 +1,3 @@
-import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modules/settings';
 /**
  * This is your TypeScript entry file for Foundry VTT.
  * Register custom settings, sheets, and constants using the Foundry API.
@@ -15,36 +14,11 @@ import registerSettings, { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './modul
 // Import TypeScript modules
 import registerDerivedItemSheetClass from './modules/ItemSheet';
 import registerContextMenuHook from './modules/ContextMenu';
-import { checkSettingsInitialized, getGame } from './modules/settings';
 import Identification from './modules/Identification';
+import registerSettings, { checkSettingsInitialized } from './modules/settings';
 import registerItemClassMethod from './modules/Item';
-
-export let debugEnabled = 0;
-// 0 = none, warnings = 1, debug = 2, all = 3
-export const debug = (...args) => {
-  if (debugEnabled > 1) console.log(`DEBUG:${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
-};
-export const log = function (...args) {
-  console.log(`forien-unidentified-items | `, ...args);
-};
-export const warn = (...args) => {
-  if (debugEnabled > 0) console.warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
-};
-export const error = (...args) => console.error(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, ...args);
-export const timelog = (...args) => warn(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME} | `, Date.now(), ...args);
-
-export const i18n = (key) => {
-  return getGame().i18n.localize(key);
-};
-export const i18nFormat = (key, data = {}) => {
-  return getGame().i18n.format(key, data);
-};
-
-export const setDebugLevel = (debugText: string) => {
-  debugEnabled = { none: 0, warn: 1, debug: 2, all: 3 }[debugText] || 0;
-  // 0 = none, warnings = 1, debug = 2, all = 3
-  if (debugEnabled >= 3) CONFIG.debug.hooks = true;
-};
+import CONSTANTS from './modules/constants';
+import API from './modules/api';
 
 /* ------------------------------------ */
 /* Initialize module					*/
@@ -55,7 +29,7 @@ Hooks.once('init', () => {
 
   registerContextMenuHook();
 
-  Hooks.callAll(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:afterInit`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterInit`);
 });
 
 /* ------------------------------------ */
@@ -66,7 +40,9 @@ Hooks.once('setup', () => {
   //@ts-ignore
   window.ForienIdentification = Identification;
 
-  Hooks.callAll(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:afterSetup`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
+
+  setApi(API);
 });
 
 /* ------------------------------------ */
@@ -78,5 +54,48 @@ Hooks.once('ready', () => {
   registerDerivedItemSheetClass();
   registerItemClassMethod();
 
-  Hooks.callAll(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}:afterReady`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
 });
+
+// Add any additional hooks if necessary
+
+export interface MysteryItemModuleData {
+  api: typeof API;
+  socket: any;
+}
+
+/**
+ * Initialization helper, to set API.
+ * @param api to set to game module.
+ */
+export function setApi(api: typeof API): void {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  data.api = api;
+}
+
+/**
+ * Returns the set API.
+ * @returns Api from games module.
+ */
+export function getApi(): typeof API {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  return data.api;
+}
+
+/**
+ * Initialization helper, to set Socket.
+ * @param socket to set to game module.
+ */
+export function setSocket(socket: any): void {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  data.socket = socket;
+}
+
+/*
+ * Returns the set socket.
+ * @returns Socket from games module.
+ */
+export function getSocket() {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  return data.socket;
+}

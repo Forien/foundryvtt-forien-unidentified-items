@@ -1,11 +1,12 @@
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME } from './settings';
+import CONSTANTS from './constants';
+
 export const preloadTemplates = async function () {
   const templatePaths = [
     // Add paths to "modules/VariantEncumbrance/templates"
-    `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/mystify-advanced.html`,
-    `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
-    `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-item-properties.html`,
-    // `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/welcome-screen.html`,
+    `/modules/${CONSTANTS.MODULE_NAME}/templates/mystify-advanced.html`,
+    `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
+    `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
+    // `/modules/${CONSTANTS.MODULE_NAME}/templates/welcome-screen.html`,
   ];
   return loadTemplates(templatePaths);
 };

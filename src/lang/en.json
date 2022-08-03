@@ -59,7 +59,6 @@
         "name": "Remove label from buttons on the header item sheet",
         "hint": "Remove label from buttons on the header item sheet, Useful for little screen and mobile, by default is true"
       }
-
     },
 
     "Notifications": {

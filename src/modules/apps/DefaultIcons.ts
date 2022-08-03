@@ -1,18 +1,18 @@
-import { FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, getGame } from '../settings';
-import { i18n } from './../../init';
+import CONSTANTS from '../constants';
+import { i18n } from '../lib/lib';
 
-export default class DefaultIcons extends FormApplication {
+export default class DefaultIcons extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: 'fui-default-icons',
-      template: `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/templates/settings-default-icons.html`,
-      title: i18n(`${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}.Settings.defaultIcons.name`),
+      template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
+      title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
     });
 
-    if (getGame().system.id === 'wfrp4e') {
+    if (game.system.id === 'wfrp4e') {
       options.classes.push('wfrp');
     }
     return options;
@@ -57,12 +57,12 @@ export default class DefaultIcons extends FormApplication {
     const settings = this.loadSettings();
     const types = this.getItemTypes();
 
-    types.forEach((type) => {
+    for (const type of types) {
       const setting: any = getProperty(settings, type);
       if (!setting) {
         settings[type] = this.getIcon(this.guessIcon(type));
       }
-    });
+    }
 
     return settings;
   }
@@ -93,18 +93,18 @@ export default class DefaultIcons extends FormApplication {
   }
 
   loadSettings(): DefaultIcons {
-    return <DefaultIcons>getGame().settings.get(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons');
+    return <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, 'defaultIcons');
   }
 
   async saveSettings(data): Promise<DefaultIcons> {
-    return <DefaultIcons>await getGame().settings.set(FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME, 'defaultIcons', data);
+    return <DefaultIcons>await game.settings.set(CONSTANTS.MODULE_NAME, 'defaultIcons', data);
   }
 
   getItemTypes(): string[] {
-    return Object.keys(getGame().system.model.Item);
+    return Object.keys(game.system.model.Item);
   }
 
   getIcon(icon): string {
-    return `/modules/${FORIEN_UNIDENTIFIED_ITEMS_MODULE_NAME}/icons/${icon}`;
+    return `/modules/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }

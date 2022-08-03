@@ -1,4 +1,5 @@
-import { ItemDataConstructorData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData';
+import type { ItemDataConstructorData } from '@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData';
+
 export class MystifiedData implements ItemDataConstructorData {
   img: string;
   name: string;

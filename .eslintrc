@@ -23,6 +23,7 @@
         "eslint-plugin-tsdoc"
     ],
     "rules": {
+        "eqeqeq": ["error", "always"],
         "tsdoc/syntax": "off",
         "@typescript-eslint/ban-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
@@ -42,7 +43,6 @@
             }
         ],
         "@typescript-eslint/consistent-type-assertions": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
-        "no-shadow": ["warn", { "builtinGlobals": true, "hoist": "all", "allow": ["event"] }]
+        "@typescript-eslint/ban-ts-comment": "off"
     }
 }

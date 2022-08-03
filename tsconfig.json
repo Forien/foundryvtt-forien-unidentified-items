@@ -3,9 +3,15 @@
     "moduleResolution": "node",
     "noEmit": false,
     "strict": false,
-    "target": "es2020",
-    "lib": ["DOM", "ES6", "ES2020"],
-    "types": ["@league-of-foundry-developers/foundry-vtt-types"],
-    "strictNullChecks": true
-  }
+    "target": "ES2021",
+    "lib": ["ES2021", "DOM"],
+    "types": ["@league-of-foundry-developers/foundry-vtt-types/index-lenient"],
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUncheckedIndexedAccess": true,
+    "resolveJsonModule": true,
+    "importsNotUsedAsValues": "error"
+  },
+  "include": ["src"]
 }
