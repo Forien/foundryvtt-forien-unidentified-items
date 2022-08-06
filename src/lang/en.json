@@ -46,7 +46,7 @@
       },
       "systemfound": {
         "title": "System Recognized",
-        "content": "This system was previously not supported, but in an recent update it was added as a supported system!<br><br>Do you want to load this system's default Item Pile settings?",
+        "content": "This system was previously not supported, but in an recent update it was added as a supported system!<br><br>Do you want to load this system's default module settings?",
         "confirm": "Apply System Defaults"
       }
     },
