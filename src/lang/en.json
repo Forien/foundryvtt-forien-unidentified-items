@@ -82,7 +82,7 @@
       "debug": {
         "name": "Enable debugging",
         "label": "Prints debug messages to the console",
-        "hint": " "
+        "hint": ""
       }
     },
 
