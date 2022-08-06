@@ -36,7 +36,7 @@
       },
       "resetsettings": {
         "title": "Reset Module Settings",
-        "content": "Are you sure you want to reset all of the module settings to the current system's defaults? <strong>THIS CANNOT BE UNDONE!</strong>",
+        "content": "Are you sure you want to reset all of the module settings to the current system's defaults? <strong>This cannot be undone!</strong>",
         "confirm": "Reset Module Settings",
         "cancel": "Cancel"
       },
