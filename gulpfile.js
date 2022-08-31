@@ -327,8 +327,9 @@ const copyFiles = async() => {
                             const newFile = path.join('dist', path.relative(process.cwd(), file.replace(/src[\/\\]/g, '')));
                             console.log('Copying file: ' + newFile);
                             const folder = path.parse(newFile).dir;
-                            if (!fs.existsSync(folder))
+                            if (!fs.existsSync(folder)) {
                                 fs.mkdirSync(folder, { recursive: true });
+                            }
                             fs.copyFileSync(file, newFile);
                         }
                     })
@@ -507,7 +508,10 @@ async function packageBuild() {
             }
 
             // Ensure there is a directory to hold all the packaged versions
-            fs.existsSync('package');
+            // fs.existsSync('package');
+            if (!fs.existsSync('package')) {
+                fs.mkdirSync('package', { recursive: true });
+            }
 
             // Initialize the zip file
             const zipName = 'module.zip'; // `${manifest.file.name}-v${manifest.file.version}.zip`; // MOD 4535992
@@ -539,6 +543,7 @@ async function packageBuild() {
             console.log(`Zip files`);
 
             zip.finalize();
+            return resolve('done');
         } catch (err) {
             return reject(err);
         }
