@@ -408,19 +408,6 @@ npm run-script build:watch
 ```bash
 npm run-script clean
 ```
-### lint and lintfix
-
-`lint` launch the eslint process based on the configuration [here](./.eslintrc)
-
-```bash
-npm run-script lint
-```
-
-`lintfix` launch the eslint process with the fix argument
-
-```bash
-npm run-script lintfix
-```
 
 ### prettier-format
 

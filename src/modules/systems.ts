@@ -2,6 +2,7 @@
 import dnd5e from './systems/dnd5e';
 import pf2e from './systems/pf2e';
 import swade from './systems/swade';
+import sw5e from './systems/sw5e';
 import wfrp4e from './systems/wfrp4e';
 import generic from './systems/generic';
 
@@ -18,6 +19,7 @@ export const SYSTEMS = {
       dnd5e,
       pf2e,
       swade,
+      sw5e,
       wfrp4e,
       generic,
       // ↑ ADD SYSTEMS HERE ↑

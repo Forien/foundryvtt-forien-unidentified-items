@@ -1,121 +1,154 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
+/**
+ * This is important for the bundle.js
+ */
+// const mainFilePath = "src/main.ts"; // MOD 4535992
+
 const gulp = require('gulp');
-const fs = require('fs-extra');
+const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
 const archiver = require('archiver');
 const stringify = require('json-stringify-pretty-compact');
+
+const sourcemaps = require('gulp-sourcemaps');
+const buffer = require('vinyl-buffer');
+const source = require('vinyl-source-stream');
+
+const loadJson = (path) => {
+    console.log(path)
+    try {
+        const str = fs.readFileSync(path).toString();
+        return JSON.parse(str);
+    }
+    catch {
+        throw Error('Unable to load module.json')
+    }
+};
+
 const typescript = require('typescript');
+const createLiteral = typescript.createLiteral;
+const factory = typescript.factory;
+const isExportDeclaration = typescript.isExportDeclaration;
+const isImportDeclaration = typescript.isImportDeclaration;
+const isStringLiteral = typescript.isStringLiteral;
+const LiteralExpression = typescript.LiteralExpression;
+const Node = typescript.Node;
+const TransformationContext = typescript.TransformationContext;
+const TSTransformer = typescript.Transformer;
+const TransformerFactory = typescript.TransformerFactory;
+const visitEachChild = typescript.visitEachChild;
+const visitNode = typescript.visitNode;
+
+const less = require('gulp-less');
+const sass = require('gulp-sass')(require('sass'));
+
+// import type {ModuleData} from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/packages.mjs"; // MOD 4535992
+const browserify = require('browserify');
+const tsify = require('tsify');
 
 const ts = require('gulp-typescript');
-const less = require('gulp-less');
-const sass = require('gulp-sass');
 const git = require('gulp-git');
-const eslint = require('gulp-eslint');
-const replace = require('gulp-replace');
+const jest = require('gulp-jest').default;
 
 const argv = require('yargs').argv;
 
-sass.compiler = require('sass');
-
 function getConfig() {
-  const configPath = path.resolve(process.cwd(), 'foundryconfig.json');
-  let config;
+    const configPath = path.resolve(process.cwd(), 'foundryconfig.json');
+    let config;
 
-  if (fs.existsSync(configPath)) {
-    config = fs.readJSONSync(configPath);
-    return config;
-  } else {
-    return;
-  }
+    if (fs.existsSync(configPath)) {
+        config = loadJson(configPath);
+        return config;
+    } else {
+        return;
+    }
 }
 
-function getManifest() {
-  const json = {};
-
-  if (fs.existsSync('src')) {
-    json.root = 'src';
-  } else {
-    json.root = 'dist';
-  }
-
-  const modulePath = path.join(json.root, 'module.json');
-  const systemPath = path.join(json.root, 'system.json');
-
-  if (fs.existsSync(modulePath)) {
-    json.file = fs.readJSONSync(modulePath);
-    json.name = 'module.json';
-  } else if (fs.existsSync(systemPath)) {
-    json.file = fs.readJSONSync(systemPath);
-    json.name = 'system.json';
-  } else {
-    return;
-  }
-
-  return json;
+/* MOD 4535992
+interface Manifest {
+    root: string;
+    file: ModuleData;
+    name: string;
 }
-
-/**
- * TypeScript transformers
- * @returns {typescript.TransformerFactory<typescript.SourceFile>}
- */
-function createTransformer() {
-  /**
-   * @param {typescript.Node} node
-   */
-  function shouldMutateModuleSpecifier(node) {
-    if (!typescript.isImportDeclaration(node) && !typescript.isExportDeclaration(node)) return false;
-    if (node.moduleSpecifier === undefined) return false;
-    if (!typescript.isStringLiteral(node.moduleSpecifier)) return false;
-    if (!node.moduleSpecifier.text.startsWith('./') && !node.moduleSpecifier.text.startsWith('../')) return false;
-    if (path.extname(node.moduleSpecifier.text) !== '') return false;
-    return true;
-  }
-
-  /**
-   * Transforms import/export declarations to append `.js` extension
-   * @param {typescript.TransformationContext} context
-   */
-  function importTransformer(context) {
-    return (node) => {
-      /**
-       * @param {typescript.Node} node
-       */
-      function visitor(node) {
-        if (shouldMutateModuleSpecifier(node)) {
-          if (typescript.isImportDeclaration(node)) {
-            const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.js`);
-            return typescript.updateImportDeclaration(
-              node,
-              node.decorators,
-              node.modifiers,
-              node.importClause,
-              newModuleSpecifier,
-            );
-          } else if (typescript.isExportDeclaration(node)) {
-            const newModuleSpecifier = typescript.createLiteral(`${node.moduleSpecifier.text}.js`);
-            return typescript.updateExportDeclaration(
-              node,
-              node.decorators,
-              node.modifiers,
-              node.exportClause,
-              newModuleSpecifier,
-            );
-          }
-        }
-        return typescript.visitEachChild(node, visitor, context);
-      }
-
-      return typescript.visitNode(node, visitor);
+*/
+const getManifest = () => {
+    const json = {
+        root: "",
+        // @ts-ignore
+        file: {},
+        name: ""
     };
-  }
 
-  return importTransformer;
+    if (fs.existsSync('src')) {
+        json.root = "src";
+    } else {
+        json.root = "dist";
+    }
+
+    const modulePath = path.join(json.root, 'module.json');
+    const systemPath = path.join(json.root, 'system.json');
+
+    if (fs.existsSync(modulePath)) {
+        json.file = loadJson(modulePath);
+        json.name = 'module.json';
+    } else if (fs.existsSync(systemPath)) {
+        json.file = loadJson(systemPath);
+        json.name = 'system.json';
+    } else {
+        return null;
+    }
+
+    // If we can pull our version from our package - saves us having to maintain the number in different places
+    if (process.env.npm_package_version) {
+        json.file['version'] = process.env.npm_package_version;
+    }
+    return json;
+}
+
+
+const createTransformer = () => {
+    /**
+     * @param {typescript.Node} node
+     */
+    const shouldMutateModuleSpecifier = (node) => {
+        if (!isImportDeclaration(node) && !isExportDeclaration(node))
+            return false;
+        if (node.moduleSpecifier === undefined)
+            return false;
+        if (!isStringLiteral(node.moduleSpecifier))
+            return false;
+        if (!node.moduleSpecifier.text.startsWith('./') && !node.moduleSpecifier.text.startsWith('../'))
+            return false;
+
+        return path.extname(node.moduleSpecifier.text) === "";
+    }
+
+    return (context) => {
+        return (node) => {
+            function visitor(node) {
+                if (shouldMutateModuleSpecifier(node)) {
+                    if (isImportDeclaration(node)) {
+                        const newModuleSpecifier = createLiteral(`${(node.moduleSpecifier).text}.js`);
+                        return factory.updateImportDeclaration(node, node.decorators, node.modifiers, node.importClause, newModuleSpecifier,undefined);
+                    } else if (isExportDeclaration(node)) {
+                        const newModuleSpecifier = createLiteral(`${(node.moduleSpecifier).text}.js`);
+                        return factory.updateExportDeclaration(node, node.decorators, node.modifiers, false, node.exportClause, newModuleSpecifier,undefined);
+                    }
+                }
+                return visitEachChild(node, visitor, context);
+            }
+
+            return visitNode(node, visitor);
+        };
+    };
 }
 
 const tsConfig = ts.createProject('tsconfig.json', {
-  getCustomTransformers: (_program) => ({
-    after: [createTransformer()],
-  }),
+    getCustomTransformers: (_program) => ({
+        after: [createTransformer()],
+    }),
 });
 
 /********************/
@@ -144,6 +177,17 @@ function buildTS() {
       .pipe(gulp.dest('dist'))
   );
 }
+
+// function buildTS() {
+//     const debug = process.env.npm_lifecycle_event !== "package";
+//     const res = tsConfig.src()
+//         .pipe(sourcemaps.init())
+//         .pipe(tsConfig());
+
+//     return res.js
+//         .pipe(sourcemaps.write('', { debug: debug, includeContent: true, sourceRoot: './ts/src' }))
+//         .pipe(gulp.dest('dist'));
+// }
 
 /**
  * Build JavaScript
@@ -210,47 +254,144 @@ function buildSASS() {
   return gulp.src('src/**/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('dist'));
 }
 
-// /**
-//  * Build Replace
-//  */
-// function buildReplace() {
-//   return gulp.src('dist/**/*.js')
-//     .pipe(replace('export const game = getGame();', ''))
-//     .pipe(replace('export const canvas = getCanvas();', ''))
-//     .pipe(replace('import { canvas, game }', '//import { canvas, game }'))
-//     .pipe(replace('import { game }', '//import { game }'))
-//     .pipe(replace('import { canvas }', '//import { canvas }'))
-//     .pipe(gulp.dest('dist'));
-// };
+const bundleModule = async () => {
+    const debug = argv.dbg || argv.debug;
+    const bsfy = browserify(path.join(__dirname, mainFilePath), { debug: debug });
+    return bsfy
+        .on('error', console.error)
+        .plugin(tsify)
+        .bundle()
+        .pipe(source(path.join('dist", "bundle.js')))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./'));
 
-/**
- * Copy static files
- */
-async function copyFiles() {
-  const statics = ['lang', 'fonts', 'assets', 'icons', 'templates', 'packs', 'module.json', 'system.json', 'template.json'];
-  try {
-    for (const file of statics) {
-      if (fs.existsSync(path.join('src', file))) {
-        await fs.copy(path.join('src', file), path.join('dist', file));
-      }
+    // await Promise.resolve('bundleModule done');
+}
+
+const copyFiles = async() => {
+    const statics = ["lang", "fonts", "assets", "icons", "templates", "packs", "module.json", "system.json", "template.json"];
+
+    const recursiveFileSearch = (dir, callback) => {
+        const err = callback.err;
+        const res = callback.res;
+        let results = [];
+        fs.readdir(dir, (err, list) => {
+            if (err)
+                return callback(err, results);
+
+            let pending = list.length;
+            if (!pending)
+                return callback(null, results);
+
+            for (let file of list) {
+                file = path.resolve(dir, file);
+                fs.stat(file, (err, stat) => {
+                    if (stat && stat.isDirectory()) {
+                        recursiveFileSearch(file, (err, res) => {
+                            results = results.concat(res);
+                            if (!--pending)
+                                callback(null, results);
+                        });
+                    }
+                    else {
+                        results.push(file);
+                        if (!--pending)
+                            callback(null, results);
+                    }
+                });
+            }
+        });
+    };
+    console.log('files:' + statics);
+    try {
+        for (const entity of statics) {
+
+            const p = path.join('src', entity);
+            /* MOD 4535992
+            let p:string|null = null;
+            if (entity.endsWith('module.json') || entity.endsWith('templates') || entity.endsWith('lang')) {
+              p = path.join('src', entity);
+            } else {
+              p = path.join('assets', entity);
+            }
+            */
+            if (fs.existsSync(p)) {
+                if (fs.lstatSync(p).isDirectory())
+                    recursiveFileSearch(p, (err, res) => {
+                        if (err)
+                            throw err;
+
+                        for (const file of res) {
+                            const newFile = path.join('dist', path.relative(process.cwd(), file.replace(/src[\/\\]/g, '')));
+                            console.log('Copying file: ' + newFile);
+                            const folder = path.parse(newFile).dir;
+                            if (!fs.existsSync(folder)) {
+                                fs.mkdirSync(folder, { recursive: true });
+                            }
+                            fs.copyFileSync(file, newFile);
+                        }
+                    })
+                else {
+                    console.log('Copying file: ' + p + ' to ' + path.join('dist', entity));
+                    fs.copyFileSync(p, path.join('dist', entity));
+                }
+            }
+        }
+        return Promise.resolve();
+    } catch (err) {
+        await Promise.reject(err);
     }
-    return Promise.resolve();
-  } catch (err) {
-    Promise.reject(err);
-  }
+}
+
+const cleanDist = async () => {
+    if (argv.dbg || argv.debug){
+        return;
+    }
+    console.log('Cleaning dist file clutter');
+
+    const files = [];
+    const getFiles = async (dir) => {
+        const arr = await fs.promises.readdir(dir);
+        for(const entry of arr)
+        {
+            const fullPath = path.join(dir, entry);
+            const stat = await fs.promises.stat(fullPath);
+            if (stat.isDirectory())
+                await getFiles(fullPath);
+            else
+                files.push(fullPath);
+        }
+    }
+
+    await getFiles(path.resolve('./dist'));
+    for(const file of files) {
+        /* MOD 4535992
+        if (file.endsWith('bundle.js') ||
+            file.endsWith('.css') ||
+            file.endsWith('module.json') ||
+            file.endsWith('templates') ||
+            file.endsWith('lang')||
+            file.endsWith('.json') ||
+            file.endsWith('.html')){
+            continue;
+        }
+        */
+        console.warn('Cleaning ' + path.relative(process.cwd(), file));
+        await fs.promises.unlink(file);
+    }
 }
 
 /**
  * Watch for changes for each build step
  */
-function buildWatch() {
-  gulp.watch('src/**/*.ts', { ignoreInitial: false }, buildTS);
-  gulp.watch('src/**/*.less', { ignoreInitial: false }, buildLess);
-  gulp.watch('src/**/*.scss', { ignoreInitial: false }, buildSASS);
-  gulp.watch('src/**/*.js', { ignoreInitial: false }, buildJS);
-  gulp.watch('src/**/*.mjs', { ignoreInitial: false }, buildMJS);
-  gulp.watch('src/**/*.css', { ignoreInitial: false }, buildCSS);
-  gulp.watch(['src/fonts', 'src/lang', 'src/templates', 'src/*.json'], { ignoreInitial: false }, copyFiles);
+const buildWatch = () => {
+    // gulp.watch('src/**/*.ts', { ignoreInitial: false }, gulp.series(buildTS, bundleModule));
+    gulp.watch('src/**/*.ts', { ignoreInitial: false }, gulp.series(buildTS));
+    gulp.watch('src/**/*.less', { ignoreInitial: false }, buildLess);
+    gulp.watch('src/**/*.sass', { ignoreInitial: false }, buildSASS);
+    gulp.watch(['src/fonts', 'src/lang', 'src/templates', 'src/*.json'], { ignoreInitial: false }, copyFiles);
 }
 
 /********************/
@@ -261,95 +402,85 @@ function buildWatch() {
  * Remove built files from `dist` folder
  * while ignoring source files
  */
-async function clean() {
-  const name = path.basename(path.resolve('.'));
-  const files = [];
-
-  // If the project uses TypeScript
-  if (fs.existsSync(path.join('src', `${name}.ts`))) {
-    files.push(
-      'lang',
-      'templates',
-      'packs',
-      'assets',
-      'icons',
-      'module',
-      'modules',
-      `${name}.js`,
-      'module.json',
-      'system.json',
-      'template.json',
-    );
-  }
-
-  // If the project uses Less or SASS
-  if (fs.existsSync(path.join('src', `${name}.less`)) || fs.existsSync(path.join('src', `${name}.scss`))) {
-    files.push('fonts', `${name}.css`);
-  }
-
-  console.log(' ', chalk.yellow('Files to clean:'));
-  console.log('   ', chalk.blueBright(files.join('\n    ')));
-
-  // Attempt to remove the files
-  try {
-    for (const filePath of files) {
-      await fs.remove(path.join('dist', filePath));
+const clean = async () => {
+    if (!fs.existsSync('dist')){
+        fs.mkdirSync('dist');
     }
-    return Promise.resolve();
-  } catch (err) {
-    Promise.reject(err);
-  }
+
+    const name = path.basename(path.resolve('.'));
+    const files = [];
+
+    // If the project uses TypeScript
+    // if (fs.existsSync(path.join('src", mainFilePath))) { // MOD 4535992
+        files.push(
+            "lang",
+            "fonts",
+            "icons",
+            "packs",
+            "templates",
+            "assets",
+            "module",
+            "index.js",
+            "module.json",
+            "system.json",
+            "template.json"
+        );
+    // } // MOD 4535992
+
+    // If the project uses Less
+    /* MOD 4535992
+    // if (fs.existsSync(path.join('src/styles/", `${name}.less`))) {
+    //     files.push('fonts", `${name}.css`);
+    // }
+    */
+    // Attempt to remove the files
+    try {
+        for (const filePath of files) {
+            if (fs.existsSync(path.join('dist', filePath))){
+              // fs.unlinkSync(path.join('dist", filePath)); // MOD 4535992
+              fs.rmSync(path.join('dist', filePath), { recursive: true, force: true });
+            }
+        }
+        return Promise.resolve();
+    } catch (err) {
+        await Promise.reject(err);
+    }
 }
 
-/********************/
-/*		LINK		*/
-/********************/
+const linkUserData = async () => {
+    const name = getManifest()?.file.name;
+    const config = loadJson('foundryconfig.json');
 
-/**
- * Link build to User Data folder
- */
-async function linkUserData() {
-  const name = path.basename(path.resolve('.'));
-  const config = fs.readJSONSync('foundryconfig.json');
+    let destDir;
+    try {
+        if (fs.existsSync(path.resolve('.', 'dist', 'module.json')) || fs.existsSync(path.resolve('.', 'src', 'module.json'))) {
+            destDir = 'modules';
+        } else {
+            throw Error(`Could not find module.json or system.json`);
+        }
 
-  let destDir;
-  try {
-    if (
-      fs.existsSync(path.resolve('.', 'dist', 'module.json')) ||
-      fs.existsSync(path.resolve('.', 'src', 'module.json'))
-    ) {
-      destDir = 'modules';
-    } else if (
-      fs.existsSync(path.resolve('.', 'dist', 'system.json')) ||
-      fs.existsSync(path.resolve('.', 'src', 'system.json'))
-    ) {
-      destDir = 'systems';
-    } else {
-      throw Error(`Could not find ${chalk.blueBright('module.json')} or ${chalk.blueBright('system.json')}`);
+        let linkDir;
+        if (config.dataPath) {
+            if (!fs.existsSync(path.join(config.dataPath, 'Data')))
+                throw Error('User Data path invalid, no Data directory found');
+
+            linkDir = path.join(config.dataPath, 'Data', destDir, name);
+        } else {
+            throw Error('No User Data path defined in foundryconfig.json');
+        }
+
+        if (argv.clean || argv.c) {
+            console.warn(`Removing build in ${linkDir}`);
+
+            fs.unlinkSync(linkDir);
+        } else if (!fs.existsSync(linkDir)) {
+            console.log(`Copying build to ${linkDir}`);
+            fs.symlinkSync(path.resolve('./dist'), linkDir);
+        }
+        return Promise.resolve();
+    } catch (err) {
+        await Promise.reject(err);
     }
-
-    let linkDir;
-    if (config.dataPath) {
-      if (!fs.existsSync(path.join(config.dataPath, 'Data')))
-        throw Error('User Data path invalid, no Data directory found');
-
-      linkDir = path.join(config.dataPath, 'Data', destDir, name);
-    } else {
-      throw Error('No User Data path defined in foundryconfig.json');
-    }
-
-    if (argv.clean || argv.c) {
-      console.log(chalk.yellow(`Removing build in ${chalk.blueBright(linkDir)}`));
-
-      await fs.remove(linkDir);
-    } else if (!fs.existsSync(linkDir)) {
-      console.log(chalk.green(`Copying build to ${chalk.blueBright(linkDir)}`));
-      await fs.symlink(path.resolve('./dist'), linkDir);
-    }
-    return Promise.resolve();
-  } catch (err) {
-    Promise.reject(err);
-  }
 }
 
 /*********************/
@@ -360,45 +491,63 @@ async function linkUserData() {
  * Package build
  */
 async function packageBuild() {
-  const manifest = getManifest();
-
-  return new Promise((resolve, reject) => {
-    try {
-      // Remove the package dir without doing anything else
-      if (argv.clean || argv.c) {
-        console.log(chalk.yellow('Removing all packaged files'));
-        fs.removeSync('package');
-        return;
-      }
-
-      // Ensure there is a directory to hold all the packaged versions
-      fs.ensureDirSync('package');
-
-      // Initialize the zip file
-      const zipName = 'module.zip'; // `${manifest.file.name}-v${manifest.file.version}.zip`
-      const zipFile = fs.createWriteStream(path.join('package', zipName));
-      const zip = archiver('zip', { zlib: { level: 9 } });
-
-      zipFile.on('close', () => {
-        console.log(chalk.green(zip.pointer() + ' total bytes'));
-        console.log(chalk.green(`Zip file ${zipName} has been written`));
-        return resolve();
-      });
-
-      zip.on('error', (err) => {
-        throw err;
-      });
-
-      zip.pipe(zipFile);
-
-      // Add the directory with the final code
-      zip.directory('dist/', manifest.file.name);
-
-      zip.finalize();
-    } catch (err) {
-      return reject(err);
+    const manifest = getManifest();
+    if (manifest === null)
+    {
+        console.error('Manifest file could not be loaded.');
+        throw Error();
     }
-  });
+
+    return new Promise((resolve, reject) => {
+        try {
+            // Remove the package dir without doing anything else
+            if (argv.clean || argv.c) {
+                console.warn('Removing all packaged files');
+                fs.rmSync('package', { force: true, recursive: true });
+                return;
+            }
+
+            // Ensure there is a directory to hold all the packaged versions
+            // fs.existsSync('package');
+            if (!fs.existsSync('package')) {
+                fs.mkdirSync('package', { recursive: true });
+            }
+
+            // Initialize the zip file
+            const zipName = 'module.zip'; // `${manifest.file.name}-v${manifest.file.version}.zip`; // MOD 4535992
+            const zipFile = fs.createWriteStream(path.join('package', zipName));
+            //@ts-ignore
+            const zip = archiver('zip', { zlib: { level: 9 } });
+
+            zipFile.on('close', () => {
+                console.log(zip.pointer() + ' total bytes');
+                console.log(`Zip file ${zipName} has been written`);
+                return resolve(true);
+            });
+
+            zip.on('error', (err) => {
+                throw err;
+            });
+
+            zip.pipe(zipFile);
+
+            // Add the directory with the final code
+            zip.directory('dist/', manifest.file.name);
+            /* MOD 4535992
+            zip.file('dist/module.json", { name: "module.json" });
+            zip.file('dist/bundle.js", { name: "bundle.js" });
+            zip.glob('dist/*.css", {cwd:__dirname});
+            zip.directory('dist/lang", "lang');
+            zip.directory('dist/templates", "templates');
+            */
+            console.log(`Zip files`);
+
+            zip.finalize();
+            return resolve('done');
+        } catch (err) {
+            return reject(err);
+        }
+    });
 }
 
 /*********************/
@@ -408,110 +557,106 @@ async function packageBuild() {
 /**
  * Update version and URLs in the manifest JSON
  */
-function updateManifest(cb) {
-  const packageJson = fs.readJSONSync('package.json');
-  const config = getConfig(),
-    manifest = getManifest(),
-    rawURL = config.rawURL,
-    repoURL = config.repository,
-    manifestRoot = manifest.root;
+const updateManifest = (cb) => {
+    const packageJson = loadJson('package.json');
+    const config = getConfig(),
+        manifest = getManifest(),
+        rawURL = config.rawURL,
+        repoURL = config.repository,
+        manifestRoot = manifest?.root;
 
-  if (!config) cb(Error(chalk.red('foundryconfig.json not found')));
-  if (!manifest) cb(Error(chalk.red('Manifest JSON not found')));
-  if (!rawURL || !repoURL) cb(Error(chalk.red('Repository URLs not configured in foundryconfig.json')));
-
-  try {
-    const version = argv.update || argv.u;
-
-    /* Update version */
-
-    const versionMatch = /^(\d{1,}).(\d{1,}).(\d{1,})$/;
-    const currentVersion = manifest.file.version;
-    let targetVersion = '';
-
-    if (!version) {
-      cb(Error('Missing version number'));
+    if (!config) {
+        cb(Error('foundryconfig.json not found'));
     }
+    if (manifest === null) {
+        cb(Error('Manifest JSON not found'));
+        return;
+    }
+    if (!rawURL || !repoURL) {
+        cb(Error('Repository URLs not configured in foundryconfig.json'));
+    }
+    try {
+        const version = argv.update || argv.u;
 
-    if (versionMatch.test(version)) {
-      targetVersion = version;
-    } else {
-      targetVersion = currentVersion.replace(versionMatch, (substring, major, minor, patch) => {
-        console.log(substring, Number(major) + 1, Number(minor) + 1, Number(patch) + 1);
-        if (version === 'major') {
-          return `${Number(major) + 1}.0.0`;
-        } else if (version === 'minor') {
-          return `${major}.${Number(minor) + 1}.0`;
-        } else if (version === 'patch') {
-          return `${major}.${minor}.${Number(patch) + 1}`;
-        } else {
-          return '';
+        /* Update version */
+
+        const versionMatch = /^(\d{1,}).(\d{1,}).(\d{1,})$/;
+        const currentVersion = manifest?.file.version;
+        let targetVersion = "";
+
+        if (!version) {
+            cb(Error('Missing version number'));
         }
-      });
+
+        if (versionMatch.test(version)) {
+            targetVersion = version;
+        } else {
+            targetVersion = currentVersion.replace(versionMatch, (substring, major, minor, patch) => {
+                console.log(substring, Number(major) + 1, Number(minor) + 1, Number(patch) + 1);
+                if (version === 'major') {
+                    return `${Number(major) + 1}.0.0`;
+                } else if (version === 'minor') {
+                    return `${major}.${Number(minor) + 1}.0`;
+                } else if (version === 'patch') {
+                    return `${major}.${minor}.${Number(patch) + 1}`;
+                } else {
+                    return '';
+                }
+            });
+        }
+
+        if (targetVersion === '') {
+            return cb(Error('Error: Incorrect version arguments.'));
+        }
+
+        if (targetVersion === currentVersion) {
+            return cb(Error('Error: Target version is identical to current version.'));
+        }
+
+        console.log(`Updating version number to '${targetVersion}'`);
+
+        packageJson.version = targetVersion;
+        manifest.file.version = targetVersion;
+
+        /* Update URLs */
+
+        const result = `${repoURL}/releases/download/${manifest.file.version}/module.zip`;
+
+        manifest.file.url = repoURL;
+        manifest.file.manifest = `${rawURL}/${manifest.file.version}/${manifestRoot}/${manifest.name}`;
+        manifest.file.download = result;
+
+        const prettyProjectJson = stringify(manifest.file, {
+            maxLength: 35,
+            indent: "\t",
+        });
+
+        fs.writeFileSync('package.json', JSON.stringify(packageJson, null, '\t'));
+        fs.writeFileSync(path.join(manifest.root, manifest.name), prettyProjectJson, 'utf8');
+
+        return cb();
+    } catch (err) {
+        cb(err);
     }
-
-    if (targetVersion === '') {
-      return cb(Error(chalk.red('Error: Incorrect version arguments.')));
-    }
-
-    if (targetVersion === currentVersion) {
-      return cb(Error(chalk.red('Error: Target version is identical to current version.')));
-    }
-    console.log(`Updating version number to '${targetVersion}'`);
-
-    packageJson.version = targetVersion;
-    manifest.file.version = targetVersion;
-
-    /* Update URLs */
-
-    const result = `${rawURL}/v${manifest.file.version}/package/${manifest.file.name}-v${manifest.file.version}.zip`;
-
-    manifest.file.url = repoURL;
-    manifest.file.manifest = `${rawURL}/master/${manifestRoot}/${manifest.name}`;
-    manifest.file.download = result;
-
-    const prettyProjectJson = stringify(manifest.file, {
-      maxLength: 35,
-      indent: '\t',
-    });
-
-    fs.writeJSONSync('package.json', packageJson, { spaces: '\t' });
-    fs.writeFileSync(path.join(manifest.root, manifest.name), prettyProjectJson, 'utf8');
-
-    return cb();
-  } catch (err) {
-    cb(err);
-  }
+}
+const test = () => {
+    return gulp.src('src/__tests__').pipe(jest({
+        "preprocessorIgnorePatterns": [
+            "dist/", "node_modules/"
+        ],
+        "automock": false
+    }));
 }
 
-function gitAdd() {
-  return gulp.src('package').pipe(git.add({ args: '--no-all' }));
-}
 
-function gitCommit() {
-  return gulp.src('./*').pipe(
-    git.commit(`v${getManifest().file.version}`, {
-      args: '-a',
-      disableAppendPaths: true,
-    }),
-  );
-}
-
-function gitTag() {
-  const manifest = getManifest();
-  return git.tag(`v${manifest.file.version}`, `Updated to ${manifest.file.version}`, (err) => {
-    if (err) throw err;
-  });
-}
-
-const execGit = gulp.series(gitAdd, gitCommit, gitTag);
-
+// const execBuild = gulp.parallel(buildTS, buildLess, copyFiles); // MOD 4535992
 const execBuild = gulp.parallel(buildTS, buildJS, buildMJS, buildCSS, buildLess, buildSASS, copyFiles);
 
-exports.build = gulp.series(clean, execBuild); // , buildReplace
+exports.build = gulp.series(clean, execBuild, cleanDist);
+exports.bundle = gulp.series(clean, execBuild, bundleModule, cleanDist);
 exports.watch = buildWatch;
 exports.clean = clean;
 exports.link = linkUserData;
 exports.package = packageBuild;
 exports.update = updateManifest;
-exports.publish = gulp.series(clean, updateManifest, execBuild, packageBuild, execGit);
+exports.publish = gulp.series(clean, updateManifest, execBuild, bundleModule, cleanDist, packageBuild);

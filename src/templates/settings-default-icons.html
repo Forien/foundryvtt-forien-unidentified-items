@@ -1,14 +1,14 @@
 <form>
-    {{#each types}}
-    <div class="item-type-entry">
-        <img id="default-icon-img-{{this}}" class="item-icon" src="{{lookup ../typeSettings this}}" alt="" />
-        <label for="default-icon-{{this}}">{{this}}</label>
-        <input id="default-icon-{{this}}" name="{{this}}" type="text" value="{{lookup ../typeSettings this}}"/>
-        <button class="file-picker" data-type="image" data-target="{{this}}">
-            <i class="fas fa-file-import fa-fw"></i>
-        </button>
-    </div>
-    {{/each}}
+  {{#each types}}
+  <div class="item-type-entry">
+    <img id="default-icon-img-{{this}}" class="item-icon" src="{{lookup ../typeSettings this}}" alt="" />
+    <label for="default-icon-{{this}}">{{this}}</label>
+    <input id="default-icon-{{this}}" name="{{this}}" type="text" value="{{lookup ../typeSettings this}}" />
+    <button class="file-picker" data-type="image" data-target="{{this}}">
+      <i class="fas fa-file-import fa-fw"></i>
+    </button>
+  </div>
+  {{/each}}
 
-    <button type="submit" name="submit">{{localize 'Submit'}}</button>
+  <button type="submit" name="submit">{{localize 'Submit'}}</button>
 </form>
