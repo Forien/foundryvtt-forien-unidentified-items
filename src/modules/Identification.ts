@@ -230,11 +230,11 @@ export default class Identification {
           },
         },
         default: 'cancel',
-        close: (html: JQuery<HTMLElement>) => {
+        close: (html: HTMLElement|JQuery<HTMLElement>) => {
           if (!confirmed) {
             return;
           }
-          const form = <HTMLFormElement>html.find('form')[0];
+          const form = <HTMLFormElement>(<JQuery<HTMLElement>>html).find('form')[0];
           const formDataBase = new FormDataExtended(form, {});
 
           formDataBase.delete('img-keep');
