@@ -15,7 +15,7 @@
     "clean": "gulp clean && gulp link --clean",
     "test": "jest",
     "update": "npm install --save-dev @league-of-foundry-developers/foundry-vtt-types@9",
-    "prettier-format": "prettier --config .prettierrc --write \"./src/**/*.{ts,js,json,scss,css,html}\""
+    "prettier-format": "prettier --config .prettierrc.js --write \"./src/**/*.{ts,js,json,scss,css,html}\""
   },
   "keywords": [
     "foundryvtt",
