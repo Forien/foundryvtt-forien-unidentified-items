@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.5.4
+
+- New design pattern for multissytem integration
+
 ## v0.4.2
 
 - Update typescript to 9
