@@ -34,6 +34,18 @@ To install this module manually:
 4.  Click 'Install' and wait for installation to complete
 5.  Don't forget to enable the module in game using the "Manage Module" button
 
+# System Integration
+
+|            	| dnd5e 	| pf2e 	| wfrp4e 	| sw5e 	| swade 	|
+|------------	|-------	|------	|--------	|--------	|
+| Settings   	| ✓     	| ✓    	| ✓      	| ✓      	| ✓      	|
+| Logic      	| ✗     	| ✗    	| ✗      	| ✗      	| ✗      	|
+
+
+One of main principles of this module is being [**System Agnostic**](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
+
+Basic settings initialization (like setting default persisting properties for dnd5e) I will allow to be built-in this module. These can, however, be defined from the System's side.
+
 # Usage
 
 Right click on items in sidebar, or use buttons on Item Sheet's header to Mystify an item. It will create new apparently blank item.
@@ -335,16 +347,6 @@ If `true`, user can see and press `Peek` Header Button to open Original Item she
 #### `canMystify`
 If `true`, user can see and press `Mystify` Header Button. 
 
-# System Integration
-
-|            	| dnd5e 	| pf2e 	| wfrp4e 	| swade 	|
-|------------	|-------	|------	|--------	|--------	|
-| Settings   	| ✓     	| ✓    	| ✓      	| ✓      	|
-| Logic      	| ✗     	| ✗    	| ✗      	| ✗      	|
-
-One of main principles of this module is being [**System Agnostic**](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
-
-Basic settings initialization (like setting default persisting properties for dnd5e) I will allow to be built-in this module. These can, however, be defined from the System's side.
 
 #### What about logic? Skill Checks for Identification?
 

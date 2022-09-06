@@ -299,38 +299,6 @@ export async function checkSystem() {
   return applyDefaultSettings();
 }
 
-// /**
-//  * Registers settings menu (button)
-//  */
-// function registerSettingMenus() {
-//   game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'defaultIcons', {
-//     name: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`,
-//     label: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.label`,
-//     hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
-//     icon: 'fas fa-image',
-//     type: DefaultIcons,
-//     restricted: true,
-//   });
-
-//   game.settings.registerMenu(CONSTANTS.MODULE_NAME, 'itemProperties', {
-//     name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,
-//     label: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.label`,
-//     hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
-//     icon: 'fas fa-cogs',
-//     type: ItemProperties,
-//     restricted: true,
-//   });
-
-//   game.settings.register(CONSTANTS.MODULE_NAME, 'removeLabelButtonsSheetHeader', {
-//     name: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.name`),
-//     hint: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.hint`),
-//     scope: 'world',
-//     config: true,
-//     type: Boolean,
-//     default: true,
-//   });
-// }
-
 /**
  * Checks if options exist, if not, orders their initialization
  */
@@ -367,7 +335,7 @@ function initializeDefaultIcons() {
   Hooks.call(`${CONSTANTS.MODULE_NAME}:onInitializeDefaultIcons`, icons);
   settings = mergeObject(settings, icons);
   di.saveSettings(settings);
-  log(` Initialized default item icons.`);
+  log(`Initialized default item icons.`);
   ui.notifications?.info(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`), {
     permanent: true,
   });
@@ -410,48 +378,3 @@ function initializeItemProperties() {
   });
 }
 
-// /**
-//  * Function responsible for out-of-the-box integration with systems.
-//  *
-//  * Function must return object of key-value entries:
-//  *   - key   - item type
-//  *   - value - objects of of key-value pairs of flattened
-//  *             data names and boolean values
-//  *
-//  * Example of "defaults" object:
-//  *   {
-//  *     weapon: {
-//  *       "description": true,
-//  *       "attack.damage": true
-//  *     },
-//  *     armor: {
-//  *       "weight": true
-//  *     }
-//  *   }
-//  *
-//  * @param settings
-//  * @returns {Object}
-//  */
-// function setDefaultItemProperties(settings) {
-//   let defaults;
-//   switch (game.system.id) {
-//     case 'dnd5e':
-//       defaults = defaultPropertiesDND5e;
-//       break;
-//     case 'wfrp4e':
-//       defaults = defaultPropertiesWFRP4e;
-//       break;
-//     case 'pf2e':
-//       defaults = defaultPropertiesPF2e;
-//       break;
-//     case 'swade':
-//       defaults = defaultPropertiesSwade;
-//       break;
-//     default:
-//   }
-
-//   if (defaults) {
-//     log(` Loaded Default Properties from ${game.system.id} built-in integration.`);
-//   }
-//   return mergeObject(settings, defaults);
-// }
