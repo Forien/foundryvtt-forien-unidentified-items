@@ -1,0 +1,94 @@
+{
+  "forien-unidentified-items": {
+    "NewMystified": "Unidentified Item",
+    "Mystify": "Mystify",
+    "MystifyReplace": "Replace with Mystified",
+    "MystifyAs": "Mystify as…",
+    "MystifyAdvanced": "Mystify (advanced)…",
+    "Identify": "Identify",
+    "Peek": "Peek",
+
+    "Item": {
+      "Original": "Original",
+      "Mystified": "Mystified"
+    },
+
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "Mystify {nameItem}",
+        "Header": "Select Transmogrification source:",
+        "DropZone": "Drag & Drop an Item here to set it as new look for {nameItem}",
+        "Cancel": "Cancel",
+        "Mystify": "Mystify",
+        "MystifyReplace": "Replace",
+        "MystifyAdvanced": "Advanced…"
+      },
+      "MystifyAdvanced": {
+        "Title": "Mystify {nameItem}",
+        "Meta": "Item's Metadata",
+        "Original": "Source",
+        "Result": "Result",
+        "Default": "Default",
+        "Properties": "Properties to keep",
+        "Cancel": "Cancel",
+        "Mystify": "Mystify",
+        "MystifyReplace": "Replace"
+      },
+      "resetsettings": {
+        "title": "Reset Module Settings",
+        "content": "Are you sure you want to reset all of the module settings to the current system's defaults? <strong>This cannot be undone!</strong>",
+        "confirm": "Reset Module Settings",
+        "cancel": "Cancel"
+      },
+      "nosystemfound": {
+        "title": "System Not Recognized",
+        "content": "This system is not currently fully supported. This means that the module does not know how to best handle this system's items, but can still operate in a limited fashion.<br><br>You can configure the module's settings yourself, but it requires a bit of technical know-how."
+      },
+      "systemfound": {
+        "title": "System Recognized",
+        "content": "This system was previously not supported, but in an recent update it was added as a supported system!<br><br>Do you want to load this system's default module settings?",
+        "confirm": "Apply System Defaults"
+      }
+    },
+
+    "Settings": {
+      "allowNestedItems": {
+        "Name": "Allow tiering (nesting)",
+        "Hint": "Check this option to be able to Mystify a Mystified Item, allowing for nested/tiered items that can be identified one at a time."
+      },
+      "defaultIcons": {
+        "name": "Default Icons",
+        "hint": "Select which icons should be used as defaults for specific Item types.",
+        "label": "Open Icon Manager"
+      },
+      "itemProperties": {
+        "name": "Persisting Properties",
+        "hint": "Select which Item properties should be by default carried over to mystified item.",
+        "label": "Open Property Manager"
+      },
+      "keepOldIcon": {
+        "name": "Keep original Icon",
+        "hint": "Check this setting to keep original item icon when mystifying. Advanced Mystify still allows manually selecting original vs default icons."
+      },
+      "removeLabelButtonsSheetHeader": {
+        "name": "Remove label from buttons on the header item sheet",
+        "hint": "Remove label from buttons on the header item sheet, Useful for little screen and mobile, by default is true"
+      },
+      "reset": {
+        "name": "Reset settings to default",
+        "label": "Reset Settings To Default",
+        "hint": "This will reset all of the settings of back to the active game system's default."
+      },
+      "debug": {
+        "name": "Enable debugging",
+        "label": "Prints debug messages to the console",
+        "hint": ""
+      }
+    },
+
+    "Notifications": {
+      "defaultIconsInitialized": "Forien's Unidentified Items | Default Item Type Icons has been randomly assigned. Please visit Module Settings for more information.",
+      "defaultPropertiesInitialized": "Forien's Unidentified Items | Default Persisting Item Properties have been generated. Please visit Module Settings for more information."
+    }
+  }
+}
