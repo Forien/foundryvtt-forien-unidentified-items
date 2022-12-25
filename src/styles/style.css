@@ -1,65 +1,65 @@
-#fui-default-icons.wfrp .window-content {
+#forien-unidentified-items-default-icons.wfrp4e .window-content {
 	background: url(/ui/parchment.jpg) repeat;
 }
-#fui-default-icons .item-type-entry {
+#forien-unidentified-items-default-icons .item-type-entry {
 	display: flex;
 }
-#fui-default-icons .item-type-entry > * {
+#forien-unidentified-items-default-icons .item-type-entry > * {
 	flex: 1;
 	align-self: center;
 	margin: 0 4px;
 }
-#fui-default-icons .item-type-entry input {
+#forien-unidentified-items-default-icons .item-type-entry input {
 	flex: 2;
 	height: 29px;
 	min-width: 300px;
 	font-size: 12px;
 }
-#fui-default-icons .item-type-entry img {
+#forien-unidentified-items-default-icons .item-type-entry img {
 	width: 66px;
 	height: 66px;
 	flex: 0;
 	margin: 0;
 }
-#fui-default-icons .item-type-entry button {
+#forien-unidentified-items-default-icons .item-type-entry button {
 	flex: 0;
 	margin: 0;
 }
 
-#fui-item-properties.wfrp .window-content {
+#forien-unidentified-items-item-properties.wfrp4e .window-content {
 	background: url(/ui/parchment.jpg) repeat;
 }
-#fui-item-properties form {
+#forien-unidentified-items-item-properties form {
 	height: 100%;
 	display: grid;
 	grid-template-rows: auto minmax(0, 1fr) auto;
 }
-#fui-item-properties nav {
+#forien-unidentified-items-item-properties nav {
 	flex-wrap: wrap;
 }
-#fui-item-properties nav a {
+#forien-unidentified-items-item-properties nav a {
 	flex: 0 0 25%;
 }
-#fui-item-properties section {
+#forien-unidentified-items-item-properties section {
 	overflow: auto;
 	padding: 6px;
 }
-#fui-item-properties section .tab {
+#forien-unidentified-items-item-properties section .tab {
 	columns: 3;
 	/**
      * Because PF2e...
      */
 	display: none;
 }
-#fui-item-properties section .tab .type-property {
+#forien-unidentified-items-item-properties section .tab .type-property {
 	display: flex;
 	align-items: center;
 }
-#fui-item-properties section .tab * {
+#forien-unidentified-items-item-properties section .tab * {
 	break-inside: avoid-column;
 	padding: 0;
 }
-#fui-item-properties section .tab.tab.active {
+#forien-unidentified-items-item-properties section .tab.tab.active {
 	display: block;
 }
 

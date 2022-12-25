@@ -64,7 +64,7 @@ export default class Identification {
 	 */
 	static async mystifyAsDialog(itemUuid) {
 		const origItem: any = await this._itemFromUuid(itemUuid);
-		const nameItem = origItem.data.name;
+		const nameItem = origItem.name;
 
 		let itemTmp;
 		let replace;
@@ -141,8 +141,8 @@ export default class Identification {
 				if (data.pack) {
 					item = await this._getItemFromPack(data.pack, data.id);
 					item = duplicate(item);
-				} else if (data.data) {
-					item = data.data;
+				} else if (data) {
+					item = data;
 				} else {
 					const witem = game.items?.get(data.id);
 					if (!witem) {
@@ -172,7 +172,7 @@ export default class Identification {
 	 */
 	static async mystifyAdvancedDialog(itemUuid, source: any = undefined) {
 		const origItem = <Item>await this._itemFromUuid(itemUuid);
-		const nameItem = origItem.data.name;
+		const nameItem = origItem.name;
 		const sourceData = <ItemData>(source ? source : duplicate(origItem));
 		const meta = this._getMystifiedMeta(sourceData);
 		const keepOldIcon = this.keepOriginalImage();
@@ -451,13 +451,15 @@ export default class Identification {
 	 */
 	static async _getItemFromPack(packId, itemId) {
 		const pack = <CompendiumCollection<CompendiumCollection.Metadata>>game.packs.get(packId);
-		if (pack.metadata.entity !== "Item") {
+		if (pack.documentName !== "Item") {
 			return null;
 		}
 		return await pack.getDocument(itemId).then((ent) => {
-			//delete ent?.data._id;
-			if (ent?.data?._id) {
-				ent.data._id = "";
+			//delete ent?._id;
+			//@ts-ignore
+			if (ent?._id) {
+				//@ts-ignore
+				ent._id = "";
 			}
 			return ent;
 		});

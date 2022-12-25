@@ -4,7 +4,7 @@ import { i18n } from "../lib/lib";
 export default class DefaultIcons extends FormApplication<FormApplicationOptions, object, any> {
 	static get defaultOptions(): any {
 		const options = mergeObject(super.defaultOptions, {
-			id: "fui-default-icons",
+			id: "forien-unidentified-items-default-icons",
 			template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
 			title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`),
 			submitOnClose: true,
@@ -13,7 +13,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
 		});
 
 		if (game.system.id === "wfrp4e") {
-			options.classes.push("wfrp");
+			options.classes.push("wfrp4e");
 		}
 		return options;
 	}
@@ -44,7 +44,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
 			Hooks.once("closeFilePicker", () => {
 				const button = $(event.currentTarget);
 				const target = button.data("target");
-				$(`#fui-default-icons input[name=${target}]`).trigger("change");
+				$(`#forien-unidentified-items-default-icons input[name=${target}]`).trigger("change");
 			});
 		});
 	}

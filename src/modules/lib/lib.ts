@@ -120,9 +120,9 @@ export function getFirstPlayerTokenSelected(): Token | null {
 		return null;
 	}
 	if (!selectedTokens || selectedTokens.length === 0) {
-		//if(game.user.character.data.token){
+		//if(game.user.character.token){
 		//  //@ts-ignore
-		//  return game.user.character.data.token;
+		//  return game.user.character.token;
 		//}else{
 		return null;
 		//}
@@ -149,7 +149,7 @@ export function getFirstPlayerToken(): Token | null {
 		if (!controlled.length || controlled.length === 0) {
 			// If no token is selected use the token of the users character
 			token = <Token>(
-				canvas.tokens?.placeables.find((token) => token.data._id === game.user?.character?.data?._id)
+				canvas.tokens?.placeables.find((token) => token.actor?.id === game.user?.character?.id)
 			);
 		}
 		// If no token is selected use the first owned token of the users character you found
@@ -161,19 +161,19 @@ export function getFirstPlayerToken(): Token | null {
 }
 
 function getElevationToken(token: Token): number {
-	const base = token.document.data;
+	const base = token.document;
 	return getElevationPlaceableObject(base);
 }
 
 function getElevationWall(wall: Wall): number {
-	const base = wall.document.data;
+	const base = wall.document;
 	return getElevationPlaceableObject(base);
 }
 
 function getElevationPlaceableObject(placeableObject: any): number {
 	let base = placeableObject;
 	if (base.document) {
-		base = base.document.data;
+		base = base.document;
 	}
 	const base_elevation =
 		//@ts-ignore

@@ -37,9 +37,9 @@ To install this module manually:
 # System Integration
 
 |            	| dnd5e 	| pf2e 	| wfrp4e 	| sw5e 	| swade 	|
-|------------	|-------	|------	|--------	|--------	|
-| Settings   	| ✓     	| ✓    	| ✓      	| ✓      	| ✓      	|
-| Logic      	| ✗     	| ✗    	| ✗      	| ✗      	| ✗      	|
+|------------	|-------	|------	|--------	|------ | ------- |
+| Settings   	| ✓       | ✓    | ✓      | ✓     | ✓      |
+| Logic      	| ✗       | ✗    | ✗      | ✗     | ✗       |
 
 
 One of main principles of this module is being [**System Agnostic**](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.

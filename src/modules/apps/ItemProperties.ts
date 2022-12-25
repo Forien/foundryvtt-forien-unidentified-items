@@ -3,7 +3,7 @@ import { i18n } from "../lib/lib";
 export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
 	static get defaultOptions(): any {
 		const options = mergeObject(super.defaultOptions, {
-			id: "fui-item-properties",
+			id: "forien-unidentified-items-item-properties",
 			template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
 			title: i18n(`${CONSTANTS.MODULE_NAME}.itemProperties.name`),
 			submitOnClose: true,
@@ -16,7 +16,7 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
 		});
 
 		if (game.system.id === "wfrp4e") {
-			options.classes.push("wfrp");
+			options.classes.push("wfrp4e");
 		}
 		return options;
 	}

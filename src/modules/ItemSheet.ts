@@ -38,7 +38,7 @@ function getItemSheetClass(cls, sheet) {
 			if (this.item.isMystified()) {
 				title = "[" + i18n(`${CONSTANTS.MODULE_NAME}.Item.Mystified`) + "] " + `${title}`;
 			}
-			if (this.item.data.isAbstract) {
+			if (this.item.isAbstract) {
 				title = "[" + i18n(`${CONSTANTS.MODULE_NAME}.Item.Original`) + "] " + `${title}`;
 			}
 			return title;
@@ -51,7 +51,7 @@ function getItemSheetClass(cls, sheet) {
 		 */
 		_getHeaderButtons() {
 			const buttons = super._getHeaderButtons();
-			const isAbstract = this.item.data.isAbstract || false;
+			const isAbstract = this.item.isAbstract || false;
 			const removeLabelButtonsSheetHeader = <boolean>(
 				game.settings.get(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader")
 			);
@@ -88,7 +88,7 @@ function getItemSheetClass(cls, sheet) {
 							//@ts-ignore
 							const entity = new CONFIG.Item.documentClass(origData, { editable: false });
 							//@ts-ignore
-							entity.data.isAbstract = true;
+							entity.isAbstract = true;
 							const sheetTmp = entity.sheet;
 							sheetTmp?.render(true);
 						},
@@ -122,7 +122,7 @@ function getItemSheetClass(cls, sheet) {
 		}
 
 		async _updateObject(...args) {
-			if (this.item.data.isAbstract) {
+			if (this.item.isAbstract) {
 				return this;
 			}
 			return super._updateObject(...args);
