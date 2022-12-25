@@ -1,50 +1,50 @@
 <form class="advanced-body">
-  <h2>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Meta"}}</h2>
-  <div class="meta-header">
-    <span>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Original"}}</span>
-    <span>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Result"}}</span>
-    <span>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Default"}}</span>
-  </div>
-  <div class="meta-body">
-    <div class="meta-image">
-      <div>
-        <img src="{{item.img}}" />
-      </div>
-      <div>
-        <img class="img-preview" src="{{selectedImg}}" />
-        <input type="checkbox" name="img-keep" {{checked keepOldIcon}} />
-        <input type="hidden" name="img" value="{{selectedImg}}" />
-      </div>
-      <div>
-        <img src="{{meta.img}}" />
-      </div>
-    </div>
-    <div class="meta-name">
-      <div>{{item.name}}</div>
-      <div>
-        <span class="name-preview">{{meta.name}}</span>
-        <input type="checkbox" name="name-keep" />
-        <input type="hidden" name="name" value="{{meta.name}}" />
-        <input type="hidden" name="type" value="{{meta.type}}" />
-      </div>
-      <div>{{meta.name}}</div>
-    </div>
-  </div>
-  <h2>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Properties"}}</h2>
-  <div class="properties-body">
-    {{#each properties}}
-    <label for="advanced-property-{{this.key}}" class="property-name">{{this.key}}</label>
-    <div class="property-values">
-      <span
-        ><strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Original"}}:</strong>
-        {{{this.orig}}}</span
-      >
-      <span
-        ><strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Default"}}:</strong>
-        {{{this.default}}}</span
-      >
-    </div>
-    <input id="advanced-property-{{this.key}}" type="checkbox" name="data.{{this.key}}" {{checked this.value}} />
-    {{/each}}
-  </div>
+	<h2>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Meta"}}</h2>
+	<div class="meta-header">
+		<span>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Original"}}</span>
+		<span>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Result"}}</span>
+		<span>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Default"}}</span>
+	</div>
+	<div class="meta-body">
+		<div class="meta-image">
+			<div>
+				<img src="{{item.img}}" />
+			</div>
+			<div>
+				<img class="img-preview" src="{{selectedImg}}" />
+				<input type="checkbox" name="img-keep" {{checked keepOldIcon}} />
+				<input type="hidden" name="img" value="{{selectedImg}}" />
+			</div>
+			<div>
+				<img src="{{meta.img}}" />
+			</div>
+		</div>
+		<div class="meta-name">
+			<div>{{item.name}}</div>
+			<div>
+				<span class="name-preview">{{meta.name}}</span>
+				<input type="checkbox" name="name-keep" />
+				<input type="hidden" name="name" value="{{meta.name}}" />
+				<input type="hidden" name="type" value="{{meta.type}}" />
+			</div>
+			<div>{{meta.name}}</div>
+		</div>
+	</div>
+	<h2>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Properties"}}</h2>
+	<div class="properties-body">
+		{{#each properties}}
+		<label for="advanced-property-{{this.key}}" class="property-name">{{this.key}}</label>
+		<div class="property-values">
+			<span>
+				<strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Original"}}:</strong>
+				{{{this.orig}}}
+			</span>
+			<span>
+				<strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Default"}}:</strong>
+				{{{this.default}}}
+			</span>
+		</div>
+		<input id="advanced-property-{{this.key}}" type="checkbox" name="data.{{this.key}}" {{checked this.value}} />
+		{{/each}}
+	</div>
 </form>

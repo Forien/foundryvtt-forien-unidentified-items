@@ -1,215 +1,215 @@
 $icon-size: 66px;
 
 #fui-default-icons {
-  &.wfrp {
-    .window-content {
-      background: url(/ui/parchment.jpg) repeat;
-    }
-  }
+	&.wfrp {
+		.window-content {
+			background: url(/ui/parchment.jpg) repeat;
+		}
+	}
 
-  .item-type-entry {
-    display: flex;
+	.item-type-entry {
+		display: flex;
 
-    & > * {
-      flex: 1;
-      align-self: center;
-      margin: 0 4px;
-    }
+		& > * {
+			flex: 1;
+			align-self: center;
+			margin: 0 4px;
+		}
 
-    input {
-      flex: 2;
-      height: 29px;
-      min-width: 300px;
-      font-size: 12px;
-    }
+		input {
+			flex: 2;
+			height: 29px;
+			min-width: 300px;
+			font-size: 12px;
+		}
 
-    img {
-      width: $icon-size;
-      height: $icon-size;
-      flex: 0;
-      margin: 0;
-    }
+		img {
+			width: $icon-size;
+			height: $icon-size;
+			flex: 0;
+			margin: 0;
+		}
 
-    button {
-      flex: 0;
-      margin: 0;
-    }
-  }
+		button {
+			flex: 0;
+			margin: 0;
+		}
+	}
 }
 
 #fui-item-properties {
-  &.wfrp {
-    .window-content {
-      background: url(/ui/parchment.jpg) repeat;
-    }
-  }
+	&.wfrp {
+		.window-content {
+			background: url(/ui/parchment.jpg) repeat;
+		}
+	}
 
-  form {
-    height: 100%;
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto;
-  }
+	form {
+		height: 100%;
+		display: grid;
+		grid-template-rows: auto minmax(0, 1fr) auto;
+	}
 
-  nav {
-    flex-wrap: wrap;
+	nav {
+		flex-wrap: wrap;
 
-    a {
-      flex: 0 0 25%;
-    }
-  }
+		a {
+			flex: 0 0 25%;
+		}
+	}
 
-  section {
-    overflow: auto;
-    padding: 6px;
+	section {
+		overflow: auto;
+		padding: 6px;
 
-    .tab {
-      columns: 3;
+		.tab {
+			columns: 3;
 
-      .type-property {
-        display: flex;
-        align-items: center;
-      }
+			.type-property {
+				display: flex;
+				align-items: center;
+			}
 
-      * {
-        break-inside: avoid-column;
-        padding: 0;
-      }
+			* {
+				break-inside: avoid-column;
+				padding: 0;
+			}
 
-      /**
+			/**
        * Because PF2e...
        */
-      display: none;
+			display: none;
 
-      // Also Because PF2e...
-      &.tab.active {
-        display: block;
-      }
-    }
-  }
+			// Also Because PF2e...
+			&.tab.active {
+				display: block;
+			}
+		}
+	}
 }
 
 #mystifyAsDialog {
-  .dropzone {
-    min-height: 240px;
-    margin-bottom: 4px;
-    border: 2px dashed #33333366;
-    border-radius: 6px;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    display: flex;
-    flex-direction: column;
+	.dropzone {
+		min-height: 240px;
+		margin-bottom: 4px;
+		border: 2px dashed #33333366;
+		border-radius: 6px;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		display: flex;
+		flex-direction: column;
 
-    p {
-      text-align: center;
-      position: relative;
-      max-width: 80%;
+		p {
+			text-align: center;
+			position: relative;
+			max-width: 80%;
 
-      font-variant: small-caps;
-      font-size: 1.6rem;
-      color: #333333cc;
-    }
+			font-variant: small-caps;
+			font-size: 1.6rem;
+			color: #333333cc;
+		}
 
-    .item {
-      display: flex;
+		.item {
+			display: flex;
 
-      img {
-        width: $icon-size;
-        height: $icon-size;
-        border-radius: 8px;
-        border: 2px solid #000;
-      }
+			img {
+				width: $icon-size;
+				height: $icon-size;
+				border-radius: 8px;
+				border: 2px solid #000;
+			}
 
-      span {
-        font-size: 1.2rem;
-        align-self: center;
-        padding: 8px;
-      }
-    }
-  }
+			span {
+				font-size: 1.2rem;
+				align-self: center;
+				padding: 8px;
+			}
+		}
+	}
 
-  button[data-button='mystifyAdvanced'] {
-    flex-basis: 100%;
-    margin: 0 0 2px 0;
-  }
+	button[data-button="mystifyAdvanced"] {
+		flex-basis: 100%;
+		margin: 0 0 2px 0;
+	}
 }
 
 #mystifyAdvancedDialog {
-  min-width: 500px;
-  max-height: 800px;
+	min-width: 500px;
+	max-height: 800px;
 
-  .window-content {
-    display: grid;
-    grid-template-rows: minmax(0, 1fr) auto;
-  }
+	.window-content {
+		display: grid;
+		grid-template-rows: minmax(0, 1fr) auto;
+	}
 
-  .advanced-body {
-    height: 100%;
-    display: grid;
-    grid-template-rows: auto auto auto auto minmax(0, 1fr);
+	.advanced-body {
+		height: 100%;
+		display: grid;
+		grid-template-rows: auto auto auto auto minmax(0, 1fr);
 
-    .meta-header {
-      display: flex;
+		.meta-header {
+			display: flex;
 
-      & > * {
-        flex: 1;
-        text-align: center;
-        font-weight: bold;
-      }
-    }
+			& > * {
+				flex: 1;
+				text-align: center;
+				font-weight: bold;
+			}
+		}
 
-    .meta-body > * {
-      display: flex;
+		.meta-body > * {
+			display: flex;
 
-      & > * {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-items: center;
-        align-items: center;
-      }
-    }
+			& > * {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-items: center;
+				align-items: center;
+			}
+		}
 
-    .meta-name {
-      margin-top: 10px;
-    }
+		.meta-name {
+			margin-top: 10px;
+		}
 
-    img {
-      width: $icon-size;
-      height: $icon-size;
-    }
+		img {
+			width: $icon-size;
+			height: $icon-size;
+		}
 
-    .properties-body {
-      overflow-y: auto;
-      display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      grid-gap: 6px 10px;
+		.properties-body {
+			overflow-y: auto;
+			display: grid;
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			grid-gap: 6px 10px;
 
-      label {
-        font-weight: bold;
-      }
+			label {
+				font-weight: bold;
+			}
 
-      .property-values {
-        display: flex;
-        flex-direction: column;
-        font-style: italic;
-        font-size: 12px;
-      }
-    }
-  }
+			.property-values {
+				display: flex;
+				flex-direction: column;
+				font-style: italic;
+				font-size: 12px;
+			}
+		}
+	}
 }
 
 .identify-item .fa-search {
-  color: DeepPink;
-  text-shadow: 0 0 8px DeepPink;
+	color: DeepPink;
+	text-shadow: 0 0 8px DeepPink;
 }
 
 .peek-original-item .fa-eye {
-  color: Orchid;
-  text-shadow: 0 0 8px Orchid;
+	color: Orchid;
+	text-shadow: 0 0 8px Orchid;
 }
 
 .mystify-item .fa-eye-slash {
-  color: RebeccaPurple;
-  text-shadow: 0 0 8px RebeccaPurple;
+	color: RebeccaPurple;
+	text-shadow: 0 0 8px RebeccaPurple;
 }

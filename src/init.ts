@@ -12,56 +12,56 @@
 // Import JavaScript modules
 
 // Import TypeScript modules
-import registerDerivedItemSheetClass from './modules/ItemSheet';
-import registerContextMenuHook from './modules/ContextMenu';
-import Identification from './modules/Identification';
-import registerSettings, { checkSettingsInitialized } from './modules/settings';
-import registerItemClassMethod from './modules/Item';
-import CONSTANTS from './modules/constants';
-import API from './modules/api';
+import registerDerivedItemSheetClass from "./modules/ItemSheet";
+import registerContextMenuHook from "./modules/ContextMenu";
+import Identification from "./modules/Identification";
+import registerSettings, { checkSettingsInitialized } from "./modules/settings";
+import registerItemClassMethod from "./modules/Item";
+import CONSTANTS from "./modules/constants";
+import API from "./modules/api";
 
 /* ------------------------------------ */
 /* Initialize module					*/
 /* ------------------------------------ */
 
-Hooks.once('init', () => {
-  registerSettings();
+Hooks.once("init", () => {
+	registerSettings();
 
-  registerContextMenuHook();
+	registerContextMenuHook();
 
-  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterInit`);
+	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterInit`);
 });
 
 /* ------------------------------------ */
 /* Setup module							*/
 /* ------------------------------------ */
 
-Hooks.once('setup', () => {
-  //@ts-ignore
-  window.ForienIdentification = Identification;
+Hooks.once("setup", () => {
+	//@ts-ignore
+	window.ForienIdentification = Identification;
 
-  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
+	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
 
-  setApi(API);
+	setApi(API);
 });
 
 /* ------------------------------------ */
 /* When ready							*/
 /* ------------------------------------ */
 
-Hooks.once('ready', () => {
-  checkSettingsInitialized();
-  registerDerivedItemSheetClass();
-  registerItemClassMethod();
+Hooks.once("ready", () => {
+	checkSettingsInitialized();
+	registerDerivedItemSheetClass();
+	registerItemClassMethod();
 
-  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
+	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
 });
 
 // Add any additional hooks if necessary
 
 export interface MysteryItemModuleData {
-  api: typeof API;
-  socket: any;
+	api: typeof API;
+	socket: any;
 }
 
 /**
@@ -69,8 +69,8 @@ export interface MysteryItemModuleData {
  * @param api to set to game module.
  */
 export function setApi(api: typeof API): void {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-  data.api = api;
+	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+	data.api = api;
 }
 
 /**
@@ -78,8 +78,8 @@ export function setApi(api: typeof API): void {
  * @returns Api from games module.
  */
 export function getApi(): typeof API {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-  return data.api;
+	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+	return data.api;
 }
 
 /**
@@ -87,8 +87,8 @@ export function getApi(): typeof API {
  * @param socket to set to game module.
  */
 export function setSocket(socket: any): void {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-  data.socket = socket;
+	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+	data.socket = socket;
 }
 
 /*
@@ -96,6 +96,6 @@ export function setSocket(socket: any): void {
  * @returns Socket from games module.
  */
 export function getSocket() {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-  return data.socket;
+	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+	return data.socket;
 }

@@ -1,65 +1,65 @@
 {
-  "forien-unidentified-items": {
-    "NewMystified": "Objet non identifié",
-    "Mystify": "Mystifier",
-    "MystifyReplace": "Remplacer avec l'objet mystifié",
-    "MystifyAs": "Mystifier en…",
-    "MystifyAdvanced": "Mystifier (avancé)…",
-    "Identify": "Identifier",
-    "Peek": "Voir",
+	"forien-unidentified-items": {
+		"NewMystified": "Objet non identifié",
+		"Mystify": "Mystifier",
+		"MystifyReplace": "Remplacer avec l'objet mystifié",
+		"MystifyAs": "Mystifier en…",
+		"MystifyAdvanced": "Mystifier (avancé)…",
+		"Identify": "Identifier",
+		"Peek": "Voir",
 
-    "Item": {
-      "Original": "Original",
-      "Mystified": "Mystifié"
-    },
+		"Item": {
+			"Original": "Original",
+			"Mystified": "Mystifié"
+		},
 
-    "Dialog": {
-      "MystifyAs": {
-        "Title": "Mystifier {nameItem}",
-        "Header": "Sélectionnez la source de transmogrification :",
-        "DropZone": "Glissez-déposez un élément ici pour donner une nouvelle apparence à {nameItem}",
-        "Cancel": "Annuler",
-        "Mystify": "Mystifier",
-        "MystifyReplace": "Remplacer",
-        "MystifyAdvanced": "Avancé"
-      },
-      "MystifyAdvanced": {
-        "Title": "Mystifier {nameItem}",
-        "Meta": "Métadonnées de l'objet",
-        "Original": "Source",
-        "Result": "Résultat",
-        "Default": "Par défaut",
-        "Properties": "Propriétés à conserver",
-        "Cancel": "Annuler",
-        "Mystify": "Mystifier",
-        "MystifyReplace": "Remplacer"
-      }
-    },
+		"Dialog": {
+			"MystifyAs": {
+				"Title": "Mystifier {nameItem}",
+				"Header": "Sélectionnez la source de transmogrification :",
+				"DropZone": "Glissez-déposez un élément ici pour donner une nouvelle apparence à {nameItem}",
+				"Cancel": "Annuler",
+				"Mystify": "Mystifier",
+				"MystifyReplace": "Remplacer",
+				"MystifyAdvanced": "Avancé"
+			},
+			"MystifyAdvanced": {
+				"Title": "Mystifier {nameItem}",
+				"Meta": "Métadonnées de l'objet",
+				"Original": "Source",
+				"Result": "Résultat",
+				"Default": "Par défaut",
+				"Properties": "Propriétés à conserver",
+				"Cancel": "Annuler",
+				"Mystify": "Mystifier",
+				"MystifyReplace": "Remplacer"
+			}
+		},
 
-    "Settings": {
-      "allowNestedItems": {
-        "Name": "Autoriser l'imbrication",
-        "Hint": "Cochez cette option pour pouvoir mystifier un objet déjà mystifié, ce qui permet d'identifier les objets ainsi imbriqués un par un."
-      },
-      "defaultIcons": {
-        "name": "Icônes par défaut",
-        "hint": "Sélectionnez les icônes qui doivent être utilisées par défaut pour des types d'objet spécifiques.",
-        "label": "Ouvrir le gestionnaire d'icônes"
-      },
-      "itemProperties": {
-        "name": "Propriétés persistantes",
-        "hint": "Sélectionnez les propriétés de l'objet qui doivent être reportées par défaut sur l'objet mystifié.",
-        "label": "Ouvrir le gestionnaire de propriétés"
-      },
-      "keepOldIcon": {
-        "name": "Conserver l'icône originale",
-        "hint": "Cochez ce paramètre pour conserver l'icône de l'objet original lors de la mystification. La mystification avancée permet toujours de sélectionner manuellement les icônes d'origine par rapport aux icônes par défaut."
-      }
-    },
+		"Settings": {
+			"allowNestedItems": {
+				"Name": "Autoriser l'imbrication",
+				"Hint": "Cochez cette option pour pouvoir mystifier un objet déjà mystifié, ce qui permet d'identifier les objets ainsi imbriqués un par un."
+			},
+			"defaultIcons": {
+				"name": "Icônes par défaut",
+				"hint": "Sélectionnez les icônes qui doivent être utilisées par défaut pour des types d'objet spécifiques.",
+				"label": "Ouvrir le gestionnaire d'icônes"
+			},
+			"itemProperties": {
+				"name": "Propriétés persistantes",
+				"hint": "Sélectionnez les propriétés de l'objet qui doivent être reportées par défaut sur l'objet mystifié.",
+				"label": "Ouvrir le gestionnaire de propriétés"
+			},
+			"keepOldIcon": {
+				"name": "Conserver l'icône originale",
+				"hint": "Cochez ce paramètre pour conserver l'icône de l'objet original lors de la mystification. La mystification avancée permet toujours de sélectionner manuellement les icônes d'origine par rapport aux icônes par défaut."
+			}
+		},
 
-    "Notifications": {
-      "defaultIconsInitialized": "Forien's Unidentified Items | Les icônes des types d'objets par défaut ont été attribuées de manière aléatoire. Pour plus d'informations, veuillez consulter la page Paramètres des modules.",
-      "defaultPropertiesInitialized": "Forien's Unidentified Items | Les propriétés persistantes par défaut des objets ont été générées.  Pour plus d'informations, veuillez consulter la page Paramètres des modules."
-    }
-  }
+		"Notifications": {
+			"defaultIconsInitialized": "Forien's Unidentified Items | Les icônes des types d'objets par défaut ont été attribuées de manière aléatoire. Pour plus d'informations, veuillez consulter la page Paramètres des modules.",
+			"defaultPropertiesInitialized": "Forien's Unidentified Items | Les propriétés persistantes par défaut des objets ont été générées.  Pour plus d'informations, veuillez consulter la page Paramètres des modules."
+		}
+	}
 }

@@ -1,3 +1,3 @@
 export default {
-  DEFAULT_PROPERTIES: {},
+	DEFAULT_PROPERTIES: {},
 };

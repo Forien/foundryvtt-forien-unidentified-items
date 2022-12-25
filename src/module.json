@@ -1,28 +1,28 @@
 {
-  "id": "forien-unidentified-items",
-  "title": "Forien's Unidentified Items",
-  "description": "Provides system agnostic solution to handle unidentified items and their identification.",
-  "version": "0.6.0",
+	"id": "forien-unidentified-items",
+	"title": "Forien's Unidentified Items",
+	"description": "Provides system agnostic solution to handle unidentified items and their identification.",
+	"version": "0.6.0",
 	"authors": [
-    {
-      "name": "Forien",
-      "url": "https://www.patreon.com/foundryworkshop"
-    },
-    {
-      "name": "Matheus Clemente",
-      "url": "https://www.patreon.com/mclemente"
-    },
-    {
-      "name": "League-of-Foundry-Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "",
-      "twitter": "",
-      "patreon": "",
-      "github": "League-of-Foundry-Developers",
-      "ko-fi": "",
-      "reddit": "",
-      "email": ""
-    }
+		{
+			"name": "Forien",
+			"url": "https://www.patreon.com/foundryworkshop"
+		},
+		{
+			"name": "Matheus Clemente",
+			"url": "https://www.patreon.com/mclemente"
+		},
+		{
+			"name": "League-of-Foundry-Developers",
+			"url": "https://github.com/League-of-Foundry-Developers",
+			"discord": "",
+			"twitter": "",
+			"patreon": "",
+			"github": "League-of-Foundry-Developers",
+			"ko-fi": "",
+			"reddit": "",
+			"email": ""
+		}
 	],
 	"type": "module",
 	"socket": true,
@@ -53,41 +53,41 @@
 		}
 	],
 	"languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    },
-    {
-      "lang": "ko",
-      "name": "한국어",
-      "path": "lang/ko.json"
-    },
-    {
-      "lang": "pl",
-      "name": "Polski",
-      "path": "lang/pl.json"
-    },
-    {
-      "lang": "pt-BR",
-      "name": "Português (Brasil)",
-      "path": "lang/pt-BR.json"
-    },
-    {
-      "lang": "ja",
-      "name": "日本語",
-      "path": "lang/ja.json"
-    },
-    {
-      "lang": "de",
-      "name": "Deutsch",
-      "path": "lang/de.json"
-    }
-  ],
+		{
+			"lang": "en",
+			"name": "English",
+			"path": "lang/en.json"
+		},
+		{
+			"lang": "ko",
+			"name": "한국어",
+			"path": "lang/ko.json"
+		},
+		{
+			"lang": "pl",
+			"name": "Polski",
+			"path": "lang/pl.json"
+		},
+		{
+			"lang": "pt-BR",
+			"name": "Português (Brasil)",
+			"path": "lang/pt-BR.json"
+		},
+		{
+			"lang": "ja",
+			"name": "日本語",
+			"path": "lang/ja.json"
+		},
+		{
+			"lang": "de",
+			"name": "Deutsch",
+			"path": "lang/de.json"
+		}
+	],
 	"packs": [],
 	"scripts": [],
-  "esmodules": ["init.js"],
-  "styles": ["styles/style.css"],
+	"esmodules": ["init.js"],
+	"styles": ["styles/style.css"],
 	"compatibility": {
 		"minimum": 10,
 		"verified": 10,
