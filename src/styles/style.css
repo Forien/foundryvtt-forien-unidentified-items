@@ -39,6 +39,9 @@
 }
 #forien-unidentified-items-item-properties nav a {
 	flex: 0 0 25%;
+	border-radius: 10px;
+	border-color: black;
+	border-style: outset;
 }
 #forien-unidentified-items-item-properties section {
 	overflow: auto;

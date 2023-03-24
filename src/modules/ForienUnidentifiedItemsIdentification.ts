@@ -343,7 +343,7 @@ export default class Identification {
 			return;
 		}
 		// things to keep from mystified item:
-		delete origData._id;
+		// delete origData._id;
 		delete origData.permission;
 		delete origData.folder;
 

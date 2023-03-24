@@ -131,7 +131,6 @@ class ResetSettingsDialog extends FormApplication<FormApplicationOptions, object
 					icon: '<i class="fas fa-check"></i>',
 					label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.resetsettings.confirm`),
 					callback: async () => {
-						await applyDefaultSettings();
 						const worldSettings = game.settings.storage
 							?.get("world")
 							?.filter((setting) => setting.key.startsWith(`${CONSTANTS.MODULE_NAME}.`));
@@ -139,6 +138,7 @@ class ResetSettingsDialog extends FormApplication<FormApplicationOptions, object
 							console.log(`Reset setting '${setting.key}'`);
 							await setting.delete();
 						}
+						await applyDefaultSettings();
 						window.location.reload();
 					}
 				},
@@ -186,82 +186,6 @@ function defaultSettings(apply = false) {
 		}
 	};
 }
-
-// function otherSettings(apply = false) {
-// 	return {
-// 		removeLabelButtonsSheetHeader: {
-// 			name: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.name`),
-// 			hint: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.hint`),
-// 			scope: "world",
-// 			config: true,
-// 			type: Boolean,
-// 			default: true,
-// 		},
-
-// 		keepOldIcon: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.hint`,
-// 			scope: "world",
-// 			config: true,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-
-// 		allowNestedItems: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Hint`,
-// 			scope: "world",
-// 			config: true,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-
-// 		debug: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.debug.name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.debug.hint`,
-// 			scope: "client",
-// 			config: true,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-
-// 		debugHooks: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.debugHooks.name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.debugHooks.hint`,
-// 			scope: "world",
-// 			config: false,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-
-// 		systemFound: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.systemFound.name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.systemFound.hint`,
-// 			scope: "world",
-// 			config: false,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-
-// 		systemNotFoundWarningShown: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.systemNotFoundWarningShown.name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.systemNotFoundWarningShown.hint`,
-// 			scope: "world",
-// 			config: false,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-
-// 		preconfiguredSystem: {
-// 			name: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.name`,
-// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.hint`,
-// 			scope: "world",
-// 			config: false,
-// 			default: false,
-// 			type: Boolean,
-// 		},
-// 	};
-// }
 
 export async function checkSystem() {
 	if (!SYSTEMS.DATA) {
