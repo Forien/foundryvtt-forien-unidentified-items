@@ -1,7 +1,7 @@
 {
   "name": "forien-unidentified-items",
   "description": "Provides system agnostic solution to handle unidentified items and their identification.",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "main": "init.js",
   "scripts": {
     "publish": "gulp publish --update",
