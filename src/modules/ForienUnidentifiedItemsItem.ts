@@ -1,5 +1,5 @@
 import { MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import Identification from "./Identification";
+import Identification from "./ForienUnidentifiedItemsIdentification";
 
 export default function registerItemClassMethod() {
 	//@ts-ignore

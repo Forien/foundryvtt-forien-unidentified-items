@@ -1,8 +1,7 @@
-import type { ItemData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/module.mjs";
 import type DefaultIcons from "./apps/DefaultIcons";
 import CONSTANTS from "./constants";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import { i18n, i18nFormat } from "./lib/lib";
+import { error, i18n, i18nFormat, warn } from "./lib/lib";
 
 export default class Identification {
 	/**
@@ -12,17 +11,24 @@ export default class Identification {
 	 * @param {string} itemUuid
 	 * @param {Object} options
 	 * @param {boolean} options.replace - set true to replace provided item with mystified one
-	 * @param {undefined|Object} options.mystifiedData - item data object that should become front of mystified item
+	 * @param {MystifiedData|undefined} options.mystifiedData - item data object that should become front of mystified item
 	 * @returns {Promise<void>}
 	 */
-	static async mystify(itemUuid: string, options: any = { replace: false, mystifiedData: undefined }) {
+	static async mystify(
+		itemUuid: string,
+		options: { replace: boolean; mystifiedData: MystifiedData | undefined } = {
+			replace: false,
+			mystifiedData: undefined
+		}
+	): Promise<Item | undefined> {
 		if (!game.user?.isGM) {
+			error(`Only a GM can mistify a item`, true);
 			return;
 		}
 		const item = await this._itemFromUuid(itemUuid);
 
 		if (!item) {
-			ui.notifications?.error(`${CONSTANTS.MODULE_NAME}.NotAnItem`, {});
+			error(`${CONSTANTS.MODULE_NAME}.NotAnItem`, true);
 			return;
 		}
 
@@ -46,6 +52,7 @@ export default class Identification {
 		}
 
 		await mystifiedItem.setFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA, origData);
+		return mystifiedItem;
 	}
 
 	/**
@@ -53,8 +60,8 @@ export default class Identification {
 	 * @param {string} itemUuid
 	 * @returns {Promise<void>}
 	 */
-	static async mystifyReplace(itemUuid) {
-		await this.mystify(itemUuid, { replace: true, mystifiedData: undefined });
+	static async mystifyReplace(itemUuid: string): Promise<Item | undefined> {
+		return await this.mystify(itemUuid, { replace: true, mystifiedData: undefined });
 	}
 
 	/**
@@ -62,7 +69,7 @@ export default class Identification {
 	 * @param {string} itemUuid
 	 * @returns {Promise<void>}
 	 */
-	static async mystifyAsDialog(itemUuid) {
+	static async mystifyAsDialog(itemUuid: string): Promise<void> {
 		const origItem: any = await this._itemFromUuid(itemUuid);
 		const nameItem = origItem.name;
 
@@ -73,13 +80,13 @@ export default class Identification {
 			{
 				title: i18nFormat(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.Title`, { nameItem }),
 				content: `<h3>${i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.Header`)}</h3>
-        <div class="dropzone">
-            <p>${i18nFormat(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.DropZone`, { nameItem })}</p>
-            <div class="item" style="display: none">
-                <img/>
-                <span></span>
-            </div>
-        </div>`,
+					<div class="dropzone">
+						<p>${i18nFormat(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.DropZone`, { nameItem })}</p>
+						<div class="item" style="display: none">
+							<img/>
+							<span></span>
+						</div>
+					</div>`,
 				buttons: {
 					mystifyAdvanced: {
 						icon: '<i class="fas fa-cogs"></i>',
@@ -138,9 +145,12 @@ export default class Identification {
 			let item;
 			const data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData("text/plain"));
 			if (data.type === "Item") {
-				if (data.pack) {
-					item = await this._getItemFromPack(data.pack, data.id);
-					item = duplicate(item);
+				if (data.uuid) {
+					const witem = await this._uuidToDocument(data.uuid);
+					item = duplicate(witem);
+					// } else if (data.pack) {
+					// 	const witem = await this._getItemFromPack(data.pack, data.id);
+					// 	item = duplicate(witem);
 				} else if (data) {
 					item = data;
 				} else {
@@ -167,13 +177,13 @@ export default class Identification {
 	/**
 	 *
 	 * @param {string} itemUuid
-	 * @param {object} source
+	 * @param {Item|undefined} source
 	 * @returns {Promise<void>}
 	 */
-	static async mystifyAdvancedDialog(itemUuid, source: any = undefined) {
+	static async mystifyAdvancedDialog(itemUuid: string, source: Item | undefined = undefined) {
 		const origItem = <Item>await this._itemFromUuid(itemUuid);
 		const nameItem = origItem.name;
-		const sourceData = <ItemData>(source ? source : duplicate(origItem));
+		const sourceData = <Item>(source ? source : duplicate(origItem));
 		const meta = this._getMystifiedMeta(sourceData);
 		const keepOldIcon = this.keepOriginalImage();
 
@@ -245,7 +255,11 @@ export default class Identification {
 					);
 
 					for (const property of Object.keys(formData)) {
-						if (property.startsWith("data.")) {
+						// if (property.startsWith("data.")) {
+						// 	delete formData[property];
+						// 	setProperty(formData, property, getProperty(sourceData, property));
+						// }
+						if (property.startsWith("system.")) {
 							delete formData[property];
 							setProperty(formData, property, getProperty(sourceData, property));
 						}
@@ -255,9 +269,10 @@ export default class Identification {
 					//if (replace) options.replace = true;
 					//this.mystify(itemUuid, options);
 					if (replace) {
-						this.mystify(itemUuid, { replace: true, mystifiedData: formData });
+						this.mystify(itemUuid, { replace: true, mystifiedData: <any>formData });
+						this.mystify(itemUuid, { replace: true, mystifiedData: <any>formData });
 					} else {
-						this.mystify(itemUuid, { replace: false, mystifiedData: formData });
+						this.mystify(itemUuid, { replace: false, mystifiedData: <any>formData });
 					}
 				}
 			},
@@ -278,11 +293,11 @@ export default class Identification {
 		});
 
 		jqDialog.on("change", "input[name=name-keep]", async (event) => {
-			const checked = $(event.currentTarget).prop("checked");
+			const checked = <boolean>$(event.currentTarget).prop("checked");
 
 			const nameChanged = checked ? sourceData.name : meta.name;
-			jqDialog.find(".name-preview").text(nameChanged);
-			jqDialog.find("input[name=name]").val(nameChanged);
+			jqDialog.find(".name-preview").text(nameChanged ?? "");
+			jqDialog.find("input[name=name]").val(nameChanged ?? "");
 		});
 	}
 
@@ -291,10 +306,14 @@ export default class Identification {
 	 * @hook 'forien-unidentified-items:onIdentifyItem'
 	 *
 	 * @param {Item} item
-	 * @returns {Promise<Item>}
+	 * @returns {Promise<Item|undefined>}
 	 */
-	static async identify(item) {
-		const origData = item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+	static async identify(item: Item): Promise<Item | undefined> {
+		if (!item) {
+			warn(`Cannot mistify no item`, true);
+			return;
+		}
+		const origData = <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
 		// things to keep from mystified item:
 		delete origData._id;
 		delete origData.permission;
@@ -308,6 +327,7 @@ export default class Identification {
 			const origDataOrigData = getProperty(origData.flags, `${CONSTANTS.MODULE_NAME}.origData`);
 			await item.setFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA, origDataOrigData);
 		}
+		return item;
 	}
 
 	/**
@@ -315,9 +335,8 @@ export default class Identification {
 	 * @param {Item} item
 	 * @return {boolean}
 	 */
-	static isMystified(item) {
+	static isMystified(item: Item): boolean {
 		const origData = item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
-
 		return origData !== undefined;
 	}
 
@@ -326,8 +345,8 @@ export default class Identification {
 	 * @param {Item} item
 	 * @return {Object}
 	 */
-	static getOrigData(item) {
-		return item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+	static getOrigData(item: Item): MystifiedData {
+		return <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
 	}
 
 	/**
@@ -335,13 +354,13 @@ export default class Identification {
 	 * @param {string} uuid
 	 * @return {boolean}
 	 */
-	static async isUuidMystified(uuid) {
+	static async isUuidMystified(uuid: string) {
 		const item = <Item>await this._itemFromUuid(uuid);
 		if (!item) {
+			warn(`No item found for uuid '${uuid}'`, true);
 			return false;
 		}
 		const origData = item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
-
 		return origData !== undefined;
 	}
 
@@ -356,9 +375,19 @@ export default class Identification {
 		const itemProperties = this._getDefaultProperties(origData);
 
 		for (const property of itemProperties) {
-			const propertyTmp = "data." + property;
-			const valueTmp = getProperty(origData, propertyTmp);
-			setProperty(mystifiedData, propertyTmp, valueTmp);
+			// const propertyTmp = "data." + property;
+			// const valueTmp = getProperty(origData, propertyTmp);
+			// setProperty(mystifiedData, propertyTmp, valueTmp);
+			if (property) {
+				let propertyTmp: string | undefined = undefined;
+				if (property.startsWith("system.")) {
+					propertyTmp = property;
+				} else {
+					propertyTmp = "system." + property;
+				}
+				const valueTmp = getProperty(origData, <string>propertyTmp);
+				setProperty(mystifiedData, <string>propertyTmp, valueTmp);
+			}
 		}
 
 		if (this.keepOriginalImage()) {
@@ -391,7 +420,6 @@ export default class Identification {
 	 */
 	static _getTypeProperties(origData) {
 		const defaultProperties = <any>game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
-
 		return defaultProperties[origData.type];
 	}
 
@@ -421,47 +449,67 @@ export default class Identification {
 	/**
 	 *
 	 * @param {string} uuid
-	 * @returns {Promise<Item|null>}
+	 * @returns {Promise<Item|undefined>}
 	 * @private
 	 */
-	static async _itemFromUuid(uuid: string): Promise<Item | null> {
-		const parts = <string[]>uuid.split(".");
-		const [entityName, entityId, embeddedName, embeddedId] = parts;
+	static async _itemFromUuid(uuid: string): Promise<Item | undefined> {
+		return this._uuidToDocument(uuid);
+		// const parts = <string[]>uuid.split(".");
+		// const [entityName, entityId, embeddedName, embeddedId] = parts;
 
-		if (embeddedName === "OwnedItem" || embeddedName === "Item") {
-			if (parts.length === 4) {
-				const actor = <Actor>game.actors?.get(<string>entityId);
-				if (actor === null) return null;
-
-				return <Item>actor.items.get(<string>embeddedId);
-			}
-		} else {
-			return <Item>await fromUuid(uuid);
-		}
-
-		return null;
+		// if (embeddedName === "OwnedItem" || embeddedName === "Item") {
+		// 	if (parts.length === 4) {
+		// 		const actor = <Actor>game.actors?.get(<string>entityId);
+		// 		if (!actor) {
+		// 			return undefined;
+		// 		}
+		// 		return <Item>actor.items.get(<string>embeddedId);
+		// 	}
+		// } else {
+		// 	return <Item>await fromUuid(uuid);
+		// }
+		// return;
 	}
 
-	/**
-	 *
-	 * @param {string} packId
-	 * @param {string} itemId
-	 * @return {Promise.<Entity|null>}
-	 * @private
-	 */
-	static async _getItemFromPack(packId, itemId) {
-		const pack = <CompendiumCollection<CompendiumCollection.Metadata>>game.packs.get(packId);
-		if (pack.documentName !== "Item") {
-			return null;
-		}
-		return await pack.getDocument(itemId).then((ent) => {
-			//delete ent?._id;
-			//@ts-ignore
-			if (ent?._id) {
-				//@ts-ignore
-				ent._id = "";
+	// /**
+	//  *
+	//  * @param {string} packId
+	//  * @param {string} itemId
+	//  * @return {Promise.<Item|undefined>}
+	//  * @deprecated do not use this anymore
+	//  * @private
+	//  */
+	// static async _getItemFromPack(packId:string, itemId:string) {
+	// 	const pack = <CompendiumCollection<CompendiumCollection.Metadata>>game.packs.get(packId);
+	// 	if (pack.documentName !== "Item") {
+	// 		return null;
+	// 	}
+	// 	return await pack.getDocument(itemId).then((ent) => {
+	// 		//delete ent?._id;
+	// 		//@ts-ignore
+	// 		if (ent?._id) {
+	// 			//@ts-ignore
+	// 			ent._id = "";
+	// 		}
+	// 		return ent;
+	// 	});
+	// }
+
+	static async _uuidToDocument(uuid) {
+		const parts = uuid.split(".");
+		let result: any | null = null;
+		if (parts[0] === "Compendium") {
+			const pack = game["packs"].get(parts[1] + "." + parts[2]);
+			if (pack !== undefined) {
+				result = await pack.getDocument(parts[3]);
 			}
-			return ent;
-		});
+		} else {
+			result = await fromUuid(uuid);
+		}
+		if (result === null) {
+			error(`Document Not Found for uuid ${uuid}`);
+			result = null;
+		}
+		return result;
 	}
 }

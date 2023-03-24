@@ -1,6 +1,6 @@
 import CONSTANTS from "./constants";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import Identification from "./Identification";
+import Identification from "./ForienUnidentifiedItemsIdentification";
 
 export default function registerContextMenuHook() {
 	Hooks.on("getItemDirectoryEntryContext", (html, entryOptions) => {
@@ -73,7 +73,7 @@ export default function registerContextMenuHook() {
 			condition: identifyCondition,
 			callback: (li) => {
 				const id = li[0].dataset.documentId;
-				const item = game.items?.get(id);
+				const item = <Item>game.items?.get(id);
 				Identification.identify(item);
 			}
 		});

@@ -12,11 +12,11 @@
 // Import JavaScript modules
 
 // Import TypeScript modules
-import registerDerivedItemSheetClass from "./modules/ItemSheet";
+import registerDerivedItemSheetClass from "./modules/ForienUnidentifiedItemsItemSheet";
 import registerContextMenuHook from "./modules/ContextMenu";
-import Identification from "./modules/Identification";
+import Identification from "./modules/ForienUnidentifiedItemsIdentification";
 import registerSettings, { checkSettingsInitialized } from "./modules/settings";
-import registerItemClassMethod from "./modules/Item";
+import registerItemClassMethod from "./modules/ForienUnidentifiedItemsItem";
 import CONSTANTS from "./modules/constants";
 import API from "./modules/api";
 

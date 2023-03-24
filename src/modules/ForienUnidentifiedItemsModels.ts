@@ -1,7 +1,4 @@
-// import type { ItemDataConstructorData } from "@league-of-foundry-developers/foundry-vtt-types/src/foundry/common/data/data.mjs/itemData";
-
 export class MystifiedData {
-	// implements ItemDataConstructorData {
 	isAbstract?: boolean;
 	_id?: string | null | undefined;
 	name: string;

@@ -1,6 +1,6 @@
 import CONSTANTS from "./constants";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import Identification from "./Identification";
+import Identification from "./ForienUnidentifiedItemsIdentification";
 import { i18n } from "./lib/lib";
 
 export default function registerDerivedItemSheetClass() {
