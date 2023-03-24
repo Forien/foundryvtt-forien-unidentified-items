@@ -71,7 +71,7 @@ function getItemSheetClass(cls, sheet) {
 				if (permissions.canIdentify && !isAbstract) {
 					buttons.unshift({
 						label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Identify`,
-						class: "identify-item",
+						class: "forien-unidentified-items-identify-item",
 						icon: "fas fa-search",
 						onclick: (ev) => {
 							Identification.identify(this.item);
@@ -82,7 +82,7 @@ function getItemSheetClass(cls, sheet) {
 				if (permissions.canPeek) {
 					buttons.unshift({
 						label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Peek`,
-						class: "peek-original-item",
+						class: "forien-unidentified-items-peek-original-item",
 						icon: "far fa-eye",
 						onclick: (ev) => {
 							//@ts-ignore
@@ -99,7 +99,7 @@ function getItemSheetClass(cls, sheet) {
 					if (this.item.isOwned) {
 						buttons.unshift({
 							label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Mystify`,
-							class: "mystify-item",
+							class: "forien-unidentified-items-mystify-item",
 							icon: "far fa-eye-slash",
 							onclick: (ev) => {
 								Identification.mystifyReplace(this.item.uuid);
@@ -108,7 +108,7 @@ function getItemSheetClass(cls, sheet) {
 					} else {
 						buttons.unshift({
 							label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Mystify`,
-							class: "mystify-item",
+							class: "forien-unidentified-items-mystify-item",
 							icon: "far fa-eye-slash",
 							onclick: (ev) => {
 								Identification.mystify(this.item.uuid);

@@ -125,7 +125,7 @@ export default class Identification {
 				},
 			},
 			{
-				id: "mystifyAsDialog",
+				id: "forien-unidentified-items-mystifyAsDialog",
 				width: 440,
 				height: "auto",
 			}
@@ -133,7 +133,7 @@ export default class Identification {
 
 		await dialog.render(true);
 
-		$("#mystifyAsDialog").on("drop", ".dropzone", async (event) => {
+		$("#forien-unidentified-items-mystifyAsDialog").on("drop", ".dropzone", async (event) => {
 			event.preventDefault();
 			let item;
 			const data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData("text/plain"));
@@ -262,17 +262,17 @@ export default class Identification {
 				},
 			},
 			{
-				id: "mystifyAdvancedDialog",
+				id: "forien-unidentified-items-mystifyAdvancedDialog",
 			}
 		);
 		await dialog.render(true);
 
-		const jqDialog = $("#mystifyAdvancedDialog");
+		const jqDialog = $("#forien-unidentified-items-mystifyAdvancedDialog");
 
 		jqDialog.on("change", "input[name=img-keep]", async (event) => {
 			const checked = $(event.currentTarget).prop("checked");
 
-			const src = checked ? <string>sourceData.img : meta.img;
+			const src = checked ? <string>sourceData.img : <string>meta.img;
 			jqDialog.find(".img-preview").attr("src", src);
 			jqDialog.find("input[name=img]").val(src);
 		});

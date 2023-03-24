@@ -154,11 +154,11 @@ async function applyDefaultSettings() {
 	for (const [name, data] of Object.entries(settings)) {
 		await game.settings.set(CONSTANTS.MODULE_NAME, name, data.default);
 	}
-	const settings2 = otherSettings(true);
-	for (const [name, data] of Object.entries(settings2)) {
-		//@ts-ignore
-		await game.settings.set(CONSTANTS.MODULE_NAME, name, data.default);
-	}
+	// const settings2 = otherSettings(true);
+	// for (const [name, data] of Object.entries(settings2)) {
+	// 	//@ts-ignore
+	// 	await game.settings.set(CONSTANTS.MODULE_NAME, name, data.default);
+	// }
 }
 
 function defaultSettings(apply = false) {
@@ -180,81 +180,81 @@ function defaultSettings(apply = false) {
 	};
 }
 
-function otherSettings(apply = false) {
-	return {
-		removeLabelButtonsSheetHeader: {
-			name: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.name`),
-			hint: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.hint`),
-			scope: "world",
-			config: true,
-			type: Boolean,
-			default: true,
-		},
+// function otherSettings(apply = false) {
+// 	return {
+// 		removeLabelButtonsSheetHeader: {
+// 			name: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.name`),
+// 			hint: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.hint`),
+// 			scope: "world",
+// 			config: true,
+// 			type: Boolean,
+// 			default: true,
+// 		},
 
-		keepOldIcon: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.hint`,
-			scope: "world",
-			config: true,
-			default: false,
-			type: Boolean,
-		},
+// 		keepOldIcon: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.keepOldIcon.hint`,
+// 			scope: "world",
+// 			config: true,
+// 			default: false,
+// 			type: Boolean,
+// 		},
 
-		allowNestedItems: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Hint`,
-			scope: "world",
-			config: true,
-			default: false,
-			type: Boolean,
-		},
+// 		allowNestedItems: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.allowNestedItems.Hint`,
+// 			scope: "world",
+// 			config: true,
+// 			default: false,
+// 			type: Boolean,
+// 		},
 
-		debug: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.debug.name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.debug.hint`,
-			scope: "client",
-			config: true,
-			default: false,
-			type: Boolean,
-		},
+// 		debug: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.debug.name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.debug.hint`,
+// 			scope: "client",
+// 			config: true,
+// 			default: false,
+// 			type: Boolean,
+// 		},
 
-		debugHooks: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.debugHooks.name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.debugHooks.hint`,
-			scope: "world",
-			config: false,
-			default: false,
-			type: Boolean,
-		},
+// 		debugHooks: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.debugHooks.name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.debugHooks.hint`,
+// 			scope: "world",
+// 			config: false,
+// 			default: false,
+// 			type: Boolean,
+// 		},
 
-		systemFound: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.systemFound.name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.systemFound.hint`,
-			scope: "world",
-			config: false,
-			default: false,
-			type: Boolean,
-		},
+// 		systemFound: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.systemFound.name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.systemFound.hint`,
+// 			scope: "world",
+// 			config: false,
+// 			default: false,
+// 			type: Boolean,
+// 		},
 
-		systemNotFoundWarningShown: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.systemNotFoundWarningShown.name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.systemNotFoundWarningShown.hint`,
-			scope: "world",
-			config: false,
-			default: false,
-			type: Boolean,
-		},
+// 		systemNotFoundWarningShown: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.systemNotFoundWarningShown.name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.systemNotFoundWarningShown.hint`,
+// 			scope: "world",
+// 			config: false,
+// 			default: false,
+// 			type: Boolean,
+// 		},
 
-		preconfiguredSystem: {
-			name: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.name`,
-			hint: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.hint`,
-			scope: "world",
-			config: false,
-			default: false,
-			type: Boolean,
-		},
-	};
-}
+// 		preconfiguredSystem: {
+// 			name: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.name`,
+// 			hint: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.hint`,
+// 			scope: "world",
+// 			config: false,
+// 			default: false,
+// 			type: Boolean,
+// 		},
+// 	};
+// }
 
 export async function checkSystem() {
 	if (!SYSTEMS.DATA) {
@@ -331,7 +331,7 @@ function initializeDefaultIcons() {
 	const di = new DefaultIcons({}, {});
 	let settings = di.getSettings();
 	const icons = duplicate(settings);
-	console.log(JSON.stringify(icons));
+	log(JSON.stringify(icons));
 	Hooks.call(`${CONSTANTS.MODULE_NAME}:onInitializeDefaultIcons`, icons);
 	settings = mergeObject(settings, icons);
 	di.saveSettings(settings);
@@ -369,7 +369,7 @@ function initializeItemProperties() {
 	settings = mergeObject(settings, API.DEFAULT_PROPERTIES);
 	const properties = duplicate(settings);
 	Hooks.call(`${CONSTANTS.MODULE_NAME}:onInitializeItemProperties`, properties);
-	console.log(JSON.stringify(properties));
+	log(JSON.stringify(properties));
 	settings = mergeObject(settings, properties);
 	ip.saveSettings(settings);
 	log(` Initialized default item properties.`);

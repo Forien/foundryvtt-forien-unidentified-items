@@ -88,7 +88,7 @@ $icon-size: 66px;
 	}
 }
 
-#mystifyAsDialog {
+#forien-unidentified-items-mystifyAsDialog {
 	.dropzone {
 		min-height: 240px;
 		margin-bottom: 4px;
@@ -134,7 +134,7 @@ $icon-size: 66px;
 	}
 }
 
-#mystifyAdvancedDialog {
+#forien-unidentified-items-mystifyAdvancedDialog {
 	min-width: 500px;
 	max-height: 800px;
 
@@ -199,17 +199,17 @@ $icon-size: 66px;
 	}
 }
 
-.identify-item .fa-search {
+.forien-unidentified-items-identify-item .fa-search {
 	color: DeepPink;
 	text-shadow: 0 0 8px DeepPink;
 }
 
-.peek-original-item .fa-eye {
+.forien-unidentified-items-peek-original-item .fa-eye {
 	color: Orchid;
 	text-shadow: 0 0 8px Orchid;
 }
 
-.mystify-item .fa-eye-slash {
+.forien-unidentified-items-mystify-item .fa-eye-slash {
 	color: RebeccaPurple;
 	text-shadow: 0 0 8px RebeccaPurple;
 }
