@@ -12,7 +12,7 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
 			resizable: true,
 			width: 640,
 			height: 560,
-			tabs: [{ navSelector: ".nav-tabs", contentSelector: ".nav-body" }],
+			tabs: [{ navSelector: ".nav-tabs", contentSelector: ".nav-body" }]
 		});
 
 		if (game.system.id === "wfrp4e") {

@@ -10,6 +10,6 @@ export default function registerItemClassMethod() {
 	Object.defineProperty(CONFIG.Item.documentClass.prototype, MystifiedFlags.ORIG_DATA, {
 		get: function origData() {
 			return Identification.getOrigData(this);
-		},
+		}
 	});
 }

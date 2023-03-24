@@ -11,7 +11,7 @@ export default function registerSettings() {
 		hint: `${CONSTANTS.MODULE_NAME}.Settings.reset.hint`,
 		icon: "fas fa-coins",
 		type: ResetSettingsDialog,
-		restricted: true,
+		restricted: true
 	});
 
 	// =====================================================================
@@ -23,7 +23,7 @@ export default function registerSettings() {
 		hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
 		icon: "fas fa-image",
 		type: DefaultIcons,
-		restricted: true,
+		restricted: true
 	});
 
 	game.settings.registerMenu(CONSTANTS.MODULE_NAME, "itemProperties", {
@@ -32,7 +32,7 @@ export default function registerSettings() {
 		hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
 		icon: "fas fa-cogs",
 		type: ItemProperties,
-		restricted: true,
+		restricted: true
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader", {
@@ -41,7 +41,7 @@ export default function registerSettings() {
 		scope: "world",
 		config: true,
 		type: Boolean,
-		default: true,
+		default: true
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "keepOldIcon", {
@@ -50,7 +50,7 @@ export default function registerSettings() {
 		scope: "world",
 		config: true,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "allowNestedItems", {
@@ -59,7 +59,7 @@ export default function registerSettings() {
 		scope: "world",
 		config: true,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	// =====================================================================
@@ -70,28 +70,28 @@ export default function registerSettings() {
 		scope: "client",
 		config: true,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "debugHooks", {
 		scope: "world",
 		config: false,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "systemFound", {
 		scope: "world",
 		config: false,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "systemNotFoundWarningShown", {
 		scope: "world",
 		config: false,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	game.settings.register(CONSTANTS.MODULE_NAME, "preconfiguredSystem", {
@@ -100,7 +100,7 @@ export default function registerSettings() {
 		scope: "world",
 		config: false,
 		default: false,
-		type: Boolean,
+		type: Boolean
 	});
 
 	// ========================================================================
@@ -133,14 +133,14 @@ class ResetSettingsDialog extends FormApplication<FormApplicationOptions, object
 					callback: async () => {
 						await applyDefaultSettings();
 						window.location.reload();
-					},
+					}
 				},
 				cancel: {
 					icon: '<i class="fas fa-times"></i>',
-					label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.resetsettings.cancel`),
-				},
+					label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.resetsettings.cancel`)
+				}
 			},
-			default: "cancel",
+			default: "cancel"
 		});
 	}
 
@@ -168,15 +168,15 @@ function defaultSettings(apply = false) {
 			hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
 			scope: "world",
 			config: false,
-			default: {},
+			default: {}
 		},
 		itemProperties: {
 			name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,
 			hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
 			scope: "world",
 			config: false,
-			default: {},
-		},
+			default: {}
+		}
 	};
 }
 
@@ -267,7 +267,7 @@ export async function checkSystem() {
 			content: dialogWarning(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.nosystemfound.content`)),
 			callback: () => {
 				// empty body just for avoid the error on eslint
-			},
+			}
 		});
 	}
 
@@ -285,14 +285,14 @@ export async function checkSystem() {
 					label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.confirm`),
 					callback: () => {
 						applyDefaultSettings();
-					},
+					}
 				},
 				cancel: {
 					icon: '<i class="fas fa-times"></i>',
-					label: game.i18n.localize("No"),
-				},
+					label: game.i18n.localize("No")
+				}
 			},
-			default: "cancel",
+			default: "cancel"
 		}).render(true);
 	}
 
@@ -337,7 +337,7 @@ function initializeDefaultIcons() {
 	di.saveSettings(settings);
 	log(`Initialized default item icons.`);
 	ui.notifications?.info(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`), {
-		permanent: true,
+		permanent: true
 	});
 }
 
@@ -374,6 +374,6 @@ function initializeItemProperties() {
 	ip.saveSettings(settings);
 	log(` Initialized default item properties.`);
 	ui.notifications?.info(i18n(`${CONSTANTS.MODULE_NAME}.Notifications.defaultPropertiesInitialized`), {
-		permanent: true,
+		permanent: true
 	});
 }

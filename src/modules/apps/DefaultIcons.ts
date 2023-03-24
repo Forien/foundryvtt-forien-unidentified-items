@@ -9,7 +9,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
 			title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`),
 			submitOnClose: true,
 			submitOnChange: false,
-			closeOnSubmit: true,
+			closeOnSubmit: true
 		});
 
 		if (game.system.id === "wfrp4e") {
@@ -78,7 +78,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
 			potion: ["consumable"],
 			sack: ["artifact", "goods", "trapping"],
 			scroll: ["ability", "enchantment", "magic", "prayer", "sorcery", "spell"],
-			tool: ["tool"],
+			tool: ["tool"]
 		};
 		const mode = modes[Math.floor(Math.random() * modes.length)];
 		let icon = mode;

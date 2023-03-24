@@ -21,8 +21,8 @@ export const SYSTEMS = {
 			swade,
 			sw5e,
 			wfrp4e,
-			generic,
+			generic
 			// ↑ ADD SYSTEMS HERE ↑
 		}?.[game.system.id];
-	},
+	}
 };

@@ -59,7 +59,7 @@ function getItemSheetClass(cls, sheet) {
 			let permissions = {
 				canIdentify: game.user?.isGM,
 				canPeek: game.user?.isGM,
-				canMystify: game.user?.isGM,
+				canMystify: game.user?.isGM
 			};
 			const hookPermissions = duplicate(permissions);
 			Hooks.call(`${CONSTANTS.MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
@@ -75,7 +75,7 @@ function getItemSheetClass(cls, sheet) {
 						icon: "fas fa-search",
 						onclick: (ev) => {
 							Identification.identify(this.item);
-						},
+						}
 					});
 				}
 
@@ -91,7 +91,7 @@ function getItemSheetClass(cls, sheet) {
 							entity.isAbstract = true;
 							const sheetTmp = entity.sheet;
 							sheetTmp?.render(true);
-						},
+						}
 					});
 				}
 			} else {
@@ -103,7 +103,7 @@ function getItemSheetClass(cls, sheet) {
 							icon: "far fa-eye-slash",
 							onclick: (ev) => {
 								Identification.mystifyReplace(this.item.uuid);
-							},
+							}
 						});
 					} else {
 						buttons.unshift({
@@ -112,7 +112,7 @@ function getItemSheetClass(cls, sheet) {
 							icon: "far fa-eye-slash",
 							onclick: (ev) => {
 								Identification.mystify(this.item.uuid);
-							},
+							}
 						});
 					}
 				}

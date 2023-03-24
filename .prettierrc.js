@@ -2,6 +2,9 @@ module.exports = {
   printWidth: 120,
   tabWidth: 4,
   useTabs: true,
+  trailingComma: "none",
+  semi: true,
+  bracketSpacing: true,
   overrides: [
       {
           files: ["*.scss", "*.css"],

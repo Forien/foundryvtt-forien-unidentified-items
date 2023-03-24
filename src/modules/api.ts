@@ -13,7 +13,7 @@ const API = {
 	 */
 	get DEFAULT_ICONS(): DefaultIcons {
 		return <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
-	},
+	}
 };
 
 export default API;

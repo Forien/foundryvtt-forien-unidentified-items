@@ -34,7 +34,7 @@ export default function registerContextMenuHook() {
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
 					Identification.mystify(`Item.${id}`);
-				},
+				}
 			},
 			{
 				name: `${CONSTANTS.MODULE_NAME}.MystifyReplace`,
@@ -43,7 +43,7 @@ export default function registerContextMenuHook() {
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
 					Identification.mystifyReplace(`Item.${id}`);
-				},
+				}
 			},
 			{
 				name: `${CONSTANTS.MODULE_NAME}.MystifyAs`,
@@ -52,7 +52,7 @@ export default function registerContextMenuHook() {
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
 					Identification.mystifyAsDialog(`Item.${id}`);
-				},
+				}
 			},
 			{
 				name: `${CONSTANTS.MODULE_NAME}.MystifyAdvanced`,
@@ -61,8 +61,8 @@ export default function registerContextMenuHook() {
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
 					Identification.mystifyAdvancedDialog(`Item.${id}`);
-				},
-			},
+				}
+			}
 		];
 
 		entryOptions.unshift(...mystifyOptions);
@@ -75,7 +75,7 @@ export default function registerContextMenuHook() {
 				const id = li[0].dataset.documentId;
 				const item = game.items?.get(id);
 				Identification.identify(item);
-			},
+			}
 		});
 
 		entryOptions.unshift({
@@ -91,7 +91,7 @@ export default function registerContextMenuHook() {
 				const entity = new CONFIG.Item.documentClass(origData, { editable: false });
 				const sheet = entity.sheet;
 				sheet?.render(true);
-			},
+			}
 		});
 	});
 }
