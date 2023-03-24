@@ -1,7 +1,7 @@
 import type DefaultIcons from "./apps/DefaultIcons";
 import CONSTANTS from "./constants";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import { error, i18n, i18nFormat, warn } from "./lib/lib";
+import { error, i18n, i18nFormat, info, warn } from "./lib/lib";
 
 export default class Identification {
 	/**
@@ -283,9 +283,13 @@ export default class Identification {
 						// 	delete formData[property];
 						// 	setProperty(formData, property, getProperty(sourceData, property));
 						// }
-						if (property.startsWith("system.")) {
-							delete formData[property];
-							setProperty(formData, property, getProperty(sourceData, property));
+						if(property) {
+							if (property.startsWith("system.")) {
+								delete formData[property];
+								setProperty(formData, property, getProperty(sourceData, property));
+							} else {
+								warn(`Cannot set the property '${property}' maybe is a issue ?`);
+							}
 						}
 					}
 
@@ -421,6 +425,8 @@ export default class Identification {
 				}
 				const valueTmp = getProperty(origData, <string>propertyTmp);
 				setProperty(mystifiedData, <string>propertyTmp, valueTmp);
+			} else {
+				warn(`Cannot set the property '${property}' maybe is a issue ?`);
 			}
 		}
 
