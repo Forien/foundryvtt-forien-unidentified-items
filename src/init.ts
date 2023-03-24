@@ -14,7 +14,6 @@
 // Import TypeScript modules
 import registerDerivedItemSheetClass from "./modules/ForienUnidentifiedItemsItemSheet";
 import registerContextMenuHook from "./modules/ContextMenu";
-import Identification from "./modules/ForienUnidentifiedItemsIdentification";
 import registerSettings, { checkSettingsInitialized } from "./modules/settings";
 import registerItemClassMethod from "./modules/ForienUnidentifiedItemsItem";
 import CONSTANTS from "./modules/constants";
@@ -38,7 +37,7 @@ Hooks.once("init", () => {
 
 Hooks.once("setup", () => {
 	//@ts-ignore
-	window.ForienIdentification = Identification;
+	// window.ForienIdentification = Identification;
 
 	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
 

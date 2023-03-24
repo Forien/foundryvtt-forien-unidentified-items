@@ -1,5 +1,11 @@
 # Changelog
 
+### v0.6.1 [BREAKING CHANGES]
+
+- Add official support for fvtt10
+- Transfer the API from _window.ForienIdentification_ to _game.modules.get("forien-unidentified-items").api_
+- Major refactor of the code for better readibility
+
 ### v0.5.4
 
 - New design pattern for multissytem integration

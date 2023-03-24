@@ -1,6 +1,6 @@
+import API from "./api";
 import CONSTANTS from "./constants";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import Identification from "./ForienUnidentifiedItemsIdentification";
 import { i18n } from "./lib/lib";
 
 export default function registerDerivedItemSheetClass() {
@@ -74,7 +74,7 @@ function getItemSheetClass(cls, sheet) {
 						class: "forien-unidentified-items-identify-item",
 						icon: "fas fa-search",
 						onclick: (ev) => {
-							Identification.identify(this.item);
+							API.identify(this.item);
 						}
 					});
 				}
@@ -102,7 +102,7 @@ function getItemSheetClass(cls, sheet) {
 							class: "forien-unidentified-items-mystify-item",
 							icon: "far fa-eye-slash",
 							onclick: (ev) => {
-								Identification.mystifyReplace(this.item.uuid);
+								API.mystifyReplace(this.item.uuid);
 							}
 						});
 					} else {
@@ -111,7 +111,7 @@ function getItemSheetClass(cls, sheet) {
 							class: "forien-unidentified-items-mystify-item",
 							icon: "far fa-eye-slash",
 							onclick: (ev) => {
-								Identification.mystify(this.item.uuid);
+								API.mystify(this.item.uuid);
 							}
 						});
 					}

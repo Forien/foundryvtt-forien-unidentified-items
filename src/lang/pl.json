@@ -54,8 +54,8 @@
 			"Original": "Oryginał"
 		},
 		"Notifications": {
-			"defaultIconsInitialized": "Forien's Unidentified Items | Domyślne Ikony Typów Przedmiotów zostały losowo przydzielone. Proszę odwiedź Ustawienia Modułu po więcje informacji.",
-			"defaultPropertiesInitialized": "Forien's Unidentified Items | Domyślne Trwałe Właściwości Przedmiotów zostały wygenerowane. Proszę odwiedź Ustawienia Modułu po więcje informacji."
+			"defaultIconsInitialized": "Domyślne Ikony Typów Przedmiotów zostały losowo przydzielone. Proszę odwiedź Ustawienia Modułu po więcje informacji.",
+			"defaultPropertiesInitialized": "Domyślne Trwałe Właściwości Przedmiotów zostały wygenerowane. Proszę odwiedź Ustawienia Modułu po więcje informacji."
 		}
 	}
 }

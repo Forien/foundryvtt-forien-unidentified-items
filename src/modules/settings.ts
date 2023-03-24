@@ -2,7 +2,7 @@ import API from "./api";
 import DefaultIcons from "./apps/DefaultIcons";
 import ItemProperties from "./apps/ItemProperties";
 import CONSTANTS from "./constants";
-import { dialogWarning, i18n, log, warn } from "./lib/lib";
+import { dialogWarning, i18n, info, log, warn } from "./lib/lib";
 import { SYSTEMS } from "./systems";
 
 export default function registerSettings() {
@@ -132,6 +132,13 @@ class ResetSettingsDialog extends FormApplication<FormApplicationOptions, object
 					label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.resetsettings.confirm`),
 					callback: async () => {
 						await applyDefaultSettings();
+						const worldSettings = game.settings.storage
+							?.get("world")
+							?.filter((setting) => setting.key.startsWith(`${CONSTANTS.MODULE_NAME}.`));
+						for (let setting of worldSettings) {
+							console.log(`Reset setting '${setting.key}'`);
+							await setting.delete();
+						}
 						window.location.reload();
 					}
 				},
@@ -336,9 +343,7 @@ function initializeDefaultIcons() {
 	settings = mergeObject(settings, icons);
 	di.saveSettings(settings);
 	log(`Initialized default item icons.`);
-	ui.notifications?.info(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`), {
-		permanent: true
-	});
+	info(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Notifications.defaultIconsInitialized`), true, true);
 }
 
 /**
@@ -373,7 +378,5 @@ function initializeItemProperties() {
 	settings = mergeObject(settings, properties);
 	ip.saveSettings(settings);
 	log(` Initialized default item properties.`);
-	ui.notifications?.info(i18n(`${CONSTANTS.MODULE_NAME}.Notifications.defaultPropertiesInitialized`), {
-		permanent: true
-	});
+	info(i18n(`${CONSTANTS.MODULE_NAME}.Notifications.defaultPropertiesInitialized`), true, true);
 }

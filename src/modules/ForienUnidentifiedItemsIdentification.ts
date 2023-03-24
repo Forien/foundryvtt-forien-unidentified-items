@@ -25,10 +25,13 @@ export default class Identification {
 			error(`Only a GM can mistify a item`, true);
 			return;
 		}
+		if (!itemUuid) {
+			warn(`Cannot mystify a no item`, true);
+			return;
+		}
 		const item = await this._itemFromUuid(itemUuid);
-
 		if (!item) {
-			error(`${CONSTANTS.MODULE_NAME}.NotAnItem`, true);
+			warn(`Cannot mystify a no item from uuid '${itemUuid}'`, true);
 			return;
 		}
 
@@ -70,9 +73,17 @@ export default class Identification {
 	 * @returns {Promise<void>}
 	 */
 	static async mystifyAsDialog(itemUuid: string): Promise<void> {
+		if (!itemUuid) {
+			warn(`Cannot mystify advanced a no item`, true);
+			return;
+		}
 		const origItem: any = await this._itemFromUuid(itemUuid);
-		const nameItem = origItem.name;
+		if (!origItem) {
+			warn(`Cannot  mystify advanced a no item from uuid '${itemUuid}'`, true);
+			return;
+		}
 
+		const nameItem = origItem.name;
 		let itemTmp;
 		let replace;
 
@@ -129,6 +140,43 @@ export default class Identification {
 							this.mystify(itemUuid, { replace: false, mystifiedData: itemTmp });
 						}
 					}
+				},
+				render: (html) => {
+					$(html)
+						.on("dragover", false)
+						.on("drop", ".dropzone", async (event) => {
+							event.preventDefault();
+							event.stopPropagation();
+							let item;
+							const data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData("text/plain"));
+							if (data.type === "Item") {
+								if (data.uuid) {
+									const witem = await this._uuidToDocument(data.uuid);
+									item = duplicate(witem);
+									// } else if (data.pack) {
+									// 	const witem = await this._getItemFromPack(data.pack, data.id);
+									// 	item = duplicate(witem);
+								} else if (data) {
+									item = data;
+								} else {
+									const witem = game.items?.get(data.id);
+									if (!witem) {
+										return;
+									}
+									item = duplicate(witem);
+								}
+								if (item) {
+									$(event.currentTarget).find(".item").data("item", item);
+									$(event.currentTarget)
+										.find(".item")
+										.slideUp(200, () => {
+											$(event.currentTarget).find(".item img").attr("src", item.img);
+											$(event.currentTarget).find(".item span").text(item.name);
+											$(event.currentTarget).find(".item").slideDown();
+										});
+								}
+							}
+						});
 				}
 			},
 			{
@@ -139,39 +187,6 @@ export default class Identification {
 		);
 
 		await dialog.render(true);
-
-		$("#forien-unidentified-items-mystifyAsDialog").on("drop", ".dropzone", async (event) => {
-			event.preventDefault();
-			let item;
-			const data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData("text/plain"));
-			if (data.type === "Item") {
-				if (data.uuid) {
-					const witem = await this._uuidToDocument(data.uuid);
-					item = duplicate(witem);
-					// } else if (data.pack) {
-					// 	const witem = await this._getItemFromPack(data.pack, data.id);
-					// 	item = duplicate(witem);
-				} else if (data) {
-					item = data;
-				} else {
-					const witem = game.items?.get(data.id);
-					if (!witem) {
-						return;
-					}
-					item = duplicate(witem);
-				}
-				if (item) {
-					$(event.currentTarget).find(".item").data("item", item);
-					$(event.currentTarget)
-						.find(".item")
-						.slideUp(200, () => {
-							$(event.currentTarget).find(".item img").attr("src", item.img);
-							$(event.currentTarget).find(".item span").text(item.name);
-							$(event.currentTarget).find(".item").slideDown();
-						});
-				}
-			}
-		});
 	}
 
 	/**
@@ -181,7 +196,16 @@ export default class Identification {
 	 * @returns {Promise<void>}
 	 */
 	static async mystifyAdvancedDialog(itemUuid: string, source: Item | undefined = undefined) {
+		if (!itemUuid) {
+			warn(`Cannot mystify advanced a no item`, true);
+			return;
+		}
 		const origItem = <Item>await this._itemFromUuid(itemUuid);
+		if (!origItem) {
+			warn(`Cannot  mystify advanced a no item from uuid '${itemUuid}'`, true);
+			return;
+		}
+
 		const nameItem = origItem.name;
 		const sourceData = <Item>(source ? source : duplicate(origItem));
 		const meta = this._getMystifiedMeta(sourceData);
@@ -310,10 +334,14 @@ export default class Identification {
 	 */
 	static async identify(item: Item): Promise<Item | undefined> {
 		if (!item) {
-			warn(`Cannot mistify no item`, true);
+			warn(`Cannot identify a no item`, true);
 			return;
 		}
 		const origData = <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+		if (!origData) {
+			warn(`Cannot identify a no mistify item`, true);
+			return;
+		}
 		// things to keep from mystified item:
 		delete origData._id;
 		delete origData.permission;
@@ -336,6 +364,9 @@ export default class Identification {
 	 * @return {boolean}
 	 */
 	static isMystified(item: Item): boolean {
+		if (!item) {
+			return false;
+		}
 		const origData = item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
 		return origData !== undefined;
 	}
@@ -355,6 +386,9 @@ export default class Identification {
 	 * @return {boolean}
 	 */
 	static async isUuidMystified(uuid: string) {
+		if (!uuid) {
+			return false;
+		}
 		const item = <Item>await this._itemFromUuid(uuid);
 		if (!item) {
 			warn(`No item found for uuid '${uuid}'`, true);
@@ -366,11 +400,11 @@ export default class Identification {
 
 	/**
 	 *
-	 * @param {Object} origData
+	 * @param {MystifiedData} origData
 	 * @returns {{img: String, name: String, type: String, data: Object}}
 	 * @private
 	 */
-	static _getMystifiedData(origData): MystifiedData {
+	static _getMystifiedData(origData: MystifiedData): MystifiedData {
 		const mystifiedData = this._getMystifiedMeta(origData);
 		const itemProperties = this._getDefaultProperties(origData);
 

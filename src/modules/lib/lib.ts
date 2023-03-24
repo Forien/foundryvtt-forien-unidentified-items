@@ -35,9 +35,9 @@ export function notify(message) {
 	return message;
 }
 
-export function info(info, notify = false) {
+export function info(info, notify = false, permanent = false) {
 	info = `${CONSTANTS.MODULE_NAME} | ${info}`;
-	if (notify) ui.notifications?.info(info);
+	if (notify) ui.notifications?.info(info, { permanent: permanent });
 	console.log(info.replace("<br>", "\n"));
 	return info;
 }

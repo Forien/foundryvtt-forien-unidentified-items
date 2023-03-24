@@ -87,8 +87,8 @@
 		},
 
 		"Notifications": {
-			"defaultIconsInitialized": "Forien's Unidentified Items | Default Item Type Icons has been randomly assigned. Please visit Module Settings for more information.",
-			"defaultPropertiesInitialized": "Forien's Unidentified Items | Default Persisting Item Properties have been generated. Please visit Module Settings for more information."
+			"defaultIconsInitialized": "Default Item Type Icons has been randomly assigned. Please visit Module Settings for more information.",
+			"defaultPropertiesInitialized": "Default Persisting Item Properties have been generated. Please visit Module Settings for more information."
 		}
 	}
 }

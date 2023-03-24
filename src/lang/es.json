@@ -58,8 +58,8 @@
 		},
 
 		"Notifications": {
-			"defaultIconsInitialized": "Forien's Unidentified Items | Los Íconos por Defecto según el Tipo de Objeto han sido asignados de forma aleatoria. Favor ingresar a la Configuración del Módulo para más información.",
-			"defaultPropertiesInitialized": "Forien's Unidentified Items | Las Propiedades Persistentes por Defecto de los Objectos fueron generados. Favor ingresar a la Configuración del Módulo para más información."
+			"defaultIconsInitialized": "Los Íconos por Defecto según el Tipo de Objeto han sido asignados de forma aleatoria. Favor ingresar a la Configuración del Módulo para más información.",
+			"defaultPropertiesInitialized": "Las Propiedades Persistentes por Defecto de los Objectos fueron generados. Favor ingresar a la Configuración del Módulo para más información."
 		}
 	}
 }

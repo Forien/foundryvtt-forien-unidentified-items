@@ -1,6 +1,6 @@
+import API from "./api";
 import CONSTANTS from "./constants";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import Identification from "./ForienUnidentifiedItemsIdentification";
 
 export default function registerContextMenuHook() {
 	Hooks.on("getItemDirectoryEntryContext", (html, entryOptions) => {
@@ -33,7 +33,7 @@ export default function registerContextMenuHook() {
 				condition: mystifyCondition,
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
-					Identification.mystify(`Item.${id}`);
+					API.mystify(`Item.${id}`);
 				}
 			},
 			{
@@ -42,7 +42,7 @@ export default function registerContextMenuHook() {
 				condition: mystifyCondition,
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
-					Identification.mystifyReplace(`Item.${id}`);
+					API.mystifyReplace(`Item.${id}`);
 				}
 			},
 			{
@@ -51,7 +51,7 @@ export default function registerContextMenuHook() {
 				condition: mystifyCondition,
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
-					Identification.mystifyAsDialog(`Item.${id}`);
+					API.mystifyAsDialog(`Item.${id}`);
 				}
 			},
 			{
@@ -60,7 +60,7 @@ export default function registerContextMenuHook() {
 				condition: mystifyCondition,
 				callback: (li) => {
 					const id = li[0].dataset.documentId;
-					Identification.mystifyAdvancedDialog(`Item.${id}`);
+					API.mystifyAdvancedDialog(`Item.${id}`);
 				}
 			}
 		];
@@ -74,7 +74,7 @@ export default function registerContextMenuHook() {
 			callback: (li) => {
 				const id = li[0].dataset.documentId;
 				const item = <Item>game.items?.get(id);
-				Identification.identify(item);
+				API.identify(item);
 			}
 		});
 

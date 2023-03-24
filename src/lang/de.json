@@ -87,8 +87,8 @@
 		},
 
 		"Notifications": {
-			"defaultIconsInitialized": "Forien's Unidentified Items | Voreingestellte Symbole für Gegenstände wurden zufällig zugewiesen. Weitere Informationen findest Du in den Moduleinstellungen.",
-			"defaultPropertiesInitialized": "Forien's Unidentified Items | Voreinstellungen für übernommene Eigenschaften wurden erstellt. Weitere Informationen findest Du in den Moduleinstellungen."
+			"defaultIconsInitialized": "Voreingestellte Symbole für Gegenstände wurden zufällig zugewiesen. Weitere Informationen findest Du in den Moduleinstellungen.",
+			"defaultPropertiesInitialized": "Voreinstellungen für übernommene Eigenschaften wurden erstellt. Weitere Informationen findest Du in den Moduleinstellungen."
 		}
 	}
 }

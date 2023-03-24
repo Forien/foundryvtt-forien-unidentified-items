@@ -58,8 +58,8 @@
 		},
 
 		"Notifications": {
-			"defaultIconsInitialized": "Forien's Unidentified Items | 기본 아이템 유형 아이콘이 무작위로 할당되었습니다. 자세한 내용은 모듈 설정을 참조해주세요.",
-			"defaultPropertiesInitialized": "Forien's Unidentified Items | 기본 지속적 항목 속성이 생성되었습니다. 자세한 내용은 모듈 설정을 참조해주세요."
+			"defaultIconsInitialized": "기본 아이템 유형 아이콘이 무작위로 할당되었습니다. 자세한 내용은 모듈 설정을 참조해주세요.",
+			"defaultPropertiesInitialized": "기본 지속적 항목 속성이 생성되었습니다. 자세한 내용은 모듈 설정을 참조해주세요."
 		}
 	}
 }
