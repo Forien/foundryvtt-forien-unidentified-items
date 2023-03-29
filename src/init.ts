@@ -24,11 +24,11 @@ import API from "./modules/api";
 /* ------------------------------------ */
 
 Hooks.once("init", () => {
-	registerSettings();
+  registerSettings();
 
-	registerContextMenuHook();
+  registerContextMenuHook();
 
-	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterInit`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterInit`);
 });
 
 /* ------------------------------------ */
@@ -36,12 +36,12 @@ Hooks.once("init", () => {
 /* ------------------------------------ */
 
 Hooks.once("setup", () => {
-	//@ts-ignore
-	// window.ForienIdentification = Identification;
+  //@ts-ignore
+  // window.ForienIdentification = Identification;
 
-	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
 
-	setApi(API);
+  setApi(API);
 });
 
 /* ------------------------------------ */
@@ -49,18 +49,18 @@ Hooks.once("setup", () => {
 /* ------------------------------------ */
 
 Hooks.once("ready", () => {
-	checkSettingsInitialized();
-	registerDerivedItemSheetClass();
-	registerItemClassMethod();
+  checkSettingsInitialized();
+  registerDerivedItemSheetClass();
+  registerItemClassMethod();
 
-	Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
+  Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterReady`);
 });
 
 // Add any additional hooks if necessary
 
 export interface MysteryItemModuleData {
-	api: typeof API;
-	socket: any;
+  api: typeof API;
+  socket: any;
 }
 
 /**
@@ -68,8 +68,8 @@ export interface MysteryItemModuleData {
  * @param api to set to game module.
  */
 export function setApi(api: typeof API): void {
-	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-	data.api = api;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  data.api = api;
 }
 
 /**
@@ -77,8 +77,8 @@ export function setApi(api: typeof API): void {
  * @returns Api from games module.
  */
 export function getApi(): typeof API {
-	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-	return data.api;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  return data.api;
 }
 
 /**
@@ -86,8 +86,8 @@ export function getApi(): typeof API {
  * @param socket to set to game module.
  */
 export function setSocket(socket: any): void {
-	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-	data.socket = socket;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  data.socket = socket;
 }
 
 /*
@@ -95,6 +95,6 @@ export function setSocket(socket: any): void {
  * @returns Socket from games module.
  */
 export function getSocket() {
-	const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
-	return data.socket;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  return data.socket;
 }

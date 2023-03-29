@@ -1,176 +1,176 @@
 #forien-unidentified-items-default-icons.wfrp4e .window-content {
-	background: url(/ui/parchment.jpg) repeat;
+  background: url(/ui/parchment.jpg) repeat;
 }
 #forien-unidentified-items-default-icons .item-type-entry {
-	display: flex;
+  display: flex;
 }
 #forien-unidentified-items-default-icons .item-type-entry > * {
-	flex: 1;
-	align-self: center;
-	margin: 0 4px;
+  flex: 1;
+  align-self: center;
+  margin: 0 4px;
 }
 #forien-unidentified-items-default-icons .item-type-entry input {
-	flex: 2;
-	height: 29px;
-	min-width: 300px;
-	font-size: 12px;
+  flex: 2;
+  height: 29px;
+  min-width: 300px;
+  font-size: 12px;
 }
 #forien-unidentified-items-default-icons .item-type-entry img {
-	width: 66px;
-	height: 66px;
-	flex: 0;
-	margin: 0;
+  width: 66px;
+  height: 66px;
+  flex: 0;
+  margin: 0;
 }
 #forien-unidentified-items-default-icons .item-type-entry button {
-	flex: 0;
-	margin: 0;
+  flex: 0;
+  margin: 0;
 }
 
 #forien-unidentified-items-item-properties.wfrp4e .window-content {
-	background: url(/ui/parchment.jpg) repeat;
+  background: url(/ui/parchment.jpg) repeat;
 }
 #forien-unidentified-items-item-properties form {
-	height: 100%;
-	display: grid;
-	grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
 #forien-unidentified-items-item-properties nav {
-	flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 #forien-unidentified-items-item-properties nav a {
-	flex: 0 0 25%;
-	border-radius: 10px;
-	border-color: black;
-	border-style: outset;
+  flex: 0 0 25%;
+  border-radius: 10px;
+  border-color: black;
+  border-style: outset;
 }
 #forien-unidentified-items-item-properties section {
-	overflow: auto;
-	padding: 6px;
+  overflow: auto;
+  padding: 6px;
 }
 #forien-unidentified-items-item-properties section .tab {
-	columns: 3;
-	/**
+  columns: 3;
+  /**
      * Because PF2e...
      */
-	display: none;
+  display: none;
 }
 #forien-unidentified-items-item-properties section .tab .type-property {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 #forien-unidentified-items-item-properties section .tab * {
-	break-inside: avoid-column;
-	padding: 0;
+  break-inside: avoid-column;
+  padding: 0;
 }
 #forien-unidentified-items-item-properties section .tab.tab.active {
-	display: block;
+  display: block;
 }
 
 #forien-unidentified-items-mystifyAsDialog .dropzone {
-	min-height: 240px;
-	margin-bottom: 4px;
-	border: 2px dashed #33333366;
-	border-radius: 6px;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	display: flex;
-	flex-direction: column;
+  min-height: 240px;
+  margin-bottom: 4px;
+  border: 2px dashed #33333366;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 #forien-unidentified-items-mystifyAsDialog .dropzone p {
-	text-align: center;
-	position: relative;
-	max-width: 80%;
-	font-variant: small-caps;
-	font-size: 1.6rem;
-	color: #333333cc;
+  text-align: center;
+  position: relative;
+  max-width: 80%;
+  font-variant: small-caps;
+  font-size: 1.6rem;
+  color: #333333cc;
 }
 #forien-unidentified-items-mystifyAsDialog .dropzone .item {
-	display: flex;
+  display: flex;
 }
 #forien-unidentified-items-mystifyAsDialog .dropzone .item img {
-	width: 66px;
-	height: 66px;
-	border-radius: 8px;
-	border: 2px solid #000;
+  width: 66px;
+  height: 66px;
+  border-radius: 8px;
+  border: 2px solid #000;
 }
 #forien-unidentified-items-mystifyAsDialog .dropzone .item span {
-	font-size: 1.2rem;
-	align-self: center;
-	padding: 8px;
+  font-size: 1.2rem;
+  align-self: center;
+  padding: 8px;
 }
 #forien-unidentified-items-mystifyAsDialog button[data-button="mystifyAdvanced"] {
-	flex-basis: 100%;
-	margin: 0 0 2px 0;
+  flex-basis: 100%;
+  margin: 0 0 2px 0;
 }
 
 #forien-unidentified-items-mystifyAdvancedDialog {
-	min-width: 500px;
-	max-height: 800px;
+  min-width: 500px;
+  max-height: 800px;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .window-content {
-	display: grid;
-	grid-template-rows: minmax(0, 1fr) auto;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body {
-	height: 100%;
-	display: grid;
-	grid-template-rows: auto auto auto auto minmax(0, 1fr);
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(0, 1fr);
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-header {
-	display: flex;
+  display: flex;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-header > * {
-	flex: 1;
-	text-align: center;
-	font-weight: bold;
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-body > * {
-	display: flex;
+  display: flex;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-body > * > * {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	justify-items: center;
-	align-items: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-name {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body img {
-	width: 66px;
-	height: 66px;
+  width: 66px;
+  height: 66px;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .properties-body {
-	overflow-y: auto;
-	display: grid;
-	grid-template-columns: auto minmax(0, 1fr) auto;
-	grid-gap: 6px 10px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-gap: 6px 10px;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .properties-body label {
-	font-weight: bold;
+  font-weight: bold;
 }
 #forien-unidentified-items-mystifyAdvancedDialog .advanced-body .properties-body .property-values {
-	display: flex;
-	flex-direction: column;
-	font-style: italic;
-	font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=style.css.map */
 
 .forien-unidentified-items-identify-item .fa-search {
-	color: DeepPink;
-	text-shadow: 0 0 8px DeepPink;
+  color: DeepPink;
+  text-shadow: 0 0 8px DeepPink;
 }
 
 .forien-unidentified-items-peek-original-item .fa-eye {
-	color: Orchid;
-	text-shadow: 0 0 8px Orchid;
+  color: Orchid;
+  text-shadow: 0 0 8px Orchid;
 }
 
 .forien-unidentified-items-mystify-item .fa-eye-slash {
-	color: RebeccaPurple;
-	text-shadow: 0 0 8px RebeccaPurple;
+  color: RebeccaPurple;
+  text-shadow: 0 0 8px RebeccaPurple;
 }
