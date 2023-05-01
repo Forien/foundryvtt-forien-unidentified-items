@@ -1,7 +1,7 @@
-import CONSTANTS from './constants';
-import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
-import Identification from './Identification';
-import { i18n } from './lib/lib';
+import API from "./api";
+import CONSTANTS from "./constants";
+import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
+import { i18n } from "./lib/lib";
 
 export default function registerDerivedItemSheetClass() {
   //@ts-ignore
@@ -22,7 +22,7 @@ function getItemSheetClass(cls, sheet) {
   const ItemClass = class extends ParentClass {
     constructor(...args) {
       super(...args);
-      this.name = sheet.split('.')[1];
+      this.name = sheet.split(".")[1];
     }
 
     /**
@@ -36,10 +36,10 @@ function getItemSheetClass(cls, sheet) {
         return title;
       }
       if (this.item.isMystified()) {
-        title = '[' + i18n(`${CONSTANTS.MODULE_NAME}.Item.Mystified`) + '] ' + `${title}`;
+        title = "[" + i18n(`${CONSTANTS.MODULE_NAME}.Item.Mystified`) + "] " + `${title}`;
       }
-      if (this.item.data.isAbstract) {
-        title = '[' + i18n(`${CONSTANTS.MODULE_NAME}.Item.Original`) + '] ' + `${title}`;
+      if (this.item.isAbstract) {
+        title = "[" + i18n(`${CONSTANTS.MODULE_NAME}.Item.Original`) + "] " + `${title}`;
       }
       return title;
     }
@@ -51,15 +51,15 @@ function getItemSheetClass(cls, sheet) {
      */
     _getHeaderButtons() {
       const buttons = super._getHeaderButtons();
-      const isAbstract = this.item.data.isAbstract || false;
+      const isAbstract = this.item.isAbstract || false;
       const removeLabelButtonsSheetHeader = <boolean>(
-        game.settings.get(CONSTANTS.MODULE_NAME, 'removeLabelButtonsSheetHeader')
+        game.settings.get(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader")
       );
 
       let permissions = {
         canIdentify: game.user?.isGM,
         canPeek: game.user?.isGM,
-        canMystify: game.user?.isGM,
+        canMystify: game.user?.isGM
       };
       const hookPermissions = duplicate(permissions);
       Hooks.call(`${CONSTANTS.MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
@@ -70,49 +70,49 @@ function getItemSheetClass(cls, sheet) {
       if (origData) {
         if (permissions.canIdentify && !isAbstract) {
           buttons.unshift({
-            label: removeLabelButtonsSheetHeader ? '' : `${CONSTANTS.MODULE_NAME}.Identify`,
-            class: 'identify-item',
-            icon: 'fas fa-search',
+            label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Identify`,
+            class: "forien-unidentified-items-identify-item",
+            icon: "fas fa-search",
             onclick: (ev) => {
-              Identification.identify(this.item);
-            },
+              API.identify(this.item);
+            }
           });
         }
 
         if (permissions.canPeek) {
           buttons.unshift({
-            label: removeLabelButtonsSheetHeader ? '' : `${CONSTANTS.MODULE_NAME}.Peek`,
-            class: 'peek-original-item',
-            icon: 'far fa-eye',
+            label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Peek`,
+            class: "forien-unidentified-items-peek-original-item",
+            icon: "far fa-eye",
             onclick: (ev) => {
               //@ts-ignore
               const entity = new CONFIG.Item.documentClass(origData, { editable: false });
               //@ts-ignore
-              entity.data.isAbstract = true;
+              entity.isAbstract = true;
               const sheetTmp = entity.sheet;
               sheetTmp?.render(true);
-            },
+            }
           });
         }
       } else {
         if (permissions.canMystify && !isAbstract) {
           if (this.item.isOwned) {
             buttons.unshift({
-              label: removeLabelButtonsSheetHeader ? '' : `${CONSTANTS.MODULE_NAME}.Mystify`,
-              class: 'mystify-item',
-              icon: 'far fa-eye-slash',
+              label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Mystify`,
+              class: "forien-unidentified-items-mystify-item",
+              icon: "far fa-eye-slash",
               onclick: (ev) => {
-                Identification.mystifyReplace(this.item.uuid);
-              },
+                API.mystifyReplace(this.item.uuid);
+              }
             });
           } else {
             buttons.unshift({
-              label: removeLabelButtonsSheetHeader ? '' : `${CONSTANTS.MODULE_NAME}.Mystify`,
-              class: 'mystify-item',
-              icon: 'far fa-eye-slash',
+              label: removeLabelButtonsSheetHeader ? "" : `${CONSTANTS.MODULE_NAME}.Mystify`,
+              class: "forien-unidentified-items-mystify-item",
+              icon: "far fa-eye-slash",
               onclick: (ev) => {
-                Identification.mystify(this.item.uuid);
-              },
+                API.mystify(this.item.uuid);
+              }
             });
           }
         }
@@ -122,7 +122,7 @@ function getItemSheetClass(cls, sheet) {
     }
 
     async _updateObject(...args) {
-      if (this.item.data.isAbstract) {
+      if (this.item.isAbstract) {
         return this;
       }
       return super._updateObject(...args);

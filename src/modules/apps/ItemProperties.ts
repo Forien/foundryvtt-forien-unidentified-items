@@ -1,22 +1,22 @@
-import CONSTANTS from '../constants';
-import { i18n } from '../lib/lib';
+import CONSTANTS from "../constants";
+import { i18n } from "../lib/lib";
 export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
-      id: 'fui-item-properties',
+      id: "forien-unidentified-items-item-properties",
       template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
-      title: i18n(`${CONSTANTS.MODULE_NAME}.itemProperties.name`),
+      title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`),
       submitOnClose: true,
       submitOnChange: false,
       closeOnSubmit: true,
       resizable: true,
       width: 640,
       height: 560,
-      tabs: [{ navSelector: '.nav-tabs', contentSelector: '.nav-body' }],
+      tabs: [{ navSelector: ".nav-tabs", contentSelector: ".nav-body" }]
     });
 
-    if (game.system.id === 'wfrp4e') {
-      options.classes.push('wfrp');
+    if (game.system.id === "wfrp4e") {
+      options.classes.push("wfrp4e");
     }
     return options;
   }
@@ -41,8 +41,8 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     const settings = {};
 
     data.sort().map((d) => {
-      const type = <string>d[0].split('.', 1)[0];
-      const property = d[0].replace(`${type}.`, '');
+      const type = <string>d[0].split(".", 1)[0];
+      const property = d[0].replace(`${type}.`, "");
       const value = d[1];
 
       if (settings[type] === undefined) {
@@ -80,11 +80,11 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
   }
 
   loadSettings(): any {
-    return game.settings.get(CONSTANTS.MODULE_NAME, 'itemProperties');
+    return game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
   }
 
   async saveSettings(data) {
-    return await game.settings.set(CONSTANTS.MODULE_NAME, 'itemProperties', data);
+    return await game.settings.set(CONSTANTS.MODULE_NAME, "itemProperties", data);
   }
 
   getItemTypes() {

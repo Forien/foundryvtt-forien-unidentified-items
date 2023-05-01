@@ -12,19 +12,18 @@
 // Import JavaScript modules
 
 // Import TypeScript modules
-import registerDerivedItemSheetClass from './modules/ItemSheet';
-import registerContextMenuHook from './modules/ContextMenu';
-import Identification from './modules/Identification';
-import registerSettings, { checkSettingsInitialized } from './modules/settings';
-import registerItemClassMethod from './modules/Item';
-import CONSTANTS from './modules/constants';
-import API from './modules/api';
+import registerDerivedItemSheetClass from "./modules/ForienUnidentifiedItemsItemSheet";
+import registerContextMenuHook from "./modules/ContextMenu";
+import registerSettings, { checkSettingsInitialized } from "./modules/settings";
+import registerItemClassMethod from "./modules/ForienUnidentifiedItemsItem";
+import CONSTANTS from "./modules/constants";
+import API from "./modules/api";
 
 /* ------------------------------------ */
 /* Initialize module					*/
 /* ------------------------------------ */
 
-Hooks.once('init', () => {
+Hooks.once("init", () => {
   registerSettings();
 
   registerContextMenuHook();
@@ -36,9 +35,9 @@ Hooks.once('init', () => {
 /* Setup module							*/
 /* ------------------------------------ */
 
-Hooks.once('setup', () => {
+Hooks.once("setup", () => {
   //@ts-ignore
-  window.ForienIdentification = Identification;
+  // window.ForienIdentification = Identification;
 
   Hooks.callAll(`${CONSTANTS.MODULE_NAME}:afterSetup`);
 
@@ -49,7 +48,7 @@ Hooks.once('setup', () => {
 /* When ready							*/
 /* ------------------------------------ */
 
-Hooks.once('ready', () => {
+Hooks.once("ready", () => {
   checkSettingsInitialized();
   registerDerivedItemSheetClass();
   registerItemClassMethod();

@@ -58,8 +58,8 @@
     },
 
     "Notifications": {
-      "defaultIconsInitialized": "Forien's Unidentified Items | アイテムタイプごとのデフォルトアイコンがランダムに割り当てられました。詳しくはモジュール設定を確認してください。",
-      "defaultPropertiesInitialized": "Forien's Unidentified Items | デフォルトの“継続されるプロパティ”が生成されました。詳しくはモジュール設定を確認してください。"
+      "defaultIconsInitialized": "アイテムタイプごとのデフォルトアイコンがランダムに割り当てられました。詳しくはモジュール設定を確認してください。",
+      "defaultPropertiesInitialized": "デフォルトの“継続されるプロパティ”が生成されました。詳しくはモジュール設定を確認してください。"
     }
   }
 }

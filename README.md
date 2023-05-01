@@ -37,9 +37,9 @@ To install this module manually:
 # System Integration
 
 |            	| dnd5e 	| pf2e 	| wfrp4e 	| sw5e 	| swade 	|
-|------------	|-------	|------	|--------	|--------	|
-| Settings   	| ✓     	| ✓    	| ✓      	| ✓      	| ✓      	|
-| Logic      	| ✗     	| ✗    	| ✗      	| ✗      	| ✗      	|
+|------------	|-------	|------	|--------	|------ | ------- |
+| Settings   	| ✓       | ✓    | ✓      | ✓     | ✓      |
+| Logic      	| ✗       | ✗    | ✗      | ✗     | ✗       |
 
 
 One of main principles of this module is being [**System Agnostic**](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
@@ -140,11 +140,10 @@ Item that went through, or is about to go through "mystification". All data of O
 # API
 
 This page is meant for **System** and **Module** developers that wish to integrate their systems & modules with **Unidentified Items**, although some information here might be useful for people wanting to write **Macros** as well.
-## `ForienIdentification`
 
-This is the only public class exposed by this module. 
+This is the only public class exposed by this module:
 
-### async `mystify(itemUuid, options = {replace: false, mystifiedData: undefined})`
+### `async game.modules.get("forien-unidentified-items").api.mystify(itemUuid, options = {replace: false, mystifiedData: undefined})`
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 * `options` – `Object` – object of options
 * `options.replace` – `boolean` – `true` means, Original Item should be replaced with Mystified one
@@ -152,43 +151,43 @@ This is the only public class exposed by this module.
 
 This method handles the Mystification proccess. Fires the `forien-unidentified-items:onMystifyItem` Hook right before mystifying.
 
-### async `mystifyReplace(itemUuid)`
+### `async game.modules.get("forien-unidentified-items").api.mystifyReplace(itemUuid)`
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 
 Alias for `mystify(itemUuid, {replace: true})`.
 
-### async `mystifyAsDialog(itemUuid)`
+### `async game.modules.get("forien-unidentified-items").api.mystifyAsDialog(itemUuid)`
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 
 Opens "Mystify As…" Dialog. Callbacks for buttons fire the `mystify()` method with respective settings. 
 
 
-### async `mystifyAdvancedDialog(itemUuid) `
+### `async game.modules.get("forien-unidentified-items").api.mystifyAdvancedDialog(itemUuid) `
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 
 Opens "Mystify (advanced)…" Dialog. Callbacks for buttons fire the `mystify()` method with respective settings. 
 
 
-### async `identify(item)`
+### `async game.modules.get("forien-unidentified-items").api.identify(item)`
 * `item` – `Item` – instance of Item class to be identified
 
 If item has `OrigData` flag, this method will replace Mystified Item with OrigData.  
 Fires the `forien-unidentified-items:onIdentifyItem` hook. If Hook returns `false`, it will not proceed with full identification. 
 
 
-### `isMystified(item)`
+### `game.modules.get("forien-unidentified-items").api.isMystified(item)`
 * `item` – `Item` – instance of Item class
 
 Returns Boolean. `True` if item is mystified (has Original Data), `false` otherwise.
 
 
-### async `isUuidMystified(itemUuid)`
+### `async game.modules.get("forien-unidentified-items").api.isUuidMystified(itemUuid)`
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 
 Returns Boolean. `True` if item is mystified (has Original Data), `false` otherwise.
 
 
-### `getOrigData(item)`
+### `game.modules.get("forien-unidentified-items").api.getOrigData(item)`
 * `item` – `Item` – instance of Item class
 
 Returns Object of item's Original Data, or undefined if it isn't mystified.

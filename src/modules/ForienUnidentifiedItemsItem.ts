@@ -1,15 +1,15 @@
-import { MystifiedFlags } from './ForienUnidentifiedItemsModels';
-import Identification from './Identification';
+import API from "./api";
+import { MystifiedFlags } from "./ForienUnidentifiedItemsModels";
 
 export default function registerItemClassMethod() {
   //@ts-ignore
   CONFIG.Item.documentClass.prototype.isMystified = function isMystified() {
-    return Identification.isMystified(this);
+    return API.isMystified(this);
   };
 
   Object.defineProperty(CONFIG.Item.documentClass.prototype, MystifiedFlags.ORIG_DATA, {
     get: function origData() {
-      return Identification.getOrigData(this);
-    },
+      return API.getOrigData(this);
+    }
   });
 }

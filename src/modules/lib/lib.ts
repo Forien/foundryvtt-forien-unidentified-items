@@ -1,4 +1,4 @@
-import CONSTANTS from '../constants';
+import CONSTANTS from "../constants";
 
 // =============================
 // Module Generic function
@@ -15,8 +15,8 @@ export function wait(ms) {
 // export let debugEnabled = 0;
 // 0 = none, warnings = 1, debug = 2, all = 3
 
-export function debug(msg, args = '') {
-  if (game.settings.get(CONSTANTS.MODULE_NAME, 'debug')) {
+export function debug(msg, args = "") {
+  if (game.settings.get(CONSTANTS.MODULE_NAME, "debug")) {
     console.log(`DEBUG | ${CONSTANTS.MODULE_NAME} | ${msg}`, args);
   }
   return msg;
@@ -24,35 +24,35 @@ export function debug(msg, args = '') {
 
 export function log(message) {
   message = `${CONSTANTS.MODULE_NAME} | ${message}`;
-  console.log(message.replace('<br>', '\n'));
+  console.log(message.replace("<br>", "\n"));
   return message;
 }
 
 export function notify(message) {
   message = `${CONSTANTS.MODULE_NAME} | ${message}`;
   ui.notifications?.notify(message);
-  console.log(message.replace('<br>', '\n'));
+  console.log(message.replace("<br>", "\n"));
   return message;
 }
 
-export function info(info, notify = false) {
+export function info(info, notify = false, permanent = false) {
   info = `${CONSTANTS.MODULE_NAME} | ${info}`;
-  if (notify) ui.notifications?.info(info);
-  console.log(info.replace('<br>', '\n'));
+  if (notify) ui.notifications?.info(info, { permanent: permanent });
+  console.log(info.replace("<br>", "\n"));
   return info;
 }
 
 export function warn(warning, notify = false) {
   warning = `${CONSTANTS.MODULE_NAME} | ${warning}`;
   if (notify) ui.notifications?.warn(warning);
-  console.warn(warning.replace('<br>', '\n'));
+  console.warn(warning.replace("<br>", "\n"));
   return warning;
 }
 
 export function error(error, notify = true) {
   error = `${CONSTANTS.MODULE_NAME} | ${error}`;
   if (notify) ui.notifications?.error(error);
-  return new Error(error.replace('<br>', '\n'));
+  return new Error(error.replace("<br>", "\n"));
 }
 
 export function timelog(message): void {
@@ -73,7 +73,7 @@ export const i18nFormat = (key: string, data = {}): string => {
 //   if (debugEnabled >= 3) CONFIG.debug.hooks = true;
 // };
 
-export function dialogWarning(message, icon = 'fas fa-exclamation-triangle') {
+export function dialogWarning(message, icon = "fas fa-exclamation-triangle") {
   return `<p class="${CONSTANTS.MODULE_NAME}-dialog">
         <i style="font-size:3rem;" class="${icon}"></i><br><br>
         <strong style="font-size:1.2rem;">${CONSTANTS.MODULE_NAME}</strong>
@@ -120,9 +120,9 @@ export function getFirstPlayerTokenSelected(): Token | null {
     return null;
   }
   if (!selectedTokens || selectedTokens.length === 0) {
-    //if(game.user.character.data.token){
+    //if(game.user.character.token){
     //  //@ts-ignore
-    //  return game.user.character.data.token;
+    //  return game.user.character.token;
     //}else{
     return null;
     //}
@@ -148,7 +148,7 @@ export function getFirstPlayerToken(): Token | null {
   if (!token) {
     if (!controlled.length || controlled.length === 0) {
       // If no token is selected use the token of the users character
-      token = <Token>canvas.tokens?.placeables.find((token) => token.data._id === game.user?.character?.data?._id);
+      token = <Token>canvas.tokens?.placeables.find((token) => token.actor?.id === game.user?.character?.id);
     }
     // If no token is selected use the first owned token of the users character you found
     if (!token) {
@@ -159,32 +159,32 @@ export function getFirstPlayerToken(): Token | null {
 }
 
 function getElevationToken(token: Token): number {
-  const base = token.document.data;
+  const base = token.document;
   return getElevationPlaceableObject(base);
 }
 
 function getElevationWall(wall: Wall): number {
-  const base = wall.document.data;
+  const base = wall.document;
   return getElevationPlaceableObject(base);
 }
 
 function getElevationPlaceableObject(placeableObject: any): number {
   let base = placeableObject;
   if (base.document) {
-    base = base.document.data;
+    base = base.document;
   }
   const base_elevation =
     //@ts-ignore
-    typeof _levels !== 'undefined' &&
+    typeof _levels !== "undefined" &&
     //@ts-ignore
     _levels?.advancedLOS &&
     (placeableObject instanceof Token || placeableObject instanceof TokenDocument)
       ? //@ts-ignore
         _levels.getTokenLOSheight(placeableObject)
       : base.elevation ??
-        base.flags['levels']?.elevation ??
-        base.flags['levels']?.rangeBottom ??
-        base.flags['wallHeight']?.wallHeightBottom ??
+        base.flags["levels"]?.elevation ??
+        base.flags["levels"]?.rangeBottom ??
+        base.flags["wallHeight"]?.wallHeightBottom ??
         0;
   return base_elevation;
 }

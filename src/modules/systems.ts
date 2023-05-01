@@ -1,10 +1,10 @@
 // ↓ IMPORT SYSTEMS HERE ↓
-import dnd5e from './systems/dnd5e';
-import pf2e from './systems/pf2e';
-import swade from './systems/swade';
-import sw5e from './systems/sw5e';
-import wfrp4e from './systems/wfrp4e';
-import generic from './systems/generic';
+import dnd5e from "./systems/dnd5e";
+import pf2e from "./systems/pf2e";
+import swade from "./systems/swade";
+import sw5e from "./systems/sw5e";
+import wfrp4e from "./systems/wfrp4e";
+import generic from "./systems/generic";
 
 // ↑ IMPORT SYSTEMS HERE ↑
 
@@ -21,8 +21,8 @@ export const SYSTEMS = {
       swade,
       sw5e,
       wfrp4e,
-      generic,
+      generic
       // ↑ ADD SYSTEMS HERE ↑
     }?.[game.system.id];
-  },
+  }
 };

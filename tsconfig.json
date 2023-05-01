@@ -108,9 +108,7 @@
     "sourceMap": true,
     "baseUrl": ".",
     "allowUnusedLabels": false,
-    "removeComments": false,
-
-
+    "removeComments": false
   },
   "ts-node": {
     "files": true

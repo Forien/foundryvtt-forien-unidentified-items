@@ -58,8 +58,8 @@
     },
 
     "Notifications": {
-      "defaultIconsInitialized": "Forien's Unidentified Items | Les icônes des types d'objets par défaut ont été attribuées de manière aléatoire. Pour plus d'informations, veuillez consulter la page Paramètres des modules.",
-      "defaultPropertiesInitialized": "Forien's Unidentified Items | Les propriétés persistantes par défaut des objets ont été générées.  Pour plus d'informations, veuillez consulter la page Paramètres des modules."
+      "defaultIconsInitialized": "Les icônes des types d'objets par défaut ont été attribuées de manière aléatoire. Pour plus d'informations, veuillez consulter la page Paramètres des modules.",
+      "defaultPropertiesInitialized": "Les propriétés persistantes par défaut des objets ont été générées.  Pour plus d'informations, veuillez consulter la page Paramètres des modules."
     }
   }
 }

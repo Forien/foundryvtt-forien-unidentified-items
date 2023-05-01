@@ -1,9 +1,9 @@
-import CONSTANTS from './constants';
-import { MystifiedData, MystifiedFlags } from './ForienUnidentifiedItemsModels';
-import Identification from './Identification';
+import API from "./api";
+import CONSTANTS from "./constants";
+import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
 
 export default function registerContextMenuHook() {
-  Hooks.on('getItemDirectoryEntryContext', (html, entryOptions) => {
+  Hooks.on("getItemDirectoryEntryContext", (html, entryOptions) => {
     const getOrigData = (li) => {
       const id = li[0].dataset.documentId;
       const item = <Item>game.items?.get(id);
@@ -14,7 +14,7 @@ export default function registerContextMenuHook() {
     const mystifyCondition = (li) => {
       if (!game.user?.isGM) return false;
       const origData = getOrigData(li);
-      const allowNested = game.settings.get(CONSTANTS.MODULE_NAME, 'allowNestedItems');
+      const allowNested = game.settings.get(CONSTANTS.MODULE_NAME, "allowNestedItems");
 
       return !origData || allowNested;
     };
@@ -33,8 +33,8 @@ export default function registerContextMenuHook() {
         condition: mystifyCondition,
         callback: (li) => {
           const id = li[0].dataset.documentId;
-          Identification.mystify(`Item.${id}`);
-        },
+          API.mystify(`Item.${id}`);
+        }
       },
       {
         name: `${CONSTANTS.MODULE_NAME}.MystifyReplace`,
@@ -42,8 +42,8 @@ export default function registerContextMenuHook() {
         condition: mystifyCondition,
         callback: (li) => {
           const id = li[0].dataset.documentId;
-          Identification.mystifyReplace(`Item.${id}`);
-        },
+          API.mystifyReplace(`Item.${id}`);
+        }
       },
       {
         name: `${CONSTANTS.MODULE_NAME}.MystifyAs`,
@@ -51,8 +51,8 @@ export default function registerContextMenuHook() {
         condition: mystifyCondition,
         callback: (li) => {
           const id = li[0].dataset.documentId;
-          Identification.mystifyAsDialog(`Item.${id}`);
-        },
+          API.mystifyAsDialog(`Item.${id}`);
+        }
       },
       {
         name: `${CONSTANTS.MODULE_NAME}.MystifyAdvanced`,
@@ -60,9 +60,9 @@ export default function registerContextMenuHook() {
         condition: mystifyCondition,
         callback: (li) => {
           const id = li[0].dataset.documentId;
-          Identification.mystifyAdvancedDialog(`Item.${id}`);
-        },
-      },
+          API.mystifyAdvancedDialog(`Item.${id}`);
+        }
+      }
     ];
 
     entryOptions.unshift(...mystifyOptions);
@@ -73,9 +73,9 @@ export default function registerContextMenuHook() {
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = game.items?.get(id);
-        Identification.identify(item);
-      },
+        const item = <Item>game.items?.get(id);
+        API.identify(item);
+      }
     });
 
     entryOptions.unshift({
@@ -91,7 +91,7 @@ export default function registerContextMenuHook() {
         const entity = new CONFIG.Item.documentClass(origData, { editable: false });
         const sheet = entity.sheet;
         sheet?.render(true);
-      },
+      }
     });
   });
 }

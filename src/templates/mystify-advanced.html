@@ -35,14 +35,14 @@
     {{#each properties}}
     <label for="advanced-property-{{this.key}}" class="property-name">{{this.key}}</label>
     <div class="property-values">
-      <span
-        ><strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Original"}}:</strong>
-        {{{this.orig}}}</span
-      >
-      <span
-        ><strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Default"}}:</strong>
-        {{{this.default}}}</span
-      >
+      <span>
+        <strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Original"}}:</strong>
+        {{{this.orig}}}
+      </span>
+      <span>
+        <strong>{{localize "forien-unidentified-items.Dialog.MystifyAdvanced.Default"}}:</strong>
+        {{{this.default}}}
+      </span>
     </div>
     <input id="advanced-property-{{this.key}}" type="checkbox" name="data.{{this.key}}" {{checked this.value}} />
     {{/each}}

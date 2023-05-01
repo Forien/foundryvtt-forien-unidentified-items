@@ -1,69 +1,72 @@
-#fui-default-icons.wfrp .window-content {
+#forien-unidentified-items-default-icons.wfrp4e .window-content {
   background: url(/ui/parchment.jpg) repeat;
 }
-#fui-default-icons .item-type-entry {
+#forien-unidentified-items-default-icons .item-type-entry {
   display: flex;
 }
-#fui-default-icons .item-type-entry > * {
+#forien-unidentified-items-default-icons .item-type-entry > * {
   flex: 1;
   align-self: center;
   margin: 0 4px;
 }
-#fui-default-icons .item-type-entry input {
+#forien-unidentified-items-default-icons .item-type-entry input {
   flex: 2;
   height: 29px;
   min-width: 300px;
   font-size: 12px;
 }
-#fui-default-icons .item-type-entry img {
+#forien-unidentified-items-default-icons .item-type-entry img {
   width: 66px;
   height: 66px;
   flex: 0;
   margin: 0;
 }
-#fui-default-icons .item-type-entry button {
+#forien-unidentified-items-default-icons .item-type-entry button {
   flex: 0;
   margin: 0;
 }
 
-#fui-item-properties.wfrp .window-content {
+#forien-unidentified-items-item-properties.wfrp4e .window-content {
   background: url(/ui/parchment.jpg) repeat;
 }
-#fui-item-properties form {
+#forien-unidentified-items-item-properties form {
   height: 100%;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
 }
-#fui-item-properties nav {
+#forien-unidentified-items-item-properties nav {
   flex-wrap: wrap;
 }
-#fui-item-properties nav a {
+#forien-unidentified-items-item-properties nav a {
   flex: 0 0 25%;
+  border-radius: 10px;
+  border-color: black;
+  border-style: outset;
 }
-#fui-item-properties section {
+#forien-unidentified-items-item-properties section {
   overflow: auto;
   padding: 6px;
 }
-#fui-item-properties section .tab {
+#forien-unidentified-items-item-properties section .tab {
   columns: 3;
   /**
      * Because PF2e...
      */
   display: none;
 }
-#fui-item-properties section .tab .type-property {
+#forien-unidentified-items-item-properties section .tab .type-property {
   display: flex;
   align-items: center;
 }
-#fui-item-properties section .tab * {
+#forien-unidentified-items-item-properties section .tab * {
   break-inside: avoid-column;
   padding: 0;
 }
-#fui-item-properties section .tab.tab.active {
+#forien-unidentified-items-item-properties section .tab.tab.active {
   display: block;
 }
 
-#mystifyAsDialog .dropzone {
+#forien-unidentified-items-mystifyAsDialog .dropzone {
   min-height: 240px;
   margin-bottom: 4px;
   border: 2px dashed #33333366;
@@ -74,7 +77,7 @@
   display: flex;
   flex-direction: column;
 }
-#mystifyAsDialog .dropzone p {
+#forien-unidentified-items-mystifyAsDialog .dropzone p {
   text-align: center;
   position: relative;
   max-width: 80%;
@@ -82,73 +85,73 @@
   font-size: 1.6rem;
   color: #333333cc;
 }
-#mystifyAsDialog .dropzone .item {
+#forien-unidentified-items-mystifyAsDialog .dropzone .item {
   display: flex;
 }
-#mystifyAsDialog .dropzone .item img {
+#forien-unidentified-items-mystifyAsDialog .dropzone .item img {
   width: 66px;
   height: 66px;
   border-radius: 8px;
   border: 2px solid #000;
 }
-#mystifyAsDialog .dropzone .item span {
+#forien-unidentified-items-mystifyAsDialog .dropzone .item span {
   font-size: 1.2rem;
   align-self: center;
   padding: 8px;
 }
-#mystifyAsDialog button[data-button='mystifyAdvanced'] {
+#forien-unidentified-items-mystifyAsDialog button[data-button="mystifyAdvanced"] {
   flex-basis: 100%;
   margin: 0 0 2px 0;
 }
 
-#mystifyAdvancedDialog {
+#forien-unidentified-items-mystifyAdvancedDialog {
   min-width: 500px;
   max-height: 800px;
 }
-#mystifyAdvancedDialog .window-content {
+#forien-unidentified-items-mystifyAdvancedDialog .window-content {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
 }
-#mystifyAdvancedDialog .advanced-body {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body {
   height: 100%;
   display: grid;
   grid-template-rows: auto auto auto auto minmax(0, 1fr);
 }
-#mystifyAdvancedDialog .advanced-body .meta-header {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-header {
   display: flex;
 }
-#mystifyAdvancedDialog .advanced-body .meta-header > * {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-header > * {
   flex: 1;
   text-align: center;
   font-weight: bold;
 }
-#mystifyAdvancedDialog .advanced-body .meta-body > * {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-body > * {
   display: flex;
 }
-#mystifyAdvancedDialog .advanced-body .meta-body > * > * {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-body > * > * {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
 }
-#mystifyAdvancedDialog .advanced-body .meta-name {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .meta-name {
   margin-top: 10px;
 }
-#mystifyAdvancedDialog .advanced-body img {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body img {
   width: 66px;
   height: 66px;
 }
-#mystifyAdvancedDialog .advanced-body .properties-body {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .properties-body {
   overflow-y: auto;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   grid-gap: 6px 10px;
 }
-#mystifyAdvancedDialog .advanced-body .properties-body label {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .properties-body label {
   font-weight: bold;
 }
-#mystifyAdvancedDialog .advanced-body .properties-body .property-values {
+#forien-unidentified-items-mystifyAdvancedDialog .advanced-body .properties-body .property-values {
   display: flex;
   flex-direction: column;
   font-style: italic;
@@ -157,17 +160,17 @@
 
 /*# sourceMappingURL=style.css.map */
 
-.identify-item .fa-search {
+.forien-unidentified-items-identify-item .fa-search {
   color: DeepPink;
   text-shadow: 0 0 8px DeepPink;
 }
 
-.peek-original-item .fa-eye {
+.forien-unidentified-items-peek-original-item .fa-eye {
   color: Orchid;
   text-shadow: 0 0 8px Orchid;
 }
 
-.mystify-item .fa-eye-slash {
+.forien-unidentified-items-mystify-item .fa-eye-slash {
   color: RebeccaPurple;
   text-shadow: 0 0 8px RebeccaPurple;
 }

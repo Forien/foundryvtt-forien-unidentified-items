@@ -1,7 +1,7 @@
 $icon-size: 66px;
 
-#fui-default-icons {
-  &.wfrp {
+#forien-unidentified-items-default-icons {
+  &.wfrp4e {
     .window-content {
       background: url(/ui/parchment.jpg) repeat;
     }
@@ -37,8 +37,8 @@ $icon-size: 66px;
   }
 }
 
-#fui-item-properties {
-  &.wfrp {
+#forien-unidentified-items-item-properties {
+  &.wfrp4e {
     .window-content {
       background: url(/ui/parchment.jpg) repeat;
     }
@@ -55,6 +55,9 @@ $icon-size: 66px;
 
     a {
       flex: 0 0 25%;
+      border-radius: 10px;
+      border-color: black;
+      border-style: outset;
     }
   }
 
@@ -88,7 +91,7 @@ $icon-size: 66px;
   }
 }
 
-#mystifyAsDialog {
+#forien-unidentified-items-mystifyAsDialog {
   .dropzone {
     min-height: 240px;
     margin-bottom: 4px;
@@ -128,13 +131,13 @@ $icon-size: 66px;
     }
   }
 
-  button[data-button='mystifyAdvanced'] {
+  button[data-button="mystifyAdvanced"] {
     flex-basis: 100%;
     margin: 0 0 2px 0;
   }
 }
 
-#mystifyAdvancedDialog {
+#forien-unidentified-items-mystifyAdvancedDialog {
   min-width: 500px;
   max-height: 800px;
 
@@ -199,17 +202,17 @@ $icon-size: 66px;
   }
 }
 
-.identify-item .fa-search {
+.forien-unidentified-items-identify-item .fa-search {
   color: DeepPink;
   text-shadow: 0 0 8px DeepPink;
 }
 
-.peek-original-item .fa-eye {
+.forien-unidentified-items-peek-original-item .fa-eye {
   color: Orchid;
   text-shadow: 0 0 8px Orchid;
 }
 
-.mystify-item .fa-eye-slash {
+.forien-unidentified-items-mystify-item .fa-eye-slash {
   color: RebeccaPurple;
   text-shadow: 0 0 8px RebeccaPurple;
 }
