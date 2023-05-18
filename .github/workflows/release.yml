@@ -72,11 +72,11 @@ jobs:
 
 
       # Publish the release to FoundryVTT's package repository.
-      - name: FoundryVTT AutoPublish
-        uses: Varriount/fvtt-autopublish@v1.1.1
-        with:
-          username: ${{ secrets.FOUNDRY_ADMIN_USER }}
-          password: ${{ secrets.FOUNDRY_ADMIN_PW }}
-          module-id: 288
-          manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_VERSION }}/module.json
-          manifest-file: ./src/module.json
+      # - name: FoundryVTT AutoPublish
+      #   uses: Varriount/fvtt-autopublish@v1.1.1
+      #   with:
+      #     username: ${{ secrets.FOUNDRY_ADMIN_USER }}
+      #     password: ${{ secrets.FOUNDRY_ADMIN_PW }}
+      #     module-id: 288
+      #     manifest-url: https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_VERSION }}/module.json
+      #     manifest-file: ./src/module.json
