@@ -285,7 +285,9 @@ export default class Identification {
             // }
             if (property) {
               if (property.startsWith("system.")) {
-                delete formData[property];
+                if(formData[property]) {
+                  delete formData[property];
+                }
                 setProperty(formData, property, getProperty(sourceData, property));
               } else {
                 warn(`Cannot set the property '${property}' maybe is a issue ?`);
@@ -348,9 +350,17 @@ export default class Identification {
     }
     // things to keep from mystified item:
     // delete origData._id;
-    delete origData.permission;
-    delete origData.folder;
-
+    if(origData.permission) {
+      delete origData.permission;
+    }
+    //@ts-ignore
+    if(origData.ownership) {
+      //@ts-ignore
+      delete origData.ownership;
+    }
+    if(origData.folder) {
+      delete origData.folder;
+    }
     const hook = Hooks.call(`${CONSTANTS.MODULE_NAME}:onIdentifyItem`, item, origData);
     if (hook !== false) {
       await item.update(origData, { diff: false });
