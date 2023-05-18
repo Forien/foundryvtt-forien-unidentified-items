@@ -13,12 +13,12 @@
       "url": "https://www.patreon.com/mclemente"
     },
     {
-      "name": "p4535992",
-      "url": "https://github.com/p4535992",
+      "name": "League-of-Foundry-Developers",
+      "url": "https://github.com/League-of-Foundry-Developers",
       "discord": "",
       "twitter": "",
       "patreon": "",
-      "github": "p4535992",
+      "github": "League-of-Foundry-Developers",
       "ko-fi": "",
       "reddit": "",
       "email": ""
@@ -94,12 +94,12 @@
     "maximum": 10
   },
   "manifestPlusVersion": "1.2.1",
-  "url": "https://github.com/p4535992/foundryvtt-forien-unidentified-items",
-  "manifest": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/releases/latest/download/module.json",
-  "download": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/releases/latest/download/module.zip",
-  "readme": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/blob/v1.0.4/README.md",
-  "changelog": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/blob/v1.0.4/CHANGELOG.md",
-  "bugs": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/issues",
+  "url": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items",
+  "manifest": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/latest/download/module.json",
+  "download": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/latest/download/module.zip",
+  "readme": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v1.0.4/README.md",
+  "changelog": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/blob/v1.0.4/CHANGELOG.md",
+  "bugs": "https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues",
   "allowBugReporter": true,
   "relationships": {
     "systems": [],

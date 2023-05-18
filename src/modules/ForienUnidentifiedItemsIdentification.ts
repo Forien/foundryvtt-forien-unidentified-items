@@ -48,9 +48,15 @@ export default class Identification {
     if (options.replace) {
       const template = { data: game.system.model.Item[item.type] };
       mystifiedData = mergeObject(template, mystifiedData);
+      if(!mystifiedData.flags) {
+        mystifiedData.flags = {};
+      }
       await item.update(mystifiedData);
       mystifiedItem = item;
     } else {
+      if(!mystifiedData.flags) {
+        mystifiedData.flags = {};
+      }
       mystifiedItem = await Item.create(mystifiedData);
     }
 
@@ -351,15 +357,28 @@ export default class Identification {
     // things to keep from mystified item:
     // delete origData._id;
     if(origData.permission) {
-      delete origData.permission;
+      try {
+        delete origData.permission;
+      }catch(e){
+        // do nothing
+      }
     }
     //@ts-ignore
     if(origData.ownership) {
-      //@ts-ignore
-      delete origData.ownership;
+      try {
+        //@ts-ignore
+        delete origData.ownership;
+      }catch(e){
+        // do nothing
+      }
     }
     if(origData.folder) {
-      delete origData.folder;
+      try {
+        //@ts-ignore
+        delete origData.folder;
+      }catch(e){
+        // do nothing
+      }
     }
     const hook = Hooks.call(`${CONSTANTS.MODULE_NAME}:onIdentifyItem`, item, origData);
     if (hook !== false) {
