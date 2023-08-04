@@ -1,4 +1,4 @@
-import type DefaultIcons from "./apps/DefaultIcons.mjs";
+import DefaultIcons from "./apps/DefaultIcons.mjs";
 import CONSTANTS from "./constants.mjs";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels.mjs";
 import { error, i18n, i18nFormat, info, warn } from "./lib/lib.mjs";
@@ -15,12 +15,12 @@ export default class Identification {
    * @returns {Promise<void>}
    */
   static async mystify(
-    itemUuid: string,
-    options: { replace: boolean; mystifiedData: MystifiedData | undefined } = {
+    itemUuid,
+    options = {
       replace: false,
       mystifiedData: undefined
     }
-  ): Promise<Item | undefined> {
+  ) {
     if (!game.user?.isGM) {
       error(`Only a GM can mistify a item`, true);
       return;
@@ -36,7 +36,7 @@ export default class Identification {
     }
 
     const origData = duplicate(item);
-    let mystifiedData = <MystifiedData>options.mystifiedData;
+    let mystifiedData = options.mystifiedData;
 
     if (mystifiedData === undefined) {
       mystifiedData = this._getMystifiedData(origData);
@@ -69,7 +69,7 @@ export default class Identification {
    * @param {string} itemUuid
    * @returns {Promise<void>}
    */
-  static async mystifyReplace(itemUuid: string): Promise<Item | undefined> {
+  static async mystifyReplace(itemUuid) {
     return await this.mystify(itemUuid, { replace: true, mystifiedData: undefined });
   }
 
@@ -78,12 +78,12 @@ export default class Identification {
    * @param {string} itemUuid
    * @returns {Promise<void>}
    */
-  static async mystifyAsDialog(itemUuid: string): Promise<void> {
+  static async mystifyAsDialog(itemUuid) {
     if (!itemUuid) {
       warn(`Cannot mystify advanced a no item`, true);
       return;
     }
-    const origItem: any = await this._itemFromUuid(itemUuid);
+    const origItem = await this._itemFromUuid(itemUuid);
     if (!origItem) {
       warn(`Cannot  mystify advanced a no item from uuid '${itemUuid}'`, true);
       return;
@@ -154,7 +154,7 @@ export default class Identification {
               event.preventDefault();
               event.stopPropagation();
               let item;
-              const data = JSON.parse(<string>event.originalEvent?.dataTransfer?.getData("text/plain"));
+              const data = JSON.parse(event.originalEvent?.dataTransfer?.getData("text/plain"));
               if (data.type === "Item") {
                 if (data.uuid) {
                   const witem = await this._uuidToDocument(data.uuid);
@@ -201,19 +201,19 @@ export default class Identification {
    * @param {Item|undefined} source
    * @returns {Promise<void>}
    */
-  static async mystifyAdvancedDialog(itemUuid: string, source: Item | undefined = undefined) {
+  static async mystifyAdvancedDialog(itemUuid, source = undefined) {
     if (!itemUuid) {
       warn(`Cannot mystify advanced a no item`, true);
       return;
     }
-    const origItem = <Item>await this._itemFromUuid(itemUuid);
+    const origItem = await this._itemFromUuid(itemUuid);
     if (!origItem) {
       warn(`Cannot  mystify advanced a no item from uuid '${itemUuid}'`, true);
       return;
     }
 
     const nameItem = origItem.name;
-    const sourceData = <Item>(source ? source : duplicate(origItem));
+    const sourceData = (source ? source : duplicate(origItem));
     const meta = this._getMystifiedMeta(sourceData);
     const keepOldIcon = this.keepOriginalImage();
 
@@ -227,7 +227,7 @@ export default class Identification {
           {
             key: property,
             orig: getProperty(sourceData, `data.${property}`),
-            default: getProperty(<object>game.system?.model.Item[sourceData.type], property),
+            default: getProperty(game.system?.model.Item[sourceData.type], property),
             value: properties[property]
           }
         ];
@@ -270,17 +270,17 @@ export default class Identification {
           }
         },
         default: "cancel",
-        close: (html: HTMLElement | JQuery<HTMLElement>) => {
+        close: (html) => {
           if (!confirmed) {
             return;
           }
-          const form = <HTMLFormElement>(<JQuery<HTMLElement>>html).find("form")[0];
+          const form = (html).find("form")[0];
           const formDataBase = new FormDataExtended(form, {});
 
           formDataBase.delete("img-keep");
           formDataBase.delete("name-keep");
 
-          const formData: Record<string, unknown> = Object.fromEntries(
+          const formData = Object.fromEntries(
             Object.entries(formDataBase.toObject()).filter((e) => e[1] !== false)
           );
 
@@ -305,10 +305,10 @@ export default class Identification {
           //if (replace) options.replace = true;
           //this.mystify(itemUuid, options);
           if (replace) {
-            this.mystify(itemUuid, { replace: true, mystifiedData: <any>formData });
-            this.mystify(itemUuid, { replace: true, mystifiedData: <any>formData });
+            this.mystify(itemUuid, { replace: true, mystifiedData: formData });
+            this.mystify(itemUuid, { replace: true, mystifiedData: formData });
           } else {
-            this.mystify(itemUuid, { replace: false, mystifiedData: <any>formData });
+            this.mystify(itemUuid, { replace: false, mystifiedData: formData });
           }
         }
       },
@@ -323,13 +323,13 @@ export default class Identification {
     jqDialog.on("change", "input[name=img-keep]", async (event) => {
       const checked = $(event.currentTarget).prop("checked");
 
-      const src = checked ? <string>sourceData.img : <string>meta.img;
+      const src = checked ? sourceData.img : meta.img;
       jqDialog.find(".img-preview").attr("src", src);
       jqDialog.find("input[name=img]").val(src);
     });
 
     jqDialog.on("change", "input[name=name-keep]", async (event) => {
-      const checked = <boolean>$(event.currentTarget).prop("checked");
+      const checked = $(event.currentTarget).prop("checked");
 
       const nameChanged = checked ? sourceData.name : meta.name;
       jqDialog.find(".name-preview").text(nameChanged ?? "");
@@ -344,12 +344,12 @@ export default class Identification {
    * @param {Item} item
    * @returns {Promise<Item|undefined>}
    */
-  static async identify(item: Item): Promise<Item | undefined> {
+  static async identify(item) {
     if (!item) {
       warn(`Cannot identify a no item`, true);
       return;
     }
-    const origData = <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+    const origData = item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
     if (!origData) {
       warn(`Cannot identify a no mistify item`, true);
       return;
@@ -396,7 +396,7 @@ export default class Identification {
    * @param {Item} item
    * @return {boolean}
    */
-  static isMystified(item: Item): boolean {
+  static isMystified(item) {
     if (!item) {
       return false;
     }
@@ -409,8 +409,8 @@ export default class Identification {
    * @param {Item} item
    * @return {Object}
    */
-  static getOrigData(item: Item): MystifiedData {
-    return <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+  static getOrigData(item) {
+    return item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
   }
 
   /**
@@ -418,11 +418,11 @@ export default class Identification {
    * @param {string} uuid
    * @return {boolean}
    */
-  static async isUuidMystified(uuid: string) {
+  static async isUuidMystified(uuid) {
     if (!uuid) {
       return false;
     }
-    const item = <Item>await this._itemFromUuid(uuid);
+    const item = await this._itemFromUuid(uuid);
     if (!item) {
       warn(`No item found for uuid '${uuid}'`, true);
       return false;
@@ -437,7 +437,7 @@ export default class Identification {
    * @returns {{img: String, name: String, type: String, data: Object}}
    * @private
    */
-  static _getMystifiedData(origData: MystifiedData): MystifiedData {
+  static _getMystifiedData(origData) {
     const mystifiedData = this._getMystifiedMeta(origData);
     const itemProperties = this._getDefaultProperties(origData);
 
@@ -446,14 +446,14 @@ export default class Identification {
       // const valueTmp = getProperty(origData, propertyTmp);
       // setProperty(mystifiedData, propertyTmp, valueTmp);
       if (property) {
-        let propertyTmp: string | undefined = undefined;
+        let propertyTmp = undefined;
         if (property.startsWith("system.")) {
           propertyTmp = property;
         } else {
           propertyTmp = "system." + property;
         }
-        const valueTmp = getProperty(origData, <string>propertyTmp);
-        setProperty(mystifiedData, <string>propertyTmp, valueTmp);
+        const valueTmp = getProperty(origData, propertyTmp);
+        setProperty(mystifiedData, propertyTmp, valueTmp);
       } else {
         warn(`Cannot set the property '${property}' maybe is a issue ?`);
       }
@@ -488,12 +488,12 @@ export default class Identification {
    * @private
    */
   static _getTypeProperties(origData) {
-    const defaultProperties = <any>game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
+    const defaultProperties = game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
     return defaultProperties[origData.type];
   }
 
   static keepOriginalImage() {
-    return <string>game.settings.get(CONSTANTS.MODULE_NAME, "keepOldIcon");
+    return game.settings.get(CONSTANTS.MODULE_NAME, "keepOldIcon");
   }
 
   /**
@@ -502,16 +502,16 @@ export default class Identification {
    * @returns {{img: String, name: String, type: String}}
    * @private
    */
-  static _getMystifiedMeta(origData): MystifiedData {
-    const iconSettings = <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
+  static _getMystifiedMeta(origData) {
+    const iconSettings = game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
     const iconType =
-      <string>getProperty(iconSettings, origData.type) ||
+      getProperty(iconSettings, origData.type) ||
       `/scripts/${CONSTANTS.MODULE_NAME}/icons/${CONSTANTS.DEFAULT_ICON}`;
 
     return {
-      name: <string>i18n(`${CONSTANTS.MODULE_NAME}.NewMystified`),
-      type: <string>origData.type,
-      img: <string>iconType
+      name: i18n(`${CONSTANTS.MODULE_NAME}.NewMystified`),
+      type: origData.type,
+      img: iconType
     };
   }
 
@@ -521,21 +521,21 @@ export default class Identification {
    * @returns {Promise<Item|undefined>}
    * @private
    */
-  static async _itemFromUuid(uuid: string): Promise<Item | undefined> {
+  static async _itemFromUuid(uuid) {
     return this._uuidToDocument(uuid);
     // const parts = <string[]>uuid.split(".");
     // const [entityName, entityId, embeddedName, embeddedId] = parts;
 
     // if (embeddedName === "OwnedItem" || embeddedName === "Item") {
     // 	if (parts.length === 4) {
-    // 		const actor = <Actor>game.actors?.get(<string>entityId);
+    // 		const actor = <Actor>game.actors?.get(entityId);
     // 		if (!actor) {
     // 			return undefined;
     // 		}
-    // 		return <Item>actor.items.get(<string>embeddedId);
+    // 		return actor.items.get(embeddedId);
     // 	}
     // } else {
-    // 	return <Item>await fromUuid(uuid);
+    // 	return await fromUuid(uuid);
     // }
     // return;
   }
@@ -566,7 +566,7 @@ export default class Identification {
 
   static async _uuidToDocument(uuid) {
     const parts = uuid.split(".");
-    let result: any | null = null;
+    let result = null;
     if (parts[0] === "Compendium") {
       const pack = game["packs"].get(parts[1] + "." + parts[2]);
       if (pack !== undefined) {

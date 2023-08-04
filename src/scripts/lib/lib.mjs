@@ -4,8 +4,8 @@ import CONSTANTS from "../constants.mjs";
 // Module Generic function
 // =============================
 
-export function isGMConnected(): boolean {
-  return Array.from(<Users>game.users).find((user) => user.isGM && user.active) ? true : false;
+export function isGMConnected() {
+  return Array.from(game.users).find((user) => user.isGM && user.active) ? true : false;
 }
 
 export function wait(ms) {
@@ -55,19 +55,19 @@ export function error(error, notify = true) {
   return new Error(error.replace("<br>", "\n"));
 }
 
-export function timelog(message): void {
+export function timelog(message) {
   warn(Date.now(), message);
 }
 
-export const i18n = (key: string): string => {
+export const i18n = (key) => {
   return game.i18n.localize(key)?.trim();
 };
 
-export const i18nFormat = (key: string, data = {}): string => {
+export const i18nFormat = (key, data = {}) => {
   return game.i18n.format(key, data)?.trim();
 };
 
-// export const setDebugLevel = (debugText: string): void => {
+// export const setDebugLevel = (debugText) => {
 //   debugEnabled = { none: 0, warn: 1, debug: 2, all: 3 }[debugText] || 0;
 //   // 0 = none, warnings = 1, debug = 2, all = 3
 //   if (debugEnabled >= 3) CONFIG.debug.hooks = true;
@@ -89,8 +89,8 @@ export function dialogWarning(message, icon = "fas fa-exclamation-triangle") {
  * @href https://www.petermorlion.com/iterating-a-typescript-enum/
  * @returns
  */
-export function enumKeys<O extends object, K extends keyof O = keyof O>(obj: O): K[] {
-  return Object.keys(obj).filter((k) => Number.isNaN(+k)) as K[];
+export function enumKeys(obj) {
+  return Object.keys(obj).filter((k) => Number.isNaN(+k));
 }
 
 /**
@@ -99,7 +99,7 @@ export function enumKeys<O extends object, K extends keyof O = keyof O>(obj: O):
  * @param source
  * @param prop
  */
-export function mergeByProperty(target: any[], source: any[], prop: any) {
+export function mergeByProperty(target, source, prop) {
   source.forEach((sourceElement) => {
     const targetElement = target.find((targetElement) => {
       return sourceElement[prop] === targetElement[prop];
@@ -112,9 +112,9 @@ export function mergeByProperty(target: any[], source: any[], prop: any) {
 /**
  * Returns the first selected token
  */
-export function getFirstPlayerTokenSelected(): Token | null {
+export function getFirstPlayerTokenSelected() {
   // Get first token ownted by the player
-  const selectedTokens = <Token[]>canvas.tokens?.controlled;
+  const selectedTokens = canvas.tokens?.controlled;
   if (selectedTokens.length > 1) {
     //iteractionFailNotification(i18n("foundryvtt-arms-reach.warningNoSelectMoreThanOneToken"));
     return null;
@@ -127,48 +127,48 @@ export function getFirstPlayerTokenSelected(): Token | null {
     return null;
     //}
   }
-  return <Token>selectedTokens[0];
+  return selectedTokens[0];
 }
 
 /**
  * Returns a list of selected (or owned, if no token is selected)
  * note: ex getSelectedOrOwnedToken
  */
-export function getFirstPlayerToken(): Token | null {
+export function getFirstPlayerToken() {
   // Get controlled token
-  let token: Token;
-  const controlled: Token[] = <Token[]>canvas.tokens?.controlled;
+  let token;
+  const controlled = canvas.tokens?.controlled;
   // Do nothing if multiple tokens are selected
   if (controlled.length && controlled.length > 1) {
     //iteractionFailNotification(i18n("foundryvtt-arms-reach.warningNoSelectMoreThanOneToken"));
     return null;
   }
   // If exactly one token is selected, take that
-  token = <Token>controlled[0];
+  token = controlled[0];
   if (!token) {
     if (!controlled.length || controlled.length === 0) {
       // If no token is selected use the token of the users character
-      token = <Token>canvas.tokens?.placeables.find((token) => token.actor?.id === game.user?.character?.id);
+      token = canvas.tokens?.placeables.find((token) => token.actor?.id === game.user?.character?.id);
     }
     // If no token is selected use the first owned token of the users character you found
     if (!token) {
-      token = <Token>canvas.tokens?.ownedTokens[0];
+      token = canvas.tokens?.ownedTokens[0];
     }
   }
   return token;
 }
 
-function getElevationToken(token: Token): number {
+function getElevationToken(token) {
   const base = token.document;
   return getElevationPlaceableObject(base);
 }
 
-function getElevationWall(wall: Wall): number {
+function getElevationWall(wall) {
   const base = wall.document;
   return getElevationPlaceableObject(base);
 }
 
-function getElevationPlaceableObject(placeableObject: any): number {
+function getElevationPlaceableObject(placeableObject) {
   let base = placeableObject;
   if (base.document) {
     base = base.document;

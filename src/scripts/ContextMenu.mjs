@@ -6,7 +6,7 @@ export default function registerContextMenuHook() {
   Hooks.on("getItemDirectoryEntryContext", (html, entryOptions) => {
     const getOrigData = (li) => {
       const id = li[0].dataset.documentId;
-      const item = <Item>game.items?.get(id);
+      const item = game.items?.get(id);
 
       return item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
     };
@@ -73,7 +73,7 @@ export default function registerContextMenuHook() {
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = <Item>game.items?.get(id);
+        const item = game.items?.get(id);
         API.identify(item);
       }
     });
@@ -84,8 +84,8 @@ export default function registerContextMenuHook() {
       condition: identifyCondition,
       callback: (li) => {
         const id = li[0].dataset.documentId;
-        const item = <Item>game.items?.get(id);
-        const origData = <MystifiedData>item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+        const item = game.items?.get(id);
+        const origData = item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
         origData.isAbstract = true;
         //@ts-ignore
         const entity = new CONFIG.Item.documentClass(origData, { editable: false });

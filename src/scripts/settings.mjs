@@ -22,7 +22,7 @@ export default function registerSettings() {
     label: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.label`,
     hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
     icon: "fas fa-image",
-    type: DefaultIcons,
+    type,
     restricted: true
   });
 
@@ -31,7 +31,7 @@ export default function registerSettings() {
     label: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.label`,
     hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
     icon: "fas fa-cogs",
-    type: ItemProperties,
+    typeProperties,
     restricted: true
   });
 
@@ -107,7 +107,7 @@ export default function registerSettings() {
 
   const settings = defaultSettings();
   for (const [name, data] of Object.entries(settings)) {
-    game.settings.register(CONSTANTS.MODULE_NAME, name, <any>data);
+    game.settings.register(CONSTANTS.MODULE_NAME, name, data);
   }
 
   // for (const [name, data] of Object.entries(otherSettings)) {
@@ -115,7 +115,7 @@ export default function registerSettings() {
   // }
 }
 
-class ResetSettingsDialog extends FormApplication<FormApplicationOptions, object, any> {
+class ResetSettingsDialog extends FormApplication {
   constructor(...args) {
     //@ts-ignore
     super(...args);
@@ -151,7 +151,7 @@ class ResetSettingsDialog extends FormApplication<FormApplicationOptions, object
     });
   }
 
-  async _updateObject(event: Event, formData?: object): Promise<any> {
+  async _updateObject(event, formData) {
     // do nothing
   }
 }
@@ -277,7 +277,7 @@ function initializeDefaultIcons() {
  */
 function initializeItemProperties() {
   const ip = new ItemProperties({}, {});
-  let settings: any = ip.getSettings();
+  let settings = ip.getSettings();
   settings = Object.entries(settings);
   settings = settings.map((type) => {
     let entries = Object.entries(type[1]);

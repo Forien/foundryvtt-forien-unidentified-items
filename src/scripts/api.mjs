@@ -1,10 +1,10 @@
-import type DefaultIcons from "./apps/DefaultIcons.mjs";
+import DefaultIcons from "./apps/DefaultIcons.mjs";
 import CONSTANTS from "./constants.mjs";
-import type { MystifiedData } from "./ForienUnidentifiedItemsModels.mjs";
+import { MystifiedData } from "./ForienUnidentifiedItemsModels.mjs";
 import Identification from "./ForienUnidentifiedItemsIdentification.mjs";
 
 const API = {
-  get DEFAULT_PROPERTIES(): any {
+  get DEFAULT_PROPERTIES() {
     return game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
   },
 
@@ -13,8 +13,8 @@ const API = {
    *
    * @returns {array}
    */
-  get DEFAULT_ICONS(): DefaultIcons {
-    return <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
+  get DEFAULT_ICONS() {
+    return game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
   },
 
   /**
@@ -28,12 +28,12 @@ const API = {
    * @returns {Promise<Item|undefined>}
    */
   async mystify(
-    itemUuid: string,
-    options: { replace: boolean; mystifiedData: MystifiedData | undefined } = {
+    itemUuid,
+    options = {
       replace: false,
       mystifiedData: undefined
     }
-  ): Promise<Item | undefined> {
+  ) {
     return await Identification.mystify(itemUuid, options);
   },
 
@@ -42,7 +42,7 @@ const API = {
    * @param {string} itemUuid
    * @returns {Promise<Item|undefined>}
    */
-  async mystifyReplace(itemUuid: string): Promise<Item | undefined> {
+  async mystifyReplace(itemUuid) {
     return await Identification.mystifyReplace(itemUuid);
   },
 
@@ -51,7 +51,7 @@ const API = {
    * @param {string} itemUuid
    * @returns {Promise<void>}
    */
-  async mystifyAsDialog(itemUuid: string): Promise<void> {
+  async mystifyAsDialog(itemUuid) {
     await Identification.mystifyAsDialog(itemUuid);
   },
 
@@ -61,7 +61,7 @@ const API = {
    * @param {object} source
    * @returns {Promise<void>}
    */
-  async mystifyAdvancedDialog(itemUuid: string, source: any = undefined): Promise<void> {
+  async mystifyAdvancedDialog(itemUuid, source = undefined) {
     await Identification.mystifyAdvancedDialog(itemUuid, source);
   },
 
@@ -72,7 +72,7 @@ const API = {
    * @param {Item} item
    * @returns {Promise<Item|undefined>}
    */
-  async identify(item: Item): Promise<Item | undefined> {
+  async identify(item) {
     return await Identification.identify(item);
   },
 
@@ -81,7 +81,7 @@ const API = {
    * @param {Item} item
    * @return {boolean}
    */
-  isMystified(item: Item): boolean {
+  isMystified(item) {
     return Identification.isMystified(item);
   },
 
@@ -90,7 +90,7 @@ const API = {
    * @param {Item} item
    * @return {MystifiedData}
    */
-  getOrigData(item: Item): MystifiedData {
+  getOrigData(item) {
     return Identification.getOrigData(item);
   },
 
@@ -99,7 +99,7 @@ const API = {
    * @param {string} uuid
    * @return {boolean}
    */
-  async isUuidMystified(uuid): Promise<boolean> {
+  async isUuidMystified(uuid) {
     return await Identification.isUuidMystified(uuid);
   }
 };

@@ -1,7 +1,7 @@
 import CONSTANTS from "../constants.mjs";
 import { i18n } from "../lib/lib.mjs";
-export default class ItemProperties extends FormApplication<FormApplicationOptions, object, any> {
-  static get defaultOptions(): any {
+export default class ItemProperties extends FormApplication {
+  static get defaultOptions(){
     const options = mergeObject(super.defaultOptions, {
       id: "forien-unidentified-items-item-properties",
       template: `/scripts/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
@@ -21,8 +21,8 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     return options;
   }
 
-  getData(options = {}): any {
-    const data: any = super.getData();
+  getData(options = {}){
+    const data= super.getData();
     (data.types = this.getItemTypes()), (data.propertySettings = this.getSettings()), (data.options = this.options);
     return data;
     // return {
@@ -32,16 +32,16 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     // };
   }
 
-  activateListeners(html): void {
+  activateListeners(html) {
     super.activateListeners(html);
   }
 
-  async _updateObject(event, formData): Promise<any> {
+  async _updateObject(event, formData) {
     const data = Object.entries(formData);
     const settings = {};
 
     data.sort().map((d) => {
-      const type = <string>d[0].split(".", 1)[0];
+      const type = d[0].split(".", 1)[0];
       const property = d[0].replace(`${type}.`, "");
       const value = d[1];
 
@@ -54,19 +54,19 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     return await this.saveSettings(settings);
   }
 
-  getProperties(): Map<string, any> {
+  getProperties() {
     const types = Object.entries(game.system.model.Item);
-    const properties = new Map<string, any>(types);
+    const properties = new Map(types);
     for (const [key, value] of properties) {
       properties.set(key, Object.keys(flattenObject(value)));
     }
     return properties;
   }
 
-  getSettings(): any {
-    const settings: any = this.loadSettings();
+  getSettings(){
+    const settings= this.loadSettings();
     const types = this.getItemTypes();
-    const properties: Map<string, any> = this.getProperties();
+    const properties = this.getProperties();
 
     for (const type of types) {
       const setting = getProperty(settings, type);
@@ -79,7 +79,7 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
     return settings;
   }
 
-  loadSettings(): any {
+  loadSettings(){
     return game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
   }
 

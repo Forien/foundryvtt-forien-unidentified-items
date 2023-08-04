@@ -52,7 +52,7 @@ function getItemSheetClass(cls, sheet) {
     _getHeaderButtons() {
       const buttons = super._getHeaderButtons();
       const isAbstract = this.item.isAbstract || false;
-      const removeLabelButtonsSheetHeader = <boolean>(
+      const removeLabelButtonsSheetHeader = (
         game.settings.get(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader")
       );
 
@@ -65,7 +65,7 @@ function getItemSheetClass(cls, sheet) {
       Hooks.call(`${CONSTANTS.MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
       permissions = mergeObject(permissions, hookPermissions);
 
-      const origData = <MystifiedData>this.item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
+      const origData = this.item.getFlag(CONSTANTS.MODULE_NAME, MystifiedFlags.ORIG_DATA);
 
       if (origData) {
         if (permissions.canIdentify && !isAbstract) {

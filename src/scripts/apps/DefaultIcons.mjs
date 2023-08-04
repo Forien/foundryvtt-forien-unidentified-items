@@ -1,8 +1,8 @@
 import CONSTANTS from "../constants.mjs";
 import { i18n } from "../lib/lib.mjs";
 
-export default class DefaultIcons extends FormApplication<FormApplicationOptions, object, any> {
-  static get defaultOptions(): any {
+export default class DefaultIcons extends FormApplication {
+  static get defaultOptions(){
     const options = mergeObject(super.defaultOptions, {
       id: "forien-unidentified-items-default-icons",
       template: `/scripts/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
@@ -18,8 +18,8 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
     return options;
   }
 
-  getData(options = {}): any {
-    const data: any = super.getData();
+  getData(options = {}){
+    const data= super.getData();
     data.types = this.getItemTypes();
     data.typeSettings = this.getSettings();
     data.options = this.options;
@@ -31,7 +31,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
     // };
   }
 
-  activateListeners(html): void {
+  activateListeners(html) {
     super.activateListeners(html);
 
     html.on("change", "input", (event) => {
@@ -49,16 +49,16 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
     });
   }
 
-  async _updateObject(event, formData): Promise<any> {
+  async _updateObject(event, formData) {
     return await this.saveSettings(formData);
   }
 
-  getSettings(): DefaultIcons {
+  getSettings() {
     const settings = this.loadSettings();
     const types = this.getItemTypes();
 
     for (const type of types) {
-      const setting: any = getProperty(settings, type);
+      const setting = getProperty(settings, type);
       if (!setting) {
         settings[type] = this.getIcon(this.guessIcon(type));
       }
@@ -67,7 +67,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
     return settings;
   }
 
-  guessIcon(type): string {
+  guessIcon(type) {
     const modes = ["inv-unidentified", "unidentified"];
     const types = {
       armor: ["armor", "armour", "equipment", "gear"],
@@ -92,19 +92,19 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
     return `${icon}.png`;
   }
 
-  loadSettings(): DefaultIcons {
-    return <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
+  loadSettings(){
+    return game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
   }
 
-  async saveSettings(data): Promise<DefaultIcons> {
-    return <DefaultIcons>await game.settings.set(CONSTANTS.MODULE_NAME, "defaultIcons", data);
+  async saveSettings(data) {
+    return await game.settings.set(CONSTANTS.MODULE_NAME, "defaultIcons", data);
   }
 
-  getItemTypes(): string[] {
+  getItemTypes() {
     return Object.keys(game.system.model.Item);
   }
 
-  getIcon(icon): string {
+  getIcon(icon) {
     return `/scripts/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }
