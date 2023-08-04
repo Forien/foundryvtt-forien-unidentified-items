@@ -1,5 +1,5 @@
-import API from "./api";
-import { MystifiedFlags } from "./ForienUnidentifiedItemsModels";
+import API from "./api.mjs";
+import { MystifiedFlags } from "./ForienUnidentifiedItemsModels.mjs";
 
 export default function registerItemClassMethod() {
   //@ts-ignore

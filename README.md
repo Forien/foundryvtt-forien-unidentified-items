@@ -301,7 +301,7 @@ _Important note:_ if you perform assignment on `icons`, you will remove it's ref
 ## Identification & Mystification Hooks
 
 ### Hooks.call `forien-unidentified-items:onMystifyItem`
-* `item` – `Item` – an Item Entity instance of [Original Item](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#original-item)
+* `item` – `Item` – an Item Entity instance of [Original Item](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki#original-item)
 * `origData` – `Object` – result of `duplicate(item)`, will be directly applied to `OrigData` flag and will represent Original Item data for purpose of Peek and Identify
 * `mystifiedData` – `Object` – data object directly destined to become Mystified Object data. Properties not defined will be set to default (as in create new Item)
 * `options` – `Object` – options as passed to [`mystify()` method](#mystifyitemuuid-options--replace-false-mystifieddata-undefined).
@@ -310,7 +310,7 @@ If you perform changes on above parameters and keep object references, you can d
 
 
 ### Hooks.call `forien-unidentified-items:onIdentifyItem`
-* `item` – `Item` – an Item Entity instance of [Mystified Item](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#mystified-item)
+* `item` – `Item` – an Item Entity instance of [Mystified Item](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki#mystified-item)
 * `origData` – `Object` – directly taken from `OrigData` flag and represents Original Item data.
 
 If you perform changes on above parameters and keep object references, you can influence Identification process. The `OrigData` flag is removed by default.

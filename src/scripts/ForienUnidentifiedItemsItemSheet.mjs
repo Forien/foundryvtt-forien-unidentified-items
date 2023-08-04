@@ -1,7 +1,7 @@
-import API from "./api";
-import CONSTANTS from "./constants";
-import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import { i18n } from "./lib/lib";
+import API from "./api.mjs";
+import CONSTANTS from "./constants.mjs";
+import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels.mjs";
+import { i18n } from "./lib/lib.mjs";
 
 export default function registerDerivedItemSheetClass() {
   //@ts-ignore

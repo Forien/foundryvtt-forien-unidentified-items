@@ -1,10 +1,10 @@
 // ↓ IMPORT SYSTEMS HERE ↓
-import dnd5e from "./systems/dnd5e";
-import pf2e from "./systems/pf2e";
-import swade from "./systems/swade";
-import sw5e from "./systems/sw5e";
-import wfrp4e from "./systems/wfrp4e";
-import generic from "./systems/generic";
+import dnd5e from "./systems/dnd5e.mjs";
+import pf2e from "./systems/pf2e.mjs";
+import swade from "./systems/swade.mjs";
+import sw5e from "./systems/sw5e.mjs";
+import wfrp4e from "./systems/wfrp4e.mjs";
+import generic from "./systems/generic.mjs";
 
 // ↑ IMPORT SYSTEMS HERE ↑
 

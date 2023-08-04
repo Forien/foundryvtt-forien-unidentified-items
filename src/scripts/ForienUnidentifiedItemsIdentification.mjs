@@ -1,7 +1,7 @@
-import type DefaultIcons from "./apps/DefaultIcons";
-import CONSTANTS from "./constants";
-import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels";
-import { error, i18n, i18nFormat, info, warn } from "./lib/lib";
+import type DefaultIcons from "./apps/DefaultIcons.mjs";
+import CONSTANTS from "./constants.mjs";
+import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels.mjs";
+import { error, i18n, i18nFormat, info, warn } from "./lib/lib.mjs";
 
 export default class Identification {
   /**

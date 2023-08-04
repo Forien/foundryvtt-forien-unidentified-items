@@ -28,7 +28,7 @@
   "socket": true,
   "includes": [
     "./assets/**",
-    "./lang/**",
+    "./languages/**",
     "./languages/**",
     "./scripts/**",
     "./styles/**",
@@ -56,32 +56,32 @@
     {
       "lang": "en",
       "name": "English",
-      "path": "lang/en.json"
+      "path": "languages/en.json"
     },
     {
       "lang": "ko",
       "name": "한국어",
-      "path": "lang/ko.json"
+      "path": "languages/ko.json"
     },
     {
       "lang": "pl",
       "name": "Polski",
-      "path": "lang/pl.json"
+      "path": "languages/pl.json"
     },
     {
       "lang": "pt-BR",
       "name": "Português (Brasil)",
-      "path": "lang/pt-BR.json"
+      "path": "languages/pt-BR.json"
     },
     {
       "lang": "ja",
       "name": "日本語",
-      "path": "lang/ja.json"
+      "path": "languages/ja.json"
     },
     {
       "lang": "de",
       "name": "Deutsch",
-      "path": "lang/de.json"
+      "path": "languages/de.json"
     }
   ],
   "packs": [],

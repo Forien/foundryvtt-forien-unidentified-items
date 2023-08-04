@@ -12,12 +12,12 @@
 // Import JavaScript modules
 
 // Import TypeScript modules
-import registerDerivedItemSheetClass from "./scripts/ForienUnidentifiedItemsItemSheet";
-import registerContextMenuHook from "./scripts/ContextMenu";
-import registerSettings, { checkSettingsInitialized } from "./scripts/settings";
-import registerItemClassMethod from "./scripts/ForienUnidentifiedItemsItem";
-import CONSTANTS from "./scripts/constants";
-import API from "./scripts/api";
+import registerDerivedItemSheetClass from "./scripts/ForienUnidentifiedItemsItemSheet.mjs";
+import registerContextMenuHook from "./scripts/ContextMenu.mjs";
+import registerSettings, { checkSettingsInitialized } from "./scripts/settings.mjs";
+import registerItemClassMethod from "./scripts/ForienUnidentifiedItemsItem.mjs";
+import CONSTANTS from "./scripts/constants.mjs";
+import API from "./scripts/api.mjs";
 
 /* ------------------------------------ */
 /* Initialize module					*/
@@ -58,17 +58,12 @@ Hooks.once("ready", () => {
 
 // Add any additional hooks if necessary
 
-export interface MysteryItemModuleData {
-  api: typeof API;
-  socket: any;
-}
-
 /**
  * Initialization helper, to set API.
  * @param api to set to game module.
  */
-export function setApi(api: typeof API): void {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+export function setApi(api) {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME);
   data.api = api;
 }
 
@@ -76,8 +71,8 @@ export function setApi(api: typeof API): void {
  * Returns the set API.
  * @returns Api from games module.
  */
-export function getApi(): typeof API {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+export function getApi() {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME);
   return data.api;
 }
 
@@ -85,8 +80,8 @@ export function getApi(): typeof API {
  * Initialization helper, to set Socket.
  * @param socket to set to game module.
  */
-export function setSocket(socket: any): void {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+export function setSocket(socket) {
+  const data = game.modules.get(CONSTANTS.MODULE_NAME);
   data.socket = socket;
 }
 
@@ -95,6 +90,6 @@ export function setSocket(socket: any): void {
  * @returns Socket from games module.
  */
 export function getSocket() {
-  const data = game.modules.get(CONSTANTS.MODULE_NAME) as unknown as MysteryItemModuleData;
+  const data = game.modules.get(CONSTANTS.MODULE_NAME);
   return data.socket;
 }

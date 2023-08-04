@@ -1,9 +1,9 @@
-import API from "./api";
-import DefaultIcons from "./apps/DefaultIcons";
-import ItemProperties from "./apps/ItemProperties";
-import CONSTANTS from "./constants";
-import { dialogWarning, i18n, info, log, warn } from "./lib/lib";
-import { SYSTEMS } from "./systems";
+import API from "./api.mjs";
+import DefaultIcons from "./apps/DefaultIcons.mjs";
+import ItemProperties from "./apps/ItemProperties.mjs";
+import CONSTANTS from "./constants.mjs";
+import { dialogWarning, i18n, info, log, warn } from "./lib/lib.mjs";
+import { SYSTEMS } from "./systems.mjs";
 
 export default function registerSettings() {
   game.settings.registerMenu(CONSTANTS.MODULE_NAME, "resetAllSettings", {

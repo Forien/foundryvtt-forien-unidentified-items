@@ -1,7 +1,7 @@
-import type DefaultIcons from "./apps/DefaultIcons";
-import CONSTANTS from "./constants";
-import type { MystifiedData } from "./ForienUnidentifiedItemsModels";
-import Identification from "./ForienUnidentifiedItemsIdentification";
+import type DefaultIcons from "./apps/DefaultIcons.mjs";
+import CONSTANTS from "./constants.mjs";
+import type { MystifiedData } from "./ForienUnidentifiedItemsModels.mjs";
+import Identification from "./ForienUnidentifiedItemsIdentification.mjs";
 
 const API = {
   get DEFAULT_PROPERTIES(): any {
