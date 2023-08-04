@@ -4,7 +4,7 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: "forien-unidentified-items-item-properties",
-      template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
+      template: `/scripts/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
       title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`),
       submitOnClose: true,
       submitOnChange: false,
@@ -92,6 +92,6 @@ export default class ItemProperties extends FormApplication<FormApplicationOptio
   }
 
   getIcon(icon) {
-    return `/modules/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
+    return `/scripts/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }

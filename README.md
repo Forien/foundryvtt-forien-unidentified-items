@@ -2,25 +2,25 @@
 
 
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items?style=for-the-badge)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/p4535992/foundryvtt-forien-unidentified-items?style=for-the-badge)
 
-![GitHub Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge)
+![GitHub Releases](https://img.shields.io/github/downloads/p4535992/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge)
 
-![GitHub All Releases](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)  
+![GitHub All Releases](https://img.shields.io/github/downloads/p4535992/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)
 
-![Latest Release Download Count](https://img.shields.io/github/downloads/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge) 
+![Latest Release Download Count](https://img.shields.io/github/downloads/p4535992/foundryvtt-forien-unidentified-items/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge)
 
-[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fforien-unidentified-items&colorB=006400&style=for-the-badge)](https://forge-vtt.com/bazaar#package=foundryvtt-forien-unidentified-items) 
+[![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fforien-unidentified-items&colorB=006400&style=for-the-badge)](https://forge-vtt.com/bazaar#package=foundryvtt-forien-unidentified-items)
 
-![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge)
+![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fp4535992%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge)
 
-![Latest Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Latest%20Release&prefix=v&query=$.version&colorB=red&style=for-the-badge)
+![Latest Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fp4535992%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Latest%20Release&prefix=v&query=$.version&colorB=red&style=for-the-badge)
 
 [![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Fforien-unidentified-items%2Fshield%2Fendorsements&style=for-the-badge)](https://www.foundryvtt-hub.com/package/forien-unidentified-items/)
 
 This module aims to provides system agnostic solution to handle unidentified items and their identification for games via Foundry Virtual Tabletop.
 
-## NOTE: If you are a javascript developer and not a typescript developer, you can just use the javascript files under the dist folder
+
 
 # Installation
 
@@ -30,9 +30,17 @@ To install this module manually:
 1.  Inside the Foundry "Configuration and Setup" screen, click "Add-on Modules"
 2.  Click "Install Module"
 3.  In the "Manifest URL" field, paste the following url:
-`https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/releases/latest/download/module.json`
+`https://github.com/p4535992/foundryvtt-forien-unidentified-items/releases/latest/download/module.json`
 4.  Click 'Install' and wait for installation to complete
 5.  Don't forget to enable the module in game using the "Manage Module" button
+
+### libWrapper
+
+This module uses the [libWrapper](https://github.com/ruipin/fvtt-lib-wrapper) library for wrapping core methods. It is a hard dependency and it is recommended for the best experience and compatibility with other modules.
+
+### Archon
+
+This module uses the [Archon](https://github.com/trioderegion/archon/) library for wrapping core methods. It is a hard dependency and it is recommended for the best experience and compatibility with other modules.
 
 # System Integration
 
@@ -42,7 +50,7 @@ To install this module manually:
 | Logic      	| ✗       | ✗    | ✗      | ✗     | ✗       |
 
 
-One of main principles of this module is being [**System Agnostic**](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
+One of main principles of this module is being [**System Agnostic**](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
 
 Basic settings initialization (like setting default persisting properties for dnd5e) I will allow to be built-in this module. These can, however, be defined from the System's side.
 
@@ -52,14 +60,14 @@ Right click on items in sidebar, or use buttons on Item Sheet's header to Mystif
 
 Mystified item can be fully edited and works just as a normal item in that system. However, GM can at any point peek at what the original item is (currently it's not possible to edit original data).
 
-GM can also click on "Identify" button, which transforms entire Item into original, using embedded data.  
+GM can also click on "Identify" button, which transforms entire Item into original, using embedded data.
 Data used during identification is decided upon at the time of mystification.
 
 ## 1. Context Menu Options
 
 Right click on any entry in Item Directory (either Sidebar or Popup) to bring Context Menu for Items.
 
-![](https://i.gyazo.com/3e764e0c4fb0a54035854e7b35e333d5.png) ![](https://i.gyazo.com/9a8e32db257136af9fa728c57e05201b.png)  
+![](https://i.gyazo.com/3e764e0c4fb0a54035854e7b35e333d5.png) ![](https://i.gyazo.com/9a8e32db257136af9fa728c57e05201b.png)
 
 ### Mystify
 
@@ -77,7 +85,7 @@ This option will create new Dialog Popup:
 
 Drag & Drop an item which will become new "face" of [Original Item](#original-item). This basically allows to use some other item as template for [Mystified](#mystified-item) item, instead of using Default properties
 
-#### Mystify 
+#### Mystify
 This option works like "Mystify" context menu option
 #### Replace
 This option works like "Replace with Mystified" context menu option
@@ -92,9 +100,9 @@ This popup allows you to choose which properties of Original Item should be kept
 
 #### Buttons work like buttons in `Mystify As…` Dialog
 
-### Peek 
+### Peek
 
-Opens sheet for [Original Item](#original-item) allowing to "Peek" what the item really is, without identifying it. 
+Opens sheet for [Original Item](#original-item) allowing to "Peek" what the item really is, without identifying it.
 
 ### Identify
 
@@ -129,7 +137,7 @@ Mystified Item is normal item, that has all or most of it's properties reset to 
 
 Item that went through, or is about to go through "mystification". All data of Original Item is serialized and hidden within Mystified Item.
 
-## Screenshots 
+## Screenshots
 
 <img src="https://i.gyazo.com/1c440fd3a3d4867d3c96fcd3bd2cb585.png" alt="Mystify As - Transmogrify" width=400/>
 <img src="https://i.gyazo.com/ee294dbe6fb2eeefe25c51ac9825b58f.png" alt="Advanced mystification" width=400/><br/>
@@ -147,7 +155,7 @@ This is the only public class exposed by this module:
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 * `options` – `Object` – object of options
 * `options.replace` – `boolean` – `true` means, Original Item should be replaced with Mystified one
-* `options.mystifiedData` – `undefined | Object` – if defined, it acts as a basis for setting data of Mystified Item. Properties not defined will be set to system's default.  
+* `options.mystifiedData` – `undefined | Object` – if defined, it acts as a basis for setting data of Mystified Item. Properties not defined will be set to system's default.
 
 This method handles the Mystification proccess. Fires the `forien-unidentified-items:onMystifyItem` Hook right before mystifying.
 
@@ -159,20 +167,20 @@ Alias for `mystify(itemUuid, {replace: true})`.
 ### `async game.modules.get("forien-unidentified-items").api.mystifyAsDialog(itemUuid)`
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 
-Opens "Mystify As…" Dialog. Callbacks for buttons fire the `mystify()` method with respective settings. 
+Opens "Mystify As…" Dialog. Callbacks for buttons fire the `mystify()` method with respective settings.
 
 
 ### `async game.modules.get("forien-unidentified-items").api.mystifyAdvancedDialog(itemUuid) `
 * `itemUuid` – `string` – UUID of Original Item to be mystified
 
-Opens "Mystify (advanced)…" Dialog. Callbacks for buttons fire the `mystify()` method with respective settings. 
+Opens "Mystify (advanced)…" Dialog. Callbacks for buttons fire the `mystify()` method with respective settings.
 
 
 ### `async game.modules.get("forien-unidentified-items").api.identify(item)`
 * `item` – `Item` – instance of Item class to be identified
 
-If item has `OrigData` flag, this method will replace Mystified Item with OrigData.  
-Fires the `forien-unidentified-items:onIdentifyItem` hook. If Hook returns `false`, it will not proceed with full identification. 
+If item has `OrigData` flag, this method will replace Mystified Item with OrigData.
+Fires the `forien-unidentified-items:onIdentifyItem` hook. If Hook returns `false`, it will not proceed with full identification.
 
 
 ### `game.modules.get("forien-unidentified-items").api.isMystified(item)`
@@ -208,7 +216,7 @@ Returns Object of item's Original Data, or undefined if it isn't mystified.
 ## General Hooks
 
 ### Hooks.callAll `forien-unidentified-items:afterInit`
-At this hook, context menu event listener and settings are already redistered 
+At this hook, context menu event listener and settings are already redistered
 
 ### Hooks.callAll`forien-unidentified-items:afterSetup`
 At this hook, the `ForienIdentification` API class is already available under global scope
@@ -237,7 +245,7 @@ Example for dnd5e:
   "backpack": "modules/forien-unidentified-items/icons/inv-unidentified-knapsack.png"
 }
 ```
-You can replace any path by for example: 
+You can replace any path by for example:
 ```js
 Hooks.on('forien-unidentified-items:onInitializeDefaultIcons', (icons) => {
   icons.weapon = "path/to/icon.png";
@@ -249,7 +257,7 @@ _Important note:_ if you perform assignment on `icons`, you will remove it's ref
 ### Hooks.call `forien-unidentified-items:onInitializeItemProperties`
 * `properties` – `Object` – a key-value pair object containing item types as keys and key-pair object as value
 
-Property Paths set to `true` mean they will by default be kept when mystifying items. 
+Property Paths set to `true` mean they will by default be kept when mystifying items.
 
 Example for dnd5e:
 ```json
@@ -275,7 +283,7 @@ Example for dnd5e:
   }
 }
 ```
-You can replace any path by for example: 
+You can replace any path by for example:
 ```js
 Hooks.on('forien-unidentified-items:onInitializeItemProperties', (properties) => {
   properties.equipment = {
@@ -298,7 +306,7 @@ _Important note:_ if you perform assignment on `icons`, you will remove it's ref
 * `mystifiedData` – `Object` – data object directly destined to become Mystified Object data. Properties not defined will be set to default (as in create new Item)
 * `options` – `Object` – options as passed to [`mystify()` method](#mystifyitemuuid-options--replace-false-mystifieddata-undefined).
 
-If you perform changes on above parameters and keep object references, you can decide entire Mystification process. 
+If you perform changes on above parameters and keep object references, you can decide entire Mystification process.
 
 
 ### Hooks.call `forien-unidentified-items:onIdentifyItem`
@@ -340,11 +348,11 @@ let permissions = {
 }
 ```
 #### `canIdentify`
-If `true`, user can see and press `Identify` Header Button. 
+If `true`, user can see and press `Identify` Header Button.
 #### `canPeek`
-If `true`, user can see and press `Peek` Header Button to open Original Item sheet. 
+If `true`, user can see and press `Peek` Header Button to open Original Item sheet.
 #### `canMystify`
-If `true`, user can see and press `Mystify` Header Button. 
+If `true`, user can see and press `Mystify` Header Button.
 
 
 #### What about logic? Skill Checks for Identification?
@@ -353,15 +361,15 @@ According to this module's Primary Principle, there will never be any system-spe
 
 ### How to integrate?
 
-If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
+If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
 
-Also, do not hesitate to contact me with questions and for assistance. 
+Also, do not hesitate to contact me with questions and for assistance.
 
 ## Future plans
 
 * _none currently_
 
-You can **always** check current and up-to-date [planned and requested features here](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+You can **always** check current and up-to-date [planned and requested features here](https://github.com/p4535992/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 
 *If you have **any** suggestion or idea on new contents, hit me up on Discord!*
 
@@ -372,42 +380,31 @@ You can **always** check current and up-to-date [planned and requested features 
 ```bash
 npm install
 ```
-## npm build scripts
-### build
 
-will build the code and copy all necessary assets into the dist folder and make a symlink to install the result into your foundry data; create a
-`foundryconfig.json` file with your Foundry Data path.
+### dev
 
-```json
-{
-  "dataPath": "~/.local/share/FoundryVTT/"
-}
+`dev` will let you develop you own code with hot reloading on the browser
+
+```bash
+npm run dev
 ```
+
+## npm build scripts
+
+### build
 
 `build` will build and set up a symlink between `dist` and your `dataPath`.
 
 ```bash
-npm run-script build
+npm run build
 ```
 
-### NOTE:
+### build-watch
 
-You don't need to build the `foundryconfig.json` file you can just copy the content of the `dist` folder on the module folder under `modules` of Foundry
-
-### build:watch
-
-`build:watch` will build and watch for changes, rebuilding automatically.
+`build-watch` will build and watch for changes, rebuilding automatically.
 
 ```bash
-npm run-script build:watch
-```
-
-### clean
-
-`clean` will remove all contents in the dist folder (but keeps the link from build:install).
-
-```bash
-npm run-script clean
+npm run build-watch
 ```
 
 ### prettier-format
@@ -418,19 +415,11 @@ npm run-script clean
 npm run-script prettier-format
 ```
 
-### package
-
-`package` generates a zip file containing the contents of the dist folder generated previously with the `build` command. Useful for those who want to manually load the module or want to create their own release
-
-```bash
-npm run-script package
-```
-
 ## [Changelog](./changelog.md)
 
 ## Issues
 
-Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/League-of-Foundry-Developers/foundryvtt-forien-unidentified-items/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/p4535992/foundryvtt-forien-unidentified-items/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
 
 ## License
 
@@ -439,7 +428,7 @@ This package is under an [MIT license](LICENSE) and the [Foundry Virtual Tableto
 ## Acknowledgements
 
 * Thanks to `Forien#2130` (discord contact)
-* Bootstrapped with League of Extraordinary FoundryVTT Developers  [foundry-vtt-types](https://github.com/League-of-Foundry-Developers/foundry-vtt-types).
+* Bootstrapped with League of Extraordinary FoundryVTT Developers  [foundry-vtt-types](https://github.com/p4535992/foundry-vtt-types).
 * Icons were created by transforming assets made by Lorc and Willdabeast from [game-icons.net](https://game-icons.net/)
 * Thanks to unsoluble for the idea for this Module!
 * Thanks to KLO for providing Korean translation

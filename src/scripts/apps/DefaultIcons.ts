@@ -5,7 +5,7 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
   static get defaultOptions(): any {
     const options = mergeObject(super.defaultOptions, {
       id: "forien-unidentified-items-default-icons",
-      template: `/modules/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
+      template: `/scripts/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
       title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`),
       submitOnClose: true,
       submitOnChange: false,
@@ -105,6 +105,6 @@ export default class DefaultIcons extends FormApplication<FormApplicationOptions
   }
 
   getIcon(icon): string {
-    return `/modules/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
+    return `/scripts/${CONSTANTS.MODULE_NAME}/icons/${icon}`;
   }
 }

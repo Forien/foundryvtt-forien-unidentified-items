@@ -234,7 +234,7 @@ export default class Identification {
       })
     );
 
-    const htmlTmp = await renderTemplate(`/modules/${CONSTANTS.MODULE_NAME}/templates/mystify-advanced.html`, {
+    const htmlTmp = await renderTemplate(`/scripts/${CONSTANTS.MODULE_NAME}/templates/mystify-advanced.html`, {
       item: sourceData,
       meta: meta,
       properties: properties,
@@ -506,7 +506,7 @@ export default class Identification {
     const iconSettings = <DefaultIcons>game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
     const iconType =
       <string>getProperty(iconSettings, origData.type) ||
-      `/modules/${CONSTANTS.MODULE_NAME}/icons/${CONSTANTS.DEFAULT_ICON}`;
+      `/scripts/${CONSTANTS.MODULE_NAME}/icons/${CONSTANTS.DEFAULT_ICON}`;
 
     return {
       name: <string>i18n(`${CONSTANTS.MODULE_NAME}.NewMystified`),
