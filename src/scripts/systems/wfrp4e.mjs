@@ -38,5 +38,10 @@ export default {
       "weaponGroup.value": true,
       "reach.value": true,
     },
+    DEFAULT_ICONS: {
+      types: {},
+      typeSettings: {},
+      options: {},
+    },
   },
 };
