@@ -98,7 +98,11 @@ export default class DefaultIcons extends FormApplication {
   }
 
   async saveSettings(data) {
-    return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS, data);
+    if (data?.object) {
+      return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS, data.object);
+    } else {
+      return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS, data);
+    }
   }
 
   getItemTypes() {

@@ -85,7 +85,11 @@ export default class ItemProperties extends FormApplication {
   }
 
   async saveSettings(data) {
-    return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES, data);
+    if (data?.object) {
+      return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES, data.object);
+    } else {
+      return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES, data);
+    }
   }
 
   getItemTypes() {

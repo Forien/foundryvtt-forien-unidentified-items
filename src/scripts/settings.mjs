@@ -212,7 +212,11 @@ export function checkSettingsInitialized() {
 }
 
 function checkObjEmpty(obj) {
-  return Object.keys(obj).length === 0 && obj.constructor === Object;
+  const isEmpty = Object.keys(obj).length === 0 && obj.constructor === Object;
+  if (isEmpty || obj?.object) {
+    return true;
+  }
+  return false;
 }
 
 /**

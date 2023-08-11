@@ -6,7 +6,11 @@ import SETTINGS from "./constants/settings.mjs";
 
 const API = {
   get DEFAULT_PROPERTIES() {
-    return game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
+    const settingDefaultProperties = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
+    if (settingDefaultProperties?.object) {
+      return settingDefaultProperties.object;
+    }
+    return settingDefaultProperties;
   },
 
   /**
@@ -15,7 +19,11 @@ const API = {
    * @returns {array}
    */
   get DEFAULT_ICONS() {
-    return game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
+    const settingDefaultIcons = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
+    if (settingDefaultIcons?.object) {
+      return settingDefaultIcons.object;
+    }
+    return settingDefaultIcons;
   },
 
   /**

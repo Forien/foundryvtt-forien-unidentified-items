@@ -39,7 +39,7 @@ const SETTINGS = {
       config: false,
       system: true,
       type: DefaultIcons,
-      default: {},
+      default: SYSTEMS.DATA.DEFAULT_ICONS,
     },
     [SETTINGS.DEFAULT_PROPERTIES]: {
       name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,

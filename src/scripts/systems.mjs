@@ -60,7 +60,7 @@ export const SYSTEMS = {
       latest: generic,
     },
     icrpgme: {
-      latest: eneric,
+      latest: generic,
     },
     swse: {
       latest: generic,
@@ -114,6 +114,7 @@ export const SYSTEMS = {
   },
 
   DEFAULT_SETTINGS: {
+    DEFAULT_ICONS: {},
     DEFAULT_PROPERTIES: {},
   },
 

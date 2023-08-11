@@ -1,3 +1,4 @@
+import API from "./api.mjs";
 import DefaultIcons from "./apps/DefaultIcons.mjs";
 import CONSTANTS from "./constants/constants.mjs";
 import SETTINGS from "./constants/settings.mjs";
@@ -487,7 +488,7 @@ export default class Identification {
    * @private
    */
   static _getTypeProperties(origData) {
-    const defaultProperties = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
+    const defaultProperties = API.DEFAULT_PROPERTIES;
     return defaultProperties[origData.type];
   }
 
@@ -502,7 +503,7 @@ export default class Identification {
    * @private
    */
   static _getMystifiedMeta(origData) {
-    const iconSettings = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
+    const iconSettings = API.DEFAULT_ICONS;
     const iconType =
       getProperty(iconSettings, origData.type) || `/scripts/${CONSTANTS.MODULE_NAME}/icons/${CONSTANTS.DEFAULT_ICON}`;
 
