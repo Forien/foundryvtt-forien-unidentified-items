@@ -13,12 +13,12 @@
       "url": "https://www.patreon.com/mclemente"
     },
     {
-      "name": "p4535992",
-      "url": "https://github.com/p4535992",
+      "name": "Forien",
+      "url": "https://github.com/Forien",
       "discord": "",
       "twitter": "",
       "patreon": "",
-      "github": "p4535992",
+      "github": "Forien",
       "ko-fi": "",
       "reddit": "",
       "email": ""
@@ -94,12 +94,12 @@
     "maximum": 11
   },
   "manifestPlusVersion": "1.2.1",
-  "url": "https://github.com/p4535992/foundryvtt-forien-unidentified-items",
-  "manifest": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/releases/download/v1.1.0/module.json",
-  "download": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/releases/download/v1.1.0/module.zip",
-  "readme": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/blob/v1.1.0/README.md",
-  "changelog": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/blob/v1.1.0/CHANGELOG.md",
-  "bugs": "https://github.com/p4535992/foundryvtt-forien-unidentified-items/issues",
+  "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
+  "manifest": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v1.1.0/module.json",
+  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v1.1.0/module.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v1.1.0/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v1.1.0/CHANGELOG.md",
+  "bugs": "https://github.com/Forien/foundryvtt-forien-unidentified-items/issues",
   "allowBugReporter": true,
   "relationships": {
     "systems": [],

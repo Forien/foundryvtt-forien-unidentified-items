@@ -1,4 +1,8 @@
 # Changelog
+### v1.1.0 [BREAKING CHANGES]
+
+- Update for FVTT 11
+- Integration with Archon
 
 ### v0.6.1 [BREAKING CHANGES]
 

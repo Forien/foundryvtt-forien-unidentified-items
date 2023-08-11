@@ -2,19 +2,19 @@
 
 
 
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/p4535992/foundryvtt-forien-unidentified-items?style=for-the-badge)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Forien/foundryvtt-forien-unidentified-items?style=for-the-badge)
 
-![GitHub Releases](https://img.shields.io/github/downloads/p4535992/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge)
+![GitHub Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/latest/total?style=for-the-badge)
 
-![GitHub All Releases](https://img.shields.io/github/downloads/p4535992/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)
+![GitHub All Releases](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/total?style=for-the-badge&label=Downloads+total)
 
-![Latest Release Download Count](https://img.shields.io/github/downloads/p4535992/foundryvtt-forien-unidentified-items/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge)
+![Latest Release Download Count](https://img.shields.io/github/downloads/Forien/foundryvtt-forien-unidentified-items/latest/module.zip?color=2b82fc&label=DOWNLOADS&style=for-the-badge)
 
 [![Forge Installs](https://img.shields.io/badge/dynamic/json?label=Forge%20Installs&query=package.installs&suffix=%25&url=https%3A%2F%2Fforge-vtt.com%2Fapi%2Fbazaar%2Fpackage%2Fforien-unidentified-items&colorB=006400&style=for-the-badge)](https://forge-vtt.com/bazaar#package=foundryvtt-forien-unidentified-items)
 
-![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fp4535992%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge)
+![Foundry Core Compatible Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FForien%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Foundry%20Version&query=$.compatibleCoreVersion&colorB=orange&style=for-the-badge)
 
-![Latest Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2Fp4535992%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Latest%20Release&prefix=v&query=$.version&colorB=red&style=for-the-badge)
+![Latest Version](https://img.shields.io/badge/dynamic/json.svg?url=https%3A%2F%2Fraw.githubusercontent.com%2FForien%2Ffoundryvtt-forien-unidentified-items%2Fmaster%2Fsrc%2Fmodule.json&label=Latest%20Release&prefix=v&query=$.version&colorB=red&style=for-the-badge)
 
 [![Foundry Hub Endorsements](https://img.shields.io/endpoint?logoColor=white&url=https%3A%2F%2Fwww.foundryvtt-hub.com%2Fwp-json%2Fhubapi%2Fv1%2Fpackage%2Fforien-unidentified-items%2Fshield%2Fendorsements&style=for-the-badge)](https://www.foundryvtt-hub.com/package/forien-unidentified-items/)
 
@@ -30,7 +30,7 @@ To install this module manually:
 1.  Inside the Foundry "Configuration and Setup" screen, click "Add-on Modules"
 2.  Click "Install Module"
 3.  In the "Manifest URL" field, paste the following url:
-`https://github.com/p4535992/foundryvtt-forien-unidentified-items/releases/latest/download/module.json`
+`https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/latest/download/module.json`
 4.  Click 'Install' and wait for installation to complete
 5.  Don't forget to enable the module in game using the "Manage Module" button
 
@@ -50,7 +50,7 @@ This module uses the [Archon](https://github.com/trioderegion/archon/) library f
 | Logic      	| ✗       | ✗    | ✗      | ✗     | ✗       |
 
 
-One of main principles of this module is being [**System Agnostic**](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
+One of main principles of this module is being [**System Agnostic**](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#1-completely-system-agnostic). There is however, way of integrating systems.
 
 Basic settings initialization (like setting default persisting properties for dnd5e) I will allow to be built-in this module. These can, however, be defined from the System's side.
 
@@ -301,7 +301,7 @@ _Important note:_ if you perform assignment on `icons`, you will remove it's ref
 ## Identification & Mystification Hooks
 
 ### Hooks.call `forien-unidentified-items:onMystifyItem`
-* `item` – `Item` – an Item Entity instance of [Original Item](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki#original-item)
+* `item` – `Item` – an Item Entity instance of [Original Item](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#original-item)
 * `origData` – `Object` – result of `duplicate(item)`, will be directly applied to `OrigData` flag and will represent Original Item data for purpose of Peek and Identify
 * `mystifiedData` – `Object` – data object directly destined to become Mystified Object data. Properties not defined will be set to default (as in create new Item)
 * `options` – `Object` – options as passed to [`mystify()` method](#mystifyitemuuid-options--replace-false-mystifieddata-undefined).
@@ -310,7 +310,7 @@ If you perform changes on above parameters and keep object references, you can d
 
 
 ### Hooks.call `forien-unidentified-items:onIdentifyItem`
-* `item` – `Item` – an Item Entity instance of [Mystified Item](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki#mystified-item)
+* `item` – `Item` – an Item Entity instance of [Mystified Item](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki#mystified-item)
 * `origData` – `Object` – directly taken from `OrigData` flag and represents Original Item data.
 
 If you perform changes on above parameters and keep object references, you can influence Identification process. The `OrigData` flag is removed by default.
@@ -361,7 +361,7 @@ According to this module's Primary Principle, there will never be any system-spe
 
 ### How to integrate?
 
-If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/p4535992/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
+If you are **System** or **Module** developer, please read the [Developers Wiki](https://github.com/Forien/foundryvtt-forien-unidentified-items/wiki/Developers) for API and Hooks references.
 
 Also, do not hesitate to contact me with questions and for assistance.
 
@@ -369,7 +369,7 @@ Also, do not hesitate to contact me with questions and for assistance.
 
 * _none currently_
 
-You can **always** check current and up-to-date [planned and requested features here](https://github.com/p4535992/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
+You can **always** check current and up-to-date [planned and requested features here](https://github.com/Forien/foundryvtt-forien-unidentified-items/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement)
 
 *If you have **any** suggestion or idea on new contents, hit me up on Discord!*
 
@@ -419,7 +419,7 @@ npm run-script prettier-format
 
 ## Issues
 
-Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/p4535992/foundryvtt-forien-unidentified-items/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
+Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/Forien/foundryvtt-forien-unidentified-items/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
 
 ## License
 
@@ -428,7 +428,7 @@ This package is under an [MIT license](LICENSE) and the [Foundry Virtual Tableto
 ## Acknowledgements
 
 * Thanks to `Forien#2130` (discord contact)
-* Bootstrapped with League of Extraordinary FoundryVTT Developers  [foundry-vtt-types](https://github.com/p4535992/foundry-vtt-types).
+* Bootstrapped with League of Extraordinary FoundryVTT Developers  [foundry-vtt-types](https://github.com/Forien/foundry-vtt-types).
 * Icons were created by transforming assets made by Lorc and Willdabeast from [game-icons.net](https://game-icons.net/)
 * Thanks to unsoluble for the idea for this Module!
 * Thanks to KLO for providing Korean translation
