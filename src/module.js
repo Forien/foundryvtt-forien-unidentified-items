@@ -16,7 +16,7 @@ import registerDerivedItemSheetClass from "./scripts/ForienUnidentifiedItemsItem
 import registerContextMenuHook from "./scripts/ContextMenu.mjs";
 import registerSettings, { checkSettingsInitialized } from "./scripts/settings.mjs";
 import registerItemClassMethod from "./scripts/ForienUnidentifiedItemsItem.mjs";
-import CONSTANTS from "./scripts/constants.mjs";
+import CONSTANTS from "./scripts/constants/constants.mjs";
 import API from "./scripts/api.mjs";
 
 /* ------------------------------------ */

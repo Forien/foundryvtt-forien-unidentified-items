@@ -12,5 +12,5 @@ export class MystifiedData {
 }
 
 export const MystifiedFlags = {
-  ORIG_DATA: "origData"
-}
+  ORIG_DATA: "origData",
+};

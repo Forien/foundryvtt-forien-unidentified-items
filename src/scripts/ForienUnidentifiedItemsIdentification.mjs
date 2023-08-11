@@ -1,5 +1,6 @@
 import DefaultIcons from "./apps/DefaultIcons.mjs";
-import CONSTANTS from "./constants.mjs";
+import CONSTANTS from "./constants/constants.mjs";
+import SETTINGS from "./constants/settings.mjs";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels.mjs";
 import { error, i18n, i18nFormat, info, warn } from "./lib/lib.mjs";
 
@@ -18,7 +19,7 @@ export default class Identification {
     itemUuid,
     options = {
       replace: false,
-      mystifiedData: undefined
+      mystifiedData: undefined,
     }
   ) {
     if (!game.user?.isGM) {
@@ -48,13 +49,13 @@ export default class Identification {
     if (options.replace) {
       const template = { data: game.system.model.Item[item.type] };
       mystifiedData = mergeObject(template, mystifiedData);
-      if(!mystifiedData.flags) {
+      if (!mystifiedData.flags) {
         mystifiedData.flags = {};
       }
       await item.update(mystifiedData);
       mystifiedItem = item;
     } else {
-      if(!mystifiedData.flags) {
+      if (!mystifiedData.flags) {
         mystifiedData.flags = {};
       }
       mystifiedItem = await Item.create(mystifiedData);
@@ -111,11 +112,11 @@ export default class Identification {
             callback: (html) => {
               const source = $(html).find(".item").data("item");
               this.mystifyAdvancedDialog(itemUuid, source);
-            }
+            },
           },
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.Cancel`)
+            label: i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.Cancel`),
           },
           mystifyReplace: {
             icon: '<i class="fas fa-sync-alt"></i>',
@@ -123,15 +124,15 @@ export default class Identification {
             callback: (html) => {
               itemTmp = $(html).find(".item").data("item");
               replace = true;
-            }
+            },
           },
           mystify: {
             icon: '<i class="fas fa-eye-slash"></i>',
             label: i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAs.Mystify`),
             callback: (html) => {
               itemTmp = $(html).find(".item").data("item");
-            }
-          }
+            },
+          },
         },
         default: "cancel",
         close: () => {
@@ -183,12 +184,12 @@ export default class Identification {
                 }
               }
             });
-        }
+        },
       },
       {
         id: "forien-unidentified-items-mystifyAsDialog",
         width: 440,
-        height: "auto"
+        height: "auto",
       }
     );
 
@@ -213,7 +214,7 @@ export default class Identification {
     }
 
     const nameItem = origItem.name;
-    const sourceData = (source ? source : duplicate(origItem));
+    const sourceData = source ? source : duplicate(origItem);
     const meta = this._getMystifiedMeta(sourceData);
     const keepOldIcon = this.keepOriginalImage();
 
@@ -228,8 +229,8 @@ export default class Identification {
             key: property,
             orig: getProperty(sourceData, `data.${property}`),
             default: getProperty(game.system?.model.Item[sourceData.type], property),
-            value: properties[property]
-          }
+            value: properties[property],
+          },
         ];
       })
     );
@@ -239,7 +240,7 @@ export default class Identification {
       meta: meta,
       properties: properties,
       keepOldIcon: keepOldIcon,
-      selectedImg: selectedImg
+      selectedImg: selectedImg,
     });
 
     let confirmed = false;
@@ -251,7 +252,7 @@ export default class Identification {
         buttons: {
           cancel: {
             icon: '<i class="fas fa-times"></i>',
-            label: i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAdvanced.Cancel`)
+            label: i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAdvanced.Cancel`),
           },
           mystifyReplace: {
             icon: '<i class="fas fa-sync-alt"></i>',
@@ -259,30 +260,28 @@ export default class Identification {
             callback: (html) => {
               confirmed = true;
               replace = true;
-            }
+            },
           },
           mystify: {
             icon: '<i class="fas fa-eye-slash"></i>',
             label: i18n(`${CONSTANTS.MODULE_NAME}.Dialog.MystifyAdvanced.Mystify`),
             callback: (html) => {
               confirmed = true;
-            }
-          }
+            },
+          },
         },
         default: "cancel",
         close: (html) => {
           if (!confirmed) {
             return;
           }
-          const form = (html).find("form")[0];
+          const form = html.find("form")[0];
           const formDataBase = new FormDataExtended(form, {});
 
           formDataBase.delete("img-keep");
           formDataBase.delete("name-keep");
 
-          const formData = Object.fromEntries(
-            Object.entries(formDataBase.toObject()).filter((e) => e[1] !== false)
-          );
+          const formData = Object.fromEntries(Object.entries(formDataBase.toObject()).filter((e) => e[1] !== false));
 
           for (const property of Object.keys(formData)) {
             // if (property.startsWith("data.")) {
@@ -291,7 +290,7 @@ export default class Identification {
             // }
             if (property) {
               if (property.startsWith("system.")) {
-                if(formData[property]) {
+                if (formData[property]) {
                   delete formData[property];
                 }
                 setProperty(formData, property, getProperty(sourceData, property));
@@ -310,10 +309,10 @@ export default class Identification {
           } else {
             this.mystify(itemUuid, { replace: false, mystifiedData: formData });
           }
-        }
+        },
       },
       {
-        id: "forien-unidentified-items-mystifyAdvancedDialog"
+        id: "forien-unidentified-items-mystifyAdvancedDialog",
       }
     );
     await dialog.render(true);
@@ -356,27 +355,27 @@ export default class Identification {
     }
     // things to keep from mystified item:
     // delete origData._id;
-    if(origData.permission) {
+    if (origData.permission) {
       try {
         delete origData.permission;
-      }catch(e){
+      } catch (e) {
         // do nothing
       }
     }
     //@ts-ignore
-    if(origData.ownership) {
+    if (origData.ownership) {
       try {
         //@ts-ignore
         delete origData.ownership;
-      }catch(e){
+      } catch (e) {
         // do nothing
       }
     }
-    if(origData.folder) {
+    if (origData.folder) {
       try {
         //@ts-ignore
         delete origData.folder;
-      }catch(e){
+      } catch (e) {
         // do nothing
       }
     }
@@ -488,7 +487,7 @@ export default class Identification {
    * @private
    */
   static _getTypeProperties(origData) {
-    const defaultProperties = game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
+    const defaultProperties = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
     return defaultProperties[origData.type];
   }
 
@@ -503,15 +502,14 @@ export default class Identification {
    * @private
    */
   static _getMystifiedMeta(origData) {
-    const iconSettings = game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
+    const iconSettings = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
     const iconType =
-      getProperty(iconSettings, origData.type) ||
-      `/scripts/${CONSTANTS.MODULE_NAME}/icons/${CONSTANTS.DEFAULT_ICON}`;
+      getProperty(iconSettings, origData.type) || `/scripts/${CONSTANTS.MODULE_NAME}/icons/${CONSTANTS.DEFAULT_ICON}`;
 
     return {
       name: i18n(`${CONSTANTS.MODULE_NAME}.NewMystified`),
       type: origData.type,
-      img: iconType
+      img: iconType,
     };
   }
 

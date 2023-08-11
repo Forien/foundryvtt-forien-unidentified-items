@@ -1,5 +1,5 @@
 import API from "./api.mjs";
-import CONSTANTS from "./constants.mjs";
+import CONSTANTS from "./constants/constants.mjs";
 import { MystifiedData, MystifiedFlags } from "./ForienUnidentifiedItemsModels.mjs";
 import { i18n } from "./lib/lib.mjs";
 
@@ -52,14 +52,12 @@ function getItemSheetClass(cls, sheet) {
     _getHeaderButtons() {
       const buttons = super._getHeaderButtons();
       const isAbstract = this.item.isAbstract || false;
-      const removeLabelButtonsSheetHeader = (
-        game.settings.get(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader")
-      );
+      const removeLabelButtonsSheetHeader = game.settings.get(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader");
 
       let permissions = {
         canIdentify: game.user?.isGM,
         canPeek: game.user?.isGM,
-        canMystify: game.user?.isGM
+        canMystify: game.user?.isGM,
       };
       const hookPermissions = duplicate(permissions);
       Hooks.call(`${CONSTANTS.MODULE_NAME}:getItemPermissions`, this.item, hookPermissions);
@@ -75,7 +73,7 @@ function getItemSheetClass(cls, sheet) {
             icon: "fas fa-search",
             onclick: (ev) => {
               API.identify(this.item);
-            }
+            },
           });
         }
 
@@ -91,7 +89,7 @@ function getItemSheetClass(cls, sheet) {
               entity.isAbstract = true;
               const sheetTmp = entity.sheet;
               sheetTmp?.render(true);
-            }
+            },
           });
         }
       } else {
@@ -103,7 +101,7 @@ function getItemSheetClass(cls, sheet) {
               icon: "far fa-eye-slash",
               onclick: (ev) => {
                 API.mystifyReplace(this.item.uuid);
-              }
+              },
             });
           } else {
             buttons.unshift({
@@ -112,7 +110,7 @@ function getItemSheetClass(cls, sheet) {
               icon: "far fa-eye-slash",
               onclick: (ev) => {
                 API.mystify(this.item.uuid);
-              }
+              },
             });
           }
         }

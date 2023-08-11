@@ -1,11 +1,12 @@
 import DefaultIcons from "./apps/DefaultIcons.mjs";
-import CONSTANTS from "./constants.mjs";
+import CONSTANTS from "./constants/constants.mjs";
 import { MystifiedData } from "./ForienUnidentifiedItemsModels.mjs";
 import Identification from "./ForienUnidentifiedItemsIdentification.mjs";
+import SETTINGS from "./constants/settings.mjs";
 
 const API = {
   get DEFAULT_PROPERTIES() {
-    return game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
+    return game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
   },
 
   /**
@@ -14,7 +15,7 @@ const API = {
    * @returns {array}
    */
   get DEFAULT_ICONS() {
-    return game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
+    return game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
   },
 
   /**
@@ -31,7 +32,7 @@ const API = {
     itemUuid,
     options = {
       replace: false,
-      mystifiedData: undefined
+      mystifiedData: undefined,
     }
   ) {
     return await Identification.mystify(itemUuid, options);
@@ -101,7 +102,7 @@ const API = {
    */
   async isUuidMystified(uuid) {
     return await Identification.isUuidMystified(uuid);
-  }
+  },
 };
 
 export default API;

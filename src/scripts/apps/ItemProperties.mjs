@@ -1,7 +1,8 @@
-import CONSTANTS from "../constants.mjs";
+import CONSTANTS from "../constants/constants.mjs";
+import SETTINGS from "../constants/settings.mjs";
 import { i18n } from "../lib/lib.mjs";
 export default class ItemProperties extends FormApplication {
-  static get defaultOptions(){
+  static get defaultOptions() {
     const options = mergeObject(super.defaultOptions, {
       id: "forien-unidentified-items-item-properties",
       template: `/scripts/${CONSTANTS.MODULE_NAME}/templates/settings-item-properties.html`,
@@ -12,7 +13,7 @@ export default class ItemProperties extends FormApplication {
       resizable: true,
       width: 640,
       height: 560,
-      tabs: [{ navSelector: ".nav-tabs", contentSelector: ".nav-body" }]
+      tabs: [{ navSelector: ".nav-tabs", contentSelector: ".nav-body" }],
     });
 
     if (game.system.id === "wfrp4e") {
@@ -21,8 +22,8 @@ export default class ItemProperties extends FormApplication {
     return options;
   }
 
-  getData(options = {}){
-    const data= super.getData();
+  getData(options = {}) {
+    const data = super.getData();
     (data.types = this.getItemTypes()), (data.propertySettings = this.getSettings()), (data.options = this.options);
     return data;
     // return {
@@ -63,8 +64,8 @@ export default class ItemProperties extends FormApplication {
     return properties;
   }
 
-  getSettings(){
-    const settings= this.loadSettings();
+  getSettings() {
+    const settings = this.loadSettings();
     const types = this.getItemTypes();
     const properties = this.getProperties();
 
@@ -79,12 +80,12 @@ export default class ItemProperties extends FormApplication {
     return settings;
   }
 
-  loadSettings(){
-    return game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
+  loadSettings() {
+    return game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
   }
 
   async saveSettings(data) {
-    return await game.settings.set(CONSTANTS.MODULE_NAME, "itemProperties", data);
+    return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES, data);
   }
 
   getItemTypes() {

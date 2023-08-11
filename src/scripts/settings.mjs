@@ -1,9 +1,25 @@
 import API from "./api.mjs";
 import DefaultIcons from "./apps/DefaultIcons.mjs";
 import ItemProperties from "./apps/ItemProperties.mjs";
-import CONSTANTS from "./constants.mjs";
-import { dialogWarning, i18n, info, log, warn } from "./lib/lib.mjs";
+import CONSTANTS from "./constants/constants.mjs";
+import SETTINGS from "./constants/settings.mjs";
+import { debug, dialogWarning, i18n, info, log, warn } from "./lib/lib.mjs";
 import { SYSTEMS } from "./systems.mjs";
+
+/**
+ * @param key
+ * @returns {*}
+ */
+export function getSetting(key) {
+  return game.settings.get(CONSTANTS.MODULE_NAME, key);
+}
+
+export function setSetting(key, value) {
+  if (value === undefined) {
+    throw new Error("setSetting | value must not be undefined!");
+  }
+  return game.settings.set(CONSTANTS.MODULE_NAME, key, value);
+}
 
 export default function registerSettings() {
   game.settings.registerMenu(CONSTANTS.MODULE_NAME, "resetAllSettings", {
@@ -11,29 +27,10 @@ export default function registerSettings() {
     hint: `${CONSTANTS.MODULE_NAME}.Settings.reset.hint`,
     icon: "fas fa-coins",
     type: ResetSettingsDialog,
-    restricted: true
+    restricted: true,
   });
 
   // =====================================================================
-
-  //registerSettingMenus();
-  game.settings.registerMenu(CONSTANTS.MODULE_NAME, "defaultIcons", {
-    name: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`,
-    label: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.label`,
-    hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
-    icon: "fas fa-image",
-    type,
-    restricted: true
-  });
-
-  game.settings.registerMenu(CONSTANTS.MODULE_NAME, "itemProperties", {
-    name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,
-    label: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.label`,
-    hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
-    icon: "fas fa-cogs",
-    typeProperties,
-    restricted: true
-  });
 
   game.settings.register(CONSTANTS.MODULE_NAME, "removeLabelButtonsSheetHeader", {
     name: i18n(`${CONSTANTS.MODULE_NAME}.Settings.removeLabelButtonsSheetHeader.name`),
@@ -41,7 +38,7 @@ export default function registerSettings() {
     scope: "world",
     config: true,
     type: Boolean,
-    default: true
+    default: true,
   });
 
   game.settings.register(CONSTANTS.MODULE_NAME, "keepOldIcon", {
@@ -50,7 +47,7 @@ export default function registerSettings() {
     scope: "world",
     config: true,
     default: false,
-    type: Boolean
+    type: Boolean,
   });
 
   game.settings.register(CONSTANTS.MODULE_NAME, "allowNestedItems", {
@@ -59,7 +56,7 @@ export default function registerSettings() {
     scope: "world",
     config: true,
     default: false,
-    type: Boolean
+    type: Boolean,
   });
 
   // =====================================================================
@@ -70,49 +67,88 @@ export default function registerSettings() {
     scope: "client",
     config: true,
     default: false,
-    type: Boolean
-  });
-
-  game.settings.register(CONSTANTS.MODULE_NAME, "debugHooks", {
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean
-  });
-
-  game.settings.register(CONSTANTS.MODULE_NAME, "systemFound", {
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean
-  });
-
-  game.settings.register(CONSTANTS.MODULE_NAME, "systemNotFoundWarningShown", {
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean
-  });
-
-  game.settings.register(CONSTANTS.MODULE_NAME, "preconfiguredSystem", {
-    name: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.name`,
-    hint: `${CONSTANTS.MODULE_NAME}.Settings.preconfiguredSystem.hint`,
-    scope: "world",
-    config: false,
-    default: false,
-    type: Boolean
+    type: Boolean,
   });
 
   // ========================================================================
 
-  const settings = defaultSettings();
-  for (const [name, data] of Object.entries(settings)) {
+  for (let [name, data] of Object.entries(SETTINGS.GET_DEFAULT())) {
     game.settings.register(CONSTANTS.MODULE_NAME, name, data);
   }
+}
 
-  // for (const [name, data] of Object.entries(otherSettings)) {
-  //     game.settings.register(CONSTANTS.MODULE_NAME, name, data);
-  // }
+export async function applyDefaultSettings() {
+  const settings = SETTINGS.GET_SYSTEM_DEFAULTS();
+  for (const [name, data] of Object.entries(settings)) {
+    await setSetting(name, data.default);
+  }
+  await setSetting(SETTINGS.SYSTEM_VERSION, SYSTEMS.DATA.VERSION);
+}
+
+export function applySystemSpecificStyles(data = false) {
+  // TODO ?
+}
+
+export async function checkSystem() {
+  if (!SYSTEMS.HAS_SYSTEM_SUPPORT) {
+    if (getSetting(SETTINGS.SYSTEM_NOT_FOUND_WARNING_SHOWN)) return;
+
+    let settingsValid = true;
+    for (const [name, data] of Object.entries(SETTINGS.GET_DEFAULT())) {
+      settingsValid = settingsValid && getSetting(name).length !== new data.type().length;
+    }
+
+    if (settingsValid) return;
+
+    // TJSDialog.prompt({
+    //   title: game.i18n.localize("ITEM-PILES.Dialogs.NoSystemFound.Title"),
+    //   content: {
+    //     class: CustomDialog,
+    //     props: {
+    //       content: game.i18n.localize("ITEM-PILES.Dialogs.NoSystemFound.Content"),
+    //     },
+    //   },
+    // });
+    new Dialog({
+      title: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.title`),
+      content: warn(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.content`), true),
+      buttons: {
+        confirm: {
+          icon: '<i class="fas fa-check"></i>',
+          label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.confirm`),
+          callback: () => {
+            applyDefaultSettings();
+          },
+        },
+        cancel: {
+          icon: '<i class="fas fa-times"></i>',
+          label: game.i18n.localize("No"),
+        },
+      },
+      default: "cancel",
+    }).render(true);
+
+    return setSetting(SETTINGS.SYSTEM_NOT_FOUND_WARNING_SHOWN, true);
+  }
+
+  if (getSetting(SETTINGS.SYSTEM_FOUND) || SYSTEMS.DATA.INTEGRATION) {
+    const currentVersion = getSetting(SETTINGS.SYSTEM_VERSION);
+    const newVersion = SYSTEMS.DATA.VERSION;
+    debug(`Comparing system version - Current: ${currentVersion} - New: ${newVersion}`);
+    if (foundry.utils.isNewerVersion(newVersion, currentVersion)) {
+      debug(`Applying system settings for ${game.system.title}`);
+      await applyDefaultSettings();
+    }
+    return;
+  }
+
+  await setSetting(SETTINGS.SYSTEM_FOUND, true);
+
+  if (getSetting(SETTINGS.SYSTEM_NOT_FOUND_WARNING_SHOWN)) {
+    dialogWarning(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.nosystemfound.content`));
+  }
+
+  return applyDefaultSettings();
 }
 
 class ResetSettingsDialog extends FormApplication {
@@ -140,94 +176,20 @@ class ResetSettingsDialog extends FormApplication {
             }
             await applyDefaultSettings();
             window.location.reload();
-          }
+          },
         },
         cancel: {
           icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.resetsettings.cancel`)
-        }
+          label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.resetsettings.cancel`),
+        },
       },
-      default: "cancel"
+      default: "cancel",
     });
   }
 
   async _updateObject(event, formData) {
     // do nothing
   }
-}
-
-async function applyDefaultSettings() {
-  const settings = defaultSettings(true);
-  for (const [name, data] of Object.entries(settings)) {
-    await game.settings.set(CONSTANTS.MODULE_NAME, name, data.default);
-  }
-  // const settings2 = otherSettings(true);
-  // for (const [name, data] of Object.entries(settings2)) {
-  // 	//@ts-ignore
-  // 	await game.settings.set(CONSTANTS.MODULE_NAME, name, data.default);
-  // }
-}
-
-function defaultSettings(apply = false) {
-  return {
-    defaultIcons: {
-      name: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`,
-      hint: `${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.hint`,
-      scope: "world",
-      config: false,
-      default: {}
-    },
-    itemProperties: {
-      name: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.name`,
-      hint: `${CONSTANTS.MODULE_NAME}.Settings.itemProperties.hint`,
-      scope: "world",
-      config: false,
-      default: {}
-    }
-  };
-}
-
-export async function checkSystem() {
-  if (!SYSTEMS.DATA) {
-    if (game.settings.get(CONSTANTS.MODULE_NAME, "systemNotFoundWarningShown")) return;
-
-    await game.settings.set(CONSTANTS.MODULE_NAME, "systemNotFoundWarningShown", true);
-
-    return Dialog.prompt({
-      title: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.nosystemfound.title`),
-      content: dialogWarning(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.nosystemfound.content`)),
-      callback: () => {
-        // empty body just for avoid the error on eslint
-      }
-    });
-  }
-
-  if (game.settings.get(CONSTANTS.MODULE_NAME, "systemFound")) return;
-
-  game.settings.set(CONSTANTS.MODULE_NAME, "systemFound", true);
-
-  if (game.settings.get(CONSTANTS.MODULE_NAME, "systemNotFoundWarningShown")) {
-    return new Dialog({
-      title: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.title`),
-      content: warn(game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.content`), true),
-      buttons: {
-        confirm: {
-          icon: '<i class="fas fa-check"></i>',
-          label: game.i18n.localize(`${CONSTANTS.MODULE_NAME}.Dialog.systemfound.confirm`),
-          callback: () => {
-            applyDefaultSettings();
-          }
-        },
-        cancel: {
-          icon: '<i class="fas fa-times"></i>',
-          label: game.i18n.localize("No")
-        }
-      },
-      default: "cancel"
-    }).render(true);
-  }
-
-  return applyDefaultSettings();
 }
 
 /**
@@ -237,8 +199,8 @@ export function checkSettingsInitialized() {
   if (!game.user?.isGM) {
     return;
   }
-  const defaultIcons = game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
-  const itemProperties = game.settings.get(CONSTANTS.MODULE_NAME, "itemProperties");
+  const defaultIcons = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
+  const itemProperties = game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_PROPERTIES);
 
   if (checkObjEmpty(defaultIcons)) {
     initializeDefaultIcons();

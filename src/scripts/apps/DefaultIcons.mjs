@@ -1,15 +1,16 @@
-import CONSTANTS from "../constants.mjs";
+import CONSTANTS from "../constants/constants.mjs";
+import SETTINGS from "../constants/settings.mjs";
 import { i18n } from "../lib/lib.mjs";
 
 export default class DefaultIcons extends FormApplication {
-  static get defaultOptions(){
+  static get defaultOptions() {
     const options = mergeObject(super.defaultOptions, {
       id: "forien-unidentified-items-default-icons",
       template: `/scripts/${CONSTANTS.MODULE_NAME}/templates/settings-default-icons.html`,
       title: i18n(`${CONSTANTS.MODULE_NAME}.Settings.defaultIcons.name`),
       submitOnClose: true,
       submitOnChange: false,
-      closeOnSubmit: true
+      closeOnSubmit: true,
     });
 
     if (game.system.id === "wfrp4e") {
@@ -18,8 +19,8 @@ export default class DefaultIcons extends FormApplication {
     return options;
   }
 
-  getData(options = {}){
-    const data= super.getData();
+  getData(options = {}) {
+    const data = super.getData();
     data.types = this.getItemTypes();
     data.typeSettings = this.getSettings();
     data.options = this.options;
@@ -78,7 +79,7 @@ export default class DefaultIcons extends FormApplication {
       potion: ["consumable"],
       sack: ["artifact", "goods", "trapping"],
       scroll: ["ability", "enchantment", "magic", "prayer", "sorcery", "spell"],
-      tool: ["tool"]
+      tool: ["tool"],
     };
     const mode = modes[Math.floor(Math.random() * modes.length)];
     let icon = mode;
@@ -92,12 +93,12 @@ export default class DefaultIcons extends FormApplication {
     return `${icon}.png`;
   }
 
-  loadSettings(){
-    return game.settings.get(CONSTANTS.MODULE_NAME, "defaultIcons");
+  loadSettings() {
+    return game.settings.get(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS);
   }
 
   async saveSettings(data) {
-    return await game.settings.set(CONSTANTS.MODULE_NAME, "defaultIcons", data);
+    return await game.settings.set(CONSTANTS.MODULE_NAME, SETTINGS.DEFAULT_ICONS, data);
   }
 
   getItemTypes() {
