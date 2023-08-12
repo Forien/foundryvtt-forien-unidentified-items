@@ -1,0 +1,61 @@
+{
+  "forien-unidentified-items": {
+    "NewMystified": "Niezidentyfikowany przedmiot",
+    "Mystify": "Zmistyfikuj",
+    "MystifyReplace": "Podmień na zmistyfikowany",
+    "MystifyAs": "Zmistyfikuj jako…",
+    "MystifyAdvanced": "Zmistyfikuj (zaawansowane)…",
+    "Identify": "Zidentyfikuj",
+    "Peek": "Podejrzyj",
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "Zmistyfikuj {nameItem}",
+        "Header": "Wybierz źródło transmogryfikacji:",
+        "DropZone": "Przeciągnij i Upuść tu Przedmiot, żeby ustawić go jako wygląd dla „{nameItem}”",
+        "Cancel": "Anuluj",
+        "Mystify": "Mistifikuj",
+        "MystifyReplace": "Podmień",
+        "MystifyAdvanced": "Zaawansowane..."
+      },
+      "MystifyAdvanced": {
+        "Title": "Mistyfikuj {nameItem}",
+        "Meta": "Metadane Przedmiotu",
+        "Original": "Źródło",
+        "Result": "Rezultat",
+        "Default": "Domyślne",
+        "Properties": "Zachowywane właściwości",
+        "Cancel": "Anuluj",
+        "Mystify": "Mistifikuj",
+        "MystifyReplace": "Podmień"
+      }
+    },
+    "Settings": {
+      "defaultIcons": {
+        "name": "Domyślne ikony",
+        "hint": "Określ jakie ikony powinny być stosowane dla poszczególnych typów przedmiotów.",
+        "label": "Otwórz Menadżer Ikon"
+      },
+      "itemProperties": {
+        "name": "Trwałe Właściwości",
+        "hint": "Określ jakie właściwości przedmioty powinny być zachowywane w zmistyfikowanym przedmiocie.",
+        "label": "Otwórz Menadżer Właściwości"
+      },
+      "keepOldIcon": {
+        "name": "Zachowaj oryginalną ikonę",
+        "hint": "Zaznacz, aby zachowywać oryginalną ikonę przedmiotu podczas mistyfikacji. Zaawansowana Mistyfikacja nadal pozwalać będzie na manualne określenie ikony."
+      },
+      "allowNestedItems": {
+        "Hint": "Zaznacz tę opcję aby móc Zmistyfikować Zmistyfikowany przedmiot, pozwalając na zagnieżdżone poziomy wiedzy o przedmiocie lub przedmioty o wielu stadiach rozwoju. Każdy etap należy osobno zidentyfikować.",
+        "Name": "Zezwól na zagnieżdżanie"
+      }
+    },
+    "Item": {
+      "Mystified": "Zmistyfikowany",
+      "Original": "Oryginał"
+    },
+    "Notifications": {
+      "defaultIconsInitialized": "Domyślne Ikony Typów Przedmiotów zostały losowo przydzielone. Proszę odwiedź Ustawienia Modułu po więcje informacji.",
+      "defaultPropertiesInitialized": "Domyślne Trwałe Właściwości Przedmiotów zostały wygenerowane. Proszę odwiedź Ustawienia Modułu po więcje informacji."
+    }
+  }
+}

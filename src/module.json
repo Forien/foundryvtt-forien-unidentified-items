@@ -1,0 +1,122 @@
+{
+  "id": "forien-unidentified-items",
+  "title": "Forien's Unidentified Items",
+  "description": "Provides system agnostic solution to handle unidentified items and their identification.",
+  "version": "1.1.0",
+  "authors": [
+    {
+      "name": "Forien",
+      "url": "https://www.patreon.com/foundryworkshop"
+    },
+    {
+      "name": "Matheus Clemente",
+      "url": "https://www.patreon.com/mclemente"
+    },
+    {
+      "name": "Forien",
+      "url": "https://github.com/Forien",
+      "discord": "",
+      "twitter": "",
+      "patreon": "",
+      "github": "Forien",
+      "ko-fi": "",
+      "reddit": "",
+      "email": ""
+    }
+  ],
+  "type": "module",
+  "socket": true,
+  "includes": [
+    "./assets/**",
+    "./languages/**",
+    "./languages/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./module.json",
+    "./README.md",
+    "./icons/**",
+    "./packs/**"
+  ],
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    },
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "languages/en.json"
+    },
+    {
+      "lang": "ko",
+      "name": "한국어",
+      "path": "languages/ko.json"
+    },
+    {
+      "lang": "pl",
+      "name": "Polski",
+      "path": "languages/pl.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "languages/pt-BR.json"
+    },
+    {
+      "lang": "ja",
+      "name": "日本語",
+      "path": "languages/ja.json"
+    },
+    {
+      "lang": "de",
+      "name": "Deutsch",
+      "path": "languages/de.json"
+    }
+  ],
+  "packs": [],
+  "scripts": [],
+  "esmodules": ["module.js"],
+  "styles": ["styles/style.css"],
+  "compatibility": {
+    "minimum": 11,
+    "verified": 11,
+    "maximum": 11
+  },
+  "manifestPlusVersion": "1.2.1",
+  "url": "https://github.com/Forien/foundryvtt-forien-unidentified-items",
+  "manifest": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v1.1.0/module.json",
+  "download": "https://github.com/Forien/foundryvtt-forien-unidentified-items/releases/download/v1.1.0/module.zip",
+  "readme": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v1.1.0/README.md",
+  "changelog": "https://github.com/Forien/foundryvtt-forien-unidentified-items/blob/v1.1.0/CHANGELOG.md",
+  "bugs": "https://github.com/Forien/foundryvtt-forien-unidentified-items/issues",
+  "allowBugReporter": true,
+  "relationships": {
+    "systems": [],
+    "requires": [
+      {
+        "id": "lib-wrapper",
+        "type": "module",
+        "manifest": "https://github.com/ruipin/fvtt-lib-wrapper/releases/latest/download/module.json",
+        "compatibility": {}
+      },
+      {
+        "id": "archon",
+        "type": "module",
+        "manifest": "https://github.com/trioderegion/archon/releases/latest/download/module.json",
+        "compatibility": {}
+      }
+    ],
+    "conflicts": []
+  }
+}

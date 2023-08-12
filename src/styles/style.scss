@@ -1,0 +1,218 @@
+$icon-size: 66px;
+
+#forien-unidentified-items-default-icons {
+  &.wfrp4e {
+    .window-content {
+      background: url(/ui/parchment.jpg) repeat;
+    }
+  }
+
+  .item-type-entry {
+    display: flex;
+
+    & > * {
+      flex: 1;
+      align-self: center;
+      margin: 0 4px;
+    }
+
+    input {
+      flex: 2;
+      height: 29px;
+      min-width: 300px;
+      font-size: 12px;
+    }
+
+    img {
+      width: $icon-size;
+      height: $icon-size;
+      flex: 0;
+      margin: 0;
+    }
+
+    button {
+      flex: 0;
+      margin: 0;
+    }
+  }
+}
+
+#forien-unidentified-items-item-properties {
+  &.wfrp4e {
+    .window-content {
+      background: url(/ui/parchment.jpg) repeat;
+    }
+  }
+
+  form {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  nav {
+    flex-wrap: wrap;
+
+    a {
+      flex: 0 0 25%;
+      border-radius: 10px;
+      border-color: black;
+      border-style: outset;
+    }
+  }
+
+  section {
+    overflow: auto;
+    padding: 6px;
+
+    .tab {
+      columns: 3;
+
+      .type-property {
+        display: flex;
+        align-items: center;
+      }
+
+      * {
+        break-inside: avoid-column;
+        padding: 0;
+      }
+
+      /**
+       * Because PF2e...
+       */
+      display: none;
+
+      // Also Because PF2e...
+      &.tab.active {
+        display: block;
+      }
+    }
+  }
+}
+
+#forien-unidentified-items-mystifyAsDialog {
+  .dropzone {
+    min-height: 240px;
+    margin-bottom: 4px;
+    border: 2px dashed #33333366;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      position: relative;
+      max-width: 80%;
+
+      font-variant: small-caps;
+      font-size: 1.6rem;
+      color: #333333cc;
+    }
+
+    .item {
+      display: flex;
+
+      img {
+        width: $icon-size;
+        height: $icon-size;
+        border-radius: 8px;
+        border: 2px solid #000;
+      }
+
+      span {
+        font-size: 1.2rem;
+        align-self: center;
+        padding: 8px;
+      }
+    }
+  }
+
+  button[data-button="mystifyAdvanced"] {
+    flex-basis: 100%;
+    margin: 0 0 2px 0;
+  }
+}
+
+#forien-unidentified-items-mystifyAdvancedDialog {
+  min-width: 500px;
+  max-height: 800px;
+
+  .window-content {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  .advanced-body {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto auto auto auto minmax(0, 1fr);
+
+    .meta-header {
+      display: flex;
+
+      & > * {
+        flex: 1;
+        text-align: center;
+        font-weight: bold;
+      }
+    }
+
+    .meta-body > * {
+      display: flex;
+
+      & > * {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+      }
+    }
+
+    .meta-name {
+      margin-top: 10px;
+    }
+
+    img {
+      width: $icon-size;
+      height: $icon-size;
+    }
+
+    .properties-body {
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-gap: 6px 10px;
+
+      label {
+        font-weight: bold;
+      }
+
+      .property-values {
+        display: flex;
+        flex-direction: column;
+        font-style: italic;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.forien-unidentified-items-identify-item .fa-search {
+  color: DeepPink;
+  text-shadow: 0 0 8px DeepPink;
+}
+
+.forien-unidentified-items-peek-original-item .fa-eye {
+  color: Orchid;
+  text-shadow: 0 0 8px Orchid;
+}
+
+.forien-unidentified-items-mystify-item .fa-eye-slash {
+  color: RebeccaPurple;
+  text-shadow: 0 0 8px RebeccaPurple;
+}

@@ -1,0 +1,94 @@
+{
+  "forien-unidentified-items": {
+    "NewMystified": "Unidentifizierter Gegenstand",
+    "Mystify": "Mystifizieren",
+    "MystifyReplace": "Ersetze mit mystifiziertem Gegenstand",
+    "MystifyAs": "Mystifiziere als…",
+    "MystifyAdvanced": "Mystifiziere (erweitert)…",
+    "Identify": "Identifizieren",
+    "Peek": "Ansehen",
+
+    "Item": {
+      "Original": "Original",
+      "Mystified": "Mystifiziert"
+    },
+
+    "Dialog": {
+      "MystifyAs": {
+        "Title": "Mystifiziere {nameItem}",
+        "Header": "Quelle der Transmogrifikation auswählen:",
+        "DropZone": "Einen Gegenstand hierhin ziehen, um ihn als neue Erscheinung für {nameItem} festzulegen",
+        "Cancel": "Abbrechen",
+        "Mystify": "Mystifizieren",
+        "MystifyReplace": "Ersetzen",
+        "MystifyAdvanced": "Erweitert…"
+      },
+      "MystifyAdvanced": {
+        "Title": "Mystifiziere {nameItem}",
+        "Meta": "Metadaten des Gegenstands",
+        "Original": "Quelle",
+        "Result": "Ergebnis",
+        "Default": "Voreinstellung",
+        "Properties": "Zu übernehmende Eigenschaften",
+        "Cancel": "Abbrechen",
+        "Mystify": "Mystifizieren",
+        "MystifyReplace": "Ersetzen"
+      },
+      "resetsettings": {
+        "title": "Moduleinstellungen zurücksetzen",
+        "content": "Bist Du sicher, dass alle Einstellungen des Moduls auf die Voreinstellungen des aktuellen Systems zurückgesetzt werden sollen?<strong>Dies kann nicht rückgängig gemacht werden!</strong>",
+        "confirm": "Moduleinstellungen zurücksetzen",
+        "cancel": "Abbrechen"
+      },
+      "nosystemfound": {
+        "title": "System nicht erkannt",
+        "content": "Dieses System wird aktuell nicht vollständig unterstützt. Das bedeutet, dass dieses Modul nicht weiß, wie es mit den Gegenständen des Systems am besten umgehen soll, kann aber trotzdem eingeschränkt arbeiten.<br><br>Mit ein wenig technischem Verständnis kannst Du diese Einstellungen selbst vornehmen."
+      },
+      "systemfound": {
+        "title": "System erkannt",
+        "content": "Dieses System war zuvor nicht unterstützt, wurde aber in einem Update hinzugefügt!<br><br>Möchtest Du die Voreinstellungen für dieses System laden?",
+        "confirm": "Voreinstellungen des Systems anwenden"
+      }
+    },
+
+    "Settings": {
+      "allowNestedItems": {
+        "Name": "Verschachtelung erlauben",
+        "Hint": "Auswählen, um verschachteltes Mystifizieren eines bereits mystischen Gegenstandes zu erlauben. Die einzelnen Ebenen können dann separat nacheinander identifiziert werden."
+      },
+      "defaultIcons": {
+        "name": "Standardsymbol",
+        "hint": "Auswählen, welches Symbol für bestimmte Arten von Gegenständen verwendet wird.",
+        "label": "Symbolverwaltung öffnen"
+      },
+      "itemProperties": {
+        "name": "Übernommene Eigenschaften",
+        "hint": "Auswählen, welche Eigenschaften standardmäßig beim Mystifizieren übernommen werden sollen",
+        "label": "Eigenschaftenverwaltung öffnen"
+      },
+      "keepOldIcon": {
+        "name": "Ursprüngliches Symbol behalten",
+        "hint": "Auswählen, um das ursprüngliche Symbol beim Mystifizieren zu behalten. Erweiterte Mystifizierung erlaubt weiterhin eine Auswahl zwischen ursprünglichem und voreingestelltem Symbol."
+      },
+      "removeLabelButtonsSheetHeader": {
+        "name": "Beschriftung der Schaltflächen im Kopfbereich des Gegenstandsbogens entfernen",
+        "hint": "Nützlich für kleine Bildschirme, standardmäßig aktiv."
+      },
+      "reset": {
+        "name": "Auf Voreinstellungen zurücksetzen",
+        "label": "Einstellungen auf Voreinstellungen zurücksetzen.",
+        "hint": "Dies wird alle Einstellungen auf die Voreinstellungen des Systems zurücksetzen."
+      },
+      "debug": {
+        "name": "Debugging aktivieren",
+        "label": "Ausgaben zur Fehlersuche in der Konsole anzeigen.",
+        "hint": ""
+      }
+    },
+
+    "Notifications": {
+      "defaultIconsInitialized": "Voreingestellte Symbole für Gegenstände wurden zufällig zugewiesen. Weitere Informationen findest Du in den Moduleinstellungen.",
+      "defaultPropertiesInitialized": "Voreinstellungen für übernommene Eigenschaften wurden erstellt. Weitere Informationen findest Du in den Moduleinstellungen."
+    }
+  }
+}
